@@ -10,8 +10,9 @@ class Dashboard extends CI_Controller {
 	}
 
 	function index() {
-		echo '<br /><br /><br /><h1 align="center">Welcome User</h1>';
-		echo '<p align="center"><a href="'.base_url().'dashboard/logout">Logout</a></p>';
+		$this->load->view('templates/header');
+		$this->load->view('dashboard');
+		$this->load->view('templates/footer');
 	}
 
 	function logout() {
