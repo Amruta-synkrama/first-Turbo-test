@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title></title>
+	<title>Turbores</title>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 	<link rel="stylesheet" type="text/css" href="/assets/css/style.css">
 </head>
@@ -52,15 +52,15 @@
 					';
 				}
 				?>
-				<?php /*if(isset($validation)) : ?>
-				<div class="row">
-					<div class="col-12">
-						<div class="alert alert-danger">
-							<?= $validation->listErrors(); ?>
-						</div>		
+				<?php if(!empty(validation_errors())) : ?>
+					<div class="row">
+						<div class="col-12">
+							<div class="alert alert-danger">
+								<?= validation_errors(); ?>
+							</div>		
+						</div>
 					</div>
-				</div>
-				<?php endif; */ ?>
+				<?php endif; ?>
 				<form action="<?php echo base_url(); ?>login/validation" method="post">
 					<div class="form-group">
 						<label>Email</label>
