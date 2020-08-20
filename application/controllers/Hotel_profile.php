@@ -1,9 +1,8 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed');
 
-class Hotel_profile extends CI_Controller
-{
-	public function __construct()
-	{
+class Hotel_profile extends CI_Controller {
+
+	public function __construct() {
 		parent::__construct();
 		if(!$this->session->userdata('id')) {
 			redirect('login');
@@ -13,119 +12,88 @@ class Hotel_profile extends CI_Controller
 		} elseif($this->session->userdata('user_data')->entity != 'Hotel') {
 			redirect('dashboard');
 		}
+
+		$this->load->library('form_validation');
+		$this->load->model('hotel_profile_model');
 	}
 	
-	public function index()
-	{
+	public function index() {
 		$user_id = $this->session->userdata('id');
-		$this->load->model('hotel_profile_model');
-		$data['company_data'] = $this->hotel_profile_model->get_hotel_data($user_id);
+		$data['hotel_data'] = $this->hotel_profile_model->get_hotel_data($user_id);
 		$data['user_data'] = $this->hotel_profile_model->get_user_data($user_id);
 		$data['session'] = $this->session->userdata('user_data');
 		$this->load->view('templates/header', $data);
 		$this->load->view('hotel_profile', $data);
 		$this->load->view('templates/footer', $data);
 	}
-		
-	public function get($id)
-	{
-		$id = intval($id);
+	
+	public function update_hotel_details() {
 		$user_id = $this->session->userdata('id');
-		if($id!=0)
-		{
-			$this->load->model('hotel_profile_model');
-			$data['company_data'] = $this->hotel_profile_model->get_hotel_data($user_id);
-			$data['user_data'] = $this->hotel_profile_model->get_user_data($user_id);
-			$data['session'] = $this->session->userdata('user_data');
-			$this->load->view('templates/header', $data);
-			$this->load->view('hotel_profile', $data);
-			$this->load->view('templates/footer', $data);
-		}
-		else
-		{
-			redirect(site_url(),'refresh');
+		$this->form_validation->set_rules('website','Website','trim|required');
+		$this->form_validation->set_rules('headquater','Headquater','trim|required');
+		$this->form_validation->set_rules('cover','Cover','trim|required');
+
+		if($this->form_validation->run()) {
+			$data = array(
+				'website'  => $this->input->post('website'),
+				'headquater'  => $this->input->post('headquater'),
+				'cover'  => $this->input->post('Cover')
+			);
+			if($this->hotel_profile_model->update_hotel_data($data, $user_id)) {
+				$this->session->set_flashdata('hotel_message', 'Data updated');
+				redirect('hotel_profile');
+			} else {
+				redirect('hotel_profile');
+			}
+		} else {
+			$this->index();
 		}
 	}
 	
-	public function add()
-	{
-		$this->form_validation->set_rules('element','Element label','trim|required');
-		if($this->form_validation->run()===FALSE)
-		{
-			$data['input_element'] = array('name'=>'element', 'id'=>'element', 'value'=>set_value('element'));
-			$data['session'] = $this->session->userdata('user_data');
-			$this->load->view('templates/header', $data);
-			$this->load->view('hotel_profile', $data);
-			$this->load->view('templates/footer', $data);
-		}
-		else
-		{
-			$field = $this->input->post('element');
-			$this->load->model('hotel_profile_model');
-			if($this->hotel_profile_model->add(array('field_name'=>$field)))
-			{
-				$this->load->view('hotel_profile_success_page_view');
+	public function update_contact_details() {
+		$user_id = $this->session->userdata('id');
+		$this->form_validation->set_rules('contact_name','Contact Name','trim|required');
+		$this->form_validation->set_rules('contact_email','Contact Email','trim|required|valid_email');
+		$this->form_validation->set_rules('contact_no','Contact No','trim|required');
+
+		if($this->form_validation->run()) {
+			$data = array(
+				'contact_name'  => $this->input->post('contact_name'),
+				'contact_email'  => $this->input->post('contact_email'),
+				'contact_no'  => $this->input->post('contact_no')
+			);
+			if($this->hotel_profile_model->update_hotel_data($data, $user_id)) {
+				$this->session->set_flashdata('contact_message', 'Data updated');
+				redirect('hotel_profile');
+			} else {
+				redirect('hotel_profile');
 			}
-			else
-			{
-				$this->load->view('hotel_profile_error_page_view');
-			}
+		} else {
+			$this->index();
 		}
 	}
-	
-	public function edit()
-	{
-		$this->form_validation->set_rules('element','Element label','trim|required');
-		$this->form_validation->set_rules('id','ID','trim|is_natural_no_zero|required');
-		if($this->form_validation->run()===FALSE)
-		{
-			if(!$this->input->post())
-			{
-				$id = intval($this->uri->segment($this->uri->total_segments()));
+
+	public function update_user_details() {
+		$user_id = $this->session->userdata('id');
+		$this->form_validation->set_rules('name','Name','trim|required');
+		$this->form_validation->set_rules('phone_number','Phone Number','trim|required');
+
+		if($this->form_validation->run()) {
+			$data = array(
+				'name'  => $this->input->post('name'),
+				'phone_number'  => $this->input->post('phone_number')
+			);
+			if($this->hotel_profile_model->update_user_data($data, $user_id)) {
+				$this->session->set_flashdata('user_message', 'Data updated');
+				redirect('hotel_profile');
+			} else {
+				redirect('hotel_profile');
 			}
-			else
-			{
-				$id = set_value('id');
-			}
-			$data['input_element'] = array('name'=>'element', 'id'=>'element', 'value'=>set_value('element'));
-			$data['hidden'] = array('id'=>set_value('id',$id));
-			$data['session'] = $this->session->userdata('user_data');
-			$this->load->view('templates/header', $data);
-			$this->load->view('hotel_profile', $data);
-			$this->load->view('templates/footer', $data);
-		}
-		else
-		{
-			$element = $this->input->post('element');
-			$id = $this->input->post('id');
-			$this->load->model('hotel_profile_model');
-			if($this->hotel_profile_model->update(array('element'=>$element),array('id'=>$id)))
-			{
-				$this->load->view('hotel_profile_success_page_view', $data);
-			}
-			else
-			{
-				$this->load->view('hotel_profile_error_page_view');
-			}
+		} else {
+			$this->index();
 		}
 	}
-	public function delete($id)
-	{
-		$id = intval($id);
-		if($id!=0)
-		{
-			$this->load->model('hotel_profile_model');
-			$data['content'] = $this->hotel_profile_model->delete();
-			$data['session'] = $this->session->userdata('user_data');
-			$this->load->view('templates/header', $data);
-			$this->load->view('hotel_profile', $data);
-			$this->load->view('templates/footer', $data);
-		}
-		else
-		{
-			redirect(site_url(),'refresh');
-		}
-	}
+
 }
 /* End of file '/Hotel_profile.php' */
 /* Location: ./application/controllers//Hotel_profile.php */

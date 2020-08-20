@@ -8,13 +8,13 @@ class Company_profile_model extends CI_Model
 	public function get_company_data($id) {
 		$this->db->where('user_id', $id);
 		$query = $this->db->get("tr_company");
-		return $query->result();
+		return $query->result()[0];
 	}
 
 	public function get_user_data($id) {
 		$this->db->where('id', $id);
 		$query = $this->db->get("tr_users");
-		return $query->result();
+		return $query->result()[0];
 	}
 
 	public function update_company_data($data, $id) {
