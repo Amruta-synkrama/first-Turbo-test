@@ -10,9 +10,10 @@ class Dashboard extends CI_Controller {
 	}
 
 	function index() {
-		$this->load->view('templates/header');
-		$this->load->view('dashboard');
-		$this->load->view('templates/footer');
+		$data['session'] = $this->session->userdata('user_data');
+		$this->load->view('templates/header', $data);
+		$this->load->view('dashboard', $data);
+		$this->load->view('templates/footer', $data);
 	}
 
 	function logout() {

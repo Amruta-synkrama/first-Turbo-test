@@ -5,7 +5,21 @@ class Register_model extends CI_Model {
 
 	function reg_insert($data) {
 		$this->db->insert('tr_users', $data);
-		return $this->db->insert_id();
+		$user_id = $this->db->insert_id();
+		if($data['entity'] == 'Hotel') {
+			$hotel_data = array(
+				'user_id' => $user_id,
+				'email' => $data['email'],
+			);
+			$this->db->insert('tr_hotels', $hotel_data);
+		} elseif($data['entity'] == 'RPF') {
+			$company_data = array(
+				'user_id' => $user_id,
+				'email' => $data['email'],
+			);
+			$this->db->insert('tr_company', $company_data);
+		}
+		return $user_id;
 	}
 
 	function can_login($email, $password) {
@@ -16,6 +30,7 @@ class Register_model extends CI_Model {
 				$store_password = $this->encryption->decrypt($row->password);
 				if($password == $store_password) {
 					$this->session->set_userdata('id', $row->id);
+					$this->session->set_userdata('user_data', $row);
 				} else {
 					return 'Wrong Password';
 				}
