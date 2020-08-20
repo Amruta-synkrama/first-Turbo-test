@@ -41,7 +41,7 @@
                 </li>
                 <li class="nav-item d-none d-sm-inline-block">
                     <?php if($session->entity == 'Admin') : ?>
-                       <a href="<?php echo base_url() ?>profile" class="nav-link">Profile</a>
+                       <!-- <a href="<?php //echo base_url() ?>profile" class="nav-link">Profile</a> -->
                     <?php elseif($session->entity == 'Hotel') : ?>
                         <a href="<?php echo base_url() ?>hotel_profile" class="nav-link">Profile</a>
                     <?php elseif($session->entity == 'RPF') : ?>
@@ -109,10 +109,10 @@
                                 </li>
                                 <li class="nav-item">
                                     <?php if($session->entity == 'Admin') : ?>
-                                       <a href="<?php echo base_url() ?>profile" class="nav-link ">
+                                       <!-- <a href="<?php //echo base_url() ?>profile" class="nav-link ">
                                            <i class="far fa-circle nav-icon"></i>
                                            <p>Profile</p>
-                                       </a>
+                                       </a> -->
                                     <?php elseif($session->entity == 'Hotel') : ?>
                                         <a href="<?php echo base_url() ?>hotel_profile" class="nav-link ">
                                             <i class="far fa-circle nav-icon"></i>
