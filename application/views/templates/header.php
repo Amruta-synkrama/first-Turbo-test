@@ -16,6 +16,13 @@
 	<link rel="stylesheet" href="<?php echo base_url(); ?>theme/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
 	<!-- JQVMap -->
 	<link rel="stylesheet" href="<?php echo base_url(); ?>theme/plugins/jqvmap/jqvmap.min.css">
+    <!-- DataTables -->
+    <link rel="stylesheet" href="<?php echo base_url(); ?>theme/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="<?php echo base_url(); ?>theme/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
+
+    <link rel="stylesheet" href="<?php echo base_url(); ?>theme/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css">
+    
+    <link rel="stylesheet" href="<?php echo base_url(); ?>theme/plugins/toastr/toastr.min.css">
 	<!-- Theme style -->
 	<link rel="stylesheet" href="<?php echo base_url(); ?>theme/dist/css/adminlte.min.css">
 	<!-- overlayScrollbars -->
@@ -28,6 +35,9 @@
 	<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/css/style.css">
+
+
+    
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 	<div class="wrapper">
@@ -50,6 +60,9 @@
                 </li>
                 <li class="nav-item d-none d-sm-inline-block">
                     <a href="<?php echo base_url() ?>dashboard" class="nav-link">Dashboard</a>
+                </li>
+                <li class="nav-item d-none d-sm-inline-block">
+                    <a href="<?php echo base_url() ?>dashboard/logout" class="nav-link">Logout</a>
                 </li>
             </ul>
 
@@ -91,10 +104,11 @@
                 </div>
 
                 <!-- Sidebar Menu -->
+                <?php if($session->entity == 'Admin') : ?>
                 <nav class="mt-2">
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                         <!-- Add icons to the links using the .nav-icon class
-                         with font-awesome or any other icon font library -->
+                           with font-awesome or any other icon font library -->
                         <li class="nav-item has-treeview menu-open">
                             <a href="<?php echo base_url() ?>dashboard" class="nav-link active">
                                 <i class="nav-icon fas fa-tachometer-alt"></i>
@@ -102,28 +116,22 @@
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                   <a href="<?php echo base_url() ?>dashboard" class="nav-link ">
+                                     <a href="<?php echo base_url() ?>dashboard" class="nav-link ">
+                                         <i class="far fa-circle nav-icon"></i>
+                                         <p>Dashboard</p>
+                                     </a>
+                                 </li>
+                                 <li class="nav-item">
+                                   <a href="<?php echo base_url() ?>profile" class="nav-link ">
                                        <i class="far fa-circle nav-icon"></i>
-                                       <p>Dashboard</p>
+                                       <p>Profile</p>
                                    </a>
                                 </li>
                                 <li class="nav-item">
-                                    <?php if($session->entity == 'Admin') : ?>
-                                       <!-- <a href="<?php //echo base_url() ?>profile" class="nav-link ">
-                                           <i class="far fa-circle nav-icon"></i>
-                                           <p>Profile</p>
-                                       </a> -->
-                                    <?php elseif($session->entity == 'Hotel') : ?>
-                                        <a href="<?php echo base_url() ?>hotel_profile" class="nav-link ">
-                                            <i class="far fa-circle nav-icon"></i>
-                                            <p>Profile</p>
-                                        </a>
-                                    <?php elseif($session->entity == 'RPF') : ?>
-                                        <a href="<?php echo base_url() ?>company_profile" class="nav-link ">
-                                            <i class="far fa-circle nav-icon"></i>
-                                            <p>Profile</p>
-                                        </a>
-                                    <?php endif; ?>
+                                   <a href="<?php echo base_url() ?>register" class="nav-link ">
+                                       <i class="far fa-circle nav-icon"></i>
+                                       <p>Register</p>
+                                   </a>
                                 </li>
                             </ul>
                         </li>
@@ -136,6 +144,84 @@
                     </ul>
                 </nav>
                 <!-- /.sidebar-menu -->
+                <?php elseif($session->entity == 'Hotel') : ?>
+                    <nav class="mt-2">
+                        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                            <!-- Add icons to the links using the .nav-icon class
+                               with font-awesome or any other icon font library -->
+                               <li class="nav-item has-treeview menu-open">
+                                <a href="<?php echo base_url() ?>dashboard" class="nav-link active">
+                                    <i class="nav-icon fas fa-tachometer-alt"></i>
+                                    <p>Dashboard<i class="right fas fa-angle-left"></i></p>
+                                </a>
+                                <ul class="nav nav-treeview">
+                                    <li class="nav-item">
+                                     <a href="<?php echo base_url() ?>dashboard" class="nav-link ">
+                                         <i class="far fa-circle nav-icon"></i>
+                                         <p>Dashboard</p>
+                                     </a>
+                                 </li>
+                                 <li class="nav-item">
+                                            <a href="<?php echo base_url() ?>hotel_profile" class="nav-link ">
+                                                <i class="far fa-circle nav-icon"></i>
+                                                <p>Profile</p>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="nav-item">
+                                            <a href="<?php echo base_url() ?>hotel_branches" class="nav-link ">
+                                                <i class="far fa-circle nav-icon"></i>
+                                                <p>Branches</p>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            <!-- <li class="nav-item">
+                                <a href="#" class="nav-link">
+                                    <i class="nav-icon fas fa-th"></i>
+                                    <p>Simple Link<span class="right badge badge-danger">New</span></p>
+                                </a>
+                            </li> -->
+                        </ul>
+                    </nav>
+                    <!-- /.sidebar-menu -->
+                <?php elseif($session->entity == 'RPF') : ?>
+                    <nav class="mt-2">
+                        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                            <!-- Add icons to the links using the .nav-icon class
+                               with font-awesome or any other icon font library -->
+                               <li class="nav-item has-treeview menu-open">
+                                <a href="<?php echo base_url() ?>dashboard" class="nav-link active">
+                                    <i class="nav-icon fas fa-tachometer-alt"></i>
+                                    <p>Dashboard<i class="right fas fa-angle-left"></i></p>
+                                </a>
+                                <ul class="nav nav-treeview">
+                                    <li class="nav-item">
+                                     <a href="<?php echo base_url() ?>dashboard" class="nav-link ">
+                                         <i class="far fa-circle nav-icon"></i>
+                                         <p>Dashboard</p>
+                                     </a>
+                                 </li>
+                                 <li class="nav-item">
+                                                <a href="<?php echo base_url() ?>company_profile" class="nav-link ">
+                                                    <i class="far fa-circle nav-icon"></i>
+                                                    <p>Profile</p>
+                                                </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            <!-- <li class="nav-item">
+                                <a href="#" class="nav-link">
+                                    <i class="nav-icon fas fa-th"></i>
+                                    <p>Simple Link<span class="right badge badge-danger">New</span></p>
+                                </a>
+                            </li> -->
+                        </ul>
+                    </nav>
+                    <!-- /.sidebar-menu -->
+                <?php endif; ?>
+
             </div>
             <!-- /.sidebar -->
         </aside>

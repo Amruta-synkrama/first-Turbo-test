@@ -8,7 +8,7 @@
       <div class="col-sm-6">
         <ol class="breadcrumb float-sm-right">
           <li class="breadcrumb-item"><a href="#">Home</a></li>
-          <li class="breadcrumb-item active">Hotel Profile</li>
+          <li class="breadcrumb-item active">Company Profile</li>
         </ol>
       </div>
     </div>
@@ -46,7 +46,7 @@
               </li>
             </ul>
 
-            <a href="#" class="btn btn-primary btn-block"><b>Add Links</b></a>
+            <a href="#" class="btn btn-primary btn-block"><b>View Hotels</b></a>
           </div>
           <!-- /.card-body -->
         </div>

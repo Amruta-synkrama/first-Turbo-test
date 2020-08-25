@@ -23,14 +23,14 @@
 						</li>
 					</ul>
 				<?php else: */ ?>
-					<ul class="navbar-nav mr-auto">
+					<!-- <ul class="navbar-nav mr-auto">
 						<li class="nav-item">
 							<a class="nav-link" href="<?php echo base_url(); ?>login">Login</a>
 						</li>
 						<li class="nav-item">
 							<a class="nav-link" href="<?php echo base_url(); ?>register">Register</a>
 						</li>
-					</ul>
+					</ul> -->
 				<?php /*endif;*/ ?>
 			</div>
 		</div>
@@ -74,9 +74,9 @@
 						<div class="col-12 col-sm-4 ">
 							<button type="submit" class="btn btn-primary login">Login</button>
 						</div>
-						<div class="col-12 col-sm-8 text-right">
-							<a href="<?php echo base_url(); ?>register">Register</a>
-						</div>
+						<!-- <div class="col-12 col-sm-8 text-right">
+							<a href="<?php //echo base_url(); ?>register">Register</a>
+						</div> -->
 					</div>
 				</form>
 			</div>

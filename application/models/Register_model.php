@@ -39,6 +39,12 @@ class Register_model extends CI_Model {
 			return 'Wrong Email Address';
 		}
 	}
+
+	public function get_user_data($id) {
+		$this->db->where('id', $id);
+		$query = $this->db->get("tr_users");
+		return $query->result()[0];
+	}
 }
 
 

@@ -8,7 +8,11 @@ class Hotel_profile_model extends CI_Model {
 	public function get_hotel_data($id) {
 		$this->db->where('user_id', $id);
 		$query = $this->db->get("tr_hotels");
-		return $query->result()[0];
+		if($query->result()) {
+			return $query->result()[0];
+		} else {
+			return array();
+		}
 	}
 
 	public function get_user_data($id) {
