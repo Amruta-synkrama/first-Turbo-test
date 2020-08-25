@@ -48,14 +48,16 @@ class Hotel_branch extends CI_Controller {
 				'hotel_id'  => $user_id,
 			);
 			if($branch_id) {
-				$id = $this->hotel_branches_model->update_branch($branch_id,$data);
+				$update_id = $this->hotel_branches_model->update_branch($branch_id,$data);
 			} else {
-				$id = $this->hotel_branches_model->add_branch($data);
+				$add_id = $this->hotel_branches_model->add_branch($data);
 			}
-			if($id) {
+			if($add_id) {
 				$this->session->set_flashdata('success_message', 'Success');
-				redirect('hotel_branches');
+			} elseif($update_id) {
+				$this->session->set_flashdata('update_message', 'Success');
 			}
+			redirect('hotel_branches');
 		} else {
 			$this->index();
 		}

@@ -41,7 +41,7 @@
                     </div>
                     <div class="form-group">
                         <label for="inputStatus">State</label>
-                        <select class="form-control custom-select" name="state_id" id="state_id">
+                        <select class="form-control custom-select select2" name="state_id" id="state_id">
                             <option selected disabled>Select one</option>
                             <?php foreach ($state_data as $state) : ?>
                                 <option <?php echo ($branch_id && $hotel_locations[0]->ID_STATE == $state->ID) ? 'selected' : ''; ?> value="<?= $state->ID ?>"><?= $state->STATE_NAME ?></option>
@@ -50,7 +50,7 @@
                     </div>
                     <div class="form-group">
                         <label for="inputStatus">City</label>
-                        <select class="form-control custom-select"  name="location_id" id="location_id">
+                        <select class="form-control custom-select select2"  name="location_id" id="location_id">
                             <option selected disabled>Select one</option>
                             <?php foreach ($location_data as $location) : ?>
                                 <option <?php echo ($branch_id &&$hotel_locations[0]->location_id == $location->ID) ? 'selected' : ''; ?> value="<?= $location->ID ?>"><?= $location->LOCATION ?></option>

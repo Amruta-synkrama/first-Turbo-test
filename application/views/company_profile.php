@@ -46,7 +46,7 @@
               </li>
             </ul>
 
-            <a href="#" class="btn btn-primary btn-block"><b>View Hotels</b></a>
+            <a href="<?php echo base_url(); ?>hotels" class="btn btn-primary btn-block"><b>View Hotels</b></a>
           </div>
           <!-- /.card-body -->
         </div>

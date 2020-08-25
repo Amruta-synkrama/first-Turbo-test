@@ -26,6 +26,8 @@
 </script>
 <!-- Bootstrap 4 -->
 <script src="<?php echo base_url(); ?>theme/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- Select2 -->
+<script src="<?php echo base_url(); ?>theme/plugins/select2/js/select2.full.min.js"></script>
 <!-- ChartJS -->
 <script src="<?php echo base_url(); ?>theme/plugins/chart.js/Chart.min.js"></script>
 <!-- Sparkline -->
@@ -63,6 +65,8 @@
 
 <script>
   $(function () {
+    $('.select2').select2();
+
     $("#example1").DataTable({
       "responsive": true,
       "autoWidth": false,
