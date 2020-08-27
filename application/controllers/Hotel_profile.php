@@ -9,7 +9,7 @@ class Hotel_profile extends CI_Controller {
 		}
 		if(!$this->session->userdata('user_data')) {
 			redirect('dashboard');	
-		} elseif($this->session->userdata('user_data')->entity != 'Hotel') {
+		} elseif($this->session->userdata('user_data')->entity == 'RFP') {
 			redirect('dashboard');
 		}
 
@@ -19,7 +19,16 @@ class Hotel_profile extends CI_Controller {
 	
 	public function index() {
 		$user_id = $this->session->userdata('id');
-		$data['hotel_data'] = $this->hotel_profile_model->get_hotel_data($user_id);
+		if($this->session->userdata('user_data')->entity == 'Admin') {
+			$hotel_id = $this->input->get('hotel_id');
+			if(!$hotel_id) {
+				redirect('dashboard');		
+			}
+		} else {
+			$hotel_id = $user_id;
+		}
+		$data['hotel_data'] = $this->hotel_profile_model->get_hotel_data($hotel_id);
+		$data['hotel_user_data'] = $this->hotel_profile_model->get_user_data($hotel_id);
 		$data['user_data'] = $this->hotel_profile_model->get_user_data($user_id);
 		$data['session'] = $this->session->userdata('user_data');
 		$this->load->view('templates/header', $data);
@@ -29,6 +38,11 @@ class Hotel_profile extends CI_Controller {
 	
 	public function update_hotel_details() {
 		$user_id = $this->session->userdata('id');
+		if($this->session->userdata('user_data')->entity == 'Admin') {
+			$hotel_id = $this->input->get('hotel_id');
+		} else {
+			$hotel_id = $user_id;
+		}
 		$this->form_validation->set_rules('website','Website','trim|required');
 		$this->form_validation->set_rules('headquater','Headquater','trim|required');
 		$this->form_validation->set_rules('cover','Cover','trim|required');
@@ -39,11 +53,20 @@ class Hotel_profile extends CI_Controller {
 				'headquater'  => $this->input->post('headquater'),
 				'cover'  => $this->input->post('Cover')
 			);
-			if($this->hotel_profile_model->update_hotel_data($data, $user_id)) {
+			if($this->hotel_profile_model->update_hotel_data($data, $hotel_id)) {
 				$this->session->set_flashdata('hotel_message', 'Data updated');
-				redirect('hotel_profile');
+				$this->session->set_flashdata('update_message', 'Data updated');
+				if($this->session->userdata('user_data')->entity == 'Admin') {
+					redirect('hotel_profile?hotel_id='.$hotel_id);
+				} else {
+					redirect('hotel_profile');
+				}
 			} else {
-				redirect('hotel_profile');
+				if($this->session->userdata('user_data')->entity == 'Admin') {
+					redirect('hotel_profile?hotel_id='.$hotel_id);
+				} else {
+					redirect('hotel_profile');
+				}
 			}
 		} else {
 			$this->index();
@@ -52,6 +75,11 @@ class Hotel_profile extends CI_Controller {
 	
 	public function update_contact_details() {
 		$user_id = $this->session->userdata('id');
+		if($this->session->userdata('user_data')->entity == 'Admin') {
+			$hotel_id = $this->input->get('hotel_id');
+		} else {
+			$hotel_id = $user_id;
+		}
 		$this->form_validation->set_rules('contact_name','Contact Name','trim|required');
 		$this->form_validation->set_rules('contact_email','Contact Email','trim|required|valid_email');
 		$this->form_validation->set_rules('contact_no','Contact No','trim|required');
@@ -62,11 +90,20 @@ class Hotel_profile extends CI_Controller {
 				'contact_email'  => $this->input->post('contact_email'),
 				'contact_no'  => $this->input->post('contact_no')
 			);
-			if($this->hotel_profile_model->update_hotel_data($data, $user_id)) {
+			if($this->hotel_profile_model->update_hotel_data($data, $hotel_id)) {
 				$this->session->set_flashdata('contact_message', 'Data updated');
-				redirect('hotel_profile');
+				$this->session->set_flashdata('update_message', 'Data updated');
+				if($this->session->userdata('user_data')->entity == 'Admin') {
+					redirect('hotel_profile?hotel_id='.$hotel_id);
+				} else {
+					redirect('hotel_profile');
+				}
 			} else {
-				redirect('hotel_profile');
+				if($this->session->userdata('user_data')->entity == 'Admin') {
+					redirect('hotel_profile?hotel_id='.$hotel_id);
+				} else {
+					redirect('hotel_profile');
+				}
 			}
 		} else {
 			$this->index();
@@ -75,6 +112,11 @@ class Hotel_profile extends CI_Controller {
 
 	public function update_user_details() {
 		$user_id = $this->session->userdata('id');
+		if($this->session->userdata('user_data')->entity == 'Admin') {
+			$hotel_id = $this->input->get('hotel_id');
+		} else {
+			$hotel_id = $user_id;
+		}
 		$this->form_validation->set_rules('name','Name','trim|required');
 		$this->form_validation->set_rules('phone_number','Phone Number','trim|required');
 
@@ -83,11 +125,20 @@ class Hotel_profile extends CI_Controller {
 				'name'  => $this->input->post('name'),
 				'phone_number'  => $this->input->post('phone_number')
 			);
-			if($this->hotel_profile_model->update_user_data($data, $user_id)) {
+			if($this->hotel_profile_model->update_user_data($data, $hotel_id)) {
 				$this->session->set_flashdata('user_message', 'Data updated');
-				redirect('hotel_profile');
+				$this->session->set_flashdata('update_message', 'Data updated');
+				if($this->session->userdata('user_data')->entity == 'Admin') {
+					redirect('hotel_profile?hotel_id='.$hotel_id);
+				} else {
+					redirect('hotel_profile');
+				}
 			} else {
-				redirect('hotel_profile');
+				if($this->session->userdata('user_data')->entity == 'Admin') {
+					redirect('hotel_profile?hotel_id='.$hotel_id);
+				} else {
+					redirect('hotel_profile');
+				}
 			}
 		} else {
 			$this->index();

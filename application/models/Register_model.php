@@ -12,7 +12,7 @@ class Register_model extends CI_Model {
 				'email' => $data['email'],
 			);
 			$this->db->insert('tr_hotels', $hotel_data);
-		} elseif($data['entity'] == 'RPF') {
+		} elseif($data['entity'] == 'RFP') {
 			$company_data = array(
 				'user_id' => $user_id,
 				'email' => $data['email'],

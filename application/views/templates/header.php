@@ -52,12 +52,13 @@
                 <li class="nav-item">
                     <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
                 </li>
+            <?php /* ?>
                 <li class="nav-item d-none d-sm-inline-block">
                     <?php if($session->entity == 'Admin') : ?>
                        <!-- <a href="<?php //echo base_url() ?>profile" class="nav-link">Profile</a> -->
                     <?php elseif($session->entity == 'Hotel') : ?>
                         <a href="<?php echo base_url() ?>hotel_profile" class="nav-link">Profile</a>
-                    <?php elseif($session->entity == 'RPF') : ?>
+                    <?php elseif($session->entity == 'RFP') : ?>
                         <a href="<?php echo base_url() ?>company_profile" class="nav-link">Profile</a>
                     <?php endif; ?>
                 </li>
@@ -67,10 +68,11 @@
                 <li class="nav-item d-none d-sm-inline-block">
                     <a href="<?php echo base_url() ?>dashboard/logout" class="nav-link">Logout</a>
                 </li>
+            <?php */ ?>
             </ul>
 
             <!-- SEARCH FORM -->
-            <form class="form-inline ml-3">
+            <!-- <form class="form-inline ml-3">
                <div class="input-group input-group-sm">
                     <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
                     <div class="input-group-append">
@@ -79,9 +81,72 @@
                         </button>
                     </div>
                 </div>
-            </form>
+            </form> -->
 
         <!-- Right navbar links -->
+        <ul class="navbar-nav ml-auto">
+              <!-- Messages Dropdown Menu -->
+              <li class="nav-item dropdown">
+                <a class="nav-link" data-toggle="dropdown" href="#">
+                  <i class="far fa-bell"></i>
+                  <span class="badge badge-danger navbar-badge">3</span>
+                </a>
+                <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+                  <a href="#" class="dropdown-item">
+                    <!-- Message Start -->
+                    <div class="media">
+                      <div class="media-body">
+                        <h3 class="dropdown-item-title">
+                          Brad Diesel
+                          <span class="float-right text-sm text-danger"><i class="fas fa-star"></i></span>
+                        </h3>
+                        <p class="text-sm">Call me whenever you can...</p>
+                        <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
+                      </div>
+                    </div>
+                    <!-- Message End -->
+                  </a>
+                  <div class="dropdown-divider"></div>
+                  <a href="#" class="dropdown-item">
+                    <!-- Message Start -->
+                    <div class="media">
+                      <div class="media-body">
+                        <h3 class="dropdown-item-title">
+                          John Pierce
+                          <span class="float-right text-sm text-muted"><i class="fas fa-star"></i></span>
+                        </h3>
+                        <p class="text-sm">I got your message bro</p>
+                        <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
+                      </div>
+                    </div>
+                    <!-- Message End -->
+                  </a>
+                  <div class="dropdown-divider"></div>
+                  <a href="#" class="dropdown-item">
+                    <!-- Message Start -->
+                    <div class="media">
+                      <div class="media-body">
+                        <h3 class="dropdown-item-title">
+                          Nora Silvester
+                          <span class="float-right text-sm text-warning"><i class="fas fa-star"></i></span>
+                        </h3>
+                        <p class="text-sm">The subject goes here</p>
+                        <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
+                      </div>
+                    </div>
+                    <!-- Message End -->
+                  </a>
+                  <div class="dropdown-divider"></div>
+                  <a href="#" class="dropdown-item dropdown-footer">See All Messages</a>
+                </div>
+              </li>
+              <!-- Notifications Dropdown Menu -->
+              <li class="nav-item">
+                <a class="nav-link" href="<?php echo base_url() ?>dashboard/logout" role="button">
+                  Logout
+                </a>
+              </li>
+            </ul>
 
         </nav>
         <!-- /.navbar -->
@@ -102,7 +167,13 @@
                         <img src="<?php echo base_url(); ?>theme/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
                     </div>
                     <div class="info">
-                        <a href="<?php echo base_url() ?>profile" class="d-block"><?php echo $session->name; ?></a>
+                        <?php if($session->entity == 'Admin') : ?>
+                        <a href="<?php echo base_url() ?>admin_profile" class="d-block"><?php echo $session->name; ?></a>
+                        <?php elseif($session->entity == 'Hotel') : ?>
+                        <a href="<?php echo base_url() ?>hotel_profile" class="d-block"><?php echo $session->name; ?></a>
+                        <?php elseif($session->entity == 'RFP') : ?>
+                        <a href="<?php echo base_url() ?>company_profile" class="d-block"><?php echo $session->name; ?></a>
+                        <?php endif; ?>
                     </div>
                 </div>
 
@@ -125,7 +196,7 @@
                                      </a>
                                  </li>
                                  <li class="nav-item">
-                                   <a href="<?php echo base_url() ?>profile" class="nav-link ">
+                                   <a href="<?php echo base_url() ?>admin_profile" class="nav-link ">
                                        <i class="far fa-circle nav-icon"></i>
                                        <p>Profile</p>
                                    </a>
@@ -217,7 +288,7 @@
                         </ul>
                     </nav>
                     <!-- /.sidebar-menu -->
-                <?php elseif($session->entity == 'RPF') : ?>
+                <?php elseif($session->entity == 'RFP') : ?>
                     <nav class="mt-2">
                         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                             <!-- Add icons to the links using the .nav-icon class

@@ -9,7 +9,7 @@ class Hotel_branches extends CI_Controller {
 		}
 		if(!$this->session->userdata('user_data')) {
 			redirect('dashboard');	
-		} elseif($this->session->userdata('user_data')->entity != 'Hotel') {
+		} elseif($this->session->userdata('user_data')->entity == 'RFP') {
 			redirect('dashboard');
 		}
 
@@ -20,8 +20,17 @@ class Hotel_branches extends CI_Controller {
 	
 	public function index() {
 		$user_id = $this->session->userdata('id');
-		$data['hotel_data'] = $this->hotel_profile_model->get_hotel_data($user_id);
-		$data['hotel_locations'] = $this->hotel_branches_model->get_location_data($user_id);
+		if($this->session->userdata('user_data')->entity == 'Admin') {
+			$hotel_id = $this->input->get('hotel_id');
+			if(!$hotel_id) {
+				redirect('dashboard');		
+			}
+		} else {
+			$hotel_id = $user_id;
+		}
+		$data['hotel_data'] = $this->hotel_profile_model->get_hotel_data($hotel_id);
+		$data['hotel_locations'] = $this->hotel_branches_model->get_location_data($hotel_id);
+		$data['hotel_user_data'] = $this->hotel_profile_model->get_user_data($hotel_id);
 		$data['user_data'] = $this->hotel_profile_model->get_user_data($user_id);
 		$data['session'] = $this->session->userdata('user_data');
 		$this->load->view('templates/header', $data);

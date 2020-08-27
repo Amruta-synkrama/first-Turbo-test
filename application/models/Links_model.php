@@ -13,7 +13,7 @@ class Links_model extends CI_Model
 		$this->db->join('tr_hotel_locations', 'tr_hotel_locations.id = tr_links.hotel_location_id');
 		$this->db->join('tr_locations', 'tr_locations.id = tr_hotel_locations.location_id','left');
 		$this->db->join('tr_states', 'tr_states.ID = tr_locations.ID_STATE','left');
-		if($role == 'RPF') {
+		if($role == 'RFP') {
 			$this->db->where('tr_links.company_id', $user_id);
 		}
 		if($role == 'Hotel') {
@@ -34,7 +34,7 @@ class Links_model extends CI_Model
 		$this->db->select('*');
 		$this->db->from('tr_users');
 		$this->db->join('tr_company', 'tr_company.user_id = tr_users.id');
-		$this->db->where('tr_users.entity', 'RPF');
+		$this->db->where('tr_users.entity', 'RFP');
 		$query = $this->db->get();
 		if($query->result()) {
 			return $query->result();

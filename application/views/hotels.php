@@ -51,11 +51,19 @@
                     <td><?= $hotel->email; ?></td>
                     <td><?= $hotel->website; ?></td>
                     <td class="project-actions text-right">
+                      <?php if($session->entity == 'RFP') : ?>
                         <a class="btn btn-primary btn-sm" href="<?php echo base_url(); ?>request_link?hotel_id=<?= $hotel->user_id; ?>">
                             <i class="fas fa-link">
                             </i>
                             Request Link
                         </a>
+                      <?php elseif($session->entity == 'Admin') : ?>
+                        <a class="btn btn-info btn-sm" href="<?php echo base_url(); ?>hotel_profile?hotel_id=<?= $hotel->user_id; ?>">
+                            <i class="fas fa-pencil-alt">
+                            </i>
+                            Edit
+                        </a>
+                      <?php endif; ?>
                     </td>
                   </tr>
                 <?php endforeach;   ?>

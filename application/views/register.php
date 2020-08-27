@@ -60,7 +60,7 @@
 									<option value="" selected="" disabled="">Select Value</option>
 									<option value="Admin">Admin</option>
 									<option value="Hotel">Hotels</option>
-									<option value="RPF">Company</option>
+									<option value="RFP">Company</option>
 								</select>
 							</div>
 							<div class="row">

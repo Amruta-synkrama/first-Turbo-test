@@ -27,7 +27,7 @@
 								<h3>View Links</h3>
 							</div>
 							<div class="col-6 text-right">
-								<?php if($session->entity == 'RPF') : ?>
+								<?php if($session->entity == 'RFP') : ?>
 									<a href="<?php echo base_url(); ?>hotels" class="btn btn-primary">Request new link</a>
 									<?php else: ?>
 										<a href="<?php echo base_url(); ?>link" class="btn btn-primary">Add new link</a>
@@ -46,7 +46,7 @@
 										<th>Link</th>
 										<th>Expiry Date</th>
 										<th>Status</th>
-										<?php if($session->entity != 'RPF') : ?>
+										<?php if($session->entity != 'RFP') : ?>
 											<th>Action</th>
 										<?php endif; ?>
 									</tr>
@@ -100,7 +100,7 @@
 										        <?php endif; ?>
 										    </td>
 
-										    <?php if($session->entity != 'RPF') : ?>
+										    <?php if($session->entity != 'RFP') : ?>
 										        <td class="project-actions text-right">
 										            <?php if(! $is_expire ) : ?>
 										                <a class="btn btn-info btn-sm" href="<?php echo base_url(); ?>link?link_id=<?= $link->id; ?>">
@@ -129,7 +129,7 @@
 										<th>Link</th>
 										<th>Expiry Date</th>
 										<th>Status</th>
-										<?php if($session->entity != 'RPF') : ?>
+										<?php if($session->entity != 'RFP') : ?>
 											<th>Action</th>
 										<?php endif; ?>
 									</tr>

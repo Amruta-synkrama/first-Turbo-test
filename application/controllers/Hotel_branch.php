@@ -10,7 +10,7 @@ class Hotel_branch extends CI_Controller {
 		}
 		if(!$this->session->userdata('user_data')) {
 			redirect('dashboard');	
-		} elseif($this->session->userdata('user_data')->entity != 'Hotel') {
+		} elseif($this->session->userdata('user_data')->entity == 'RFP') {
 			redirect('dashboard');
 		}
 
@@ -22,8 +22,13 @@ class Hotel_branch extends CI_Controller {
 	public function index() {
 		$branch_id = $this->input->get('branch');
 		$user_id = $this->session->userdata('id');
-		$data['hotel_data'] = $this->hotel_profile_model->get_hotel_data($user_id);
-		$data['hotel_locations'] = $this->hotel_branches_model->get_location_data($user_id,$branch_id);
+		$hotel_id = $user_id;
+		if($this->session->userdata('user_data')->entity == 'Admin') {
+			$hotel_id = $this->input->get('hotel_id');
+		}
+		$data['hotel_data'] = $this->hotel_profile_model->get_hotel_data($hotel_id);
+		$data['hotel_locations'] = $this->hotel_branches_model->get_location_data($hotel_id,$branch_id);
+		$data['hotel_user_data'] = $this->hotel_profile_model->get_user_data($hotel_id);
 		$data['user_data'] = $this->hotel_profile_model->get_user_data($user_id);
 		$data['session'] = $this->session->userdata('user_data');
 		$data['state_data'] = $this->hotel_branches_model->get_state();
@@ -36,6 +41,10 @@ class Hotel_branch extends CI_Controller {
 		
 	public function validation() {
 		$user_id = $this->session->userdata('id');
+		$hotel_id = $user_id;
+		if($this->session->userdata('user_data')->entity == 'Admin') {
+			$hotel_id = $this->input->get('hotel_id');
+		}
 		$branch_id = $this->input->get('branch');
 		$this->form_validation->set_rules('branch_name', 'Branch Name', 'required|trim');
 		$this->form_validation->set_rules('location_id', 'Location', 'required|trim');
@@ -45,7 +54,7 @@ class Hotel_branch extends CI_Controller {
 			$data = array(
 				'branch_name'  => $this->input->post('branch_name'),
 				'location_id'  => $this->input->post('location_id'),
-				'hotel_id'  => $user_id,
+				'hotel_id'  => $hotel_id,
 			);
 			if($branch_id) {
 				$update_id = $this->hotel_branches_model->update_branch($branch_id,$data);
@@ -57,7 +66,11 @@ class Hotel_branch extends CI_Controller {
 			} elseif($update_id) {
 				$this->session->set_flashdata('update_message', 'Success');
 			}
-			redirect('hotel_branches');
+			if($this->session->userdata('user_data')->entity == 'Admin') {
+				redirect('hotel_branches?hotel_id='.$hotel_id);
+			} else {
+				redirect('hotel_branches');
+			}
 		} else {
 			$this->index();
 		}

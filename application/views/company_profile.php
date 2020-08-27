@@ -30,12 +30,12 @@
                    alt="User profile picture">
             </div>
 
-            <h3 class="profile-username text-center"><?php echo $session->name; ?></h3>
+            <h3 class="profile-username text-center"><?php echo $company_user_data->name; ?></h3>
 
-            <p class="text-muted text-center"><?php echo $session->entity; ?></p>
+            <p class="text-muted text-center"><?php echo $company_user_data->entity; ?></p>
 
             <ul class="list-group list-group-unbordered mb-3">
-              <li class="list-group-item">
+              <!-- <li class="list-group-item">
                 <b>Hotels</b> <a class="float-right">1,322</a>
               </li>
               <li class="list-group-item">
@@ -43,7 +43,7 @@
               </li>
               <li class="list-group-item">
                 <b>Requests</b> <a class="float-right">13,287</a>
-              </li>
+              </li> -->
             </ul>
 
             <a href="<?php echo base_url(); ?>hotels" class="btn btn-primary btn-block"><b>View Hotels</b></a>
@@ -62,30 +62,30 @@
             <strong><i class="fas fa-book mr-1"></i> Website</strong>
 
             <p class="text-muted">
-              <a href="#">www.xyz.com</a>
+              <a href="<?= $company_data->website ?>" target="_blank"><?= $company_data->website ?></a>
             </p>
 
             <hr>
 
             <strong><i class="fas fa-map-marker-alt mr-1"></i> Headquater</strong>
 
-            <p class="text-muted">Malibu, California</p>
+            <p class="text-muted"><?= $company_data->headquater ?></p>
 
             <hr>
 
             <strong><i class="fas fa-pencil-alt mr-1"></i> Contact Person</strong>
 
             <p class="text-muted">
-              <p class="tag tag-danger"><strong>Contact Name:</strong> XYZ</p>
-              <p class="tag tag-danger"><strong>Contact Email:</strong> <a href="#">xyz@pqr.com</a></p>
-              <p class="tag tag-danger"><strong>Contact Number:</strong> <a href="#">+123456789</a></p>
+              <p class="tag tag-danger"><strong>Contact Name:</strong> <?= $company_data->contact_name ?></p>
+              <p class="tag tag-danger"><strong>Contact Email:</strong> <a href="#"><?= $company_data->contact_email ?></a></p>
+              <p class="tag tag-danger"><strong>Contact Number:</strong> <a href="#"><?= $company_data->contact_no ?></a></p>
             </p>
 
             <hr>
 
             <strong><i class="far fa-file-alt mr-1"></i> Cover</strong>
 
-            <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam fermentum enim neque.</p>
+            <p class="text-muted"><?= $company_data->cover ?></p>
           </div>
           <!-- /.card-body -->
         </div>
@@ -96,7 +96,7 @@
         <div class="card">
           <div class="card-header p-2">
             <ul class="nav nav-pills">
-              <li class="nav-item"><a class="nav-link active" href="#activity" data-toggle="tab">Hotel Settings</a></li>
+              <li class="nav-item"><a class="nav-link active" href="#activity" data-toggle="tab">Company Settings</a></li>
               <li class="nav-item"><a class="nav-link" href="#timeline" data-toggle="tab">Contact Person Settings</a></li>
               <li class="nav-item"><a class="nav-link" href="#settings" data-toggle="tab">General Settings</a></li>
             </ul>
@@ -122,7 +122,7 @@
                     </div>
                   </div>
                 <?php endif; ?>
-                <form class="form-horizontal" action="<?php echo base_url(); ?>company_profile/update_company_details" method="post">
+                <form class="form-horizontal" action="<?php echo base_url(); ?>company_profile/update_company_details<?php echo ($session->entity == 'Admin') ? '?company_id='.$company_user_data->id : ''; ?>" method="post">
                   <div class="form-group row">
                     <label for="inputName" class="col-sm-2 col-form-label">Website</label>
                     <div class="col-sm-10">
@@ -168,7 +168,7 @@
                     </div>
                   </div>
                 <?php endif; ?>
-                <form class="form-horizontal" action="<?php echo base_url(); ?>company_profile/update_contact_details" method="post">
+                <form class="form-horizontal" action="<?php echo base_url(); ?>company_profile/update_contact_details<?php echo ($session->entity == 'Admin') ? '?company_id='.$company_user_data->id : ''; ?>" method="post">
                   <div class="form-group row">
                     <label for="inputName" class="col-sm-2 col-form-label">Name</label>
                     <div class="col-sm-10">
@@ -215,29 +215,29 @@
                     </div>
                   </div>
                 <?php endif; ?>
-                <form class="form-horizontal" action="<?php echo base_url(); ?>company_profile/update_user_details" method="post">
+                <form class="form-horizontal" action="<?php echo base_url(); ?>company_profile/update_user_details<?php echo ($session->entity == 'Admin') ? '?company_id='.$company_user_data->id : ''; ?> " method="post">
                   <div class="form-group row">
                     <label for="inputName" class="col-sm-2 col-form-label">Name</label>
                     <div class="col-sm-10">
-                      <input type="text" class="form-control" placeholder="Name" name="name" id="name" value="<?= $user_data->name; ?>">
+                      <input type="text" class="form-control" placeholder="Name" name="name" id="name" value="<?= $company_user_data->name; ?>">
                     </div>
                   </div>
                   <div class="form-group row">
                     <label for="inputName" class="col-sm-2 col-form-label">Username</label>
                     <div class="col-sm-10">
-                      <input type="text" class="form-control" placeholder="Username" name="username" id="username" value="<?= $user_data->username; ?>" readonly disabled>
+                      <input type="text" class="form-control" placeholder="Username" name="username" id="username" value="<?= $company_user_data->username; ?>" readonly disabled>
                     </div>
                   </div>
                   <div class="form-group row">
                     <label for="inputEmail" class="col-sm-2 col-form-label">Email</label>
                     <div class="col-sm-10">
-                      <input type="email" class="form-control" placeholder="Email" name="email" id="email" value="<?= $user_data->email; ?>" readonly disabled>
+                      <input type="email" class="form-control" placeholder="Email" name="email" id="email" value="<?= $company_user_data->email; ?>" readonly disabled>
                     </div>
                   </div>
                   <div class="form-group row">
                     <label for="inputName2" class="col-sm-2 col-form-label">Phone Number</label>
                     <div class="col-sm-10">
-                      <input type="text" class="form-control" placeholder="Phone Number" name="phone_number" id="phone_number" value="<?= $user_data->phone_number; ?>">
+                      <input type="text" class="form-control" placeholder="Phone Number" name="phone_number" id="phone_number" value="<?= $company_user_data->phone_number; ?>">
                     </div>
                   </div>
                   <div class="form-group row">
@@ -259,4 +259,4 @@
     <!-- /.row -->
   </div><!-- /.container-fluid -->
 </section>
-<!-- /.content -->
+<!-- /.content

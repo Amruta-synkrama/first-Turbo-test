@@ -21,7 +21,7 @@ class Hotels extends CI_Controller {
 	public function index() {
 		$user_id = $this->session->userdata('id');
 		$data['company_data'] = array();
-		if($this->session->userdata('user_data')->entity == 'RPF') {
+		if($this->session->userdata('user_data')->entity == 'RFP') {
 			$data['company_data'] = $this->company_profile_model->get_company_data($user_id);
 		}
 		$data['user_data'] = $this->company_profile_model->get_user_data($user_id);

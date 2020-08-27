@@ -30,12 +30,12 @@
                    alt="User profile picture">
             </div>
 
-            <h3 class="profile-username text-center"><?php echo $session->name; ?></h3>
+            <h3 class="profile-username text-center"><?php echo $hotel_user_data->name; ?></h3>
 
-            <p class="text-muted text-center"><?php echo $session->entity; ?></p>
+            <p class="text-muted text-center"><?php echo $hotel_user_data->entity; ?></p>
 
             <ul class="list-group list-group-unbordered mb-3">
-              <li class="list-group-item">
+              <!-- <li class="list-group-item">
                 <b>Companies</b> <a class="float-right">1,322</a>
               </li>
               <li class="list-group-item">
@@ -43,10 +43,11 @@
               </li>
               <li class="list-group-item">
                 <b>Requests</b> <a class="float-right">13,287</a>
-              </li>
+              </li> -->
             </ul>
 
-            <a href="#" class="btn btn-primary btn-block"><b>Add Links</b></a>
+            <a href="<?php echo base_url() ?>hotel_branches" class="btn btn-primary btn-block"><b>View Branches</b></a>
+            <a href="<?php echo base_url() ?>links" class="btn btn-primary btn-block"><b>Add Links</b></a>
           </div>
           <!-- /.card-body -->
         </div>
@@ -62,30 +63,30 @@
             <strong><i class="fas fa-book mr-1"></i> Website</strong>
 
             <p class="text-muted">
-              <a href="#">www.xyz.com</a>
+              <a href="<?= $hotel_data->website ?>"><?= $hotel_data->website ?></a>
             </p>
 
             <hr>
 
             <strong><i class="fas fa-map-marker-alt mr-1"></i> Headquater</strong>
 
-            <p class="text-muted">Malibu, California</p>
+            <p class="text-muted"><?= $hotel_data->headquater ?></p>
 
             <hr>
 
             <strong><i class="fas fa-pencil-alt mr-1"></i> Contact Person</strong>
 
             <p class="text-muted">
-              <p class="tag tag-danger"><strong>Contact Name:</strong> XYZ</p>
-              <p class="tag tag-danger"><strong>Contact Email:</strong> <a href="#">xyz@pqr.com</a></p>
-              <p class="tag tag-danger"><strong>Contact Number:</strong> <a href="#">+123456789</a></p>
+              <p class="tag tag-danger"><strong>Contact Name:</strong> <?= $hotel_data->contact_name ?></p>
+              <p class="tag tag-danger"><strong>Contact Email:</strong> <a href="#"><?= $hotel_data->contact_email ?></a></p>
+              <p class="tag tag-danger"><strong>Contact Number:</strong> <a href="#"><?= $hotel_data->contact_no ?></a></p>
             </p>
 
             <hr>
 
             <strong><i class="far fa-file-alt mr-1"></i> Cover</strong>
 
-            <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam fermentum enim neque.</p>
+            <p class="text-muted"><?= $hotel_data->cover ?></p>
           </div>
           <!-- /.card-body -->
         </div>
@@ -122,7 +123,7 @@
                     </div>
                   </div>
                 <?php endif; ?>
-                <form class="form-horizontal" action="<?php echo base_url(); ?>hotel_profile/update_hotel_details" method="post">
+                <form class="form-horizontal" action="<?php echo base_url(); ?>hotel_profile/update_hotel_details<?php echo ($session->entity == 'Admin') ? '?hotel_id='.$hotel_user_data->id : ''; ?>" method="post">
                   <div class="form-group row">
                     <label for="inputName" class="col-sm-2 col-form-label">Website</label>
                     <div class="col-sm-10">
@@ -168,7 +169,7 @@
                     </div>
                   </div>
                 <?php endif; ?>
-                <form class="form-horizontal" action="<?php echo base_url(); ?>hotel_profile/update_contact_details" method="post">
+                <form class="form-horizontal" action="<?php echo base_url(); ?>hotel_profile/update_contact_details<?php echo ($session->entity == 'Admin') ? '?hotel_id='.$hotel_user_data->id : ''; ?>" method="post">
                   <div class="form-group row">
                     <label for="inputName" class="col-sm-2 col-form-label">Name</label>
                     <div class="col-sm-10">
@@ -215,29 +216,29 @@
                     </div>
                   </div>
                 <?php endif; ?>
-                <form class="form-horizontal" action="<?php echo base_url(); ?>hotel_profile/update_user_details" method="post">
+                <form class="form-horizontal" action="<?php echo base_url(); ?>hotel_profile/update_user_details<?php echo ($session->entity == 'Admin') ? '?hotel_id='.$hotel_user_data->id : ''; ?>" method="post">
                   <div class="form-group row">
                     <label for="inputName" class="col-sm-2 col-form-label">Name</label>
                     <div class="col-sm-10">
-                      <input type="text" class="form-control" placeholder="Name" name="name" id="name" value="<?= $user_data->name; ?>">
+                      <input type="text" class="form-control" placeholder="Name" name="name" id="name" value="<?= $hotel_user_data->name; ?>">
                     </div>
                   </div>
                   <div class="form-group row">
                     <label for="inputName" class="col-sm-2 col-form-label">Username</label>
                     <div class="col-sm-10">
-                      <input type="text" class="form-control" placeholder="Username" name="username" id="username" value="<?= $user_data->username; ?>" readonly disabled>
+                      <input type="text" class="form-control" placeholder="Username" name="username" id="username" value="<?= $hotel_user_data->username; ?>" readonly disabled>
                     </div>
                   </div>
                   <div class="form-group row">
                     <label for="inputEmail" class="col-sm-2 col-form-label">Email</label>
                     <div class="col-sm-10">
-                      <input type="email" class="form-control" placeholder="Email" name="email" id="email" value="<?= $user_data->email; ?>" readonly disabled>
+                      <input type="email" class="form-control" placeholder="Email" name="email" id="email" value="<?= $hotel_user_data->email; ?>" readonly disabled>
                     </div>
                   </div>
                   <div class="form-group row">
                     <label for="inputName2" class="col-sm-2 col-form-label">Phone Number</label>
                     <div class="col-sm-10">
-                      <input type="text" class="form-control" placeholder="Phone Number" name="phone_number" id="phone_number" value="<?= $user_data->phone_number; ?>">
+                      <input type="text" class="form-control" placeholder="Phone Number" name="phone_number" id="phone_number" value="<?= $hotel_user_data->phone_number; ?>">
                     </div>
                   </div>
                   <div class="form-group row">
@@ -259,4 +260,4 @@
     <!-- /.row -->
   </div><!-- /.container-fluid -->
 </section>
-<!-- /.content -->
+<!-- /.content

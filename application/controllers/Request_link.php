@@ -7,7 +7,7 @@ class Request_link extends CI_Controller {
 		if(!$this->session->userdata('id')) {
 			redirect('login');
 		}
-		/*if($this->session->userdata('user_data')->entity != 'RPF') {
+		/*if($this->session->userdata('user_data')->entity != 'RFP') {
 			redirect('dashboard');
 		}*/
 
@@ -22,7 +22,7 @@ class Request_link extends CI_Controller {
 		$hotel_id = $this->input->get('hotel_id');
 		$user_id = $this->session->userdata('id');
 		$data['hotel_locations'] = array();
-		// if($this->session->userdata('user_data')->entity == 'RPF') {
+		// if($this->session->userdata('user_data')->entity == 'RFP') {
 		$data['company_data'] = $this->company_profile_model->get_company_data($user_id);
 		// }
 		$data['hotel_locations'] = $this->links_model->get_hotel_locations($hotel_id);

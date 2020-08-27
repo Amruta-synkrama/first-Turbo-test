@@ -37,7 +37,9 @@
                   <th>Location</th>
                   <th>Email</th>
                   <th>Website</th>
-                  <!-- <th>Action</th> -->
+                  <?php if($session->entity == 'Admin') : ?>
+                  <th>Action</th>
+                  <?php endif ?>
                 </tr>
               </thead>
               <tbody>
@@ -50,13 +52,15 @@
                     <td><?= $company->headquater; ?></td>
                     <td><?= $company->email; ?></td>
                     <td><?= $company->website; ?></td>
-                    <!-- <td class="project-actions text-right">
-                        <a class="btn btn-primary btn-sm" href="#">
-                            <i class="fas fa-folder">
+                    <td class="project-actions text-right">
+                      <?php if($session->entity == 'Admin') : ?>
+                        <a class="btn btn-info btn-sm" href="<?php echo base_url(); ?>company_profile?company_id=<?= $company->user_id; ?>">
+                            <i class="fas fa-pencil-alt">
                             </i>
-                            View
+                            Edit
                         </a>
-                    </td> -->
+                      <?php endif; ?>
+                    </td>
                   </tr>
                 <?php endforeach;   ?>
               </tbody>
@@ -66,7 +70,9 @@
                   <th>Location</th>
                   <th>Email</th>
                   <th>Website</th>
-                  <!-- <th>Action</th> -->
+                  <?php if($session->entity == 'Admin') : ?>
+                  <th>Action</th>
+                  <?php endif ?>
                 </tr>
               </tfoot>
             </table>

@@ -9,7 +9,7 @@ class Companies extends CI_Controller {
 		}
 		if(!$this->session->userdata('user_data')) {
 			redirect('dashboard');	
-		} elseif($this->session->userdata('user_data')->entity == 'RPF') {
+		} elseif($this->session->userdata('user_data')->entity == 'RFP') {
 			redirect('dashboard');
 		}
 

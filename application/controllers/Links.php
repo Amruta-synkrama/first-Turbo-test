@@ -16,14 +16,28 @@ class Links extends CI_Controller {
 	
 	public function index() {
 		$user_id = $this->session->userdata('id');
-		if($this->session->userdata('user_data')->entity == 'Hotel') {
+		$user_role = $this->session->userdata('user_data')->entity;
+		if($user_role == 'Hotel') {
 			$data['hotel_data'] = $this->hotel_profile_model->get_hotel_data($user_id);
-		} elseif($this->session->userdata('user_data')->entity == 'RPF') {
+		} elseif($user_role == 'RFP') {
 			$data['company_data'] = $this->company_profile_model->get_company_data($user_id);
 		}
 		$data['user_data'] = $this->hotel_profile_model->get_user_data($user_id);
 		$data['session'] = $this->session->userdata('user_data');
-		$data['links_data'] = $this->links_model->get_links(NULL,$user_id,$this->session->userdata('user_data')->entity);
+		$user_role_sent = $user_role;
+		$user_id_sent = $user_id;
+		if($user_role == 'Admin') {
+			$hotel_id = $this->input->get('hotel_id');
+			$company_id = $this->input->get('company_id');
+			if($hotel_id){
+				$user_role_sent = 'Hotel';
+				$user_id_sent = $hotel_id;
+			} elseif($company_id){
+				$user_role_sent = 'RFP';
+				$user_id_sent = $company_id;
+			}
+		}
+		$data['links_data'] = $this->links_model->get_links(NULL,$user_id_sent,$user_role_sent);
 		$this->load->view('templates/header', $data);
 		$this->load->view('links', $data);
 		$this->load->view('templates/footer', $data);

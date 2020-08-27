@@ -7,7 +7,7 @@ class Link extends CI_Controller {
 		if(!$this->session->userdata('id')) {
 			redirect('login');
 		}
-		if($this->session->userdata('user_data')->entity == 'RPF') {
+		if($this->session->userdata('user_data')->entity == 'RFP') {
 			redirect('dashboard');
 		}
 

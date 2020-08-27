@@ -17,7 +17,7 @@
 
 <!-- Main content -->
 <section class="content">
-<form action="<?php echo base_url(); ?>hotel_branch/validation<?php echo ($branch_id) ? '?branch='.$branch_id : ''; ?>" method="post">
+<form action="<?php echo base_url(); ?>hotel_branch/validation<?php echo ($branch_id) ? '?branch='.$branch_id : ''; ?><?php echo ($session->entity == 'Admin') ? '&hotel_id='.$hotel_user_data->id : ''; ?>" method="post">
     <div class="row">
         <div class="col-md-12">
             <div class="card card-primary">

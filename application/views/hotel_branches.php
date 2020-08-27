@@ -55,7 +55,7 @@
                             </i>
                             View
                         </a> -->
-                        <a class="btn btn-info btn-sm" href="<?php echo base_url(); ?>hotel_branch?branch=<?= $location->id; ?>">
+                        <a class="btn btn-info btn-sm" href="<?php echo base_url(); ?>hotel_branch?branch=<?= $location->id; ?><?php echo ($session->entity == 'Admin') ? '&hotel_id='.$hotel_user_data->id : ''; ?>">
                             <i class="fas fa-pencil-alt">
                             </i>
                             Edit

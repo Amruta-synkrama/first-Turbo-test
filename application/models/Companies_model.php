@@ -9,7 +9,7 @@ class Companies_model extends CI_Model {
 		$this->db->select('*');
 		$this->db->from('tr_users');
 		$this->db->join('tr_company', 'tr_company.user_id = tr_users.id');
-		$this->db->where('tr_users.entity', 'RPF');
+		$this->db->where('tr_users.entity', 'RFP');
 		if($company_id) {
 			$this->db->where('tr_users.id', $company_id);
 		}

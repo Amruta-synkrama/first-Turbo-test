@@ -1,4 +1,4 @@
-Content Header (Page header) -->
+<!-- Content Header (Page header) -->
 <section class="content-header">
   <div class="container-fluid">
     <div class="row mb-2">
@@ -48,8 +48,13 @@ Content Header (Page header) -->
                 <b>Requests</b> <a class="float-right">13,287</a>
               </li>
             </ul>
+            <?php if($session->entity == 'Admin'): ?>
+            <a href="<?php echo base_url() ?>links?company_id=<?= $companies_data->user_id ?>" class="btn btn-primary btn-block"><b>View Link</b></a>
+            <a href="<?php echo base_url() ?>company_profile?company_id=<?= $companies_data->user_id ?>" class="btn btn-primary btn-block"><b>Edit Company</b></a>
+            <?php else: ?>
+              <a href="<?php echo base_url() ?>links" class="btn btn-primary btn-block"><b>Add Link</b></a>
+            <?php endif; ?>
 
-            <a href="<?php echo base_url() ?>links" class="btn btn-primary btn-block"><b>Add Link</b></a>
           </div>
           <!-- /.card-body -->
         </div>
