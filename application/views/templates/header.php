@@ -136,6 +136,24 @@
                                        <p>Register</p>
                                    </a>
                                 </li>
+                                <li class="nav-item">
+                                   <a href="<?php echo base_url() ?>hotels" class="nav-link ">
+                                       <i class="far fa-circle nav-icon"></i>
+                                       <p>Hotels</p>
+                                   </a>
+                                </li>
+                                <li class="nav-item">
+                                   <a href="<?php echo base_url() ?>companies" class="nav-link ">
+                                       <i class="far fa-circle nav-icon"></i>
+                                       <p>Company List</p>
+                                   </a>
+                                </li>
+                                <li class="nav-item">
+                                   <a href="<?php echo base_url() ?>links" class="nav-link ">
+                                       <i class="far fa-circle nav-icon"></i>
+                                       <p>Links</p>
+                                   </a>
+                                </li>
                             </ul>
                         </li>
                         <!-- <li class="nav-item">
@@ -182,6 +200,12 @@
                                                 <p>Company List</p>
                                             </a>
                                         </li>
+                                <li class="nav-item">
+                                   <a href="<?php echo base_url() ?>links" class="nav-link ">
+                                       <i class="far fa-circle nav-icon"></i>
+                                       <p>Links</p>
+                                   </a>
+                                </li>
                                     </ul>
                                 </li>
                             <!-- <li class="nav-item">
@@ -222,6 +246,12 @@
                                                 <p>Hotel List</p>
                                             </a>
                                         </li>
+                                <li class="nav-item">
+                                   <a href="<?php echo base_url() ?>links" class="nav-link ">
+                                       <i class="far fa-circle nav-icon"></i>
+                                       <p>Links</p>
+                                   </a>
+                                </li>
                                     </ul>
                                 </li>
                             <!-- <li class="nav-item">

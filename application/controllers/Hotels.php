@@ -9,7 +9,7 @@ class Hotels extends CI_Controller {
 		}
 		if(!$this->session->userdata('user_data')) {
 			redirect('dashboard');	
-		} elseif($this->session->userdata('user_data')->entity != 'RPF') {
+		} elseif($this->session->userdata('user_data')->entity == 'Hotel') {
 			redirect('dashboard');
 		}
 
@@ -20,7 +20,10 @@ class Hotels extends CI_Controller {
 	
 	public function index() {
 		$user_id = $this->session->userdata('id');
-		$data['company_data'] = $this->company_profile_model->get_company_data($user_id);
+		$data['company_data'] = array();
+		if($this->session->userdata('user_data')->entity == 'RPF') {
+			$data['company_data'] = $this->company_profile_model->get_company_data($user_id);
+		}
 		$data['user_data'] = $this->company_profile_model->get_user_data($user_id);
 		$data['session'] = $this->session->userdata('user_data');
 		$data['hotels_data'] = $this->hotels_model->get_hotels(NULL);

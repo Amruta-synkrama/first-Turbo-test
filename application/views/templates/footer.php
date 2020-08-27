@@ -81,6 +81,16 @@
       "responsive": true,
     });
 
+    var today = new Date();
+
+    var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+
+    //Date range picker
+    $('#reservationdate').datetimepicker({
+        format: 'L',
+        minDate: date
+    });
+
     $('body').on('click','.delete-something-cust', function(e){
       e.preventDefault();
       var Href = $(this).attr('href');
@@ -98,6 +108,25 @@
         }
       });
     });
+
+    $('body').on('click','.reject-something-cust', function(e){
+      e.preventDefault();
+      var Href = $(this).attr('href');
+      Swal.fire({
+        title: 'Are you sure?',
+        text: "You won't be able to revert this!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, reject it!'
+      }).then((result) => {
+        if (result.value) {
+          window.location.href = Href;
+        }
+      });
+    });
+    
   });
 </script>
 <?php
@@ -122,6 +151,22 @@ if($this->session->flashdata('success_message')) {
   <script>
     $(function() {
       toastr.success('Updated successfully.');
+    });
+  </script>
+  <?php
+} elseif($this->session->flashdata('register_message')) {
+  ?>
+  <script>
+    $(function() {
+      toastr.success('Registered successfully.');
+    });
+  </script>
+  <?php
+} elseif($this->session->flashdata('reject_message')) {
+  ?>
+  <script>
+    $(function() {
+      toastr.success('Rejected successfully.');
     });
   </script>
   <?php

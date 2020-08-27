@@ -37,7 +37,7 @@
                   <th>Location</th>
                   <th>Email</th>
                   <th>Website</th>
-                  <!-- <th>Action</th> -->
+                  <th>Action</th>
                 </tr>
               </thead>
               <tbody>
@@ -50,13 +50,13 @@
                     <td><?= $hotel->headquater; ?></td>
                     <td><?= $hotel->email; ?></td>
                     <td><?= $hotel->website; ?></td>
-                    <!-- <td class="project-actions text-right">
-                        <a class="btn btn-primary btn-sm" href="#">
-                            <i class="fas fa-folder">
+                    <td class="project-actions text-right">
+                        <a class="btn btn-primary btn-sm" href="<?php echo base_url(); ?>request_link?hotel_id=<?= $hotel->user_id; ?>">
+                            <i class="fas fa-link">
                             </i>
-                            View
+                            Request Link
                         </a>
-                    </td> -->
+                    </td>
                   </tr>
                 <?php endforeach;   ?>
               </tbody>
@@ -66,7 +66,7 @@
                   <th>Location</th>
                   <th>Email</th>
                   <th>Website</th>
-                  <!-- <th>Action</th> -->
+                  <th>Action</th>
                 </tr>
               </tfoot>
             </table>
