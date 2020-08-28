@@ -26,7 +26,7 @@
           <div class="card-body box-profile">
             <div class="text-center">
               <?php if($user_data->user_logo) : ?>
-              <img class="profile-user-img img-fluid img-circle" src="<?php echo $user_data->user_logo; ?>" alt="User profile picture">
+              <img class="profile-user-img img-fluid img-circle" src="<?php echo base_url(); ?><?php echo $user_data->user_logo; ?>" alt="User profile picture">
               <?php else: ?>
               <img class="profile-user-img img-fluid img-circle" src="<?php echo base_url(); ?>theme/dist/img/boxed-bg.jpg" alt="User profile picture">
               <?php endif; ?>

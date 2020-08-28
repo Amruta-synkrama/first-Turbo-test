@@ -116,7 +116,7 @@ class Company_profile extends CI_Controller {
 					print_r($upload_data);
 				}
 
-				$data['user_logo'] = base_url().'assets/img/logos/'.$file;
+				$data['user_logo'] = 'assets/img/logos/'.$file;
 
 				if($this->user_model->update_user_data($data, $company_id)) {
 					$this->session->set_flashdata('upload_message', 'Data updated');

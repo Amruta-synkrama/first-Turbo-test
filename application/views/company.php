@@ -27,7 +27,7 @@
             <div class="text-center">
               <?php if($companies_data->user_logo) : ?>
                 <img class="profile-user-img img-fluid img-circle"
-                src="<?php echo $companies_data->user_logo; ?>"
+                src="<?php echo base_url(); ?><?php echo $companies_data->user_logo; ?>"
                 alt="User profile picture">
               <?php else: ?>
                 <img class="profile-user-img img-fluid img-circle"
