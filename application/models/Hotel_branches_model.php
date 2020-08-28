@@ -14,6 +14,9 @@ class Hotel_branches_model extends CI_Model
 		if($branch_id) {
 			$this->db->where('tr_hotel_locations.id', $branch_id);
 		}
+		if($this->session->userdata('user_data')->entity != 'Admin') {
+			$this->db->where('tr_hotel_locations.status', '1');
+		}
 		$query = $this->db->get();
 		if($query->result()) {
 			return $query->result();
@@ -55,7 +58,23 @@ class Hotel_branches_model extends CI_Model
 	}
 
 	public function delete_branch($branch_id) {
-        return $this->db->delete('tr_hotel_locations', array('id' => $branch_id));
+        // return $this->db->delete('tr_hotel_locations', array('id' => $branch_id));
+        // $timestamp = date('Y-m-d H:i:s');
+        $data = array(
+        	'status' => '2'
+        );
+        $this->db->where('id',$branch_id);
+        return $this->db->update('tr_hotel_locations',$data);
+    }
+
+    public function activate_branch($branch_id) {
+        // return $this->db->delete('tr_hotel_locations', array('id' => $branch_id));
+        // $timestamp = date('Y-m-d H:i:s');
+        $data = array(
+        	'status' => '1'
+        );
+        $this->db->where('id',$branch_id);
+        return $this->db->update('tr_hotel_locations',$data);
     }
 
 }

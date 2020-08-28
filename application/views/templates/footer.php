@@ -153,7 +153,7 @@ if($this->session->flashdata('success_message')) {
   ?>
   <script type="text/javascript">
       $(function() {
-      toastr.success('<?= $this->session->flashdata('success_message') ?>');
+      toastr.success('<?php echo $this->session->flashdata('success_message') ?>');
     });
   </script>
   <?php

@@ -51,17 +51,22 @@ class Company_profile extends CI_Controller {
 		$this->form_validation->set_rules('cover','Cover','trim|required');
 
 		if($this->form_validation->run()) {
+
 			$data = array(
 				'website'  => $this->input->post('website'),
 				'headquater'  => $this->input->post('headquater'),
 				'cover'  => $this->input->post('Cover')
 			);
+
+			
 			if($this->user_model->update_company_data($data, $company_id)) {
 				$this->session->set_flashdata('company_message', 'Data updated');
 				$this->session->set_flashdata('success_message', 'Data updated');
 				if($this->session->userdata('user_data')->entity == 'Admin') {
 					redirect('company_profile?company_id='.$company_id);
 				} else {
+					$data_user_data = $this->user_model->get_user_data($company_id);
+					$this->session->set_userdata('user_data', $data_user_data);
 					redirect('company_profile');
 				}
 			} else {
@@ -74,6 +79,64 @@ class Company_profile extends CI_Controller {
 		} else {
 			$this->index();
 		}
+	}
+
+
+
+	public function upload_logo(){
+
+		$user_id = $this->session->userdata('id');
+		if($this->session->userdata('user_data')->entity == 'Admin') {
+			$company_id = $this->input->get('company_id');
+		} else {
+			$company_id = $user_id;
+		}
+		// $this->form_validation->set_rules('logo','Logo','required');
+
+		// if($this->form_validation->run()) {
+			if(!empty($_FILES['logo'])) {
+				$file = $_FILES['logo']['name'];
+				$config['upload_path'] = './assets/img/logos/';
+				$config['allowed_types'] = 'jpg|jpeg|png|JPG';
+				$config['max_size'] = 2000;
+				$config['max_width'] = 1500;
+				$config['max_height'] = 1500;
+				$this->load->library('upload');
+				$this->upload->initialize($config);
+
+				if (!$this->upload->do_upload('logo')) {
+					$this->session->set_flashdata('error_upload_message', $this->upload->display_errors());
+					if($this->session->userdata('user_data')->entity == 'Admin') {
+						redirect('company_profile?company_id='.$company_id);
+					} else {
+						redirect('company_profile');
+					}
+				} else {
+					$upload_data = $this->upload->data();
+					print_r($upload_data);
+				}
+
+				$data['user_logo'] = base_url().'assets/img/logos/'.$file;
+
+				if($this->user_model->update_user_data($data, $company_id)) {
+					$this->session->set_flashdata('upload_message', 'Data updated');
+					$this->session->set_flashdata('success_message', 'Data updated');
+					if($this->session->userdata('user_data')->entity == 'Admin') {
+						redirect('company_profile?company_id='.$company_id);
+					} else {
+						redirect('company_profile');
+					}
+				} else {
+					if($this->session->userdata('user_data')->entity == 'Admin') {
+						redirect('company_profile?company_id='.$company_id);
+					} else {
+						redirect('company_profile');
+					}
+				}
+			}
+		/*} else {
+			$this->index();
+		}*/
 	}
 
 	public function update_contact_details() {

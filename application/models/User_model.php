@@ -62,7 +62,7 @@ class User_model extends CI_Model {
 		);
 		$this->db->where('id',$user_id);
 		return $this->db->update('tr_users',$data);
-        // return $this->db->delete('tr_links', array('id' => $link_id));
+        // return $this->db->delete('tr_users', array('id' => $user_id));
     }
 
     public function activate_user($user_id) {
@@ -71,7 +71,7 @@ class User_model extends CI_Model {
 		);
 		$this->db->where('id',$user_id);
 		return $this->db->update('tr_users',$data);
-        // return $this->db->delete('tr_links', array('id' => $link_id));
+        // return $this->db->delete('tr_users', array('id' => $user_id));
     }	
 }
 /* End of file '/User_model.php' */

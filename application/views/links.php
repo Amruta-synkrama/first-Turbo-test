@@ -66,24 +66,24 @@
 										endif;
 										?>
 										<tr>
-										    <td><a target="_blank" href="<?php echo base_url(); ?>company?id=<?= $link->company_id; ?>"><?= $link->company_name; ?></a></td>
+										    <td><a target="_blank" href="<?php echo base_url(); ?>company?id=<?php echo $link->company_id; ?>"><?php echo $link->company_name; ?></a></td>
 
-										    <td><?= $link->branch_name; ?></td>
+										    <td><?php echo $link->branch_name; ?></td>
 
-										    <td><?= $link->LOCATION; ?>, <?= $link->STATE_NAME; ?></td>
+										    <td><?php echo $link->LOCATION; ?>, <?php echo $link->STATE_NAME; ?></td>
 
 										    <?php /* if($link->link_status != '3' && $link->link_status != '0') : */ ?>
 										        <?php if($is_expire) : ?>
-										            <td><a href="<?= base_url(); ?>404" target="_blank">Expired</a></td>
+										            <td><a href="<?php echo base_url(); ?>404" target="_blank">Expired</a></td>
 										        <?php else: ?>
-										            <td><a href="<?= $link->url; ?>" target="_blank"><?= $link->url; ?></a></td>
+										            <td><a href="<?php echo $link->url; ?>" target="_blank"><?php echo $link->url; ?></a></td>
 										        <?php endif; ?>
 										    <?php /* else: ?>
 										            <td> - </td>
 										    <?php endif; */ ?>
 
 										    <?php if($link->expiration_date) : ?>
-										        <td><?= $expiry_date; ?></td>
+										        <td><?php echo $expiry_date; ?></td>
 										    <?php else: ?>
 										            <td> - </td>
 										    <?php endif; ?>
@@ -114,19 +114,19 @@
 										    <?php if($session->entity != 'RFP') : ?>
 										        <td class="project-actions text-center">
 										            
-										                <a class="btn btn-info btn-sm" href="<?php echo base_url(); ?>link?link_id=<?= $link->id; ?><?php echo ($session->entity == 'Admin') ? '&hotel_id='.$link->hotel_id : ''; ?>">
+										                <a class="btn btn-info btn-sm" href="<?php echo base_url(); ?>link?link_id=<?php echo $link->id; ?><?php echo ($session->entity == 'Admin') ? '&hotel_id='.$link->hotel_id : ''; ?>">
 										                    <i class="fas fa-pencil-alt">
 										                    </i>
 										                    Edit
 										                </a>
 										                <?php if($link->status != 2) : ?>
-									                    <a class="btn btn-danger btn-sm delete-something-cust" href="<?php echo base_url(); ?>links/delete?delete_request=<?= $link->id; ?>">
+									                    <a class="btn btn-danger btn-sm delete-something-cust" href="<?php echo base_url(); ?>links/delete?delete_request=<?php echo $link->id; ?><?php echo ($session->entity == 'Admin') ? '&hotel_id='.$link->hotel_id : ''; ?>">
 									                        <i class="fas fa-times">
 									                        </i>
 									                        Delete
 									                    </a>
 									                    <?php else: ?>
-									                    	<a class="btn btn-success btn-sm activate-something-cust" href="<?php echo base_url(); ?>links/activate?activate_request=<?= $link->id; ?>">
+									                    	<a class="btn btn-success btn-sm activate-something-cust" href="<?php echo base_url(); ?>links/activate?activate_request=<?php echo $link->id; ?><?php echo ($session->entity == 'Admin') ? '&hotel_id='.$link->hotel_id : ''; ?>">
 									                        <i class="fas fa-check">
 									                        </i>
 									                        Activate

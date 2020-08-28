@@ -28,7 +28,7 @@
                         <div class="row">
                             <div class="col-12">
                                 <div class="alert alert-danger">
-                                    <?= validation_errors(); ?>
+                                    <?php echo validation_errors(); ?>
                                 </div>      
                             </div>
                         </div>
@@ -36,15 +36,15 @@
                     <?php //print_r($links_data); ?>
                     <div class="form-group">
                         <label for="inputName">Hotel Name</label>
-                        <input type="hidden" name="company_id" id="company_id" value="<?= $session->id ?>">
-                        <input type="text" name="hotel_name" id="company_name" class="form-control" disabled="" readonly="" value="<?= $hotel_user->name ?>">
+                        <input type="hidden" name="company_id" id="company_id" value="<?php echo $session->id ?>">
+                        <input type="text" name="hotel_name" id="company_name" class="form-control" disabled="" readonly="" value="<?php echo $hotel_user->name ?>">
                     </div>
                     <div class="form-group">
                         <label for="inputStatus">Location</label>
-                        <select class="form-control custom-select select2"  name="hotel_location_id" id="hotel_location_id" <?= ($link_id && $links_data[0]->status == '0') ? 'disabled' : '';  ?>>
+                        <select class="form-control custom-select select2"  name="hotel_location_id" id="hotel_location_id" <?php echo ($link_id && $links_data[0]->status == '0') ? 'disabled' : '';  ?>>
                             <option selected disabled>Select one</option>
                             <?php foreach ($hotel_locations as $location) : ?>
-                                <option <?php echo ($link_id && $links_data[0]->hotel_location_id == $location->id) ? 'selected' : ''; ?> value="<?= $location->id ?>"><?= $location->LOCATION ?></option>
+                                <option <?php echo ($link_id && $links_data[0]->hotel_location_id == $location->id) ? 'selected' : ''; ?> value="<?php echo $location->id ?>"><?php echo $location->LOCATION ?></option>
                             <?php endforeach; ?>
                         </select>
                     </div>

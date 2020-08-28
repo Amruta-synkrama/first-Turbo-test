@@ -3,12 +3,12 @@
   <div class="container-fluid">
     <div class="row mb-2">
       <div class="col-sm-6">
-        <h1><?= $hotels_data->name ?></h1>
+        <h1><?php echo $hotels_data->name ?></h1>
       </div>
       <div class="col-sm-6">
         <ol class="breadcrumb float-sm-right">
           <li class="breadcrumb-item"><a href="#">Home</a></li>
-          <li class="breadcrumb-item active"><?= $hotels_data->name ?></li>
+          <li class="breadcrumb-item active"><?php echo $hotels_data->name ?></li>
         </ol>
       </div>
     </div>
@@ -25,9 +25,15 @@
         <div class="card card-primary card-outline">
           <div class="card-body box-profile">
             <div class="text-center">
-              <img class="profile-user-img img-fluid img-circle"
-              src="<?php echo base_url(); ?>theme/dist/img/user4-128x128.jpg"
-              alt="User profile picture">
+              <?php if($hotels_data->user_logo) : ?>
+                <img class="profile-user-img img-fluid img-circle"
+                src="<?php echo $hotels_data->user_logo; ?>"
+                alt="User profile picture">
+              <?php else: ?>
+                <img class="profile-user-img img-fluid img-circle"
+                src="<?php echo base_url(); ?>theme/dist/img/user4-128x128.jpg"
+                alt="User profile picture">
+              <?php endif; ?>
             </div>
             <!-- <pre>
               <?php //print_r($hotels_data) ?> 
@@ -48,11 +54,11 @@
               </li> -->
             </ul>
             <?php if($session->entity == 'Admin'): ?>
-              <a href="<?php echo base_url() ?>links?hotel_id=<?= $hotels_data->user_id ?>" class="btn btn-primary btn-block"><b>View Links</b></a>
-              <a href="<?php echo base_url() ?>hotel_branches?hotel_id=<?= $hotels_data->user_id ?>" class="btn btn-primary btn-block"><b>View Hotel Branches</b></a>
-              <a href="<?php echo base_url() ?>company_profile?hotel_id=<?= $hotels_data->user_id ?>" class="btn btn-primary btn-block"><b>Edit Hotel</b></a>
+              <a href="<?php echo base_url() ?>links?hotel_id=<?php echo $hotels_data->user_id ?>" class="btn btn-primary btn-block"><b>View Links</b></a>
+              <a href="<?php echo base_url() ?>hotel_branches?hotel_id=<?php echo $hotels_data->user_id ?>" class="btn btn-primary btn-block"><b>View Hotel Branches</b></a>
+              <a href="<?php echo base_url() ?>company_profile?hotel_id=<?php echo $hotels_data->user_id ?>" class="btn btn-primary btn-block"><b>Edit Hotel</b></a>
             <?php /*else: ?>
-              <a href="<?php echo base_url() ?>request_link?hotel_id=<?= $hotel_id ?>" class="btn btn-primary btn-block"><b>Request Link</b></a>
+              <a href="<?php echo base_url() ?>request_link?hotel_id=<?php echo $hotel_id ?>" class="btn btn-primary btn-block"><b>Request Link</b></a>
             <?php */ ?>
             <?php endif; ?>
           </div>
@@ -74,30 +80,30 @@
             <strong><i class="fas fa-book mr-1"></i> Website</strong>
 
             <p class="text-muted">
-              <a href="<?= $hotels_data->website ?>" target="_blank"><?= $hotels_data->website ?></a>
+              <a href="<?php echo $hotels_data->website ?>" target="_blank"><?php echo $hotels_data->website ?></a>
             </p>
 
             <hr>
 
             <strong><i class="fas fa-map-marker-alt mr-1"></i> Headquater</strong>
 
-            <p class="text-muted"><?= $hotels_data->headquater ?></p>
+            <p class="text-muted"><?php echo $hotels_data->headquater ?></p>
 
             <hr>
 
             <strong><i class="fas fa-pencil-alt mr-1"></i> Contact Person</strong>
 
             <p class="text-muted">
-              <p class="tag tag-danger"><strong>Contact Name:</strong> <?= $hotels_data->contact_name ?></p>
-              <p class="tag tag-danger"><strong>Contact Email:</strong> <a href="#"><?= $hotels_data->contact_email ?></a></p>
-              <p class="tag tag-danger"><strong>Contact Number:</strong> <a href="#"><?= $hotels_data->contact_no ?></a></p>
+              <p class="tag tag-danger"><strong>Contact Name:</strong> <?php echo $hotels_data->contact_name ?></p>
+              <p class="tag tag-danger"><strong>Contact Email:</strong> <a href="#"><?php echo $hotels_data->contact_email ?></a></p>
+              <p class="tag tag-danger"><strong>Contact Number:</strong> <a href="#"><?php echo $hotels_data->contact_no ?></a></p>
             </p>
 
             <hr>
 
             <strong><i class="far fa-file-alt mr-1"></i> Cover</strong>
 
-            <p class="text-muted"><?= $hotels_data->cover ?></p>
+            <p class="text-muted"><?php echo $hotels_data->cover ?></p>
           </div>
           <!-- /.card-body -->
         </div>
@@ -132,8 +138,8 @@
                 </pre> -->
                 <?php foreach ($hotel_locations as $location) :?>
                   <tr>
-                    <td><?= $location->branch_name; ?></td>
-                    <td><?= $location->LOCATION; ?>, <?= $location->STATE_NAME; ?></td>
+                    <td><?php echo $location->branch_name; ?></td>
+                    <td><?php echo $location->LOCATION; ?>, <?php echo $location->STATE_NAME; ?></td>
                   </tr>
                 <?php endforeach;  ?>
               </tbody>

@@ -28,7 +28,7 @@
 							<div class="row">
 								<div class="col-12">
 									<div class="alert alert-danger">
-										<?= validation_errors(); ?>
+										<?php echo validation_errors(); ?>
 									</div>		
 								</div>
 							</div>
@@ -38,15 +38,15 @@
 								<div class="col-6">
 							<div class="form-group">
 								<label>Name</label>
-								<input type="text" name="name" id="name" class="form-control" value="<?= set_value('name') ?>">
+								<input type="text" name="name" id="name" class="form-control" value="<?php echo set_value('name') ?>">
 							</div>
 							<div class="form-group">
 								<label>Username</label>
-								<input type="text" name="username" id="username" class="form-control" value="<?= set_value('username') ?>">
+								<input type="text" name="username" id="username" class="form-control" value="<?php echo set_value('username') ?>">
 							</div>
 							<div class="form-group">
 								<label>Email</label>
-								<input type="email" name="email" id="email" class="form-control" value="<?= set_value('email') ?>">
+								<input type="email" name="email" id="email" class="form-control" value="<?php echo set_value('email') ?>">
 							</div>
 						</div>
 						<div class="col-6">
@@ -56,7 +56,7 @@
 							</div>
 							<div class="form-group">
 								<label>Phone Number</label>
-								<input type="text" name="phone_number" id="phone_number" class="form-control" value="<?= set_value('phone_number') ?>">
+								<input type="text" name="phone_number" id="phone_number" class="form-control" value="<?php echo set_value('phone_number') ?>">
 							</div>
 							<div class="form-group">
 								<label>User Role</label>

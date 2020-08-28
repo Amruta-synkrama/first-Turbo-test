@@ -38,6 +38,9 @@
                 <tr>
                   <th>Branch Name</th>
                   <th>Location</th>
+                  <?php if($session->entity == 'Admin') : ?>
+                  <th>Status</th>
+                  <?php endif; ?>
                   <th>Action</th>
                 </tr>
               </thead>
@@ -47,24 +50,43 @@
                 </pre> -->
                 <?php foreach ($hotel_locations as $location) :?>
                   <tr>
-                    <td><?= $location->branch_name; ?></td>
-                    <td><?= $location->LOCATION; ?>, <?= $location->STATE_NAME; ?></td>
-                    <td class="project-actions text-right">
+                    <td><?php echo $location->branch_name; ?></td>
+                    <td><?php echo $location->LOCATION; ?>, <?php echo $location->STATE_NAME; ?></td>
+
+                    <?php if($session->entity == 'Admin') : ?>
+                    <td class="text-center">
+                      <?php if($location->status != '2') : ?>  
+                        <span class="badge badge-success">Active</span>
+                      <?php else: ?>
+                        <span class="badge badge-danger">Deleted</span>
+                      <?php endif; ?>
+                    </td>
+                    <?php endif; ?>
+
+                    <td class="project-actions text-center">
                         <!-- <a class="btn btn-primary btn-sm" href="#">
                             <i class="fas fa-folder">
                             </i>
                             View
                         </a> -->
-                        <a class="btn btn-info btn-sm" href="<?php echo base_url(); ?>hotel_branch?branch=<?= $location->id; ?><?php echo ($session->entity == 'Admin') ? '&hotel_id='.$hotel_user_data->id : ''; ?>">
+                        <a class="btn btn-info btn-sm" href="<?php echo base_url(); ?>hotel_branch?branch=<?php echo $location->id; ?><?php echo ($session->entity == 'Admin') ? '&hotel_id='.$hotel_user_data->id : ''; ?>">
                             <i class="fas fa-pencil-alt">
                             </i>
                             Edit
                         </a>
-                        <a class="btn btn-danger btn-sm delete-something-cust" href="<?php echo base_url(); ?>hotel_branches/delete?delete_branch=<?= $location->id; ?>">
+                        <?php if($location->status != 2) : ?>
+                        <a class="btn btn-danger btn-sm delete-something-cust" href="<?php echo base_url(); ?>hotel_branches/delete?delete_branch=<?php echo $location->id; ?><?php echo ($session->entity == 'Admin') ? '&hotel_id='.$hotel_user_data->id : ''; ?>">
                             <i class="fas fa-trash">
                             </i>
                             Delete
                         </a>
+                        <?php else: ?>
+                        <a class="btn btn-success btn-sm activate-something-cust" href="<?php echo base_url(); ?>hotel_branches/activate?activate_branch=<?php echo $location->id; ?><?php echo ($session->entity == 'Admin') ? '&hotel_id='.$hotel_user_data->id : ''; ?>">
+                            <i class="fas fa-check">
+                            </i>
+                            Activate
+                        </a>
+                        <?php endif; ?>
                     </td>
                   </tr>
                 <?php endforeach;  ?>
@@ -73,6 +95,9 @@
                 <tr>
                   <th>Branch Name</th>
                   <th>Location</th>
+                  <?php if($session->entity == 'Admin') : ?>
+                  <th>Status</th>
+                  <?php endif; ?>
                   <th>Action</th>
                 </tr>
               </tfoot>

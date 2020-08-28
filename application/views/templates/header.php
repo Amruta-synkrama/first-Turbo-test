@@ -156,7 +156,7 @@
         <!-- Main Sidebar Container -->
         <aside class="main-sidebar sidebar-dark-primary elevation-4">
             <!-- Brand Logo -->
-            <a href="#" class="brand-link">
+            <a href="<?php echo base_url(); ?>" class="brand-link">
                 <img src="<?php echo base_url(); ?>theme/dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8"> 
                 <span class="brand-text font-weight-light">Turbores</span>
             </a>
@@ -166,7 +166,12 @@
             <!-- Sidebar user panel (optional) -->
                 <div class="user-panel mt-3 pb-3 mb-3 d-flex">
                     <div class="image">
+                      <?php if($session->user_logo) : ?>
+                        <img src="<?php echo $session->user_logo; ?>" class="img-circle elevation-2" alt="User Image">
+                      <?php else: ?>
                         <img src="<?php echo base_url(); ?>theme/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
+                      <?php endif; ?>
+
                     </div>
                     <div class="info">
                         <?php if($session->entity == 'Admin') : ?>
@@ -186,44 +191,44 @@
                         <!-- Add icons to the links using the .nav-icon class
                            with font-awesome or any other icon font library -->
                         <li class="nav-item has-treeview menu-open">
-                            <a href="<?php echo base_url() ?>dashboard" class="nav-link active">
+                            <!-- <a href="<?php //echo base_url() ?>dashboard" class="nav-link active">
                                 <i class="nav-icon fas fa-tachometer-alt"></i>
                                 <p>Dashboard<i class="right fas fa-angle-left"></i></p>
-                            </a>
+                            </a> -->
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
                                      <a href="<?php echo base_url() ?>dashboard" class="nav-link ">
-                                         <i class="far fa-circle nav-icon"></i>
+                                         <i class="nav-icon fas fa-tachometer-alt"></i>
                                          <p>Dashboard</p>
                                      </a>
                                  </li>
                                  <li class="nav-item">
                                    <a href="<?php echo base_url() ?>admin_profile" class="nav-link ">
-                                       <i class="far fa-circle nav-icon"></i>
+                                       <i class="far fa-user nav-icon"></i>
                                        <p>Profile</p>
                                    </a>
                                 </li>
                                 <li class="nav-item">
                                    <a href="<?php echo base_url() ?>register" class="nav-link ">
-                                       <i class="far fa-circle nav-icon"></i>
+                                       <i class="far fa-registered nav-icon"></i>
                                        <p>Register</p>
                                    </a>
                                 </li>
                                 <li class="nav-item">
                                    <a href="<?php echo base_url() ?>hotels" class="nav-link ">
-                                       <i class="far fa-circle nav-icon"></i>
+                                       <i class="fa fa-h-square nav-icon"></i>
                                        <p>Hotels</p>
                                    </a>
                                 </li>
                                 <li class="nav-item">
                                    <a href="<?php echo base_url() ?>companies" class="nav-link ">
-                                       <i class="far fa-circle nav-icon"></i>
+                                       <i class="fa fa-building nav-icon"></i>
                                        <p>Company List</p>
                                    </a>
                                 </li>
                                 <li class="nav-item">
                                    <a href="<?php echo base_url() ?>links" class="nav-link ">
-                                       <i class="far fa-circle nav-icon"></i>
+                                       <i class="fa fa-link nav-icon"></i>
                                        <p>Links</p>
                                    </a>
                                 </li>
@@ -244,38 +249,38 @@
                             <!-- Add icons to the links using the .nav-icon class
                                with font-awesome or any other icon font library -->
                                <li class="nav-item has-treeview menu-open">
-                                <a href="<?php echo base_url() ?>dashboard" class="nav-link active">
+                                <!-- <a href="<?php //echo base_url() ?>dashboard" class="nav-link active">
                                     <i class="nav-icon fas fa-tachometer-alt"></i>
                                     <p>Dashboard<i class="right fas fa-angle-left"></i></p>
-                                </a>
+                                </a> -->
                                 <ul class="nav nav-treeview">
                                     <li class="nav-item">
                                      <a href="<?php echo base_url() ?>dashboard" class="nav-link ">
-                                         <i class="far fa-circle nav-icon"></i>
+                                         <i class="nav-icon fas fa-tachometer-alt"></i>
                                          <p>Dashboard</p>
                                      </a>
                                  </li>
                                  <li class="nav-item">
                                         <a href="<?php echo base_url() ?>hotel_profile" class="nav-link ">
-                                            <i class="far fa-circle nav-icon"></i>
+                                            <i class="far fa-user nav-icon"></i>
                                             <p>Profile</p>
                                         </a>
                                     </li>
                                 <li class="nav-item">
                                             <a href="<?php echo base_url() ?>hotel_branches" class="nav-link ">
-                                                <i class="far fa-circle nav-icon"></i>
+                                                <i class="fa fa-code-fork nav-icon"></i>
                                                 <p>Branches</p>
                                             </a>
                                         </li>
                                 <li class="nav-item">
                                             <a href="<?php echo base_url() ?>companies" class="nav-link ">
-                                                <i class="far fa-circle nav-icon"></i>
+                                                <i class="fa fa-building nav-icon"></i>
                                                 <p>Company List</p>
                                             </a>
                                         </li>
                                 <li class="nav-item">
                                    <a href="<?php echo base_url() ?>links" class="nav-link ">
-                                       <i class="far fa-circle nav-icon"></i>
+                                       <i class="fa fa-link nav-icon"></i>
                                        <p>Links</p>
                                    </a>
                                 </li>
@@ -296,32 +301,32 @@
                             <!-- Add icons to the links using the .nav-icon class
                                with font-awesome or any other icon font library -->
                                <li class="nav-item has-treeview menu-open">
-                                <a href="<?php echo base_url() ?>dashboard" class="nav-link active">
+                                <!-- <a href="<?php echo base_url() ?>dashboard" class="nav-link active">
                                     <i class="nav-icon fas fa-tachometer-alt"></i>
                                     <p>Dashboard<i class="right fas fa-angle-left"></i></p>
-                                </a>
+                                </a> -->
                                 <ul class="nav nav-treeview">
                                     <li class="nav-item">
                                      <a href="<?php echo base_url() ?>dashboard" class="nav-link ">
-                                         <i class="far fa-circle nav-icon"></i>
+                                         <i class="nav-icon fas fa-tachometer-alt"></i>
                                          <p>Dashboard</p>
                                      </a>
                                  </li>
                                  <li class="nav-item">
                                                 <a href="<?php echo base_url() ?>company_profile" class="nav-link ">
-                                                    <i class="far fa-circle nav-icon"></i>
+                                                    <i class="far fa-user nav-icon"></i>
                                                     <p>Profile</p>
                                                 </a>
                                         </li>
                                 <li class="nav-item">
                                             <a href="<?php echo base_url() ?>hotels" class="nav-link ">
-                                                <i class="far fa-circle nav-icon"></i>
+                                                <i class="fa fa-h-square nav-icon"></i>
                                                 <p>Hotel List</p>
                                             </a>
                                         </li>
                                 <li class="nav-item">
                                    <a href="<?php echo base_url() ?>links" class="nav-link ">
-                                       <i class="far fa-circle nav-icon"></i>
+                                       <i class="fa fa-link nav-icon"></i>
                                        <p>Links</p>
                                    </a>
                                 </li>

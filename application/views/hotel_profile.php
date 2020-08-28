@@ -25,9 +25,11 @@
         <div class="card card-primary card-outline">
           <div class="card-body box-profile">
             <div class="text-center">
-              <img class="profile-user-img img-fluid img-circle"
-                   src="<?php echo base_url(); ?>theme/dist/img/user4-128x128.jpg"
-                   alt="User profile picture">
+              <?php if($hotel_user_data->user_logo) : ?>
+              <img class="profile-user-img img-fluid img-circle" src="<?php echo $hotel_user_data->user_logo; ?>" alt="User profile picture">
+              <?php else: ?>
+              <img class="profile-user-img img-fluid img-circle" src="<?php echo base_url(); ?>theme/dist/img/user4-128x128.jpg" alt="User profile picture">
+              <?php endif; ?>
             </div>
 
             <h3 class="profile-username text-center"><?php echo $hotel_user_data->name; ?></h3>
@@ -47,8 +49,8 @@
             </ul>
 
             <?php if($session->entity == 'Admin'): ?>
-              <a href="<?php echo base_url() ?>hotel_branches?hotel_id=<?= $hotel_user_data->id ?>" class="btn btn-primary btn-block"><b>View Branches</b></a>
-              <a href="<?php echo base_url() ?>links?hotel_id=<?= $hotel_user_data->id ?>" class="btn btn-primary btn-block"><b>Add Links</b></a>
+              <a href="<?php echo base_url() ?>hotel_branches?hotel_id=<?php echo $hotel_user_data->id ?>" class="btn btn-primary btn-block"><b>View Branches</b></a>
+              <a href="<?php echo base_url() ?>links?hotel_id=<?php echo $hotel_user_data->id ?>" class="btn btn-primary btn-block"><b>Add Links</b></a>
             <?php else: ?>
               <a href="<?php echo base_url() ?>hotel_branches" class="btn btn-primary btn-block"><b>View Branches</b></a>
               <a href="<?php echo base_url() ?>links" class="btn btn-primary btn-block"><b>Add Links</b></a>
@@ -68,30 +70,30 @@
             <strong><i class="fas fa-book mr-1"></i> Website</strong>
 
             <p class="text-muted">
-              <a href="<?= $hotel_data->website ?>"><?= $hotel_data->website ?></a>
+              <a href="<?php echo $hotel_data->website ?>"><?php echo $hotel_data->website ?></a>
             </p>
 
             <hr>
 
             <strong><i class="fas fa-map-marker-alt mr-1"></i> Headquater</strong>
 
-            <p class="text-muted"><?= $hotel_data->headquater ?></p>
+            <p class="text-muted"><?php echo $hotel_data->headquater ?></p>
 
             <hr>
 
             <strong><i class="fas fa-pencil-alt mr-1"></i> Contact Person</strong>
 
             <p class="text-muted">
-              <p class="tag tag-danger"><strong>Contact Name:</strong> <?= $hotel_data->contact_name ?></p>
-              <p class="tag tag-danger"><strong>Contact Email:</strong> <a href="#"><?= $hotel_data->contact_email ?></a></p>
-              <p class="tag tag-danger"><strong>Contact Number:</strong> <a href="#"><?= $hotel_data->contact_no ?></a></p>
+              <p class="tag tag-danger"><strong>Contact Name:</strong> <?php echo $hotel_data->contact_name ?></p>
+              <p class="tag tag-danger"><strong>Contact Email:</strong> <a href="#"><?php echo $hotel_data->contact_email ?></a></p>
+              <p class="tag tag-danger"><strong>Contact Number:</strong> <a href="#"><?php echo $hotel_data->contact_no ?></a></p>
             </p>
 
             <hr>
 
             <strong><i class="far fa-file-alt mr-1"></i> Cover</strong>
 
-            <p class="text-muted"><?= $hotel_data->cover ?></p>
+            <p class="text-muted"><?php echo $hotel_data->cover ?></p>
           </div>
           <!-- /.card-body -->
         </div>
@@ -116,7 +118,7 @@
                   <div class="row">
                     <div class="col-12">
                       <div class="alert alert-danger">
-                        <?= validation_errors(); ?>
+                        <?php echo validation_errors(); ?>
                       </div>    
                     </div>
                   </div>
@@ -134,19 +136,57 @@
                   <div class="form-group row">
                     <label for="inputName" class="col-sm-2 col-form-label">Website</label>
                     <div class="col-sm-10">
-                      <input type="text" name="website" id="website" class="form-control" placeholder="Website" value="<?= $hotel_data->website; ?>">
+                      <input type="text" name="website" id="website" class="form-control" placeholder="Website" value="<?php echo $hotel_data->website; ?>">
                     </div>
                   </div>
                   <div class="form-group row">
                     <label for="inputEmail" class="col-sm-2 col-form-label">Headquater</label>
                     <div class="col-sm-10">
-                      <input type="text" name="headquater" id="headquater" class="form-control" placeholder="Headquater" value="<?= $hotel_data->headquater; ?>">
+                      <input type="text" name="headquater" id="headquater" class="form-control" placeholder="Headquater" value="<?php echo $hotel_data->headquater; ?>">
                     </div>
                   </div>
                   <div class="form-group row">
                     <label for="inputExperience" class="col-sm-2 col-form-label">Cover</label>
                     <div class="col-sm-10">
-                      <textarea name="cover" id="cover" class="form-control" value="<?= $hotel_data->cover; ?>"><?= $hotel_data->cover; ?></textarea>
+                      <textarea name="cover" id="cover" class="form-control" value="<?php echo $hotel_data->cover; ?>"><?php echo $hotel_data->cover; ?></textarea>
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <div class="offset-sm-2 col-sm-10">
+                      <button type="submit" class="btn btn-danger">Submit</button>
+                    </div>
+                  </div>
+                </form>
+
+                <?php if($this->session->flashdata('upload_message')) : ?>
+                  <div class="row">
+                    <div class="col-12">
+                      <div class="alert alert-success">
+                        <?php  echo $this->session->flashdata("upload_message"); ?>
+                      </div>
+                    </div>
+                  </div>
+                <?php endif; ?>
+                <?php if($this->session->flashdata('error_upload_message')) : ?>
+                  <div class="row">
+                    <div class="col-12">
+                      <div class="alert alert-danger">
+                        <?php  echo $this->session->flashdata("error_upload_message"); ?>
+                      </div>
+                    </div>
+                  </div>
+                <?php endif; ?>
+                <form class="form-horizontal mt-5" action="<?php echo base_url(); ?>hotel_profile/upload_logo<?php echo ($session->entity == 'Admin') ? '?hotel_id='.$hotel_user_data->id : ''; ?>" method="post" enctype="multipart/form-data">
+
+                  <div class="form-group row">
+                    <label for="inputName" class="col-sm-2 col-form-label">Logo</label>
+                    <div class="col-sm-10">
+                      <div class="input-group">
+                        <div class="custom-file">
+                          <input type="file" class="custom-file-input" id="logo" name="logo">
+                          <label class="custom-file-label" for="logo">Choose file</label>
+                        </div>
+                      </div>
                     </div>
                   </div>
                   <div class="form-group row">
@@ -162,7 +202,7 @@
                   <div class="row">
                     <div class="col-12">
                       <div class="alert alert-danger">
-                        <?= validation_errors(); ?>
+                        <?php echo validation_errors(); ?>
                       </div>    
                     </div>
                   </div>
@@ -180,19 +220,19 @@
                   <div class="form-group row">
                     <label for="inputName" class="col-sm-2 col-form-label">Name</label>
                     <div class="col-sm-10">
-                      <input type="text" class="form-control" placeholder="Name" name="contact_name" id="contact_name" value="<?= $hotel_data->contact_name; ?>">
+                      <input type="text" class="form-control" placeholder="Name" name="contact_name" id="contact_name" value="<?php echo $hotel_data->contact_name; ?>">
                     </div>
                   </div>
                   <div class="form-group row">
                     <label for="inputEmail" class="col-sm-2 col-form-label">Email</label>
                     <div class="col-sm-10">
-                      <input type="email" class="form-control" placeholder="Email" name="contact_email" id="contact_email" value="<?= $hotel_data->contact_email; ?>">
+                      <input type="email" class="form-control" placeholder="Email" name="contact_email" id="contact_email" value="<?php echo $hotel_data->contact_email; ?>">
                     </div>
                   </div>
                   <div class="form-group row">
                     <label for="inputName2" class="col-sm-2 col-form-label">Phone Number</label>
                     <div class="col-sm-10">
-                      <input type="text" class="form-control" placeholder="Phone Number" name="contact_no" id="contact_no" value="<?= $hotel_data->contact_no; ?>">
+                      <input type="text" class="form-control" placeholder="Phone Number" name="contact_no" id="contact_no" value="<?php echo $hotel_data->contact_no; ?>">
                     </div>
                   </div>
                   <div class="form-group row">
@@ -209,7 +249,7 @@
                   <div class="row">
                     <div class="col-12">
                       <div class="alert alert-danger">
-                        <?= validation_errors(); ?>
+                        <?php echo validation_errors(); ?>
                       </div>    
                     </div>
                   </div>
@@ -227,25 +267,25 @@
                   <div class="form-group row">
                     <label for="inputName" class="col-sm-2 col-form-label">Name</label>
                     <div class="col-sm-10">
-                      <input type="text" class="form-control" placeholder="Name" name="name" id="name" value="<?= $hotel_user_data->name; ?>">
+                      <input type="text" class="form-control" placeholder="Name" name="name" id="name" value="<?php echo $hotel_user_data->name; ?>">
                     </div>
                   </div>
                   <div class="form-group row">
                     <label for="inputName" class="col-sm-2 col-form-label">Username</label>
                     <div class="col-sm-10">
-                      <input type="text" class="form-control" placeholder="Username" name="username" id="username" value="<?= $hotel_user_data->username; ?>" readonly disabled>
+                      <input type="text" class="form-control" placeholder="Username" name="username" id="username" value="<?php echo $hotel_user_data->username; ?>" readonly disabled>
                     </div>
                   </div>
                   <div class="form-group row">
                     <label for="inputEmail" class="col-sm-2 col-form-label">Email</label>
                     <div class="col-sm-10">
-                      <input type="email" class="form-control" placeholder="Email" name="email" id="email" value="<?= $hotel_user_data->email; ?>" readonly disabled>
+                      <input type="email" class="form-control" placeholder="Email" name="email" id="email" value="<?php echo $hotel_user_data->email; ?>" readonly disabled>
                     </div>
                   </div>
                   <div class="form-group row">
                     <label for="inputName2" class="col-sm-2 col-form-label">Phone Number</label>
                     <div class="col-sm-10">
-                      <input type="text" class="form-control" placeholder="Phone Number" name="phone_number" id="phone_number" value="<?= $hotel_user_data->phone_number; ?>">
+                      <input type="text" class="form-control" placeholder="Phone Number" name="phone_number" id="phone_number" value="<?php echo $hotel_user_data->phone_number; ?>">
                     </div>
                   </div>
                   <div class="form-group row">
@@ -262,7 +302,7 @@
                   <div class="row">
                     <div class="col-12">
                       <div class="alert alert-danger">
-                        <?= validation_errors(); ?>
+                        <?php echo validation_errors(); ?>
                       </div>    
                     </div>
                   </div>

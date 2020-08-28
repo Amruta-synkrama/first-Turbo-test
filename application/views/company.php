@@ -3,12 +3,12 @@
   <div class="container-fluid">
     <div class="row mb-2">
       <div class="col-sm-6">
-        <h1><?= $companies_data->name ?></h1>
+        <h1><?php echo $companies_data->name ?></h1>
       </div>
       <div class="col-sm-6">
         <ol class="breadcrumb float-sm-right">
           <li class="breadcrumb-item"><a href="#">Home</a></li>
-          <li class="breadcrumb-item active"><?= $companies_data->name ?></li>
+          <li class="breadcrumb-item active"><?php echo $companies_data->name ?></li>
         </ol>
       </div>
     </div>
@@ -25,9 +25,15 @@
         <div class="card card-primary card-outline">
           <div class="card-body box-profile">
             <div class="text-center">
-              <img class="profile-user-img img-fluid img-circle"
-              src="<?php echo base_url(); ?>theme/dist/img/user4-128x128.jpg"
-              alt="User profile picture">
+              <?php if($companies_data->user_logo) : ?>
+                <img class="profile-user-img img-fluid img-circle"
+                src="<?php echo $companies_data->user_logo; ?>"
+                alt="User profile picture">
+              <?php else: ?>
+                <img class="profile-user-img img-fluid img-circle"
+                src="<?php echo base_url(); ?>theme/dist/img/user4-128x128.jpg"
+                alt="User profile picture">
+              <?php endif; ?>
             </div>
             <!-- <pre>
               <?php //print_r($companies_data) ?> 
@@ -49,8 +55,8 @@
               </li>
             </ul>
             <?php if($session->entity == 'Admin'): ?>
-            <a href="<?php echo base_url() ?>links?company_id=<?= $companies_data->user_id ?>" class="btn btn-primary btn-block"><b>View Link</b></a>
-            <a href="<?php echo base_url() ?>company_profile?company_id=<?= $companies_data->user_id ?>" class="btn btn-primary btn-block"><b>Edit Company</b></a>
+            <a href="<?php echo base_url() ?>links?company_id=<?php echo $companies_data->user_id ?>" class="btn btn-primary btn-block"><b>View Link</b></a>
+            <a href="<?php echo base_url() ?>company_profile?company_id=<?php echo $companies_data->user_id ?>" class="btn btn-primary btn-block"><b>Edit Company</b></a>
             <?php else: ?>
               <a href="<?php echo base_url() ?>links" class="btn btn-primary btn-block"><b>Add Link</b></a>
             <?php endif; ?>

@@ -56,7 +56,7 @@
 					<div class="row">
 						<div class="col-12">
 							<div class="alert alert-danger">
-								<?= validation_errors(); ?>
+								<?php echo validation_errors(); ?>
 							</div>		
 						</div>
 					</div>
@@ -64,7 +64,7 @@
 				<form action="<?php echo base_url(); ?>login/validation" method="post">
 					<div class="form-group">
 						<label>Email</label>
-						<input type="email" name="email" id="email" class="form-control" value="<?= set_value('email') ?>">
+						<input type="email" name="email" id="email" class="form-control" value="<?php echo set_value('email') ?>">
 					</div>
 					<div class="form-group">
 						<label>Password</label>

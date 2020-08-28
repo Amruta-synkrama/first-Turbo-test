@@ -119,6 +119,17 @@ class Links_model extends CI_Model
 		return $this->db->update('tr_links',$data);
         // return $this->db->delete('tr_links', array('id' => $link_id));
     }
+
+    public function activate_link($link_id) {
+		$timestamp = date('Y-m-d H:i:s');
+		$data = array(
+			'status' => '1',
+			'updated_at' => $timestamp
+		);
+		$this->db->where('id',$link_id);
+		return $this->db->update('tr_links',$data);
+        // return $this->db->delete('tr_links', array('id' => $link_id));
+    }
  
 }
 /* End of file '/Links_model.php' */

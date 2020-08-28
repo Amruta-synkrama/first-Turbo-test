@@ -49,10 +49,10 @@
                 </pre> -->
                 <?php foreach ($hotels_data as $hotel) :?>
                   <tr>
-                    <td><a href="<?php echo base_url(); ?>hotel?id=<?= $hotel->user_id; ?>"><?= $hotel->name; ?></a></td>
-                    <td><?= $hotel->headquater; ?></td>
-                    <td><?= $hotel->email; ?></td>
-                    <td><?= $hotel->website; ?></td>
+                    <td><a href="<?php echo base_url(); ?>hotel?id=<?php echo $hotel->user_id; ?>"><?php echo $hotel->name; ?></a></td>
+                    <td><?php echo $hotel->headquater; ?></td>
+                    <td><?php echo $hotel->email; ?></td>
+                    <td><?php echo $hotel->website; ?></td>
                       <?php if($session->entity == 'Admin') : ?>
                     <td  class="text-center">
                       <?php if($hotel->status != '2' ) : ?>
@@ -63,25 +63,25 @@
                     </td>
                     <td class="project-actions text-center">
                       <?php /* if($session->entity == 'RFP') : ?>
-                        <a class="btn btn-primary btn-sm" href="<?php echo base_url(); ?>request_link?hotel_id=<?= $hotel->user_id; ?>">
+                        <a class="btn btn-primary btn-sm" href="<?php echo base_url(); ?>request_link?hotel_id=<?php echo $hotel->user_id; ?>">
                             <i class="fas fa-link">
                             </i>
                             Request Link
                         </a>
                       <?php endif; */ ?>
-                        <a class="btn btn-info btn-sm" href="<?php echo base_url(); ?>hotel_profile?hotel_id=<?= $hotel->user_id; ?>">
+                        <a class="btn btn-info btn-sm" href="<?php echo base_url(); ?>hotel_profile?hotel_id=<?php echo $hotel->user_id; ?>">
                             <i class="fas fa-pencil-alt">
                             </i>
                             Edit
                         </a>
                         <?php if($hotel->status != '2' ) : ?>
-                        <a class="btn btn-danger btn-sm delete-something-cust" href="<?php echo base_url(); ?>hotels/delete?delete_request=<?= $hotel->user_id; ?>">
+                        <a class="btn btn-danger btn-sm delete-something-cust" href="<?php echo base_url(); ?>hotels/delete?delete_request=<?php echo $hotel->user_id; ?>">
                             <i class="fas fa-times">
                             </i>
                             Delete
                         </a>
                         <?php else: ?>
-                        <a class="btn btn-success btn-sm activate-something-cust" href="<?php echo base_url(); ?>hotels/activate?activate_request=<?= $hotel->user_id; ?>">
+                        <a class="btn btn-success btn-sm activate-something-cust" href="<?php echo base_url(); ?>hotels/activate?activate_request=<?php echo $hotel->user_id; ?>">
                             <i class="fas fa-check">
                             </i>
                             Activate

@@ -61,6 +61,29 @@ class Links extends CI_Controller {
 			$this->links_model->delete_link($reject_request);
 		}
 		$this->session->set_flashdata('success_message', 'Deleted');
+		if($this->session->userdata('user_data')->entity == 'Admin') {
+			$hotel_id = $this->input->get('hotel_id');
+			if(!$hotel_id) {
+				redirect('dashboard');		
+			}
+			redirect('links?hotel_id='.$hotel_id);	
+		}
+		redirect('links');	
+	}
+
+	public function activate() {
+		$activate_request = $this->input->get('activate_request');
+		if($activate_request) {
+			$this->links_model->activate_link($activate_request);
+		}
+		$this->session->set_flashdata('success_message', 'Activated');
+		if($this->session->userdata('user_data')->entity == 'Admin') {
+			$hotel_id = $this->input->get('hotel_id');
+			if(!$hotel_id) {
+				redirect('dashboard');		
+			}
+			redirect('links?hotel_id='.$hotel_id);	
+		}
 		redirect('links');	
 	}
 		

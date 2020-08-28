@@ -49,10 +49,10 @@
                 </pre> -->
                 <?php foreach ($companies_data as $company) :?>
                   <tr>
-                    <td><a href="<?php echo base_url(); ?>company?id=<?= $company->user_id; ?>"><?= $company->name; ?></a></td>
-                    <td><?= $company->headquater; ?></td>
-                    <td><?= $company->email; ?></td>
-                    <td><?= $company->website; ?></td>
+                    <td><a href="<?php echo base_url(); ?>company?id=<?php echo $company->user_id; ?>"><?php echo $company->name; ?></a></td>
+                    <td><?php echo $company->headquater; ?></td>
+                    <td><?php echo $company->email; ?></td>
+                    <td><?php echo $company->website; ?></td>
                     <?php if($session->entity == 'Admin') : ?>
                     <td  class="text-center">
                       <?php if($company->status != '2' ) : ?>
@@ -62,19 +62,19 @@
                       <?php endif; ?>
                     </td>
                     <td class="project-actions text-center">
-                        <a class="btn btn-info btn-sm" href="<?php echo base_url(); ?>company_profile?company_id=<?= $company->user_id; ?>">
+                        <a class="btn btn-info btn-sm" href="<?php echo base_url(); ?>company_profile?company_id=<?php echo $company->user_id; ?>">
                             <i class="fas fa-pencil-alt">
                             </i>
                             Edit
                         </a>
                         <?php if($company->status != '2' ) : ?>
-                        <a class="btn btn-danger btn-sm delete-something-cust" href="<?php echo base_url(); ?>companies/delete?delete_request=<?= $company->user_id; ?>">
+                        <a class="btn btn-danger btn-sm delete-something-cust" href="<?php echo base_url(); ?>companies/delete?delete_request=<?php echo $company->user_id; ?>">
                             <i class="fas fa-times">
                             </i>
                             Delete
                         </a>
                         <?php else: ?>
-                          <a class="btn btn-success btn-sm activate-something-cust" href="<?php echo base_url(); ?>companies/activate?activate_request=<?= $company->user_id; ?>">
+                          <a class="btn btn-success btn-sm activate-something-cust" href="<?php echo base_url(); ?>companies/activate?activate_request=<?php echo $company->user_id; ?>">
                             <i class="fas fa-check">
                             </i>
                             Activate

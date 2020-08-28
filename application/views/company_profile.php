@@ -25,9 +25,11 @@
         <div class="card card-primary card-outline">
           <div class="card-body box-profile">
             <div class="text-center">
-              <img class="profile-user-img img-fluid img-circle"
-                   src="<?php echo base_url(); ?>theme/dist/img/user4-128x128.jpg"
-                   alt="User profile picture">
+              <?php if($company_user_data->user_logo) : ?>
+              <img class="profile-user-img img-fluid img-circle" src="<?php echo $company_user_data->user_logo; ?>" alt="User profile picture">
+              <?php else: ?>
+              <img class="profile-user-img img-fluid img-circle" src="<?php echo base_url(); ?>theme/dist/img/user4-128x128.jpg" alt="User profile picture">
+              <?php endif; ?>
             </div>
 
             <h3 class="profile-username text-center"><?php echo $company_user_data->name; ?></h3>
@@ -62,30 +64,30 @@
             <strong><i class="fas fa-book mr-1"></i> Website</strong>
 
             <p class="text-muted">
-              <a href="<?= $company_data->website ?>" target="_blank"><?= $company_data->website ?></a>
+              <a href="<?php echo $company_data->website ?>" target="_blank"><?php echo $company_data->website ?></a>
             </p>
 
             <hr>
 
             <strong><i class="fas fa-map-marker-alt mr-1"></i> Headquater</strong>
 
-            <p class="text-muted"><?= $company_data->headquater ?></p>
+            <p class="text-muted"><?php echo $company_data->headquater ?></p>
 
             <hr>
 
             <strong><i class="fas fa-pencil-alt mr-1"></i> Contact Person</strong>
 
             <p class="text-muted">
-              <p class="tag tag-danger"><strong>Contact Name:</strong> <?= $company_data->contact_name ?></p>
-              <p class="tag tag-danger"><strong>Contact Email:</strong> <a href="#"><?= $company_data->contact_email ?></a></p>
-              <p class="tag tag-danger"><strong>Contact Number:</strong> <a href="#"><?= $company_data->contact_no ?></a></p>
+              <p class="tag tag-danger"><strong>Contact Name:</strong> <?php echo $company_data->contact_name ?></p>
+              <p class="tag tag-danger"><strong>Contact Email:</strong> <a href="#"><?php echo $company_data->contact_email ?></a></p>
+              <p class="tag tag-danger"><strong>Contact Number:</strong> <a href="#"><?php echo $company_data->contact_no ?></a></p>
             </p>
 
             <hr>
 
             <strong><i class="far fa-file-alt mr-1"></i> Cover</strong>
 
-            <p class="text-muted"><?= $company_data->cover ?></p>
+            <p class="text-muted"><?php echo $company_data->cover ?></p>
           </div>
           <!-- /.card-body -->
         </div>
@@ -109,7 +111,7 @@
                   <div class="row">
                     <div class="col-12">
                       <div class="alert alert-danger">
-                        <?= validation_errors(); ?>
+                        <?php echo validation_errors(); ?>
                       </div>    
                     </div>
                   </div>
@@ -123,23 +125,71 @@
                     </div>
                   </div>
                 <?php endif; ?>
+                <?php if($this->session->flashdata('error_upload_message')) : ?>
+                  <div class="row">
+                    <div class="col-12">
+                      <div class="alert alert-danger">
+                        <?php  echo $this->session->flashdata("error_upload_message"); ?>
+                      </div>
+                    </div>
+                  </div>
+                <?php endif; ?>
                 <form class="form-horizontal" action="<?php echo base_url(); ?>company_profile/update_company_details<?php echo ($session->entity == 'Admin') ? '?company_id='.$company_user_data->id : ''; ?>" method="post">
                   <div class="form-group row">
                     <label for="inputName" class="col-sm-2 col-form-label">Website</label>
                     <div class="col-sm-10">
-                      <input type="text" name="website" id="website" class="form-control" placeholder="Website" value="<?= $company_data->website; ?>">
+                      <input type="text" name="website" id="website" class="form-control" placeholder="Website" value="<?php echo $company_data->website; ?>">
                     </div>
                   </div>
                   <div class="form-group row">
                     <label for="inputEmail" class="col-sm-2 col-form-label">Headquater</label>
                     <div class="col-sm-10">
-                      <input type="text" name="headquater" id="headquater" class="form-control" placeholder="Headquater" value="<?= $company_data->headquater; ?>">
+                      <input type="text" name="headquater" id="headquater" class="form-control" placeholder="Headquater" value="<?php echo $company_data->headquater; ?>">
                     </div>
                   </div>
                   <div class="form-group row">
-                    <label for="inputExperience" class="col-sm-2 col-form-label">Cover</label>
+                    <label for="inputExperience" class="col-sm-2 col-form-label">Description</label>
                     <div class="col-sm-10">
-                      <textarea name="cover" id="cover" class="form-control" value="<?= $company_data->cover; ?>"><?= $company_data->cover; ?></textarea>
+                      <textarea name="cover" id="cover" class="form-control" value="<?php echo $company_data->cover; ?>"><?php echo $company_data->cover; ?></textarea>
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <div class="offset-sm-2 col-sm-10">
+                      <button type="submit" class="btn btn-danger">Submit</button>
+                    </div>
+                  </div>
+                </form>
+
+
+                <?php if($this->session->flashdata('upload_message')) : ?>
+                  <div class="row">
+                    <div class="col-12">
+                      <div class="alert alert-success">
+                        <?php  echo $this->session->flashdata("upload_message"); ?>
+                      </div>
+                    </div>
+                  </div>
+                <?php endif; ?>
+                <?php if($this->session->flashdata('error_upload_message')) : ?>
+                  <div class="row">
+                    <div class="col-12">
+                      <div class="alert alert-danger">
+                        <?php  echo $this->session->flashdata("error_upload_message"); ?>
+                      </div>
+                    </div>
+                  </div>
+                <?php endif; ?>
+                <form class="form-horizontal mt-5" action="<?php echo base_url(); ?>company_profile/upload_logo<?php echo ($session->entity == 'Admin') ? '?company_id='.$company_user_data->id : ''; ?>" method="post" enctype="multipart/form-data">
+
+                  <div class="form-group row">
+                    <label for="inputName" class="col-sm-2 col-form-label">Logo</label>
+                    <div class="col-sm-10">
+                      <div class="input-group">
+                        <div class="custom-file">
+                          <input type="file" class="custom-file-input" id="logo" name="logo">
+                          <label class="custom-file-label" for="logo">Choose file</label>
+                        </div>
+                      </div>
                     </div>
                   </div>
                   <div class="form-group row">
@@ -155,7 +205,7 @@
                   <div class="row">
                     <div class="col-12">
                       <div class="alert alert-danger">
-                        <?= validation_errors(); ?>
+                        <?php echo validation_errors(); ?>
                       </div>    
                     </div>
                   </div>
@@ -173,19 +223,19 @@
                   <div class="form-group row">
                     <label for="inputName" class="col-sm-2 col-form-label">Name</label>
                     <div class="col-sm-10">
-                      <input type="text" class="form-control" placeholder="Name" name="contact_name" id="contact_name" value="<?= $company_data->contact_name; ?>">
+                      <input type="text" class="form-control" placeholder="Name" name="contact_name" id="contact_name" value="<?php echo $company_data->contact_name; ?>">
                     </div>
                   </div>
                   <div class="form-group row">
                     <label for="inputEmail" class="col-sm-2 col-form-label">Email</label>
                     <div class="col-sm-10">
-                      <input type="email" class="form-control" placeholder="Email" name="contact_email" id="contact_email" value="<?= $company_data->contact_email; ?>">
+                      <input type="email" class="form-control" placeholder="Email" name="contact_email" id="contact_email" value="<?php echo $company_data->contact_email; ?>">
                     </div>
                   </div>
                   <div class="form-group row">
                     <label for="inputName2" class="col-sm-2 col-form-label">Phone Number</label>
                     <div class="col-sm-10">
-                      <input type="text" class="form-control" placeholder="Phone Number" name="contact_no" id="contact_no" value="<?= $company_data->contact_no; ?>">
+                      <input type="text" class="form-control" placeholder="Phone Number" name="contact_no" id="contact_no" value="<?php echo $company_data->contact_no; ?>">
                     </div>
                   </div>
                   <div class="form-group row">
@@ -202,7 +252,7 @@
                   <div class="row">
                     <div class="col-12">
                       <div class="alert alert-danger">
-                        <?= validation_errors(); ?>
+                        <?php echo validation_errors(); ?>
                       </div>    
                     </div>
                   </div>
@@ -220,25 +270,25 @@
                   <div class="form-group row">
                     <label for="inputName" class="col-sm-2 col-form-label">Name</label>
                     <div class="col-sm-10">
-                      <input type="text" class="form-control" placeholder="Name" name="name" id="name" value="<?= $company_user_data->name; ?>">
+                      <input type="text" class="form-control" placeholder="Name" name="name" id="name" value="<?php echo $company_user_data->name; ?>">
                     </div>
                   </div>
                   <div class="form-group row">
                     <label for="inputName" class="col-sm-2 col-form-label">Username</label>
                     <div class="col-sm-10">
-                      <input type="text" class="form-control" placeholder="Username" name="username" id="username" value="<?= $company_user_data->username; ?>" readonly disabled>
+                      <input type="text" class="form-control" placeholder="Username" name="username" id="username" value="<?php echo $company_user_data->username; ?>" readonly disabled>
                     </div>
                   </div>
                   <div class="form-group row">
                     <label for="inputEmail" class="col-sm-2 col-form-label">Email</label>
                     <div class="col-sm-10">
-                      <input type="email" class="form-control" placeholder="Email" name="email" id="email" value="<?= $company_user_data->email; ?>" readonly disabled>
+                      <input type="email" class="form-control" placeholder="Email" name="email" id="email" value="<?php echo $company_user_data->email; ?>" readonly disabled>
                     </div>
                   </div>
                   <div class="form-group row">
                     <label for="inputName2" class="col-sm-2 col-form-label">Phone Number</label>
                     <div class="col-sm-10">
-                      <input type="text" class="form-control" placeholder="Phone Number" name="phone_number" id="phone_number" value="<?= $company_user_data->phone_number; ?>">
+                      <input type="text" class="form-control" placeholder="Phone Number" name="phone_number" id="phone_number" value="<?php echo $company_user_data->phone_number; ?>">
                     </div>
                   </div>
                   <div class="form-group row">
@@ -254,7 +304,7 @@
                   <div class="row">
                     <div class="col-12">
                       <div class="alert alert-danger">
-                        <?= validation_errors(); ?>
+                        <?php echo validation_errors(); ?>
                       </div>    
                     </div>
                   </div>
