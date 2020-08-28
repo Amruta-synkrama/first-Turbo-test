@@ -1,0 +1,31 @@
+body.accent-orange .btn-primary {
+	background-color: #F27D2B;
+	border-color: #F27D2B;
+}
+
+.btn-primary {
+	background-color: #F27D2B;
+	border-color: #F27D2B;
+}
+
+.btn-primary:hover, .btn-primary:not(:disabled):not(.disabled).active, .btn-primary:not(:disabled):not(.disabled):active, .show>.btn-primary.dropdown-toggle {
+	background-color: #F27D2B;
+	border-color: #F27D2B;	
+}
+
+body.accent-orange .card-primary:not(.card-outline)>.card-header {
+	background-color: #F27D2B;
+}
+
+body.accent-orange .card-primary.card-outline {
+	border-top: 3px solid #F27D2B;
+}
+
+body.accent-orange .nav-pills .nav-link.active, body.accent-orange .nav-pills .show>.nav-link {
+	color: #fff;
+    background-color: #F27D2B;
+}
+
+body.accent-orange .nav-pills .nav-link:not(.active):hover {
+	color: #F27D2B;	
+}
