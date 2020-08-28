@@ -12,22 +12,30 @@ class Link extends CI_Controller {
 		}
 
 		$this->load->library('form_validation');
-		$this->load->model('hotel_profile_model');
-		$this->load->model('company_profile_model');
+		$this->load->model('user_model');
 		$this->load->model('links_model');
 	}
 	
 	public function index() {
 		$link_id = $this->input->get('link_id');
 		$user_id = $this->session->userdata('id');
-		$data['hotel_locations'] = array();
-		if($this->session->userdata('user_data')->entity == 'Hotel') {
-			$data['hotel_data'] = $this->hotel_profile_model->get_hotel_data($user_id);
-			$data['hotel_locations'] = $this->links_model->get_hotel_locations($user_id);
+		$hotel_id = $this->input->get('hotel_id');
+		if($this->session->userdata('user_data')->entity == 'Admin') {
+			if(!$hotel_id) {
+				redirect('links');
+			}
+		} else {
+			$hotel_id = $user_id;
 		}
-		$data['user_data'] = $this->hotel_profile_model->get_user_data($user_id);
+		$data['hotel_locations'] = array();
+		// if($this->session->userdata('user_data')->entity == 'Hotel') {
+			$data['hotel_data'] = $this->user_model->get_hotel_data($hotel_id);
+			$data['hotel_locations'] = $this->links_model->get_hotel_locations($hotel_id);
+		// }
+		$data['hotel_user_data'] = $this->user_model->get_user_data($hotel_id);
+		$data['user_data'] = $this->user_model->get_user_data($user_id);
 		$data['session'] = $this->session->userdata('user_data');
-		$data['links_data'] = $this->links_model->get_links($link_id,$user_id,$this->session->userdata('user_data')->entity);
+		$data['links_data'] = $this->links_model->get_links($link_id,$hotel_id,'Hotel');
 		$data['link_id'] = $link_id;
 		$data['companies_data'] = $this->links_model->get_companies();
 
@@ -53,7 +61,7 @@ class Link extends CI_Controller {
 				'company_id'  => $this->input->post('company_id'),
 				'url'  => $this->input->post('url'),
 				'expiration_date'  => $expiry_date,
-				'link_status'  => '2'
+				// 'link_status'  => '2'
 			);
 			/*print_r($data);
 			print_r($expiry_date);*/
@@ -63,9 +71,9 @@ class Link extends CI_Controller {
 				$add_id = $this->links_model->add_link($data);
 			}
 			if($add_id) {
-				$this->session->set_flashdata('success_message', 'Success');
+				$this->session->set_flashdata('success_message', 'Added successfully');
 			} elseif($update_id) {
-				$this->session->set_flashdata('update_message', 'Success');
+				$this->session->set_flashdata('success_message', 'Updated successfully');
 			}
 			redirect('links');
 		} else {

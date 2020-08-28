@@ -22,7 +22,7 @@
 
 		<div class="container">
 			<div class="row">
-				<div class="col-12 col-sm-8 offset-sm-2 col-md-6 offset-sm-3 mt-5 mb-5 pt-3 pb-3 form-wrap">
+				<div class="col-md-12 mt-5 mb-5 p-3 form-wrap">
 					<div class="container">
 						<?php if(!empty(validation_errors())) : ?>
 							<div class="row">
@@ -34,6 +34,8 @@
 							</div>
 						<?php endif; ?>
 						<form action="<?php echo base_url(); ?>register/validation" method="post">
+							<div class="row">
+								<div class="col-6">
 							<div class="form-group">
 								<label>Name</label>
 								<input type="text" name="name" id="name" class="form-control" value="<?= set_value('name') ?>">
@@ -46,6 +48,8 @@
 								<label>Email</label>
 								<input type="email" name="email" id="email" class="form-control" value="<?= set_value('email') ?>">
 							</div>
+						</div>
+						<div class="col-6">
 							<div class="form-group">
 								<label>Password</label>
 								<input type="password" name="password" id="password" class="form-control" value="">
@@ -63,6 +67,7 @@
 									<option value="RFP">Company</option>
 								</select>
 							</div>
+						</div>
 							<div class="row">
 								<div class="col-12 col-sm-4 ">
 									<button type="submit" class="btn btn-primary register">Register</button>

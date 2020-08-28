@@ -51,8 +51,9 @@
               <a href="<?php echo base_url() ?>links?hotel_id=<?= $hotels_data->user_id ?>" class="btn btn-primary btn-block"><b>View Links</b></a>
               <a href="<?php echo base_url() ?>hotel_branches?hotel_id=<?= $hotels_data->user_id ?>" class="btn btn-primary btn-block"><b>View Hotel Branches</b></a>
               <a href="<?php echo base_url() ?>company_profile?hotel_id=<?= $hotels_data->user_id ?>" class="btn btn-primary btn-block"><b>Edit Hotel</b></a>
-            <?php else: ?>
+            <?php /*else: ?>
               <a href="<?php echo base_url() ?>request_link?hotel_id=<?= $hotel_id ?>" class="btn btn-primary btn-block"><b>Request Link</b></a>
+            <?php */ ?>
             <?php endif; ?>
           </div>
           <!-- /.card-body -->

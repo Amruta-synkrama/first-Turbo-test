@@ -14,7 +14,8 @@ class Company_profile extends CI_Controller {
 		}
 
 		$this->load->library('form_validation');
-		$this->load->model('company_profile_model');
+		$this->load->library('encryption');
+		$this->load->model('user_model');
 	}
 	
 	public function index() {
@@ -27,9 +28,9 @@ class Company_profile extends CI_Controller {
 		} else {
 			$company_id = $user_id;
 		}
-		$data['company_data'] = $this->company_profile_model->get_company_data($company_id);
-		$data['company_user_data'] = $this->company_profile_model->get_user_data($company_id);
-		$data['user_data'] = $this->company_profile_model->get_user_data($user_id);
+		$data['company_data'] = $this->user_model->get_company_data($company_id);
+		$data['company_user_data'] = $this->user_model->get_user_data($company_id);
+		$data['user_data'] = $this->user_model->get_user_data($user_id);
 		$data['session'] = $this->session->userdata('user_data');
 		$this->load->view('templates/header', $data);
 		$this->load->view('company_profile', $data);
@@ -55,9 +56,9 @@ class Company_profile extends CI_Controller {
 				'headquater'  => $this->input->post('headquater'),
 				'cover'  => $this->input->post('Cover')
 			);
-			if($this->company_profile_model->update_company_data($data, $company_id)) {
+			if($this->user_model->update_company_data($data, $company_id)) {
 				$this->session->set_flashdata('company_message', 'Data updated');
-				$this->session->set_flashdata('update_message', 'Data updated');
+				$this->session->set_flashdata('success_message', 'Data updated');
 				if($this->session->userdata('user_data')->entity == 'Admin') {
 					redirect('company_profile?company_id='.$company_id);
 				} else {
@@ -92,9 +93,9 @@ class Company_profile extends CI_Controller {
 				'contact_email'  => $this->input->post('contact_email'),
 				'contact_no'  => $this->input->post('contact_no')
 			);
-			if($this->company_profile_model->update_company_data($data, $company_id)) {
+			if($this->user_model->update_company_data($data, $company_id)) {
 				$this->session->set_flashdata('contact_message', 'Data updated');
-				$this->session->set_flashdata('update_message', 'Data updated');
+				$this->session->set_flashdata('success_message', 'Data updated');
 				if($this->session->userdata('user_data')->entity == 'Admin') {
 					redirect('company_profile?company_id='.$company_id);
 				} else {
@@ -127,9 +128,45 @@ class Company_profile extends CI_Controller {
 				'name'  => $this->input->post('name'),
 				'phone_number'  => $this->input->post('phone_number')
 			);
-			if($this->company_profile_model->update_user_data($data, $company_id)) {
+			if($this->user_model->update_user_data($data, $company_id)) {
 				$this->session->set_flashdata('user_message', 'Data updated');
-				$this->session->set_flashdata('update_message', 'Data updated');
+				$this->session->set_flashdata('success_message', 'Data updated');
+				if($this->session->userdata('user_data')->entity == 'Admin') {
+					redirect('company_profile?company_id='.$company_id);
+				} else {
+					redirect('company_profile');
+				}
+			} else {
+				if($this->session->userdata('user_data')->entity == 'Admin') {
+					redirect('company_profile?company_id='.$company_id);
+				} else {
+					redirect('company_profile');
+				}
+			}
+		} else {
+			$this->index();
+		}
+	}
+
+	public function update_user_details_password() {
+		$user_id = $this->session->userdata('id');
+		if($this->session->userdata('user_data')->entity == 'Admin') {
+			$company_id = $this->input->get('company_id');
+		} else {
+			$company_id = $user_id;
+		}
+		$this->form_validation->set_rules('password','Password','trim|required');
+		$this->form_validation->set_rules('confirm_password','Confirm Password','trim|required|matches[password]');
+
+		if($this->form_validation->run()) {
+			$verification_key = md5(rand());
+			$encrypted_password = $this->encryption->encrypt($this->input->post('password'));
+			$data = array(
+				'password'  => $encrypted_password
+			);
+			if($this->user_model->update_user_data($data, $company_id)) {
+				$this->session->set_flashdata('user_message', 'Data updated');
+				$this->session->set_flashdata('success_message', 'Data updated');
 				if($this->session->userdata('user_data')->entity == 'Admin') {
 					redirect('company_profile?company_id='.$company_id);
 				} else {

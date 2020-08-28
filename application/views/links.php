@@ -27,9 +27,11 @@
 								<h3>View Links</h3>
 							</div>
 							<div class="col-6 text-right">
-								<?php if($session->entity == 'RFP') : ?>
-									<a href="<?php echo base_url(); ?>hotels" class="btn btn-primary">Request new link</a>
-									<?php else: ?>
+								<?php if($session->entity == 'Admin') : ?>
+									<?php if($this->input->get('hotel_id')) : ?>
+										<a href="<?php echo base_url(); ?>link<?php echo ($session->entity == 'Admin') ? '?hotel_id='.$hotel_data->user_id : ''; ?>" class="btn btn-primary">Add new link</a>
+									<?php endif; ?>
+									<?php elseif($session->entity == 'Hotel') : ?>
 										<a href="<?php echo base_url(); ?>link" class="btn btn-primary">Add new link</a>
 									<?php endif; ?>
 								</div>
@@ -70,15 +72,15 @@
 
 										    <td><?= $link->LOCATION; ?>, <?= $link->STATE_NAME; ?></td>
 
-										    <?php if($link->link_status != '3' && $link->link_status != '0') : ?>
+										    <?php /* if($link->link_status != '3' && $link->link_status != '0') : */ ?>
 										        <?php if($is_expire) : ?>
 										            <td><a href="<?= base_url(); ?>404" target="_blank">Expired</a></td>
 										        <?php else: ?>
 										            <td><a href="<?= $link->url; ?>" target="_blank"><?= $link->url; ?></a></td>
 										        <?php endif; ?>
-										    <?php else: ?>
+										    <?php /* else: ?>
 										            <td> - </td>
-										    <?php endif; ?>
+										    <?php endif; */ ?>
 
 										    <?php if($link->expiration_date) : ?>
 										        <td><?= $expiry_date; ?></td>
@@ -86,8 +88,17 @@
 										            <td> - </td>
 										    <?php endif; ?>
 
-										    <td>
-										        <?php if($link->link_status == '0' || $link->link_status == '1') : ?>
+										    <td class="text-center">
+										    	<?php if($link->status != 2) : ?>
+											    	<?php if(!$is_expire) : ?>
+											    		<span class="badge badge-success">Active</span>
+											    	<?php else : ?>
+											    		<span class="badge badge-danger">Expired</span>
+											    	<?php endif; ?>
+										    	<?php else: ?>
+										    		<span class="badge badge-danger">Deleted</span>
+										    	<?php endif; ?>
+										        <?php /*if($link->link_status == '0' || $link->link_status == '1') : ?>
 										                <span class="badge badge-warning">Requested</span>
 										        <?php elseif(!$is_expire) : ?>
 										            <?php if($link->link_status == '2') : ?>
@@ -97,25 +108,32 @@
 										            <?php endif; ?>
 										        <?php else: ?>
 										                <span class="badge badge-danger">Expired</span>
-										        <?php endif; ?>
+										        <?php endif;*/ ?>
 										    </td>
 
 										    <?php if($session->entity != 'RFP') : ?>
-										        <td class="project-actions text-right">
-										            <?php if(! $is_expire ) : ?>
-										                <a class="btn btn-info btn-sm" href="<?php echo base_url(); ?>link?link_id=<?= $link->id; ?>">
+										        <td class="project-actions text-center">
+										            
+										                <a class="btn btn-info btn-sm" href="<?php echo base_url(); ?>link?link_id=<?= $link->id; ?><?php echo ($session->entity == 'Admin') ? '&hotel_id='.$link->hotel_id : ''; ?>">
 										                    <i class="fas fa-pencil-alt">
 										                    </i>
 										                    Edit
 										                </a>
-										                <?php if($link->link_status != '3') : ?>
-										                    <a class="btn btn-danger btn-sm reject-something-cust" href="<?php echo base_url(); ?>links/reject?reject_request=<?= $link->id; ?>">
-										                        <i class="fas fa-times">
-										                        </i>
-										                        Reject
-										                    </a>
-										                <?php endif; ?>
-										            <?php endif; ?>
+										                <?php if($link->status != 2) : ?>
+									                    <a class="btn btn-danger btn-sm delete-something-cust" href="<?php echo base_url(); ?>links/delete?delete_request=<?= $link->id; ?>">
+									                        <i class="fas fa-times">
+									                        </i>
+									                        Delete
+									                    </a>
+									                    <?php else: ?>
+									                    	<a class="btn btn-success btn-sm activate-something-cust" href="<?php echo base_url(); ?>links/activate?activate_request=<?= $link->id; ?>">
+									                        <i class="fas fa-check">
+									                        </i>
+									                        Activate
+									                    	</a>
+									                	<?php endif; ?>
+									                <?php /*if(! $is_expire ) : ?>
+										            <?php endif; */ ?>
 										        </td>
 										    <?php endif; ?>
 										</tr>

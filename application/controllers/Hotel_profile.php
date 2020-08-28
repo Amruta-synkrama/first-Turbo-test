@@ -14,7 +14,8 @@ class Hotel_profile extends CI_Controller {
 		}
 
 		$this->load->library('form_validation');
-		$this->load->model('hotel_profile_model');
+		$this->load->library('encryption');
+		$this->load->model('user_model');
 	}
 	
 	public function index() {
@@ -27,9 +28,9 @@ class Hotel_profile extends CI_Controller {
 		} else {
 			$hotel_id = $user_id;
 		}
-		$data['hotel_data'] = $this->hotel_profile_model->get_hotel_data($hotel_id);
-		$data['hotel_user_data'] = $this->hotel_profile_model->get_user_data($hotel_id);
-		$data['user_data'] = $this->hotel_profile_model->get_user_data($user_id);
+		$data['hotel_data'] = $this->user_model->get_hotel_data($hotel_id);
+		$data['hotel_user_data'] = $this->user_model->get_user_data($hotel_id);
+		$data['user_data'] = $this->user_model->get_user_data($user_id);
 		$data['session'] = $this->session->userdata('user_data');
 		$this->load->view('templates/header', $data);
 		$this->load->view('hotel_profile', $data);
@@ -53,9 +54,9 @@ class Hotel_profile extends CI_Controller {
 				'headquater'  => $this->input->post('headquater'),
 				'cover'  => $this->input->post('Cover')
 			);
-			if($this->hotel_profile_model->update_hotel_data($data, $hotel_id)) {
+			if($this->user_model->update_hotel_data($data, $hotel_id)) {
 				$this->session->set_flashdata('hotel_message', 'Data updated');
-				$this->session->set_flashdata('update_message', 'Data updated');
+				$this->session->set_flashdata('success_message', 'Data updated');
 				if($this->session->userdata('user_data')->entity == 'Admin') {
 					redirect('hotel_profile?hotel_id='.$hotel_id);
 				} else {
@@ -90,9 +91,9 @@ class Hotel_profile extends CI_Controller {
 				'contact_email'  => $this->input->post('contact_email'),
 				'contact_no'  => $this->input->post('contact_no')
 			);
-			if($this->hotel_profile_model->update_hotel_data($data, $hotel_id)) {
+			if($this->user_model->update_hotel_data($data, $hotel_id)) {
 				$this->session->set_flashdata('contact_message', 'Data updated');
-				$this->session->set_flashdata('update_message', 'Data updated');
+				$this->session->set_flashdata('success_message', 'Data updated');
 				if($this->session->userdata('user_data')->entity == 'Admin') {
 					redirect('hotel_profile?hotel_id='.$hotel_id);
 				} else {
@@ -125,9 +126,46 @@ class Hotel_profile extends CI_Controller {
 				'name'  => $this->input->post('name'),
 				'phone_number'  => $this->input->post('phone_number')
 			);
-			if($this->hotel_profile_model->update_user_data($data, $hotel_id)) {
+			if($this->user_model->update_user_data($data, $hotel_id)) {
 				$this->session->set_flashdata('user_message', 'Data updated');
-				$this->session->set_flashdata('update_message', 'Data updated');
+				$this->session->set_flashdata('success_message', 'Data updated');
+				if($this->session->userdata('user_data')->entity == 'Admin') {
+					redirect('hotel_profile?hotel_id='.$hotel_id);
+				} else {
+					redirect('hotel_profile');
+				}
+			} else {
+				if($this->session->userdata('user_data')->entity == 'Admin') {
+					redirect('hotel_profile?hotel_id='.$hotel_id);
+				} else {
+					redirect('hotel_profile');
+				}
+			}
+		} else {
+			$this->index();
+		}
+	}
+
+
+	public function update_user_details_password() {
+		$user_id = $this->session->userdata('id');
+		if($this->session->userdata('user_data')->entity == 'Admin') {
+			$hotel_id = $this->input->get('hotel_id');
+		} else {
+			$hotel_id = $user_id;
+		}
+		$this->form_validation->set_rules('password','Password','trim|required');
+		$this->form_validation->set_rules('confirm_password','Confirm Password','trim|required|matches[password]');
+
+		if($this->form_validation->run()) {
+			$verification_key = md5(rand());
+			$encrypted_password = $this->encryption->encrypt($this->input->post('password'));
+			$data = array(
+				'password'  => $encrypted_password
+			);
+			if($this->user_model->update_user_data($data, $hotel_id)) {
+				$this->session->set_flashdata('user_message', 'Data updated');
+				$this->session->set_flashdata('success_message', 'Data updated');
 				if($this->session->userdata('user_data')->entity == 'Admin') {
 					redirect('hotel_profile?hotel_id='.$hotel_id);
 				} else {

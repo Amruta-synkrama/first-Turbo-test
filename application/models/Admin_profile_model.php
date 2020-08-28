@@ -1,8 +1,8 @@
 <?php  
 if(!defined('BASEPATH')) exit('No direct script access allowed');
 
-class Company_profile_model extends CI_Model {
-
+class Admin_profile_model extends CI_Model {
+	
 	public function __construct() {
 		parent::__construct();
 	}
@@ -29,5 +29,5 @@ class Company_profile_model extends CI_Model {
         return $this->db->update('tr_users',$data);
 	}
 }
-/* End of file '/Company_profile_model.php' */
-/* Location: ./application/models//Company_profile_model.php */
+/* End of file '/Admin_profile.php' */
+/* Location: ./application/models//Admin_profile.php */

@@ -15,7 +15,7 @@ class Hotel_branch extends CI_Controller {
 		}
 
 		$this->load->library('form_validation');
-		$this->load->model('hotel_profile_model');
+		$this->load->model('user_model');
 		$this->load->model('hotel_branches_model');
 	}
 	
@@ -26,10 +26,10 @@ class Hotel_branch extends CI_Controller {
 		if($this->session->userdata('user_data')->entity == 'Admin') {
 			$hotel_id = $this->input->get('hotel_id');
 		}
-		$data['hotel_data'] = $this->hotel_profile_model->get_hotel_data($hotel_id);
+		$data['hotel_data'] = $this->user_model->get_hotel_data($hotel_id);
 		$data['hotel_locations'] = $this->hotel_branches_model->get_location_data($hotel_id,$branch_id);
-		$data['hotel_user_data'] = $this->hotel_profile_model->get_user_data($hotel_id);
-		$data['user_data'] = $this->hotel_profile_model->get_user_data($user_id);
+		$data['hotel_user_data'] = $this->user_model->get_user_data($hotel_id);
+		$data['user_data'] = $this->user_model->get_user_data($user_id);
 		$data['session'] = $this->session->userdata('user_data');
 		$data['state_data'] = $this->hotel_branches_model->get_state();
 		$data['location_data'] = $this->hotel_branches_model->get_city(NULL);
@@ -62,9 +62,9 @@ class Hotel_branch extends CI_Controller {
 				$add_id = $this->hotel_branches_model->add_branch($data);
 			}
 			if($add_id) {
-				$this->session->set_flashdata('success_message', 'Success');
+				$this->session->set_flashdata('success_message', 'Added successfully.');
 			} elseif($update_id) {
-				$this->session->set_flashdata('update_message', 'Success');
+				$this->session->set_flashdata('success_message', 'Updated successfully');
 			}
 			if($this->session->userdata('user_data')->entity == 'Admin') {
 				redirect('hotel_branches?hotel_id='.$hotel_id);

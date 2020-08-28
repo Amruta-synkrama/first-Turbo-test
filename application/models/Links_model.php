@@ -22,6 +22,11 @@ class Links_model extends CI_Model
 		if($link_id) {
 			$this->db->where('tr_links.id', $link_id);
 		}
+		$user_role = $this->session->userdata('user_data')->entity;
+		if($user_role != 'Admin') {
+			$this->db->where('tr_links.status', '1');
+		}
+		$this->db->order_by('tr_links.updated_at', 'DESC');
 		$query = $this->db->get();
 		if($query->result()) {
 			return $query->result();
@@ -79,24 +84,42 @@ class Links_model extends CI_Model
 	}
 
 	public function add_link($data) {
+		$timestamp = date('Y-m-d H:i:s');
+		$data['updated_at'] = $timestamp;
 		$this->db->insert('tr_links', $data);
 		$location_id = $this->db->insert_id();
 		return $location_id;
 	}
 
 	public function update_link($link_id, $data) {
+		$timestamp = date('Y-m-d H:i:s');
+		$data['updated_at'] = $timestamp;
 		$this->db->where('id',$link_id);
 		return $this->db->update('tr_links',$data);
 	}
 
 	public function reject_link($link_id) {
+		$timestamp = date('Y-m-d H:i:s');
 		$data = array(
-			'link_status' => '3'
+			'link_status' => '3',
+			'updated_at' => $timestamp
 		);
 		$this->db->where('id',$link_id);
 		return $this->db->update('tr_links',$data);
         // return $this->db->delete('tr_links', array('id' => $link_id));
     }
+
+	public function delete_link($link_id) {
+		$timestamp = date('Y-m-d H:i:s');
+		$data = array(
+			'status' => '2',
+			'updated_at' => $timestamp
+		);
+		$this->db->where('id',$link_id);
+		return $this->db->update('tr_links',$data);
+        // return $this->db->delete('tr_links', array('id' => $link_id));
+    }
+ 
 }
 /* End of file '/Links_model.php' */
 /* Location: ./application/models//Links_model.php */

@@ -4,18 +4,22 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Register_model extends CI_Model {
 
 	function reg_insert($data) {
+		$timestamp = date('Y-m-d H:i:s');
+		$data['created_at'] = $timestamp;
 		$this->db->insert('tr_users', $data);
 		$user_id = $this->db->insert_id();
 		if($data['entity'] == 'Hotel') {
 			$hotel_data = array(
 				'user_id' => $user_id,
 				'email' => $data['email'],
+				'updated_at' => $timestamp
 			);
 			$this->db->insert('tr_hotels', $hotel_data);
 		} elseif($data['entity'] == 'RFP') {
 			$company_data = array(
 				'user_id' => $user_id,
 				'email' => $data['email'],
+				'updated_at' => $timestamp
 			);
 			$this->db->insert('tr_company', $company_data);
 		}
@@ -29,8 +33,12 @@ class Register_model extends CI_Model {
 			foreach($query->result() as $row) {
 				$store_password = $this->encryption->decrypt($row->password);
 				if($password == $store_password) {
-					$this->session->set_userdata('id', $row->id);
-					$this->session->set_userdata('user_data', $row);
+					if($row->status == '2') {
+						return 'Your account is suspended';
+					} else {
+						$this->session->set_userdata('id', $row->id);
+						$this->session->set_userdata('user_data', $row);
+					}
 				} else {
 					return 'Wrong Password';
 				}

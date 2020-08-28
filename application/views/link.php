@@ -36,7 +36,8 @@
                     <?php //print_r($links_data); ?>
                     <div class="form-group">
                         <label for="inputName">Company Name</label>
-                        <select class="form-control custom-select select2"  name="company_id" id="company_id" <?= ($link_id && ($links_data[0]->link_status == '0' || $links_data[0]->link_status == '1')) ? 'disabled' : '';  ?>>
+                        <?php /* echo ($link_id && ($links_data[0]->link_status == '0' || $links_data[0]->link_status == '1')) ? 'disabled' : '';  */ ?>
+                        <select class="form-control custom-select select2"  name="company_id" id="company_id" >
                             <option selected disabled>Select one</option>
                             <?php foreach ($companies_data as $company) : ?>
                                 <option <?php echo ($link_id && $links_data[0]->company_id == $company->user_id) ? 'selected' : ''; ?> value="<?= $company->user_id ?>"><?= $company->name ?></option>
@@ -45,7 +46,8 @@
                     </div>
                     <div class="form-group">
                         <label for="inputStatus">Location</label>
-                        <select class="form-control custom-select select2"  name="hotel_location_id" id="hotel_location_id" <?= ($link_id && ($links_data[0]->link_status == '0' || $links_data[0]->link_status == '1')) ? 'disabled' : '';  ?>>
+                        <?php /* echo ($link_id && ($links_data[0]->link_status == '0' || $links_data[0]->link_status == '1')) ? 'disabled' : ''; */ ?>
+                        <select class="form-control custom-select select2"  name="hotel_location_id" id="hotel_location_id">
                             <option selected disabled>Select one</option>
                             <?php foreach ($hotel_locations as $location) : ?>
                                 <option <?php echo ($link_id && $links_data[0]->hotel_location_id == $location->id) ? 'selected' : ''; ?> value="<?= $location->id ?>"><?= $location->LOCATION ?></option>
@@ -74,9 +76,9 @@
     </div>
     <div class="row pb-5">
         <div class="col-12">
-        	<?php if($link_id && $links_data[0]->link_status != '3') : ?>
+        	<?php /* if($link_id && $links_data[0]->link_status != '3') : ?>
 	        	<a class="btn btn-danger reject-something-cust" href="<?php echo base_url(); ?>links/reject?reject_request=<?= $link_id; ?>">Reject</a>
-	        <?php endif; ?>
+	        <?php endif; */ ?>
             <input type="submit" value="<?php echo ($link_id) ? 'Update Link' : 'Create new Link'; ?>" class="btn btn-success float-right">
         </div>
     </div>

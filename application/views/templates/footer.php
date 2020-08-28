@@ -126,6 +126,25 @@
         }
       });
     });
+
+    $('body').on('click','.activate-something-cust', function(e){
+      e.preventDefault();
+      var Href = $(this).attr('href');
+      Swal.fire({
+        title: 'Are you sure?',
+        text: "You want to activate this!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, Activate it!'
+      }).then((result) => {
+        if (result.value) {
+          window.location.href = Href;
+        }
+      });
+    });
+    
     
   });
 </script>
@@ -134,39 +153,7 @@ if($this->session->flashdata('success_message')) {
   ?>
   <script type="text/javascript">
       $(function() {
-      toastr.success('Added successfully.');
-    });
-  </script>
-  <?php
-} elseif($this->session->flashdata('delete_message')) {
-  ?>
-  <script>
-    $(function() {
-      toastr.success('Deleted successfully.');
-    });
-  </script>
-  <?php
-} elseif($this->session->flashdata('update_message')) {
-  ?>
-  <script>
-    $(function() {
-      toastr.success('Updated successfully.');
-    });
-  </script>
-  <?php
-} elseif($this->session->flashdata('register_message')) {
-  ?>
-  <script>
-    $(function() {
-      toastr.success('Registered successfully.');
-    });
-  </script>
-  <?php
-} elseif($this->session->flashdata('reject_message')) {
-  ?>
-  <script>
-    $(function() {
-      toastr.success('Rejected successfully.');
+      toastr.success('<?= $this->session->flashdata('success_message') ?>');
     });
   </script>
   <?php

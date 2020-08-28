@@ -9,20 +9,23 @@ class Links extends CI_Controller {
 		}
 
 		$this->load->library('form_validation');
-		$this->load->model('hotel_profile_model');
-		$this->load->model('company_profile_model');
+		$this->load->model('user_model');
 		$this->load->model('links_model');
 	}
 	
 	public function index() {
 		$user_id = $this->session->userdata('id');
+		$hotel_id = $this->input->get('hotel_id');
 		$user_role = $this->session->userdata('user_data')->entity;
+		$data['hotel_data'] = array();
 		if($user_role == 'Hotel') {
-			$data['hotel_data'] = $this->hotel_profile_model->get_hotel_data($user_id);
+			$data['hotel_data'] = $this->user_model->get_hotel_data($user_id);
 		} elseif($user_role == 'RFP') {
-			$data['company_data'] = $this->company_profile_model->get_company_data($user_id);
+			$data['company_data'] = $this->user_model->get_company_data($user_id);
+		} elseif($user_role == 'Admin') {
+			$data['hotel_data'] = $this->user_model->get_hotel_data($hotel_id);
 		}
-		$data['user_data'] = $this->hotel_profile_model->get_user_data($user_id);
+		$data['user_data'] = $this->user_model->get_user_data($user_id);
 		$data['session'] = $this->session->userdata('user_data');
 		$user_role_sent = $user_role;
 		$user_id_sent = $user_id;
@@ -48,7 +51,16 @@ class Links extends CI_Controller {
 		if($reject_request) {
 			$this->links_model->reject_link($reject_request);
 		}
-		$this->session->set_flashdata('reject_message', 'Rejected');
+		$this->session->set_flashdata('success_message', 'Rejected');
+		redirect('links');	
+	}
+
+	public function delete() {
+		$reject_request = $this->input->get('delete_request');
+		if($reject_request) {
+			$this->links_model->delete_link($reject_request);
+		}
+		$this->session->set_flashdata('success_message', 'Deleted');
 		redirect('links');	
 	}
 		

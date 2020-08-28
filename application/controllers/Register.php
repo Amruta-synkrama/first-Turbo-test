@@ -48,7 +48,7 @@ class Register extends CI_Controller {
 			);
 			$id = $this->register_model->reg_insert($data);
 			if($id > 0) {
-				$this->session->set_flashdata('register_message', 'Register successfully');
+				$this->session->set_flashdata('success_message', 'Register successfully');
 				redirect('login');
 			}
 		} else {

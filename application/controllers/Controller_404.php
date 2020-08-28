@@ -6,12 +6,12 @@ class Controller_404 extends CI_Controller {
 		if(!$this->session->userdata('id')) {
 			redirect('login');
 		}
-		$this->load->model('model_404');
+		$this->load->model('user_model');
 	}
 	
 	public function index() {
 		$user_id = $this->session->userdata('id');
-		$data['user_data'] = $this->model_404->get_user_data($user_id);
+		$data['user_data'] = $this->user_model->get_user_data($user_id);
 		$data['session'] = $this->session->userdata('user_data');
 		$this->load->view('templates/header', $data);
 		$this->load->view('view_404', $data);

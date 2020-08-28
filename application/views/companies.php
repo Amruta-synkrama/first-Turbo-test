@@ -38,6 +38,7 @@
                   <th>Email</th>
                   <th>Website</th>
                   <?php if($session->entity == 'Admin') : ?>
+                  <th>Status</th>
                   <th>Action</th>
                   <?php endif ?>
                 </tr>
@@ -52,15 +53,35 @@
                     <td><?= $company->headquater; ?></td>
                     <td><?= $company->email; ?></td>
                     <td><?= $company->website; ?></td>
-                    <td class="project-actions text-right">
-                      <?php if($session->entity == 'Admin') : ?>
+                    <?php if($session->entity == 'Admin') : ?>
+                    <td  class="text-center">
+                      <?php if($company->status != '2' ) : ?>
+                      <span class="badge badge-success">Active</span>
+                      <?php else: ?>
+                      <span class="badge badge-danger">Suspended</span>
+                      <?php endif; ?>
+                    </td>
+                    <td class="project-actions text-center">
                         <a class="btn btn-info btn-sm" href="<?php echo base_url(); ?>company_profile?company_id=<?= $company->user_id; ?>">
                             <i class="fas fa-pencil-alt">
                             </i>
                             Edit
                         </a>
-                      <?php endif; ?>
+                        <?php if($company->status != '2' ) : ?>
+                        <a class="btn btn-danger btn-sm delete-something-cust" href="<?php echo base_url(); ?>companies/delete?delete_request=<?= $company->user_id; ?>">
+                            <i class="fas fa-times">
+                            </i>
+                            Delete
+                        </a>
+                        <?php else: ?>
+                          <a class="btn btn-success btn-sm activate-something-cust" href="<?php echo base_url(); ?>companies/activate?activate_request=<?= $company->user_id; ?>">
+                            <i class="fas fa-check">
+                            </i>
+                            Activate
+                          </a>
+                        <?php endif; ?>
                     </td>
+                    <?php endif; ?>
                   </tr>
                 <?php endforeach;   ?>
               </tbody>
@@ -71,6 +92,7 @@
                   <th>Email</th>
                   <th>Website</th>
                   <?php if($session->entity == 'Admin') : ?>
+                  <th>Status</th>
                   <th>Action</th>
                   <?php endif ?>
                 </tr>

@@ -37,7 +37,10 @@
                   <th>Location</th>
                   <th>Email</th>
                   <th>Website</th>
+                  <?php if($session->entity == 'Admin') : ?>
+                  <th>Status</th>
                   <th>Action</th>
+                  <?php endif; ?>
                 </tr>
               </thead>
               <tbody>
@@ -50,21 +53,42 @@
                     <td><?= $hotel->headquater; ?></td>
                     <td><?= $hotel->email; ?></td>
                     <td><?= $hotel->website; ?></td>
-                    <td class="project-actions text-right">
-                      <?php if($session->entity == 'RFP') : ?>
+                      <?php if($session->entity == 'Admin') : ?>
+                    <td  class="text-center">
+                      <?php if($hotel->status != '2' ) : ?>
+                      <span class="badge badge-success">Active</span>
+                      <?php else: ?>
+                      <span class="badge badge-danger">Suspended</span>
+                      <?php endif; ?>
+                    </td>
+                    <td class="project-actions text-center">
+                      <?php /* if($session->entity == 'RFP') : ?>
                         <a class="btn btn-primary btn-sm" href="<?php echo base_url(); ?>request_link?hotel_id=<?= $hotel->user_id; ?>">
                             <i class="fas fa-link">
                             </i>
                             Request Link
                         </a>
-                      <?php elseif($session->entity == 'Admin') : ?>
+                      <?php endif; */ ?>
                         <a class="btn btn-info btn-sm" href="<?php echo base_url(); ?>hotel_profile?hotel_id=<?= $hotel->user_id; ?>">
                             <i class="fas fa-pencil-alt">
                             </i>
                             Edit
                         </a>
-                      <?php endif; ?>
+                        <?php if($hotel->status != '2' ) : ?>
+                        <a class="btn btn-danger btn-sm delete-something-cust" href="<?php echo base_url(); ?>hotels/delete?delete_request=<?= $hotel->user_id; ?>">
+                            <i class="fas fa-times">
+                            </i>
+                            Delete
+                        </a>
+                        <?php else: ?>
+                        <a class="btn btn-success btn-sm activate-something-cust" href="<?php echo base_url(); ?>hotels/activate?activate_request=<?= $hotel->user_id; ?>">
+                            <i class="fas fa-check">
+                            </i>
+                            Activate
+                        </a>
+                        <?php endif; ?>
                     </td>
+                      <?php endif; ?>
                   </tr>
                 <?php endforeach;   ?>
               </tbody>
@@ -74,7 +98,10 @@
                   <th>Location</th>
                   <th>Email</th>
                   <th>Website</th>
+                  <?php if($session->entity == 'Admin') : ?>
+                  <th>Status</th>
                   <th>Action</th>
+                  <?php endif; ?>
                 </tr>
               </tfoot>
             </table>

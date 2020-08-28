@@ -14,8 +14,8 @@ class Hotel extends CI_Controller {
 		}
 
 		$this->load->library('form_validation');
-		$this->load->model('company_profile_model');
-		$this->load->model('hotels_model');
+		$this->load->model('user_model');
+		$this->load->model('user_lists_model');
 		$this->load->model('hotel_branches_model');
 	}
 	
@@ -24,11 +24,11 @@ class Hotel extends CI_Controller {
 		$user_id = $this->session->userdata('id');
 		$data['company_data'] = array();
 		if($this->session->userdata('user_data')->entity == 'RFP') {
-			$data['company_data'] = $this->company_profile_model->get_company_data($user_id);
+			$data['company_data'] = $this->user_model->get_company_data($user_id);
 		}
-		$data['user_data'] = $this->company_profile_model->get_user_data($user_id);
+		$data['user_data'] = $this->user_model->get_user_data($user_id);
 		$data['session'] = $this->session->userdata('user_data');
-		$data['hotels_data'] = $this->hotels_model->get_hotels($hotel_id)[0];
+		$data['hotels_data'] = $this->user_lists_model->get_hotels($hotel_id)[0];
 		$data['hotel_locations'] = $this->hotel_branches_model->get_location_data($hotel_id);
 		$data['hotel_id'] = $hotel_id;
 		$this->load->view('templates/header', $data);

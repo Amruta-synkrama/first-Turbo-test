@@ -12,8 +12,7 @@ class Request_link extends CI_Controller {
 		}*/
 
 		$this->load->library('form_validation');
-		$this->load->model('hotel_profile_model');
-		$this->load->model('company_profile_model');
+		$this->load->model('user_model');
 		$this->load->model('links_model');
 	}
 	
@@ -23,16 +22,16 @@ class Request_link extends CI_Controller {
 		$user_id = $this->session->userdata('id');
 		$data['hotel_locations'] = array();
 		// if($this->session->userdata('user_data')->entity == 'RFP') {
-		$data['company_data'] = $this->company_profile_model->get_company_data($user_id);
+		$data['company_data'] = $this->user_model->get_company_data($user_id);
 		// }
 		$data['hotel_locations'] = $this->links_model->get_hotel_locations($hotel_id);
-		$data['user_data'] = $this->hotel_profile_model->get_user_data($user_id);
+		$data['user_data'] = $this->user_model->get_user_data($user_id);
 		$data['session'] = $this->session->userdata('user_data');
 		$data['links_data'] = $this->links_model->get_links($link_id,$user_id,$this->session->userdata('user_data')->entity);
 		$data['link_id'] = $link_id;
 		if($hotel_id) {
-			$data['hotel_data'] = $this->hotel_profile_model->get_hotel_data($hotel_id);
-			$data['hotel_user'] = $this->hotel_profile_model->get_user_data($hotel_id);
+			$data['hotel_data'] = $this->user_model->get_hotel_data($hotel_id);
+			$data['hotel_user'] = $this->user_model->get_user_data($hotel_id);
 		}
 		// $data['companies_data'] = $this->links_model->get_companies();
 
@@ -69,9 +68,9 @@ class Request_link extends CI_Controller {
 				$add_id = $this->links_model->add_link($data);
 			}
 			if($add_id) {
-				$this->session->set_flashdata('success_message', 'Success');
+				$this->session->set_flashdata('success_message', 'Added successfully');
 			} elseif($update_id) {
-				$this->session->set_flashdata('update_message', 'Success');
+				$this->session->set_flashdata('success_message', 'Updated successfully');
 			}
 			redirect('links');
 		} else {

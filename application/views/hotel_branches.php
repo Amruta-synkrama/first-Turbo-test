@@ -27,7 +27,7 @@
                 <h3>View Branches</h3>
               </div>
               <div class="col-6 text-right">
-                <a href="<?php echo base_url(); ?>hotel_branch" class="btn btn-primary">Add new branch</a>
+                <a href="<?php echo base_url(); ?>hotel_branch<?php echo ($session->entity == 'Admin') ? '?hotel_id='.$hotel_user_data->id : ''; ?>" class="btn btn-primary">Add new branch</a>
               </div>
             </div>
           </div>

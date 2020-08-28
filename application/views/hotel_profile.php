@@ -46,8 +46,13 @@
               </li> -->
             </ul>
 
-            <a href="<?php echo base_url() ?>hotel_branches" class="btn btn-primary btn-block"><b>View Branches</b></a>
-            <a href="<?php echo base_url() ?>links" class="btn btn-primary btn-block"><b>Add Links</b></a>
+            <?php if($session->entity == 'Admin'): ?>
+              <a href="<?php echo base_url() ?>hotel_branches?hotel_id=<?= $hotel_user_data->id ?>" class="btn btn-primary btn-block"><b>View Branches</b></a>
+              <a href="<?php echo base_url() ?>links?hotel_id=<?= $hotel_user_data->id ?>" class="btn btn-primary btn-block"><b>Add Links</b></a>
+            <?php else: ?>
+              <a href="<?php echo base_url() ?>hotel_branches" class="btn btn-primary btn-block"><b>View Branches</b></a>
+              <a href="<?php echo base_url() ?>links" class="btn btn-primary btn-block"><b>Add Links</b></a>
+            <?php endif; ?>
           </div>
           <!-- /.card-body -->
         </div>
@@ -100,6 +105,8 @@
               <li class="nav-item"><a class="nav-link active" href="#activity" data-toggle="tab">Hotel Settings</a></li>
               <li class="nav-item"><a class="nav-link" href="#timeline" data-toggle="tab">Contact Person Settings</a></li>
               <li class="nav-item"><a class="nav-link" href="#settings" data-toggle="tab">General Settings</a></li>
+              <li class="nav-item"><a class="nav-link" href="#password" data-toggle="tab">Password Update</a></li>
+              
             </ul>
           </div><!-- /.card-header -->
           <div class="card-body">
@@ -249,6 +256,46 @@
                 </form>
               </div>
               <!-- /.tab-pane -->
+
+              <div class="tab-pane" id="password">
+                <?php if(!empty(validation_errors())) : ?>
+                  <div class="row">
+                    <div class="col-12">
+                      <div class="alert alert-danger">
+                        <?= validation_errors(); ?>
+                      </div>    
+                    </div>
+                  </div>
+                <?php endif; ?>
+                <?php if($this->session->flashdata('user_message')) : ?>
+                  <div class="row">
+                    <div class="col-12">
+                      <div class="alert alert-success">
+                        <?php  echo $this->session->flashdata("user_message"); ?>
+                      </div>
+                    </div>
+                  </div>
+                <?php endif; ?>
+                <form class="form-horizontal" action="<?php echo base_url(); ?>hotel_profile/update_user_details_password<?php echo ($session->entity == 'Admin') ? '?hotel_id='.$hotel_user_data->id : ''; ?>" method="post">
+                  <div class="form-group row">
+                    <label for="inputName" class="col-sm-2 col-form-label">Password</label>
+                    <div class="col-sm-10">
+                      <input type="password" class="form-control" placeholder="Password" name="password" id="password" value="">
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <label for="inputName" class="col-sm-2 col-form-label">Confirm Password</label>
+                    <div class="col-sm-10">
+                      <input type="password" class="form-control" placeholder="Confirm Password" name="confirm_password" id="confirm_password" value="">
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <div class="offset-sm-2 col-sm-10">
+                      <button type="submit" class="btn btn-danger">Submit</button>
+                    </div>
+                  </div>
+                </form>
+              </div>
             </div>
             <!-- /.tab-content -->
           </div><!-- /.card-body -->
@@ -260,4 +307,3 @@
     <!-- /.row -->
   </div><!-- /.container-fluid -->
 </section>
-<!-- /.content

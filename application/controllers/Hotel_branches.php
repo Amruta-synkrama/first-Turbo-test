@@ -14,7 +14,7 @@ class Hotel_branches extends CI_Controller {
 		}
 
 		$this->load->library('form_validation');
-		$this->load->model('hotel_profile_model');
+		$this->load->model('user_model');
 		$this->load->model('hotel_branches_model');
 	}
 	
@@ -28,10 +28,10 @@ class Hotel_branches extends CI_Controller {
 		} else {
 			$hotel_id = $user_id;
 		}
-		$data['hotel_data'] = $this->hotel_profile_model->get_hotel_data($hotel_id);
+		$data['hotel_data'] = $this->user_model->get_hotel_data($hotel_id);
 		$data['hotel_locations'] = $this->hotel_branches_model->get_location_data($hotel_id);
-		$data['hotel_user_data'] = $this->hotel_profile_model->get_user_data($hotel_id);
-		$data['user_data'] = $this->hotel_profile_model->get_user_data($user_id);
+		$data['hotel_user_data'] = $this->user_model->get_user_data($hotel_id);
+		$data['user_data'] = $this->user_model->get_user_data($user_id);
 		$data['session'] = $this->session->userdata('user_data');
 		$this->load->view('templates/header', $data);
 		$this->load->view('hotel_branches', $data);
@@ -45,7 +45,7 @@ class Hotel_branches extends CI_Controller {
 		if($branch_id) {
 			$this->hotel_branches_model->delete_branch($branch_id);
 		}
-		$this->session->set_flashdata('delete_message', 'Deleted');
+		$this->session->set_flashdata('success_message', 'Deleted');
 		redirect('hotel_branches');	
 	}
 }
