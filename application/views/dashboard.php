@@ -20,11 +20,12 @@
 	<div class="container">
 	<!-- Small Box (Stat card) -->
 	<div class="row">
+		<?php if($session->entity != 'Hotel') : ?>
 		<div class="col-lg-4 col-6">
 			<!-- small card -->
 			<div class="small-box bg-info">
 				<div class="inner">
-					<h3>150</h3>
+					<h3><?php echo $hotels_count[0]->count; ?></h3>
 					<p>Hotels</p>
 				</div>
 				<div class="icon">
@@ -35,12 +36,14 @@
 				</a>
 			</div>
 		</div>
+		<?php endif; ?>
 		<!-- ./col -->
+		<?php if($session->entity != 'RFP') : ?>
 		<div class="col-lg-4 col-6">
 			<!-- small card -->
 			<div class="small-box bg-success">
 				<div class="inner">
-					<h3>53</h3>
+					<h3><?php echo $company_count[0]->count; ?></h3>
 
 					<p>Companies</p>
 				</div>
@@ -52,12 +55,13 @@
 				</a>
 			</div>
 		</div>
+		<?php endif; ?>
 		<!-- ./col -->
 		<div class="col-lg-4 col-6">
 			<!-- small card -->
 			<div class="small-box bg-danger">
 				<div class="inner">
-					<h3>44</h3>
+					<h3><?php echo $links_count[0]->count; ?></h3>
 
 					<p>Links added</p>
 				</div>
@@ -73,15 +77,117 @@
 		<!-- ./col -->
 	</div>
 	<!-- /.row -->
+	<div class="row">
+		<?php if($session->entity != 'Hotel') : ?>
+		<div class="col-lg-6">
+			<div class="card">
+				<div class="card-header border-0">
+					<h3 class="card-title">Hotels</h3>
+					<div class="card-tools">
+						<a href="<?php echo base_url() ?>hotels" class="btn btn-tool btn-sm">
+							<i class="fas fa-bars"></i>
+						</a>
+					</div>
+				</div>
+				<div class="card-body table-responsive p-0">
+					<table class="table table-striped table-valign-middle">
+						<thead>
+							<tr>
+								<th>Name</th>
+								<th>Location</th>
+								<th>Status</th>
+								<th>More</th>
+							</tr>
+						</thead>
+						<tbody>
+							<?php foreach ($hotels_data as $hotel) :?>
+							<tr>
+								<td>
+									<a href="<?php echo base_url(); ?>hotel?id=<?php echo $hotel->user_id; ?>"><?php echo $hotel->name; ?></a>
+								</td>
+								<td><?php echo $hotel->headquater; ?></td>
+								<td>
+									<?php if($hotel->status != '2' ) : ?>
+									<span class="badge badge-success">Active</span>
+									<?php else: ?>
+									<span class="badge badge-danger">Deactivate</span>
+									<?php endif; ?>
+								</td>
+								<td>
+									<a href="<?php echo base_url(); ?>hotel?id=<?php echo $hotel->user_id; ?>" class="text-muted">
+										<i class="fas fa-search"></i>
+									</a>
+								</td>
+							</tr>
+							<?php endforeach; ?>
+						</tbody>
+					</table>
+				</div>
+			</div>
+			<!-- /.card -->
+		</div>
+		<?php endif; ?>
+		<!-- /.col-md-6 -->
+		<?php if($session->entity != 'RFP') : ?>
+		<div class="col-lg-6">
+			<div class="card">
+				<div class="card-header border-0">
+					<h3 class="card-title">Companies</h3>
+					<div class="card-tools">
+						<a href="<?php echo base_url() ?>companies" class="btn btn-tool btn-sm">
+							<i class="fas fa-bars"></i>
+						</a>
+					</div>
+				</div>
+				<div class="card-body table-responsive p-0">
+					<table class="table table-striped table-valign-middle">
+						<thead>
+							<tr>
+								<th>Name</th>
+								<th>Location</th>
+								<th>Status</th>
+								<th>More</th>
+							</tr>
+						</thead>
+						<tbody>
+							<?php foreach ($companies_data as $company) :?>
+							<tr>
+								<td>
+									<a href="<?php echo base_url(); ?>company?id=<?php echo $company->user_id; ?>"><?php echo $company->name; ?></a>
+								</td>
+								<td><?php echo $company->headquater; ?></td>
+								<td>
+									<?php if($company->status != '2' ) : ?>
+									<span class="badge badge-success">Active</span>
+									<?php else: ?>
+									<span class="badge badge-danger">Deactivate</span>
+									<?php endif; ?>
+								</td>
+								<td>
+									<a href="<?php echo base_url(); ?>company?id=<?php echo $company->user_id; ?>" class="text-muted">
+										<i class="fas fa-search"></i>
+									</a>
+								</td>
+							</tr>
+							<?php endforeach; ?>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+		<?php endif; ?>
+		
+		<!-- /.col-md-6 -->
+	</div>
 	<!-- Default box -->
-	<div class="card">
+	<!-- <div class="card">
 		<div class="card-header">
-			<h3 class="card-title">Welcome <?php echo $session->name; ?></h3>
+			<h3 class="card-title">Welcome <?php //echo $session->name; ?></h3>
 		</div>
 		<div class="card-body">
-			<p align="center"><a href="<?php echo base_url(); ?>dashboard/logout">Logout</a></p>
+			<p align="center"><a href="<?php //echo base_url(); ?>dashboard/logout">Logout</a></p>
 		</div>
-	</div>
+	</div> -->
 	<!-- /.card -->
 	</div>
 </section>

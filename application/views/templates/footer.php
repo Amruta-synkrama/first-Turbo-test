@@ -9,9 +9,9 @@
 </footer>
 
 <!-- Control Sidebar -->
-<aside class="control-sidebar control-sidebar-dark">
+<!-- <aside class="control-sidebar control-sidebar-dark"> -->
 	<!-- Control sidebar content goes here -->
-</aside>
+<!-- </aside> -->
 <!-- /.control-sidebar -->
 </div>
 <!-- ./wrapper -->
@@ -101,7 +101,7 @@
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
         cancelButtonColor: '#d33',
-        confirmButtonText: 'Yes, delete it!'
+        confirmButtonText: 'Yes, deactivate it!'
       }).then((result) => {
         if (result.value) {
           window.location.href = Href;

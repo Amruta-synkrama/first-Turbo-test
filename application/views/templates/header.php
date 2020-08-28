@@ -42,7 +42,7 @@
 
     
 </head>
-<body class="hold-transition sidebar-mini layout-fixed">
+<body class="hold-transition sidebar-mini layout-fixed accent-orange">
 	<div class="wrapper">
 
 		<!-- Navbar -->
@@ -154,10 +154,10 @@
         <!-- /.navbar -->
 
         <!-- Main Sidebar Container -->
-        <aside class="main-sidebar sidebar-dark-primary elevation-4">
+        <aside class="main-sidebar elevation-4 sidebar-dark-orange"> <!-- sidebar-dark-primary -->
             <!-- Brand Logo -->
             <a href="<?php echo base_url(); ?>" class="brand-link">
-                <img src="<?php echo base_url(); ?>theme/dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8"> 
+                <img src="<?php echo base_url(); ?>assets/img/site-logo.png" alt="Turbores Logo" class="brand-image"> 
                 <span class="brand-text font-weight-light">Turbores</span>
             </a>
 
@@ -169,7 +169,7 @@
                       <?php if($session->user_logo) : ?>
                         <img src="<?php echo $session->user_logo; ?>" class="img-circle elevation-2" alt="User Image">
                       <?php else: ?>
-                        <img src="<?php echo base_url(); ?>theme/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
+                        <img src="<?php echo base_url(); ?>theme/dist/img/boxed-bg.jpg" class="img-circle elevation-2" alt="User Image">
                       <?php endif; ?>
 
                     </div>
@@ -188,156 +188,120 @@
                 <?php if($session->entity == 'Admin') : ?>
                 <nav class="mt-2">
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-                        <!-- Add icons to the links using the .nav-icon class
-                           with font-awesome or any other icon font library -->
-                        <li class="nav-item has-treeview menu-open">
-                            <!-- <a href="<?php //echo base_url() ?>dashboard" class="nav-link active">
-                                <i class="nav-icon fas fa-tachometer-alt"></i>
-                                <p>Dashboard<i class="right fas fa-angle-left"></i></p>
-                            </a> -->
-                            <ul class="nav nav-treeview">
-                                <li class="nav-item">
-                                     <a href="<?php echo base_url() ?>dashboard" class="nav-link ">
-                                         <i class="nav-icon fas fa-tachometer-alt"></i>
-                                         <p>Dashboard</p>
-                                     </a>
-                                 </li>
-                                 <li class="nav-item">
-                                   <a href="<?php echo base_url() ?>admin_profile" class="nav-link ">
-                                       <i class="far fa-user nav-icon"></i>
-                                       <p>Profile</p>
-                                   </a>
-                                </li>
-                                <li class="nav-item">
-                                   <a href="<?php echo base_url() ?>register" class="nav-link ">
-                                       <i class="far fa-registered nav-icon"></i>
-                                       <p>Register</p>
-                                   </a>
-                                </li>
-                                <li class="nav-item">
-                                   <a href="<?php echo base_url() ?>hotels" class="nav-link ">
-                                       <i class="fa fa-h-square nav-icon"></i>
-                                       <p>Hotels</p>
-                                   </a>
-                                </li>
-                                <li class="nav-item">
-                                   <a href="<?php echo base_url() ?>companies" class="nav-link ">
-                                       <i class="fa fa-building nav-icon"></i>
-                                       <p>Company List</p>
-                                   </a>
-                                </li>
-                                <li class="nav-item">
-                                   <a href="<?php echo base_url() ?>links" class="nav-link ">
-                                       <i class="fa fa-link nav-icon"></i>
-                                       <p>Links</p>
-                                   </a>
-                                </li>
-                            </ul>
-                        </li>
-                        <!-- <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="nav-icon fas fa-th"></i>
-                                <p>Simple Link<span class="right badge badge-danger">New</span></p>
-                            </a>
-                        </li> -->
+                      <li class="nav-item">
+                        <a href="<?php echo base_url() ?>dashboard" class="nav-link <?php if($this->uri->segment(1)=="dashboard"){echo 'active';}?>">
+                          <i class="nav-icon fas fa-tachometer-alt"></i>
+                          <p>Dashboard</p>
+                        </a>
+                      </li>
+                      <li class="nav-item">
+                        <a href="<?php echo base_url() ?>admin_profile" class="nav-link <?php if($this->uri->segment(1)=="admin_profile"){echo 'active';}?>">
+                          <i class="far fa-user nav-icon"></i>
+                          <p>Profile</p>
+                        </a>
+                      </li>
+                      <li class="nav-item">
+                        <a href="<?php echo base_url() ?>register" class="nav-link <?php if($this->uri->segment(1)=="register"){echo 'active';}?>">
+                          <i class="far fa-registered nav-icon"></i>
+                          <p>Register</p>
+                        </a>
+                      </li>
+                      <?php if($session->id == 1) : ?>
+                      <li class="nav-item">
+                        <a href="<?php echo base_url() ?>admins" class="nav-link <?php if($this->uri->segment(1)=="admins"){echo 'active';}?>">
+                          <i class="fa fa-users nav-icon"></i>
+                          <p>Admins</p>
+                        </a>
+                      </li>
+                      <?php endif; ?>
+                      <li class="nav-item">
+                        <a href="<?php echo base_url() ?>hotels" class="nav-link <?php if($this->uri->segment(1)=="hotels"){echo 'active';}?>">
+                          <i class="fa fa-h-square nav-icon"></i>
+                          <p>Hotels</p>
+                        </a>
+                      </li>
+                      <li class="nav-item">
+                        <a href="<?php echo base_url() ?>companies" class="nav-link <?php if($this->uri->segment(1)=="companies"){echo 'active';}?>">
+                          <i class="fa fa-building nav-icon"></i>
+                          <p>Company List</p>
+                        </a>
+                      </li>
+                      <li class="nav-item">
+                        <a href="<?php echo base_url() ?>links" class="nav-link <?php if($this->uri->segment(1)=="links"){echo 'active';}?>">
+                          <i class="fa fa-link nav-icon"></i>
+                          <p>Links</p>
+                        </a>
+                      </li>     
                     </ul>
                 </nav>
                 <!-- /.sidebar-menu -->
                 <?php elseif($session->entity == 'Hotel') : ?>
                     <nav class="mt-2">
                         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-                            <!-- Add icons to the links using the .nav-icon class
-                               with font-awesome or any other icon font library -->
-                               <li class="nav-item has-treeview menu-open">
-                                <!-- <a href="<?php //echo base_url() ?>dashboard" class="nav-link active">
-                                    <i class="nav-icon fas fa-tachometer-alt"></i>
-                                    <p>Dashboard<i class="right fas fa-angle-left"></i></p>
-                                </a> -->
-                                <ul class="nav nav-treeview">
-                                    <li class="nav-item">
-                                     <a href="<?php echo base_url() ?>dashboard" class="nav-link ">
-                                         <i class="nav-icon fas fa-tachometer-alt"></i>
-                                         <p>Dashboard</p>
-                                     </a>
-                                 </li>
-                                 <li class="nav-item">
-                                        <a href="<?php echo base_url() ?>hotel_profile" class="nav-link ">
-                                            <i class="far fa-user nav-icon"></i>
-                                            <p>Profile</p>
-                                        </a>
-                                    </li>
-                                <li class="nav-item">
-                                            <a href="<?php echo base_url() ?>hotel_branches" class="nav-link ">
-                                                <i class="fa fa-code-fork nav-icon"></i>
-                                                <p>Branches</p>
-                                            </a>
-                                        </li>
-                                <li class="nav-item">
-                                            <a href="<?php echo base_url() ?>companies" class="nav-link ">
-                                                <i class="fa fa-building nav-icon"></i>
-                                                <p>Company List</p>
-                                            </a>
-                                        </li>
-                                <li class="nav-item">
-                                   <a href="<?php echo base_url() ?>links" class="nav-link ">
-                                       <i class="fa fa-link nav-icon"></i>
-                                       <p>Links</p>
-                                   </a>
-                                </li>
-                                    </ul>
-                                </li>
-                            <!-- <li class="nav-item">
-                                <a href="#" class="nav-link">
-                                    <i class="nav-icon fas fa-th"></i>
-                                    <p>Simple Link<span class="right badge badge-danger">New</span></p>
-                                </a>
-                            </li> -->
+                            
+                          <li class="nav-item">
+                            <a href="<?php echo base_url() ?>dashboard" class="nav-link <?php if($this->uri->segment(1)=="dashboard"){echo 'active';}?>">
+                              <i class="nav-icon fas fa-tachometer-alt"></i>
+                              <p>Dashboard</p>
+                            </a>
+                          </li>
+                          <li class="nav-item">
+                            <a href="<?php echo base_url() ?>hotel_profile" class="nav-link <?php if($this->uri->segment(1)=="hotel_profile"){echo 'active';}?>">
+                              <i class="far fa-user nav-icon"></i>
+                              <p>Profile</p>
+                            </a>
+                          </li>
+                          <li class="nav-item">
+                            <a href="<?php echo base_url() ?>hotel_branches" class="nav-link <?php if($this->uri->segment(1)=="hotel_branches"){echo 'active';}?>">
+                              <i class="fa fa-code-fork nav-icon"></i>
+                              <p>Branches</p>
+                            </a>
+                          </li>
+                          <li class="nav-item">
+                            <a href="<?php echo base_url() ?>companies" class="nav-link <?php if($this->uri->segment(1)=="companies"){echo 'active';}?>">
+                              <i class="fa fa-building nav-icon"></i>
+                              <p>Company List</p>
+                            </a>
+                          </li>
+                          <li class="nav-item">
+                            <a href="<?php echo base_url() ?>links" class="nav-link <?php if($this->uri->segment(1)=="links"){echo 'active';}?>">
+                              <i class="fa fa-link nav-icon"></i>
+                              <p>Links</p>
+                            </a>
+                          </li>
+                                    
                         </ul>
                     </nav>
                     <!-- /.sidebar-menu -->
                 <?php elseif($session->entity == 'RFP') : ?>
                     <nav class="mt-2">
                         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-                            <!-- Add icons to the links using the .nav-icon class
-                               with font-awesome or any other icon font library -->
-                               <li class="nav-item has-treeview menu-open">
-                                <!-- <a href="<?php echo base_url() ?>dashboard" class="nav-link active">
-                                    <i class="nav-icon fas fa-tachometer-alt"></i>
-                                    <p>Dashboard<i class="right fas fa-angle-left"></i></p>
-                                </a> -->
-                                <ul class="nav nav-treeview">
-                                    <li class="nav-item">
-                                     <a href="<?php echo base_url() ?>dashboard" class="nav-link ">
-                                         <i class="nav-icon fas fa-tachometer-alt"></i>
-                                         <p>Dashboard</p>
-                                     </a>
-                                 </li>
-                                 <li class="nav-item">
-                                                <a href="<?php echo base_url() ?>company_profile" class="nav-link ">
-                                                    <i class="far fa-user nav-icon"></i>
-                                                    <p>Profile</p>
-                                                </a>
-                                        </li>
-                                <li class="nav-item">
-                                            <a href="<?php echo base_url() ?>hotels" class="nav-link ">
-                                                <i class="fa fa-h-square nav-icon"></i>
-                                                <p>Hotel List</p>
-                                            </a>
-                                        </li>
-                                <li class="nav-item">
-                                   <a href="<?php echo base_url() ?>links" class="nav-link ">
-                                       <i class="fa fa-link nav-icon"></i>
-                                       <p>Links</p>
-                                   </a>
-                                </li>
-                                    </ul>
-                                </li>
-                            <!-- <li class="nav-item">
-                                <a href="#" class="nav-link">
-                                    <i class="nav-icon fas fa-th"></i>
-                                    <p>Simple Link<span class="right badge badge-danger">New</span></p>
-                                </a>
-                            </li> -->
+                            
+                          <li class="nav-item">
+                            <a href="<?php echo base_url() ?>dashboard" class="nav-link <?php if($this->uri->segment(1)=="dashboard"){echo 'active';}?>">
+                              <i class="nav-icon fas fa-tachometer-alt"></i>
+                              <p>Dashboard</p>
+                            </a>
+                          </li>
+                          <li class="nav-item">
+                            <a href="<?php echo base_url() ?>company_profile" class="nav-link <?php if($this->uri->segment(1)=="company_profile"){echo 'active';}?>">
+                              <i class="far fa-user nav-icon"></i>
+                              <p>Profile</p>
+                            </a>
+                          </li>
+                          <li class="nav-item">
+                            <a href="<?php echo base_url() ?>hotels" class="nav-link <?php if($this->uri->segment(1)=="hotels"){echo 'active';}?>">
+                              <i class="fa fa-h-square nav-icon"></i>
+                              <p>Hotel List</p>
+                            </a>
+                          </li>
+                          <li class="nav-item">
+                            <a href="<?php echo base_url() ?>links" class="nav-link <?php if($this->uri->segment(1)=="links"){echo 'active';}?>">
+                              <i class="fa fa-link nav-icon"></i>
+                              <p>Links</p>
+                            </a>
+                          </li>
+                                   
                         </ul>
                     </nav>
                     <!-- /.sidebar-menu -->

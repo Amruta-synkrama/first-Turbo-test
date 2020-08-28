@@ -18,6 +18,7 @@ class Links_model extends CI_Model
 		}
 		if($role == 'Hotel') {
 			$this->db->where('tr_hotel_locations.hotel_id', $user_id);
+			$this->db->where('tr_users.status', '1');
 		}
 		if($link_id) {
 			$this->db->where('tr_links.id', $link_id);
@@ -40,6 +41,7 @@ class Links_model extends CI_Model
 		$this->db->from('tr_users');
 		$this->db->join('tr_company', 'tr_company.user_id = tr_users.id');
 		$this->db->where('tr_users.entity', 'RFP');
+		$this->db->where('tr_users.status', '1');
 		$query = $this->db->get();
 		if($query->result()) {
 			return $query->result();
@@ -53,7 +55,8 @@ class Links_model extends CI_Model
 		$this->db->from('tr_hotel_locations');
 		$this->db->join('tr_locations', 'tr_locations.ID = tr_hotel_locations.location_id');
 		$this->db->join('tr_states', 'tr_states.ID = tr_locations.ID_STATE');
-		$this->db->where('hotel_id', $id);
+		$this->db->where('tr_hotel_locations.hotel_id', $id);
+		$this->db->where('tr_hotel_locations.status', '1');
 		$query = $this->db->get();
 		if($query->result()) {
 			return $query->result();

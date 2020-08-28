@@ -45,6 +45,19 @@ class User_lists_model extends CI_Model {
 		}
 	}
 
+	public function get_admins() {
+		$this->db->select('*');
+		$this->db->from('tr_users');
+		$this->db->where('tr_users.entity', 'Admin');
+		$this->db->where_not_in('tr_users.id', 1);
+		$query = $this->db->get();
+		if($query->result()) {
+			return $query->result();
+		} else {
+			return array();
+		}
+	}
+
 	public function update_user_data($data, $id) {
         $this->db->where('id',$id);
         return $this->db->update('tr_users',$data);

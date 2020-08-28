@@ -7,10 +7,17 @@ class Dashboard extends CI_Controller {
 		if(!$this->session->userdata('id')) {
 			redirect('login');
 		}
+		$this->load->model('dashboard_model');
 	}
 
 	function index() {
+		$user_id = $this->session->userdata('id');
 		$data['session'] = $this->session->userdata('user_data');
+		$data['company_count'] = $this->dashboard_model->get_companies_count();
+		$data['companies_data'] = $this->dashboard_model->get_companies();
+		$data['hotels_count'] = $this->dashboard_model->get_hotels_count();
+		$data['hotels_data'] = $this->dashboard_model->get_hotels();
+		$data['links_count'] = $this->dashboard_model->get_links_count($user_id,$this->session->userdata('user_data')->entity);
 		$this->load->view('templates/header', $data);
 		$this->load->view('dashboard', $data);
 		$this->load->view('templates/footer', $data);

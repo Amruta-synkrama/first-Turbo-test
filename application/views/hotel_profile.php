@@ -28,7 +28,7 @@
               <?php if($hotel_user_data->user_logo) : ?>
               <img class="profile-user-img img-fluid img-circle" src="<?php echo $hotel_user_data->user_logo; ?>" alt="User profile picture">
               <?php else: ?>
-              <img class="profile-user-img img-fluid img-circle" src="<?php echo base_url(); ?>theme/dist/img/user4-128x128.jpg" alt="User profile picture">
+              <img class="profile-user-img img-fluid img-circle" src="<?php echo base_url(); ?>theme/dist/img/boxed-bg.jpg" alt="User profile picture">
               <?php endif; ?>
             </div>
 

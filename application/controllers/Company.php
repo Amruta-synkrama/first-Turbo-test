@@ -28,6 +28,12 @@ class Company extends CI_Controller
 		$data['user_data'] = $this->user_model->get_user_data($user_id);
 		$data['session'] = $this->session->userdata('user_data');
 		$data['companies_data'] = $this->user_lists_model->get_companies($company_id)[0];
+		/*if($data['companies_data']->status == '2') {
+			redirect('404');
+		}*/
+		if(empty($data['companies_data'])) {
+			redirect('404');
+		}
 		$this->load->view('templates/header', $data);
 		$this->load->view('company', $data);
 		$this->load->view('templates/footer', $data);

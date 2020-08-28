@@ -58,7 +58,7 @@
                       <?php if($hotel->status != '2' ) : ?>
                       <span class="badge badge-success">Active</span>
                       <?php else: ?>
-                      <span class="badge badge-danger">Suspended</span>
+                      <span class="badge badge-danger">Deactivate</span>
                       <?php endif; ?>
                     </td>
                     <td class="project-actions text-center">
@@ -78,7 +78,7 @@
                         <a class="btn btn-danger btn-sm delete-something-cust" href="<?php echo base_url(); ?>hotels/delete?delete_request=<?php echo $hotel->user_id; ?>">
                             <i class="fas fa-times">
                             </i>
-                            Delete
+                            Deactivate
                         </a>
                         <?php else: ?>
                         <a class="btn btn-success btn-sm activate-something-cust" href="<?php echo base_url(); ?>hotels/activate?activate_request=<?php echo $hotel->user_id; ?>">
