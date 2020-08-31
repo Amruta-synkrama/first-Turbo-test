@@ -39,7 +39,8 @@
 
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/css/style.css">
 
-
+<!-- jQuery -->
+<script src="<?php echo base_url(); ?>theme/plugins/jquery/jquery.min.js"></script>
     
 </head>
 <body class="hold-transition sidebar-mini layout-fixed accent-orange">
@@ -253,7 +254,7 @@
                           </li>
                           <li class="nav-item">
                             <a href="<?php echo base_url() ?>hotel_branches" class="nav-link <?php if($this->uri->segment(1)=="hotel_branches"){echo 'active';}?>">
-                              <i class="fa fa-code-fork nav-icon"></i>
+                              <i class="fa fa-share-alt nav-icon"></i>
                               <p>Branches</p>
                             </a>
                           </li>

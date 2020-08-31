@@ -45,14 +45,14 @@
 
             <ul class="list-group list-group-unbordered mb-3">
               <li class="list-group-item">
-                <b>Hotels</b> <a class="float-right">1,322</a>
+                <b>Hotels</b> <a class="float-right"><?php echo $hotels_count; ?></a>
               </li>
               <li class="list-group-item">
-                <b>Links Received</b> <a class="float-right">543</a>
+                <b>Links Received</b> <a class="float-right"><?php echo $company_links_count[0]->count; ?></a>
               </li>
-              <li class="list-group-item">
+              <!-- <li class="list-group-item">
                 <b>Requests</b> <a class="float-right">13,287</a>
-              </li>
+              </li> -->
             </ul>
             <?php if($session->entity == 'Admin'): ?>
             <a href="<?php echo base_url() ?>links?company_id=<?php echo $companies_data->user_id ?>" class="btn btn-primary btn-block"><b>View Link</b></a>
@@ -101,7 +101,7 @@
 
             <hr>
 
-            <strong><i class="far fa-file-alt mr-1"></i> Cover</strong>
+            <strong><i class="far fa-file-alt mr-1"></i> Description</strong>
 
             <p class="text-muted"><?php echo $companies_data->cover; ?></p>
           </div>

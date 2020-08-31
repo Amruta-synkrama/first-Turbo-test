@@ -49,7 +49,13 @@ class Register extends CI_Controller {
 			$id = $this->register_model->reg_insert($data);
 			if($id > 0) {
 				$this->session->set_flashdata('success_message', 'Register successfully');
-				redirect('login');
+				if($data['entity'] == 'Admin') {
+					redirect('admins');
+				} elseif($data['entity'] == 'Hotel') {
+					redirect('hotels');
+				} elseif($data['entity'] == 'RFP') {
+					redirect('companies');
+				}
 			}
 		} else {
 			$this->index();

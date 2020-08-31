@@ -14,6 +14,7 @@ class Dashboard_model extends CI_Model {
 		if($user_role != 'Admin') {
 			$this->db->where('tr_users.status', '1');
 		}
+		$this->db->order_by('tr_users.id', 'DESC');
 		$this->db->limit(5);
 		$query = $this->db->get();
 		if($query->result()) {
@@ -31,7 +32,7 @@ class Dashboard_model extends CI_Model {
 		if($user_role != 'Admin') {
 			$this->db->where('tr_users.status', '1');
 		}
-		$this->db->limit(5);
+		$this->db->order_by('tr_users.id', 'DESC');
 		$query = $this->db->get();
 		if($query->result()) {
 			return $query->result();
@@ -49,6 +50,7 @@ class Dashboard_model extends CI_Model {
 		if($user_role != 'Admin') {
 			$this->db->where('tr_users.status', '1');
 		}
+		$this->db->order_by('tr_users.id', 'DESC');
 		$this->db->limit(5);
 		$query = $this->db->get();
 		if($query->result()) {
@@ -66,7 +68,7 @@ class Dashboard_model extends CI_Model {
 		if($user_role != 'Admin') {
 			$this->db->where('tr_users.status', '1');
 		}
-		$this->db->limit(5);
+		$this->db->order_by('tr_users.id', 'DESC');
 		$query = $this->db->get();
 		if($query->result()) {
 			return $query->result();

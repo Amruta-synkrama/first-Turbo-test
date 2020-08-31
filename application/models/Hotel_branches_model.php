@@ -34,9 +34,12 @@ class Hotel_branches_model extends CI_Model
 		}
 	}
 
-	public function get_city($state_id) {
+	public function get_city($state_id = NULL,$city_id = NULL) {
 		if($state_id) {
 			$this->db->where('ID_STATE', $state_id);
+		}
+		if($city_id) {
+			$this->db->where('ID', $city_id);	
 		}
 		$query = $this->db->get('tr_locations');
 		if($query->result()) {

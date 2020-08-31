@@ -48,11 +48,12 @@ class Hotel_profile extends CI_Controller {
 		$this->form_validation->set_rules('headquater','Headquater','trim|required');
 		$this->form_validation->set_rules('cover','Cover','trim|required');
 
+
 		if($this->form_validation->run()) {
 			$data = array(
 				'website'  => $this->input->post('website'),
 				'headquater'  => $this->input->post('headquater'),
-				'cover'  => $this->input->post('Cover')
+				'cover'  => $this->input->post('cover')
 			);
 			if($this->user_model->update_hotel_data($data, $hotel_id)) {
 				$this->session->set_flashdata('hotel_message', 'Data updated');

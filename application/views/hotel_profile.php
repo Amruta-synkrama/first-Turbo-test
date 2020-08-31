@@ -60,6 +60,10 @@
         </div>
         <!-- /.card -->
 
+      </div>
+      <!-- /.col -->
+      <div class="col-md-9">
+
         <!-- About Me Box -->
         <div class="card card-primary">
           <div class="card-header">
@@ -91,16 +95,14 @@
 
             <hr>
 
-            <strong><i class="far fa-file-alt mr-1"></i> Cover</strong>
+            <strong><i class="far fa-file-alt mr-1"></i> Description</strong>
 
             <p class="text-muted"><?php echo $hotel_data->cover ?></p>
           </div>
           <!-- /.card-body -->
         </div>
         <!-- /.card -->
-      </div>
-      <!-- /.col -->
-      <div class="col-md-9">
+        
         <div class="card">
           <div class="card-header p-2">
             <ul class="nav nav-pills">
@@ -146,7 +148,7 @@
                     </div>
                   </div>
                   <div class="form-group row">
-                    <label for="inputExperience" class="col-sm-2 col-form-label">Cover</label>
+                    <label for="inputExperience" class="col-sm-2 col-form-label">Description</label>
                     <div class="col-sm-10">
                       <textarea name="cover" id="cover" class="form-control" value="<?php echo $hotel_data->cover; ?>"><?php echo $hotel_data->cover; ?></textarea>
                     </div>

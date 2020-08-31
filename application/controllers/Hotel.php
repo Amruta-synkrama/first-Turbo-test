@@ -30,6 +30,7 @@ class Hotel extends CI_Controller {
 		$data['session'] = $this->session->userdata('user_data');
 		$data['hotels_data'] = $this->user_lists_model->get_hotels($hotel_id)[0];
 		$data['hotel_locations'] = $this->hotel_branches_model->get_location_data($hotel_id);
+		$data['hotel_links_count'] = $this->user_model->get_links_count($hotel_id, 'Hotel');
 		$data['hotel_id'] = $hotel_id;
 		/*if($data['hotels_data']->status == '2') {
 			redirect('404');

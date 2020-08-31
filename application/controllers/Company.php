@@ -19,7 +19,7 @@ class Company extends CI_Controller
 	}
 	
 	public function index() {
-		$company_id = $this->input->get('branch');
+		$company_id = $this->input->get('id');
 		$user_id = $this->session->userdata('id');
 		$data['hotel_data'] = array();
 		if($this->session->userdata('user_data')->entity == 'Hotel') {
@@ -28,6 +28,9 @@ class Company extends CI_Controller
 		$data['user_data'] = $this->user_model->get_user_data($user_id);
 		$data['session'] = $this->session->userdata('user_data');
 		$data['companies_data'] = $this->user_lists_model->get_companies($company_id)[0];
+		$data['company_links_count'] = $this->user_model->get_links_count($company_id, 'RFP');
+		$data['hotels_count'] = $this->user_model->get_hotels_count_company($company_id);
+		$data['company_id'] = $company_id;
 		/*if($data['companies_data']->status == '2') {
 			redirect('404');
 		}*/

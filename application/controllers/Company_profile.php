@@ -55,7 +55,7 @@ class Company_profile extends CI_Controller {
 			$data = array(
 				'website'  => $this->input->post('website'),
 				'headquater'  => $this->input->post('headquater'),
-				'cover'  => $this->input->post('Cover')
+				'cover'  => $this->input->post('cover')
 			);
 
 			

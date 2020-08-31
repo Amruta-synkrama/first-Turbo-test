@@ -32,7 +32,11 @@ class Hotel_branch extends CI_Controller {
 		$data['user_data'] = $this->user_model->get_user_data($user_id);
 		$data['session'] = $this->session->userdata('user_data');
 		$data['state_data'] = $this->hotel_branches_model->get_state();
-		$data['location_data'] = $this->hotel_branches_model->get_city(NULL);
+		$data['location_data'] = array();
+		if($data['hotel_locations']) {
+			$data['state_id_data'] = $this->hotel_branches_model->get_city(NULL, $data['hotel_locations'][0]->ID);
+			$data['location_data'] = $this->hotel_branches_model->get_city($data['state_id_data'][0]->ID);
+		}
 		$data['branch_id'] = $branch_id;
 		$this->load->view('templates/header', $data);
 		$this->load->view('hotel_branch', $data);
@@ -48,7 +52,7 @@ class Hotel_branch extends CI_Controller {
 		$branch_id = $this->input->get('branch');
 		$this->form_validation->set_rules('branch_name', 'Branch Name', 'required|trim');
 		$this->form_validation->set_rules('location_id', 'Location', 'required|trim');
-		// $this->form_validation->set_rules('state_id', 'State', 'required|trim');
+		$this->form_validation->set_rules('state_id', 'State', 'required|trim');
 		
 		if($this->form_validation->run()) {
 			$data = array(
@@ -74,6 +78,24 @@ class Hotel_branch extends CI_Controller {
 		} else {
 			$this->index();
 		}
+	}
+
+	public function get_cities() {
+		$value = $this->input->post();
+		// print_r($value['value']); 
+		$location_data = $this->hotel_branches_model->get_city($value['value']);
+		ob_start();
+		?>
+		<option selected disabled>Select one</option>
+		<?php
+		foreach ($location_data as $location) :
+		?>
+		<option value="<?php echo $location->ID ?>"><?php echo $location->LOCATION ?></option>
+		<?php
+		endforeach;
+		$html = ob_get_clean();
+		echo $html;
+		// print_r($location_data);
 	}
 }
 /* End of file '/Hotel_branch.php' */

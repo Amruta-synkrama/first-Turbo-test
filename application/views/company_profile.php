@@ -54,6 +54,10 @@
         </div>
         <!-- /.card -->
 
+      </div>
+      <!-- /.col -->
+      <div class="col-md-9">
+
         <!-- About Me Box -->
         <div class="card card-primary">
           <div class="card-header">
@@ -85,16 +89,14 @@
 
             <hr>
 
-            <strong><i class="far fa-file-alt mr-1"></i> Cover</strong>
+            <strong><i class="far fa-file-alt mr-1"></i> Description</strong>
 
             <p class="text-muted"><?php echo $company_data->cover ?></p>
           </div>
           <!-- /.card-body -->
         </div>
         <!-- /.card -->
-      </div>
-      <!-- /.col -->
-      <div class="col-md-9">
+
         <div class="card">
           <div class="card-header p-2">
             <ul class="nav nav-pills">

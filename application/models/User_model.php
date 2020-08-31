@@ -37,6 +37,52 @@ class User_model extends CI_Model {
 		}
 	}
 
+
+	public function get_links_count($user_id,$role) {
+		$this->db->select('count(tr_links.id) as count' );
+		$this->db->from('tr_links');
+		$this->db->join('tr_users', 'tr_users.id = tr_links.company_id');
+		$this->db->join('tr_hotel_locations', 'tr_hotel_locations.id = tr_links.hotel_location_id');
+		$this->db->join('tr_locations', 'tr_locations.id = tr_hotel_locations.location_id','left');
+		$this->db->join('tr_states', 'tr_states.ID = tr_locations.ID_STATE','left');
+		if($role == 'RFP') {
+			$this->db->where('tr_links.company_id', $user_id);
+		}
+		if($role == 'Hotel') {
+			$this->db->where('tr_hotel_locations.hotel_id', $user_id);
+		}
+		$user_role = $this->session->userdata('user_data')->entity;
+		if($user_role != 'Admin') {
+			$this->db->where('tr_links.status', '1');
+		}
+		$query = $this->db->get();
+		if($query->result()) {
+			return $query->result();
+		} else {
+			return array();
+		}
+	}
+
+	public function get_hotels_count_company($user_id) {
+		$this->db->select('tr_links.id as count, tr_hotel_locations.hotel_id as hotel_id' );
+		$this->db->from('tr_links');
+		$this->db->join('tr_users', 'tr_users.id = tr_links.company_id');
+		$this->db->join('tr_hotel_locations', 'tr_hotel_locations.id = tr_links.hotel_location_id');
+		$this->db->join('tr_locations', 'tr_locations.id = tr_hotel_locations.location_id','left');
+		$this->db->join('tr_states', 'tr_states.ID = tr_locations.ID_STATE','left');
+		$this->db->where('tr_links.company_id', $user_id);
+		$user_role = $this->session->userdata('user_data')->entity;
+		if($user_role != 'Admin') {
+			$this->db->where('tr_links.status', '1');
+		}
+		$query = $this->db->get();
+		if($query->result()) {
+			return count(array_unique(array_column($query->result(), 'hotel_id')));
+		} else {
+			return 0;
+		}
+	}
+
 	public function update_company_data($data, $id) {
 		$timestamp = date('Y-m-d H:i:s');
 		$data['updated_at'] = $timestamp;

@@ -63,7 +63,7 @@
                     </td>
                     <?php endif; ?>
 
-                    <td class="project-actions text-center">
+                    <td class="project-actions">
                         <!-- <a class="btn btn-primary btn-sm" href="#">
                             <i class="fas fa-folder">
                             </i>

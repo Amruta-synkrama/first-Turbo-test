@@ -46,17 +46,17 @@
               <li class="list-group-item">
                 <b>Hotel Branches</b> <a class="float-right"><?php echo count($hotel_locations); ?></a>
               </li>
-              <!-- <li class="list-group-item">
-                <b>Links Received</b> <a class="float-right">543</a>
-              </li>
               <li class="list-group-item">
+                <b>Links Added</b> <a class="float-right"><?php echo $hotel_links_count[0]->count; ?></a>
+              </li>
+              <!-- <li class="list-group-item">
                 <b>Requests</b> <a class="float-right">13,287</a>
               </li> -->
             </ul>
             <?php if($session->entity == 'Admin'): ?>
               <a href="<?php echo base_url() ?>links?hotel_id=<?php echo $hotels_data->user_id ?>" class="btn btn-primary btn-block"><b>View Links</b></a>
               <a href="<?php echo base_url() ?>hotel_branches?hotel_id=<?php echo $hotels_data->user_id ?>" class="btn btn-primary btn-block"><b>View Hotel Branches</b></a>
-              <a href="<?php echo base_url() ?>company_profile?hotel_id=<?php echo $hotels_data->user_id ?>" class="btn btn-primary btn-block"><b>Edit Hotel</b></a>
+              <a href="<?php echo base_url() ?>hotel_profile?hotel_id=<?php echo $hotels_data->user_id ?>" class="btn btn-primary btn-block"><b>Edit Hotel</b></a>
             <?php /*else: ?>
               <a href="<?php echo base_url() ?>request_link?hotel_id=<?php echo $hotel_id ?>" class="btn btn-primary btn-block"><b>Request Link</b></a>
             <?php */ ?>
@@ -101,7 +101,7 @@
 
             <hr>
 
-            <strong><i class="far fa-file-alt mr-1"></i> Cover</strong>
+            <strong><i class="far fa-file-alt mr-1"></i> Description</strong>
 
             <p class="text-muted"><?php echo $hotels_data->cover ?></p>
           </div>
