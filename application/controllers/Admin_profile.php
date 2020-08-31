@@ -32,8 +32,8 @@ class Admin_profile extends CI_Controller {
 	
 	public function update_user_details() {
 		$user_id = $this->session->userdata('id');
-		$this->form_validation->set_rules('name','Name','trim|required');
-		$this->form_validation->set_rules('phone_number','Phone Number','trim|required');
+		$this->form_validation->set_rules('name','Name','trim|required|alpha_numeric_spaces');
+		$this->form_validation->set_rules('phone_number','Phone Number','trim|required|numeric|min_length[10]|max_length[15]');
 
 		if($this->form_validation->run()) {
 			$data = array(
@@ -91,7 +91,7 @@ class Admin_profile extends CI_Controller {
 
 			if (!$this->upload->do_upload('logo')) {
 				$this->session->set_flashdata('error_upload_message', $this->upload->display_errors());
-				redirect('company_profile');
+				redirect('admin_profile');
 			} else {
 				$upload_data = $this->upload->data();
 				print_r($upload_data);

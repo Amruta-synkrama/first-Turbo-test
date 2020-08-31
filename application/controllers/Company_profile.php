@@ -46,15 +46,15 @@ class Company_profile extends CI_Controller {
 		} else {
 			$company_id = $user_id;
 		}
-		$this->form_validation->set_rules('website','Website','trim|required');
-		$this->form_validation->set_rules('headquater','Headquater','trim|required');
+		$this->form_validation->set_rules('website','Website','trim|required|valid_url');
+		$this->form_validation->set_rules('headquarter','headquarter','trim|required');
 		$this->form_validation->set_rules('cover','Cover','trim|required');
 
 		if($this->form_validation->run()) {
 
 			$data = array(
 				'website'  => $this->input->post('website'),
-				'headquater'  => $this->input->post('headquater'),
+				'headquarter'  => $this->input->post('headquarter'),
 				'cover'  => $this->input->post('cover')
 			);
 
@@ -148,7 +148,7 @@ class Company_profile extends CI_Controller {
 		}
 		$this->form_validation->set_rules('contact_name','Contact Name','trim|required');
 		$this->form_validation->set_rules('contact_email','Conatct Email','trim|required|valid_email');
-		$this->form_validation->set_rules('contact_no','Contact No','trim|required');
+		$this->form_validation->set_rules('contact_no','Contact No','trim|required|min_length[10]|max_length[15]|numeric');
 
 		if($this->form_validation->run()) {
 			$data = array(
@@ -183,8 +183,8 @@ class Company_profile extends CI_Controller {
 		} else {
 			$company_id = $user_id;
 		}
-		$this->form_validation->set_rules('name','Name','trim|required');
-		$this->form_validation->set_rules('phone_number','Phone Number','trim|required');
+		$this->form_validation->set_rules('name','Name','trim|required|alpha_numeric_spaces');
+		$this->form_validation->set_rules('phone_number','Phone Number','trim|required|min_length[10]|max_length[15]|numeric');
 
 		if($this->form_validation->run()) {
 			$data = array(

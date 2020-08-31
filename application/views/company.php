@@ -85,9 +85,9 @@
 
             <hr>
 
-            <strong><i class="fas fa-map-marker-alt mr-1"></i> Headquater</strong>
+            <strong><i class="fas fa-map-marker-alt mr-1"></i> Headquarter</strong>
 
-            <p class="text-muted"><?php echo $companies_data->headquater; ?></p>
+            <p class="text-muted"><?php echo $companies_data->headquarter; ?></p>
 
             <hr>
 

@@ -16,7 +16,20 @@
 
 <!-- Main content -->
 <section class="content">
-<form action="<?php echo base_url(); ?>link/validation<?php echo ($link_id) ? '?link_id='.$link_id : ''; ?>" method="post">
+    <?php $form_action = base_url().'link/validation'; ?>
+    <?php if($session->entity == 'Admin') :
+        if($link_id) :
+            $form_action = $form_action.'?link_id='.$link_id.'&hotel_id='.$hotel_id;
+        else:
+            $form_action = $form_action.'?hotel_id='.$hotel_id;
+        endif;
+    else:
+        if($link_id) :
+            $form_action = $form_action.'?link_id='.$link_id;
+        endif;
+    endif;
+     ?>
+<form action="<?php echo $form_action; ?>" method="post">
     <div class="row">
         <div class="col-md-12">
             <div class="card card-primary">
@@ -29,6 +42,15 @@
                             <div class="col-12">
                                 <div class="alert alert-danger">
                                     <?php echo validation_errors(); ?>
+                                </div>      
+                            </div>
+                        </div>
+                    <?php endif; ?>
+                    <?php if($this->session->flashdata('error_message')) : ?>
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="alert alert-danger">
+                                    <?php echo $this->session->flashdata('error_message'); ?>
                                 </div>      
                             </div>
                         </div>
@@ -56,12 +78,12 @@
                     </div>
                     <div class="form-group">
                         <label for="inputName">URL</label>
-                        <input type="text" name="url" id="url" class="form-control" value="<?php echo ($link_id) ? $links_data[0]->url : ''; ?>">
+                        <input type="url" name="url" id="url" class="form-control" value="<?php echo ($link_id) ? $links_data[0]->url : ''; ?>">
                     </div>
                     <div class="form-group">
                         <label for="inputName">Expiry Date</label>
-                        <div class="input-group date" id="reservationdate" data-target-input="nearest">
-                            <input type="text" name="expiration_date" id="expiration_date" class="form-control datetimepicker-input" data-target="#reservationdate" value="<?php echo ($link_id) ? date('m-d-Y',strtotime($links_data[0]->expiration_date)) : ''; ?>"/>
+                        <div class="input-group date" id="reservationdate" data-target-input="nearest" readonly="">
+                            <input type="text" name="expiration_date" id="expiration_date" class="form-control datetimepicker-input" data-target="#reservationdate" value="<?php echo ($link_id) ? date('m/d/Y',strtotime($links_data[0]->expiration_date)) : ''; ?>" />
                             <div class="input-group-append" data-target="#reservationdate" data-toggle="datetimepicker">
                                 <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                             </div>

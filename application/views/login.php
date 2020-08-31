@@ -42,16 +42,16 @@
 				<?php endif; ?>
 				<form action="<?php echo base_url(); ?>login/validation" method="post">
 					<div class="form-group">
-						<label>Email</label>
+						<label><strong>Email</strong></label>
 						<input type="email" name="email" id="email" class="form-control" value="<?php echo set_value('email') ?>">
 					</div>
 					<div class="form-group">
-						<label>Password</label>
+						<label><strong>Password</strong></label>
 						<input type="password" name="password" id="password" class="form-control" value="">
 					</div>
 					<div class="row">
 						<div class="col-12 col-sm-4 ">
-							<button type="submit" class="btn btn-primary login">Login</button>
+							<button type="submit" class="btn btn-primary login"><strong>Login</strong></button>
 						</div>
 						<!-- <div class="col-12 col-sm-8 text-right">
 							<a href="<?php //echo base_url(); ?>register">Register</a>

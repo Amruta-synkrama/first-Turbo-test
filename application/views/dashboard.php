@@ -21,7 +21,7 @@
 	<!-- Small Box (Stat card) -->
 	<div class="row">
 		<?php if($session->entity != 'Hotel') : ?>
-		<div class="<?php echo ($session->entity != 'Admin') ? 'col-lg-6' : 'col-lg-4'; ?> col-6">
+		<div class="<?php echo ($session->entity != 'Admin') ? 'col-sm-6 col-xs-6' : 'col-sm-4 col-xs-4'; ?>">
 			<!-- small card -->
 			<div class="small-box bg-info">
 				<div class="inner">
@@ -39,7 +39,7 @@
 		<?php endif; ?>
 		<!-- ./col -->
 		<?php if($session->entity != 'RFP') : ?>
-		<div class="<?php echo ($session->entity != 'Admin') ? 'col-lg-6' : 'col-lg-4'; ?> col-6">
+		<div class="<?php echo ($session->entity != 'Admin') ? 'col-sm-6 col-xs-6' : 'col-sm-4 col-xs-4'; ?>">
 			<!-- small card -->
 			<div class="small-box bg-success">
 				<div class="inner">
@@ -57,7 +57,7 @@
 		</div>
 		<?php endif; ?>
 		<!-- ./col -->
-		<div class="<?php echo ($session->entity != 'Admin') ? 'col-lg-6' : 'col-lg-4'; ?> col-6">
+		<div class="<?php echo ($session->entity != 'Admin') ? 'col-sm-6 col-xs-6' : 'col-sm-4 col-xs-4'; ?>">
 			<!-- small card -->
 			<div class="small-box bg-danger">
 				<div class="inner">
@@ -79,7 +79,7 @@
 	<!-- /.row -->
 	<div class="row">
 		<?php if($session->entity != 'Hotel') : ?>
-		<div class="<?php echo ($session->entity != 'Admin') ? 'col-lg-12' : 'col-lg-6'; ?> col-6">
+		<div class="<?php echo ($session->entity != 'Admin') ? 'col-sm-12 col-xs-12' : 'col-sm-6 col-xs-6'; ?>">
 			<div class="card">
 				<div class="card-header border-0">
 					<h3 class="card-title">Last added 5 Hotels</h3>
@@ -105,7 +105,7 @@
 								<td>
 									<a href="<?php echo base_url(); ?>hotel?id=<?php echo $hotel->user_id; ?>"><?php echo $hotel->name; ?></a>
 								</td>
-								<td><?php echo $hotel->headquater; ?></td>
+								<td><?php echo $hotel->headquarter; ?></td>
 								<td>
 									<?php if($hotel->status != '2' ) : ?>
 									<span class="badge badge-success">Active</span>
@@ -129,7 +129,7 @@
 		<?php endif; ?>
 		<!-- /.col-md-6 -->
 		<?php if($session->entity != 'RFP') : ?>
-		<div class="<?php echo ($session->entity != 'Admin') ? 'col-lg-12' : 'col-lg-6'; ?> col-6">
+		<div class="<?php echo ($session->entity != 'Admin') ? 'col-sm-12 col-xs-12' : 'col-sm-6 col-xs-6'; ?>">
 			<div class="card">
 				<div class="card-header border-0">
 					<h3 class="card-title">Last added 5 Companies</h3>
@@ -155,7 +155,7 @@
 								<td>
 									<a href="<?php echo base_url(); ?>company?id=<?php echo $company->user_id; ?>"><?php echo $company->name; ?></a>
 								</td>
-								<td><?php echo $company->headquater; ?></td>
+								<td><?php echo $company->headquarter; ?></td>
 								<td>
 									<?php if($company->status != '2' ) : ?>
 									<span class="badge badge-success">Active</span>

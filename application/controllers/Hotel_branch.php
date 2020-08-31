@@ -50,7 +50,7 @@ class Hotel_branch extends CI_Controller {
 			$hotel_id = $this->input->get('hotel_id');
 		}
 		$branch_id = $this->input->get('branch');
-		$this->form_validation->set_rules('branch_name', 'Branch Name', 'required|trim');
+		$this->form_validation->set_rules('branch_name', 'Branch Name', 'required|trim|is_unique[tr_hotel_locations.branch_name]');
 		$this->form_validation->set_rules('location_id', 'Location', 'required|trim');
 		$this->form_validation->set_rules('state_id', 'State', 'required|trim');
 		

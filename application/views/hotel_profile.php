@@ -79,9 +79,9 @@
 
             <hr>
 
-            <strong><i class="fas fa-map-marker-alt mr-1"></i> Headquater</strong>
+            <strong><i class="fas fa-map-marker-alt mr-1"></i> Headquarter</strong>
 
-            <p class="text-muted"><?php echo $hotel_data->headquater ?></p>
+            <p class="text-muted"><?php echo $hotel_data->headquarter ?></p>
 
             <hr>
 
@@ -142,9 +142,9 @@
                     </div>
                   </div>
                   <div class="form-group row">
-                    <label for="inputEmail" class="col-sm-2 col-form-label">Headquater</label>
+                    <label for="inputEmail" class="col-sm-2 col-form-label">Headquarter</label>
                     <div class="col-sm-10">
-                      <input type="text" name="headquater" id="headquater" class="form-control" placeholder="Headquater" value="<?php echo $hotel_data->headquater; ?>">
+                      <input type="text" name="headquarter" id="headquarter" class="form-control" placeholder="headquarter" value="<?php echo $hotel_data->headquarter; ?>">
                     </div>
                   </div>
                   <div class="form-group row">

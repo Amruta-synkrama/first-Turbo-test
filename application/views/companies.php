@@ -50,7 +50,7 @@
                 <?php foreach ($companies_data as $company) :?>
                   <tr>
                     <td><a href="<?php echo base_url(); ?>company?id=<?php echo $company->user_id; ?>"><?php echo $company->name; ?></a></td>
-                    <td><?php echo $company->headquater; ?></td>
+                    <td><?php echo $company->headquarter; ?></td>
                     <td><?php echo $company->email; ?></td>
                     <td><?php echo $company->website; ?></td>
                     <?php if($session->entity == 'Admin') : ?>

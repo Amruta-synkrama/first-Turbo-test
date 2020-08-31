@@ -17,6 +17,7 @@ class User_lists_model extends CI_Model {
 		if($user_role != 'Admin') {
 			$this->db->where('tr_users.status', '1');
 		}
+		$this->db->order_by('tr_users.id', 'DESC');
 		$query = $this->db->get();
 		if($query->result()) {
 			return $query->result();
@@ -37,6 +38,7 @@ class User_lists_model extends CI_Model {
 		if($user_role != 'Admin') {
 			$this->db->where('tr_users.status', '1');
 		}
+		$this->db->order_by('tr_users.id', 'DESC');
 		$query = $this->db->get();
 		if($query->result()) {
 			return $query->result();
@@ -50,6 +52,7 @@ class User_lists_model extends CI_Model {
 		$this->db->from('tr_users');
 		$this->db->where('tr_users.entity', 'Admin');
 		$this->db->where_not_in('tr_users.id', 1);
+		$this->db->order_by('tr_users.id', 'DESC');
 		$query = $this->db->get();
 		if($query->result()) {
 			return $query->result();

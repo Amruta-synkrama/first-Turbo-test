@@ -50,7 +50,7 @@
                 <?php foreach ($hotels_data as $hotel) :?>
                   <tr>
                     <td><a href="<?php echo base_url(); ?>hotel?id=<?php echo $hotel->user_id; ?>"><?php echo $hotel->name; ?></a></td>
-                    <td><?php echo $hotel->headquater; ?></td>
+                    <td><?php echo $hotel->headquarter; ?></td>
                     <td><?php echo $hotel->email; ?></td>
                     <td><?php echo $hotel->website; ?></td>
                       <?php if($session->entity == 'Admin') : ?>

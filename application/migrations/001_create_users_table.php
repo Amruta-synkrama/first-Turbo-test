@@ -46,7 +46,7 @@ class Migration_Create_users_table extends CI_Migration
               'contact_name' => ['type' => 'VARCHAR', 'constraint' => '255' ],
               'contact_no'=> ['type' => 'INT', 'constraint' => 11, 'unsigned' => true ],
               'contact_email' => ['type' => 'VARCHAR', 'constraint' => '255' ],
-              'headquater' => ['type' => 'VARCHAR', 'constraint' => '255' ],
+              'headquarter' => ['type' => 'VARCHAR', 'constraint' => '255' ],
               'updated_at' => ['type' => 'datetime', 'null' => true]
         ]);
         $this->dbforge->add_key('id', true);
@@ -66,7 +66,7 @@ class Migration_Create_users_table extends CI_Migration
               'contact_name' => ['type' => 'VARCHAR', 'constraint' => '255' ],
               'contact_no'=> ['type' => 'INT', 'constraint' => 11, 'unsigned' => true ],
               'contact_email' => ['type' => 'VARCHAR', 'constraint' => '255' ],
-              'headquater' => ['type' => 'VARCHAR', 'constraint' => '255' ],
+              'headquarter' => ['type' => 'VARCHAR', 'constraint' => '255' ],
               'updated_at' => ['type' => 'datetime', 'null' => true]
         ]);
         $this->dbforge->add_key('id', true);
