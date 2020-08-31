@@ -60,7 +60,7 @@
                       <span class="badge badge-danger">Deactivate</span>
                       <?php endif; ?>
                     </td>
-                    <td class="project-actions text-center">
+                    <td class="project-actions">
                     	<?php /* ?>
                         <a class="btn btn-info btn-sm" href="<?php echo base_url(); ?>hotel_profile?hotel_id=<?php echo $admin->id; ?>">
                             <i class="fas fa-pencil-alt">

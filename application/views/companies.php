@@ -61,7 +61,7 @@
                       <span class="badge badge-danger">Deactivate</span>
                       <?php endif; ?>
                     </td>
-                    <td class="project-actions text-center">
+                    <td class="project-actions">
                         <a class="btn btn-info btn-sm" href="<?php echo base_url(); ?>company_profile?company_id=<?php echo $company->user_id; ?>">
                             <i class="fas fa-pencil-alt">
                             </i>

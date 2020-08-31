@@ -61,7 +61,7 @@
                       <span class="badge badge-danger">Deactivate</span>
                       <?php endif; ?>
                     </td>
-                    <td class="project-actions text-center">
+                    <td class="project-actions">
                       <?php /* if($session->entity == 'RFP') : ?>
                         <a class="btn btn-primary btn-sm" href="<?php echo base_url(); ?>request_link?hotel_id=<?php echo $hotel->user_id; ?>">
                             <i class="fas fa-link">

@@ -61,4 +61,3 @@
     </div>
 </form>
 </section>
-<!-- /.content

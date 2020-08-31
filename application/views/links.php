@@ -112,7 +112,7 @@
 										    </td>
 
 										    <?php if($session->entity != 'RFP') : ?>
-										        <td class="project-actions text-center">
+										        <td class="project-actions">
 										            
 										                <a class="btn btn-info btn-sm" href="<?php echo base_url(); ?>link?link_id=<?php echo $link->id; ?><?php echo ($session->entity == 'Admin') ? '&hotel_id='.$link->hotel_id : ''; ?>">
 										                    <i class="fas fa-pencil-alt">
