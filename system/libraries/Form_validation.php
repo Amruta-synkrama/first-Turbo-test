@@ -1234,7 +1234,7 @@ class CI_Form_validation {
 	 * @param	string
 	 * @return	bool
 	 */
-	public function valid_email($email)
+	/*public function valid_email($email)
 	{
 		// if (function_exists('idn_to_ascii') && preg_match('#\A([^@]+)@(.+)\z#', $str, $matches))
 		if (function_exists('idn_to_ascii') && defined('INTL_IDNA_VARIANT_UTS46') && $atpos = strpos($email, '@'))
@@ -1242,7 +1242,7 @@ class CI_Form_validation {
 			// $domain = defined('INTL_IDNA_VARIANT_UTS46')
 			// 	? idn_to_ascii($matches[2], 0, INTL_IDNA_VARIANT_UTS46)
 			// 	: idn_to_ascii($matches[2]);
-			$email = self::substr($email, 0, ++$atpos).idn_to_ascii(self::substr($email, $atpos), 0, INTL_IDNA_VARIANT_UTS46);
+			$email = substr($email, 0, ++$atpos).idn_to_ascii(substr($email, $atpos), 0, INTL_IDNA_VARIANT_UTS46);
 			// if ($domain !== FALSE)
 			// {
 			// 	$str = $matches[1].'@'.$domain;
@@ -1250,6 +1250,22 @@ class CI_Form_validation {
 		}
 		// return (bool) filter_var($str, FILTER_VALIDATE_EMAIL);
 		return (bool) filter_var($email, FILTER_VALIDATE_EMAIL);
+	}*/
+	public function valid_email($str)
+	{
+		if (function_exists('idn_to_ascii') && preg_match('#\A([^@]+)@(.+)\z#', $str, $matches))
+		{
+			$domain = defined('INTL_IDNA_VARIANT_UTS46')
+				? idn_to_ascii($matches[2], 0, INTL_IDNA_VARIANT_UTS46)
+				: idn_to_ascii($matches[2]);
+
+			if ($domain !== FALSE)
+			{
+				$str = $matches[1].'@'.$domain;
+			}
+		}
+
+		return (bool) filter_var($str, FILTER_VALIDATE_EMAIL);
 	}
 
 	// --------------------------------------------------------------------
