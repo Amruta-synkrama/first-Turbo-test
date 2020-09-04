@@ -37,13 +37,13 @@
 	<!-- Google Font: Source Sans Pro -->
 	<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 
-	<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/css/style.css">
+	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/style.css">
 
 <!-- jQuery -->
 <script src="<?php echo base_url(); ?>theme/plugins/jquery/jquery.min.js"></script>
     
 </head>
-<body class="hold-transition sidebar-mini layout-fixed accent-orange">
+<body class="hold-transition sidebar-mini layout-fixed accent-orange sidebar-collapse">
 	<div class="wrapper">
 
 		<!-- Navbar -->

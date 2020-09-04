@@ -4,6 +4,7 @@
 	<title>Turbores</title>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/css/style.css">
+	<script src="<?php echo base_url(); ?>theme/plugins/jquery/jquery.min.js"></script>
 </head>
 <body>
 	<!-- <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -11,6 +12,27 @@
 			<a class="navbar-brand text-center" href="<?php //echo base_url(); ?>">Turbores</a>
 		</div>
 	</nav> -->
+	<div class="loader" ></div>
+	<script>
+		document.addEventListener('DOMContentLoaded', function() {
+			jQuery(function($){
+				$('.loader').delay(2300).fadeOut('slow');
+			}); });
+		</script>
+		<style>
+			.loader {
+				position: fixed;
+				left: 0px;
+				top: 0px;
+				width: 100%;
+				height: 100%;
+				z-index: 9999;
+				background: url('<?php echo base_url(); ?>assets/img/turbo-res-gif.gif') 50% 50% no-repeat #fff; /* Change the #fff here to your background color of choice for the preloader fullscreen section */
+			}
+			.elementor-editor-active .loader{
+				display: none;
+			}
+		</style>
 
 <div class="container">
 	<div class="row">
