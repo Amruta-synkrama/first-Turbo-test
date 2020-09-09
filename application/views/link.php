@@ -67,7 +67,7 @@
                         </select>
                     </div>
                     <div class="form-group">
-                        <label for="inputStatus">Location</label>
+                        <label for="inputStatus">Hotel Branch</label>
                         <?php /* echo ($link_id && ($links_data[0]->link_status == '0' || $links_data[0]->link_status == '1')) ? 'disabled' : ''; */ ?>
                         <select class="form-control custom-select select2"  name="hotel_location_id" id="hotel_location_id">
                             <option selected disabled>Select one</option>

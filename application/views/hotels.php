@@ -30,7 +30,7 @@
           </div>
           <!-- /.card-header -->
           <div class="card-body">
-            <table id="example1" class="table table-bordered table-hover">
+            <table id="example1" class="table table-bordered table-hover projects">
               <thead>
                 <tr>
                   <th>Hotel Name</th>
@@ -49,7 +49,20 @@
                 </pre> -->
                 <?php foreach ($hotels_data as $hotel) :?>
                   <tr>
-                    <td><a href="<?php echo base_url(); ?>hotel?id=<?php echo $hotel->user_id; ?>"><?php echo $hotel->name; ?></a></td>
+                    <td>
+                      <a href="<?php echo base_url(); ?>hotel?id=<?php echo $hotel->user_id; ?>">
+                        <ul class="list-inline">
+                          <li class="list-inline-item">
+                            <?php if($hotel->user_logo) : ?>
+                              <img alt="Avatar" width="80px" class="table-avatar img-circle elevation-2" src="<?php echo base_url(); ?><?php echo $hotel->user_logo; ?>">
+                            <?php else: ?>
+                              <img alt="Avatar" width="80px" class="table-avatar img-circle elevation-2" src="<?php echo base_url(); ?>theme/dist/img/boxed-bg.jpg">
+                            <?php endif; ?>
+                            <span class="ml-2"><?php echo $hotel->name; ?></span>
+                          </li>
+                        </ul>
+                      </a>
+                    </td>
                     <td><?php echo $hotel->headquarter; ?></td>
                     <td><?php echo $hotel->email; ?></td>
                     <td><?php echo $hotel->website; ?></td>

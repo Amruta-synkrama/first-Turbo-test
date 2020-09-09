@@ -31,6 +31,18 @@ body.accent-orange .nav-pills .nav-link:not(.active):hover {
 }
 
 
+body.accent-orange .icheck-primary>input:first-child:checked+input[type=hidden]+label::before, 
+body.accent-orange .icheck-primary>input:first-child:checked+label::before {
+    background-color: #F27D2B;
+    border-color: #F27D2B;
+}
+
+body.accent-orange .icheck-primary>input:first-child:not(:checked):not(:disabled):hover+input[type=hidden]+label::before,
+body.accent-orange .icheck-primary>input:first-child:not(:checked):not(:disabled):hover+label::before {
+    border-color: #F27D2B;
+}
+
+
 /**custom flip css**/
 /* Skeleton */
 

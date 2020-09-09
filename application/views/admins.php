@@ -30,7 +30,7 @@
           </div>
           <!-- /.card-header -->
           <div class="card-body">
-            <table id="example1" class="table table-bordered table-hover">
+            <table id="example1" class="table table-bordered table-hover projects">
               <thead>
                 <tr>
                   <th>Admin Name</th>
@@ -47,9 +47,18 @@
                 <?php foreach ($admins_data as $admin) :?>
                   <tr>
                     <td>
-                    	<!-- <a href="<?php //echo base_url(); ?>admin?id=<?php //echo $admin->id; ?>"> -->
-                    		<?php echo $admin->name; ?>
-                    	<!-- </a> -->
+                    	<!-- <a href="<?php //echo base_url(); ?>admin?id=<?php //echo $admin->user_id; ?>"> -->
+                        <ul class="list-inline">
+                          <li class="list-inline-item">
+                            <?php if($admin->user_logo) : ?>
+                              <img alt="Avatar" width="80px" class="table-avatar img-circle elevation-2" src="<?php echo base_url(); ?><?php echo $admin->user_logo; ?>">
+                            <?php else: ?>
+                              <img alt="Avatar" width="80px" class="table-avatar img-circle elevation-2" src="<?php echo base_url(); ?>theme/dist/img/boxed-bg.jpg">
+                            <?php endif; ?>
+                            <span class="ml-2"><?php echo $admin->name; ?></span>
+                          </li>
+                        </ul>
+                      <!-- </a> -->
                     </td>
                     <td><?php echo $admin->email; ?></td>
                     <td><?php echo $admin->phone_number; ?></td>

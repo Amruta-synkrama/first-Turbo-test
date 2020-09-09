@@ -65,37 +65,47 @@
           </div>
           <!-- /.card-header -->
           <div class="card-body">
-            <strong><i class="fas fa-book mr-1"></i> Website</strong>
 
-            <p class="text-muted">
-              <a href="<?php echo $company_data->website ?>" target="_blank"><?php echo $company_data->website ?></a>
-            </p>
+            <h3>Description</h3>
 
-            <hr>
-
-            <strong><i class="fas fa-map-marker-alt mr-1"></i> Headquarter</strong>
-
-            <p class="text-muted"><?php echo $company_data->headquarter ?></p>
+            <p class="text-muted"><?php echo $company_data->cover; ?></p>
 
             <hr>
 
-            <strong><i class="fas fa-pencil-alt mr-1"></i> Contact Person</strong>
+            <div class="row mt-2">
+              <div class="col-md-4"><strong>Website</strong></div>
+              <div class="col-md-8"><p class="text-muted"><a href="<?php echo $company_data->website; ?>"><?php echo $company_data->website; ?></a></p></div>
+            </div>
+            <div class="row mt-2">
+              <div class="col-md-4"><strong>Headquarter</strong></div>
+              <div class="col-md-8"><p class="text-muted"><?php echo $company_data->headquarter; ?></p></div>
+            </div>
+            <div class="row mt-2">
+              <div class="col-md-4"><strong>Phone Number</strong></div>
+              <div class="col-md-8"><p class="text-muted"><?php echo $company_data->phone_number; ?></p></div>
+            </div>
 
-            <p class="text-muted">
-              <p class="tag tag-danger"><strong>Contact Name:</strong> <?php echo $company_data->contact_name ?></p>
-              <p class="tag tag-danger"><strong>Contact Email:</strong> <a href="#"><?php echo $company_data->contact_email ?></a></p>
-              <p class="tag tag-danger"><strong>Contact Number:</strong> <a href="#"><?php echo $company_data->contact_no ?></a></p>
-            </p>
+            <p class="mt-2"><strong>Contact Person</strong></p>
+            <div class="row">
+              <div class="col-md-4"><strong>Contact Name</strong></div>
+              <div class="col-md-8"><p class="text-muted"><?php echo $company_data->contact_name; ?></p></div>
+            </div>
+            <div class="row">
+              <div class="col-md-4"><strong>Contact Email</strong></div>
+              <div class="col-md-8"><p class="text-muted"><a href="mailto:<?php echo $company_data->contact_email; ?>"><?php echo $company_data->contact_email; ?></a></p></div>
+            </div>
+            <div class="row">
+              <div class="col-md-4"><strong>Contact Number</strong></div>
+              <div class="col-md-8"><p class="text-muted"><a href="tel:<?php echo $company_data->contact_no; ?>"><?php echo $company_data->contact_no; ?></a></p></div>
+            </div>
 
-            <hr>
+            <!-- <hr> -->
 
-            <strong><i class="far fa-file-alt mr-1"></i> Description</strong>
-
-            <p class="text-muted"><?php echo $company_data->cover ?></p>
+            
           </div>
           <!-- /.card-body -->
         </div>
-        <!-- /.card -->
+        <!-- /.card -->  
 
         <div class="card">
           <div class="card-header p-2">
@@ -152,7 +162,7 @@
                   <div class="form-group row">
                     <label for="inputExperience" class="col-sm-2 col-form-label">Description</label>
                     <div class="col-sm-10">
-                      <textarea name="cover" id="cover" class="form-control" value="<?php echo $company_data->cover; ?>"><?php echo $company_data->cover; ?></textarea>
+                      <textarea rows="8" name="cover" id="cover" class="form-control" value="<?php echo $company_data->cover; ?>"><?php echo $company_data->cover; ?></textarea>
                     </div>
                   </div>
                   <div class="form-group row">

@@ -31,6 +31,12 @@ class Hotel extends CI_Controller {
 		$data['hotels_data'] = $this->user_lists_model->get_hotels($hotel_id)[0];
 		$data['hotel_locations'] = $this->hotel_branches_model->get_location_data($hotel_id);
 		$data['hotel_links_count'] = $this->user_model->get_links_count($hotel_id, 'Hotel');
+		$data['amenities_general_data'] = $this->user_model->get_general_amenities();
+		$data['amenities_data'] = $this->user_model->get_amenities($hotel_id,'amenities');
+		$data['nearby_data'] = $this->user_model->get_amenities($hotel_id,'nearby');
+		$data['restaurants_data'] = $this->user_model->get_amenities($hotel_id,'restaurants');
+		$data['gallery_data'] = $this->user_model->get_amenities($hotel_id,'hotel_gallery');
+		$data['controller'] = $this;
 		$data['hotel_id'] = $hotel_id;
 		/*if($data['hotels_data']->status == '2') {
 			redirect('404');
@@ -41,6 +47,11 @@ class Hotel extends CI_Controller {
 		$this->load->view('templates/header', $data);
 		$this->load->view('hotel', $data);
 		$this->load->view('templates/footer', $data);
+	}
+
+
+	public function hotel_search_amenities($value) {
+		return $this->user_model->search_amenities($value);
 	}
 		
 }

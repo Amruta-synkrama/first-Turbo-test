@@ -77,33 +77,43 @@
           </div>
           <!-- /.card-header -->
           <div class="card-body">
-            <strong><i class="fas fa-book mr-1"></i> Website</strong>
 
-            <p class="text-muted">
-              <a href="<?php echo $companies_data->website; ?>"><?php echo $companies_data->website; ?></a>
-            </p>
-
-            <hr>
-
-            <strong><i class="fas fa-map-marker-alt mr-1"></i> Headquarter</strong>
-
-            <p class="text-muted"><?php echo $companies_data->headquarter; ?></p>
-
-            <hr>
-
-            <strong><i class="fas fa-pencil-alt mr-1"></i> Contact Person</strong>
-
-            <p class="text-muted">
-              <p class="tag tag-danger"><strong>Contact Name:</strong> <?php echo $companies_data->contact_name; ?></p>
-              <p class="tag tag-danger"><strong>Contact Email:</strong> <a href="#"><?php echo $companies_data->contact_email; ?></a></p>
-              <p class="tag tag-danger"><strong>Contact Number:</strong> <a href="#"><?php echo $companies_data->contact_no; ?></a></p>
-            </p>
-
-            <hr>
-
-            <strong><i class="far fa-file-alt mr-1"></i> Description</strong>
+            <h3>Description</h3>
 
             <p class="text-muted"><?php echo $companies_data->cover; ?></p>
+
+            <hr>
+
+            <div class="row mt-2">
+              <div class="col-md-4"><strong>Website</strong></div>
+              <div class="col-md-8"><p class="text-muted"><a href="<?php echo $companies_data->website; ?>"><?php echo $companies_data->website; ?></a></p></div>
+            </div>
+            <div class="row mt-2">
+              <div class="col-md-4"><strong>Headquarter</strong></div>
+              <div class="col-md-8"><p class="text-muted"><?php echo $companies_data->headquarter; ?></p></div>
+            </div>
+            <div class="row mt-2">
+              <div class="col-md-4"><strong>Phone Number</strong></div>
+              <div class="col-md-8"><p class="text-muted"><?php echo $companies_data->phone_number; ?></p></div>
+            </div>
+
+            <p class="mt-2"><strong>Contact Person</strong></p>
+            <div class="row">
+              <div class="col-md-4"><strong>Contact Name</strong></div>
+              <div class="col-md-8"><p class="text-muted"><?php echo $companies_data->contact_name; ?></p></div>
+            </div>
+            <div class="row">
+              <div class="col-md-4"><strong>Contact Email</strong></div>
+              <div class="col-md-8"><p class="text-muted"><a href="mailto:<?php echo $companies_data->contact_email; ?>"><?php echo $companies_data->contact_email; ?></a></p></div>
+            </div>
+            <div class="row">
+              <div class="col-md-4"><strong>Contact Number</strong></div>
+              <div class="col-md-8"><p class="text-muted"><a href="tel:<?php echo $companies_data->contact_no; ?>"><?php echo $companies_data->contact_no; ?></a></p></div>
+            </div>
+
+            <!-- <hr> -->
+
+            
           </div>
           <!-- /.card-body -->
         </div>

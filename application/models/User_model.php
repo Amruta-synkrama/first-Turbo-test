@@ -119,6 +119,72 @@ class User_model extends CI_Model {
 		return $this->db->update('tr_users',$data);
         // return $this->db->delete('tr_users', array('id' => $user_id));
     }	
+
+    public function get_general_amenities() {
+    	$amenities = array(
+    		array('icon'=> 'child_friendly', 'name' => 'Babysitting'),
+    		array('icon'=> 'pool', 'name' => 'Pool'),
+    		array('icon'=> 'ac_unit', 'name' => 'Air Conditioning'),
+    		array('icon'=> 'spa', 'name' => 'Spa'),
+    		array('icon'=> 'local_dining', 'name' => 'Restaurant'),
+    		array('icon'=> 'fitness_center', 'name' => 'Gym'),
+    		array('icon'=> 'free_breakfast', 'name' => 'Breakfast Available'),
+    		array('icon'=> 'business_center', 'name' => 'Business Services'),
+    		array('icon'=> 'local_parking', 'name' => 'Parking Available'),
+    		array('icon'=> 'local_bar', 'name' => 'Bar'),
+    		array('icon'=> 'local_laundry_service', 'name' => 'Laundry'),
+    		array('icon'=> 'room_service', 'name' => 'Room Service'),
+    		array('icon'=> 'local_convenience_store', 'name' => '24/7 Front Desk'),
+    		array('icon'=> 'hot_tub', 'name' => 'Hot Tub')
+    	);
+
+    	return $amenities;
+    }
+
+    public function update_hotel_meta($data, $id) {
+    	$this->db->where('user_id', $id);
+    	$this->db->where('meta_key', $data['key']);
+    	$query = $this->db->get("tr_user_meta");
+		if($query->result()) {
+			$enter_id = $query->result()[0]->id;
+			$this->db->where('id',$enter_id);
+			$this->db->where('meta_key',$data['key']);
+			$update_data = array('meta_value' => $data['value']);
+        	return $this->db->update('tr_user_meta',$update_data);
+		} else {
+			$insert_data = array(
+				'user_id' => $id,
+				'meta_key' => $data['key'],
+				'meta_value' => $data['value']
+			);
+			return $this->db->insert('tr_user_meta', $insert_data);
+		}
+	}
+
+	public function get_amenities($user_id,$key) {
+    	$this->db->where('user_id', $user_id);
+    	$this->db->where('meta_key', $key);
+    	$query = $this->db->get("tr_user_meta");
+		if($query->result()) {
+			return unserialize($query->result()[0]->meta_value);
+		} else {
+			return array();
+		}
+	}
+
+
+	public function search_amenities($value) {
+		$search_array = $this->get_general_amenities();
+		$key = 'name';
+		$results = array(); 
+
+		foreach ($search_array as $array) {
+			if($array['name'] == $value) {
+				return $array;
+			}
+		}
+	}
+
 }
 /* End of file '/User_model.php' */
 /* Location: ./application/models//User_model.php */

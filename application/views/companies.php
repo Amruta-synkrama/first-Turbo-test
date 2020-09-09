@@ -30,7 +30,7 @@
           </div>
           <!-- /.card-header -->
           <div class="card-body">
-            <table id="example1" class="table table-bordered table-hover">
+            <table id="example1" class="table table-bordered table-hover projects">
               <thead>
                 <tr>
                   <th>Company Name</th>
@@ -49,7 +49,20 @@
                 </pre> -->
                 <?php foreach ($companies_data as $company) :?>
                   <tr>
-                    <td><a href="<?php echo base_url(); ?>company?id=<?php echo $company->user_id; ?>"><?php echo $company->name; ?></a></td>
+                    <td>
+                      <a href="<?php echo base_url(); ?>company?id=<?php echo $company->user_id; ?>">
+                        <ul class="list-inline">
+                          <li class="list-inline-item">
+                            <?php if($company->user_logo) : ?>
+                              <img alt="Avatar" width="80px" class="table-avatar img-circle elevation-2" src="<?php echo base_url(); ?><?php echo $company->user_logo; ?>">
+                            <?php else: ?>
+                              <img alt="Avatar" width="80px" class="table-avatar img-circle elevation-2" src="<?php echo base_url(); ?>theme/dist/img/boxed-bg.jpg">
+                            <?php endif; ?>
+                            <span class="ml-2"><?php echo $company->name; ?></span>
+                          </li>
+                        </ul>
+                      </a>
+                    </td>
                     <td><?php echo $company->headquarter; ?></td>
                     <td><?php echo $company->email; ?></td>
                     <td><?php echo $company->website; ?></td>

@@ -32,9 +32,19 @@ class Hotel_profile extends CI_Controller {
 		$data['hotel_user_data'] = $this->user_model->get_user_data($hotel_id);
 		$data['user_data'] = $this->user_model->get_user_data($user_id);
 		$data['session'] = $this->session->userdata('user_data');
+		$data['amenities_general_data'] = $this->user_model->get_general_amenities();
+		$data['amenities_data'] = $this->user_model->get_amenities($hotel_id,'amenities');
+		$data['nearby_data'] = $this->user_model->get_amenities($hotel_id,'nearby');
+		$data['restaurants_data'] = $this->user_model->get_amenities($hotel_id,'restaurants');
+		$data['gallery_data'] = $this->user_model->get_amenities($hotel_id,'hotel_gallery');
+		$data['controller'] = $this;
 		$this->load->view('templates/header', $data);
 		$this->load->view('hotel_profile', $data);
 		$this->load->view('templates/footer', $data);
+	}
+
+	public function hotel_search_amenities($value) {
+		return $this->user_model->search_amenities($value);
 	}
 	
 	public function update_hotel_details() {
@@ -131,6 +141,198 @@ class Hotel_profile extends CI_Controller {
 		/*} else {
 			$this->index();
 		}*/
+	}
+
+
+	public function upload_gallery(){
+
+		$user_id = $this->session->userdata('id');
+		if($this->session->userdata('user_data')->entity == 'Admin') {
+			$hotel_id = $this->input->get('hotel_id');
+		} else {
+			$hotel_id = $user_id;
+		}
+
+		$data = [];
+		$showdata = [];
+		// $data['hotel_gallery'] = unserialize($this->user_model->get_amenities($hotel_id,'hotel_gallery'));
+
+		$count = count($_FILES['files']['name']);
+		if($count) {
+			for($i=0;$i<$count;$i++){
+
+				if(!empty($_FILES['files']['name'][$i])){
+					// $_FILES['file'];
+					$_FILES['file_new']['name'] = $_FILES['files']['name'][$i];
+					$_FILES['file_new']['type'] = $_FILES['files']['type'][$i];
+					$_FILES['file_new']['tmp_name'] = $_FILES['files']['tmp_name'][$i];
+					$_FILES['file_new']['error'] = $_FILES['files']['error'][$i];
+					$_FILES['file_new']['size'] = $_FILES['files']['size'][$i];
+
+					$config['upload_path'] = './assets/img/gallery/';
+					$config['allowed_types'] = 'jpg|jpeg|png|JPG|gif';
+					$config['max_size'] = 5000;
+					// $config['file_name'] = $_FILES['files']['name'][$i];
+
+					$this->load->library('upload'); 
+					$this->upload->initialize($config);
+
+					if($this->upload->do_upload('file_new')){
+						$uploadData = $this->upload->data();
+						$filename = $uploadData['file_name'];
+
+						$showdata['totalFiles'][] = $filename;
+						$data['hotel_gallery'][] = 'assets/img/gallery/'.$filename;
+					}
+				}
+
+			}
+			print_r($data);
+			$this->index();
+			return;
+			$add_data = array(
+				'key'  => 'hotel_gallery',
+				'value' => serialize($data['hotel_gallery'])
+			);
+			if($this->user_model->update_hotel_meta($add_data, $hotel_id)) {
+				$this->session->set_flashdata('upload_gallery_message', 'Data updated');
+				$this->session->set_flashdata('success_message', 'Data updated');
+				if($this->session->userdata('user_data')->entity == 'Admin') {
+					redirect('hotel_profile?hotel_id='.$hotel_id);
+				} else {
+					$data_user_data = $this->user_model->get_user_data($hotel_id);
+					$this->session->set_userdata('user_data', $data_user_data);
+					redirect('hotel_profile');
+				}
+			} else {
+				if($this->session->userdata('user_data')->entity == 'Admin') {
+					redirect('hotel_profile?hotel_id='.$hotel_id);
+				} else {
+					redirect('hotel_profile');
+				}
+			}
+		}
+		/*} else {
+			$this->index();
+		}*/
+	}
+
+	public function update_amenities() {
+		$user_id = $this->session->userdata('id');
+		if($this->session->userdata('user_data')->entity == 'Admin') {
+			$hotel_id = $this->input->get('hotel_id');
+		} else {
+			$hotel_id = $user_id;
+		}
+		$this->form_validation->set_rules('amenities[]','amenities','trim|required');
+
+		if($this->form_validation->run()) {
+			if(count($this->input->post('amenities[]')) > 6) {
+				$this->session->set_flashdata('amenities_error_message', 'You can add only 6 amenities');
+				$this->index();
+				return;
+			}
+			$data = array(
+				'key'  => 'amenities',
+				'value' => serialize($this->input->post('amenities[]'))
+			);
+			// print_r($data);
+			if($this->user_model->update_hotel_meta($data, $hotel_id)) {
+				$this->session->set_flashdata('amenities_message', 'Data updated');
+				$this->session->set_flashdata('success_message', 'Data updated');
+				if($this->session->userdata('user_data')->entity == 'Admin') {
+					redirect('hotel_profile?hotel_id='.$hotel_id);
+				} else {
+					redirect('hotel_profile');
+				}
+			} else {
+				if($this->session->userdata('user_data')->entity == 'Admin') {
+					redirect('hotel_profile?hotel_id='.$hotel_id);
+				} else {
+					redirect('hotel_profile');
+				}
+			}
+		} else {
+			$this->index();
+		}
+	}
+
+	public function update_nearby() {
+		$user_id = $this->session->userdata('id');
+		if($this->session->userdata('user_data')->entity == 'Admin') {
+			$hotel_id = $this->input->get('hotel_id');
+		} else {
+			$hotel_id = $user_id;
+		}
+		$this->form_validation->set_rules('nearby[]','nearby','trim|required');
+
+		if($this->form_validation->run()) {
+			if(count($this->input->post('nearby[]')) > 5) {
+				$this->session->set_flashdata('nearby_error_message', 'You can add only 5 nearby');
+				$this->index();
+			}
+			$data = array(
+				'key'  => 'nearby',
+				'value' => serialize($this->input->post('nearby[]'))
+			);
+			// print_r($data);
+			if($this->user_model->update_hotel_meta($data, $hotel_id)) {
+				$this->session->set_flashdata('nearby_message', 'Data updated');
+				$this->session->set_flashdata('success_message', 'Data updated');
+				if($this->session->userdata('user_data')->entity == 'Admin') {
+					redirect('hotel_profile?hotel_id='.$hotel_id);
+				} else {
+					redirect('hotel_profile');
+				}
+			} else {
+				if($this->session->userdata('user_data')->entity == 'Admin') {
+					redirect('hotel_profile?hotel_id='.$hotel_id);
+				} else {
+					redirect('hotel_profile');
+				}
+			}
+		} else {
+			$this->index();
+		}
+	}
+
+	public function update_nearby_rest() {
+		$user_id = $this->session->userdata('id');
+		if($this->session->userdata('user_data')->entity == 'Admin') {
+			$hotel_id = $this->input->get('hotel_id');
+		} else {
+			$hotel_id = $user_id;
+		}
+		$this->form_validation->set_rules('restaurants[]','restaurants','trim|required');
+
+		if($this->form_validation->run()) {
+			if(count($this->input->post('restaurants[]')) > 5) {
+				$this->session->set_flashdata('restaurants_error_message', 'You can add only 5 restaurants');
+				$this->index();
+			}
+			$data = array(
+				'key'  => 'restaurants',
+				'value' => serialize($this->input->post('restaurants[]'))
+			);
+			// print_r($data);
+			if($this->user_model->update_hotel_meta($data, $hotel_id)) {
+				$this->session->set_flashdata('restaurants_message', 'Data updated');
+				$this->session->set_flashdata('success_message', 'Data updated');
+				if($this->session->userdata('user_data')->entity == 'Admin') {
+					redirect('hotel_profile?hotel_id='.$hotel_id);
+				} else {
+					redirect('hotel_profile');
+				}
+			} else {
+				if($this->session->userdata('user_data')->entity == 'Admin') {
+					redirect('hotel_profile?hotel_id='.$hotel_id);
+				} else {
+					redirect('hotel_profile');
+				}
+			}
+		} else {
+			$this->index();
+		}
 	}
 	
 	public function update_contact_details() {
