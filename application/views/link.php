@@ -72,7 +72,7 @@
                         <select class="form-control custom-select select2"  name="hotel_location_id" id="hotel_location_id">
                             <option selected disabled>Select one</option>
                             <?php foreach ($hotel_locations as $location) : ?>
-                                <option <?php echo ($link_id && $links_data[0]->hotel_location_id == $location->id) ? 'selected' : ''; ?> value="<?php echo $location->id ?>"><?php echo $location->LOCATION ?></option>
+                                <option <?php echo ($link_id && $links_data[0]->hotel_location_id == $location->id) ? 'selected' : ''; ?> value="<?php echo $location->id ?>"><?php echo $location->branch_name; ?>, <?php echo $location->LOCATION ?></option>
                             <?php endforeach; ?>
                         </select>
                     </div>

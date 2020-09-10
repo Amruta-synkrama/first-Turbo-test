@@ -19,41 +19,81 @@
 <section class="content">
   <div class="container-fluid">
     <div class="row">
-
+      <?php if($gallery_data) : ?>
       <div class="col-md-12">
         <div class="card">
           <div class="card-body">
             <!-- Post -->
             <div class="post">
               <!-- /.user-block -->
+              
               <div class="row mb-3">
+                <?php $i = 1; ?>
+                <?php foreach ($gallery_data as $image) : ?>
+                  <?php if($i == 1) : ?>
                 <div class="col-sm-6">
-                  <img class="img-fluid" src="<?php echo base_url(); ?>theme/dist/img/photo1.png" alt="Photo">
+                  <a class="example-image-link" data-lightbox="example-2" href="<?php echo base_url(); ?><?php echo $image; ?>">
+                    <img class="img-fluid" src="<?php echo base_url(); ?><?php echo $image; ?>" alt="Photo">
+                  </a>
                 </div>
+                <?php elseif($i == 2 ) : ?>
                 <!-- /.col -->
                 <div class="col-sm-6">
                   <div class="row">
                     <div class="col-sm-6">
-                      <img class="img-fluid mb-3" src="<?php echo base_url(); ?>theme/dist/img/photo2.png" alt="Photo">
-                      <img class="img-fluid" src="<?php echo base_url(); ?>theme/dist/img/photo3.jpg" alt="Photo">
+                      <a class="example-image-link" data-lightbox="example-2" href="<?php echo base_url(); ?><?php echo $image; ?>">
+                        <img class="img-fluid mb-3" src="<?php echo base_url(); ?><?php echo $image; ?>" alt="Photo">
+                      </a>
+                <?php elseif($i == 3) : ?>
+                      <a class="example-image-link" data-lightbox="example-2" href="<?php echo base_url(); ?><?php echo $image; ?>">
+                        <img class="img-fluid mb-3" src="<?php echo base_url(); ?><?php echo $image; ?>" alt="Photo">
+                      </a>
                     </div>
+                <?php elseif($i == 4 ) : ?>
                     <!-- /.col -->
                     <div class="col-sm-6">
-                      <img class="img-fluid mb-3" src="<?php echo base_url(); ?>theme/dist/img/photo4.jpg" alt="Photo">
-                      <img class="img-fluid" src="<?php echo base_url(); ?>theme/dist/img/photo1.png" alt="Photo">
+                      <a class="example-image-link" data-lightbox="example-2" href="<?php echo base_url(); ?><?php echo $image; ?>">
+                        <img class="img-fluid mb-3" src="<?php echo base_url(); ?><?php echo $image; ?>" alt="Photo">
+                      </a>
+                <?php elseif($i == 5 ) : ?>
+                      <a class="example-image-link" data-lightbox="example-2" href="<?php echo base_url(); ?><?php echo $image; ?>">
+                        <img class="img-fluid mb-3" src="<?php echo base_url(); ?><?php echo $image; ?>" alt="Photo">
+                      </a>
                     </div>
                     <!-- /.col -->
+                    
                   </div>
                   <!-- /.row -->
                 </div>
                 <!-- /.col -->
+              <?php else: ?>
+                <a class="example-image-link" data-lightbox="example-2" href="<?php echo base_url(); ?><?php echo $image; ?>"></a>
+              <?php endif; ?>
+              <?php $i++; ?>
+              <?php endforeach; ?>
+              <?php if($i == 2) : ?>
+                <!-- </div> -->
+              <?php elseif($i == 3) : ?>
+                  </div>
+                </div>
               </div>
+              <?php elseif($i == 4) : ?>
+                </div>
+              </div>
+              <?php elseif($i == 5 ) : ?>
+                  </div>
+                </div>
+              </div>
+              <?php endif; ?>
+              </div>
+              
               <!-- /.row -->
             </div>
             <!-- /.post -->
           </div>
         </div>
       </div>
+      <?php endif; ?>
 
       <div class="col-md-3">
 
@@ -563,12 +603,25 @@
                   </div>
                 </form>
 
-                <div class="row">
+                <div class="row show-gallery-images" data-gallery-count="<?php echo count($gallery_data); ?>">
                   <?php if($gallery_data) : ?>
+                    <?php $i = 0; ?>
                     <?php foreach ($gallery_data as $image) : ?>
-                      <div class="col-sm-3">
-                        <img src="<?php echo base_url(); ?><?php echo $image; ?>" alt="">
+                      <div class="col-sm-3 mt-4 remove-img-gallery-wrap-<?php echo $i; ?> ">
+                        <div class="card"  style="width:210px;">
+                          <div class="p-2">
+                            <div class="card-tools text-right card-tools-cust-abs">
+                              <button title="remove" type="button" class="btn btn-tool text-danger remove-img-gallery" data-img-id="<?php echo $i; ?>"><i class="fas fa-times"></i>
+                              </button>
+                            </div>
+                            <a class="example-image-link" data-lightbox="example-1" href="<?php echo base_url(); ?><?php echo $image; ?>">
+                            <img width="190px" src="<?php echo base_url(); ?><?php echo $image; ?>" alt="">
+                            </a>
+                            <!-- /.card-tools -->
+                          </div>
+                        </div>
                       </div>
+                      <?php $i++; ?>
                     <?php endforeach; ?>
                   <?php endif; ?>
                 </div>
@@ -787,14 +840,46 @@
 
     $('body').on('click',"button[type = 'submit']#file-submit",function(e){
        var $fileUpload = $("input[type='file']#files");
-       if (parseInt($fileUpload.get(0).files.length) > 15){
+       var max_upload = 15 - parseInt($('.show-gallery-images').data('gallery-count'));
+       console.log(max_upload);
+       // e.preventDefault();
+       if (parseInt($fileUpload.get(0).files.length) > max_upload){
           Swal.fire({
             icon: 'error',
             title: 'Oops...',
-            text: 'You can only allowed to upload a maximum of 15 files!'
+            text: 'You can only allowed to upload a maximum of '+max_upload+' files!'
           });
           e.preventDefault();
        }
+    });
+
+    $('body').on('click','.remove-img-gallery',function(){
+      var imgId = $(this).data('img-id');
+      var hotel_id = '<?php echo $hotel_id; ?>';
+      console.log(imgId);
+
+      var url= "<?php echo base_url('hotel_profile/remove_image') ?>"; 
+      Swal.fire({
+        title: 'Are you sure?',
+        text: "You won't be able to revert this!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, delete it!'
+      }).then((result) => {
+        if (result.value) {
+          $.ajax({ 
+            type: "POST", //send with post 
+            url: url, 
+            data: {'value':imgId, 'hotel_id':hotel_id}, 
+            success:function(data){ 
+              $('.show-gallery-images').html(data);
+              toastr.success('Deleted Successfully');
+            } 
+          });
+        }
+      });
     });
 
   });

@@ -38,6 +38,7 @@ class Hotel_profile extends CI_Controller {
 		$data['restaurants_data'] = $this->user_model->get_amenities($hotel_id,'restaurants');
 		$data['gallery_data'] = $this->user_model->get_amenities($hotel_id,'hotel_gallery');
 		$data['controller'] = $this;
+		$data['hotel_id'] = $hotel_id;
 		$this->load->view('templates/header', $data);
 		$this->load->view('hotel_profile', $data);
 		$this->load->view('templates/footer', $data);
@@ -66,7 +67,7 @@ class Hotel_profile extends CI_Controller {
 				'cover'  => $this->input->post('cover')
 			);
 			if($this->user_model->update_hotel_data($data, $hotel_id)) {
-				$this->session->set_flashdata('hotel_message', 'Data updated');
+				// $this->session->set_flashdata('hotel_message', 'Data updated');
 				$this->session->set_flashdata('success_message', 'Data updated');
 				if($this->session->userdata('user_data')->entity == 'Admin') {
 					redirect('hotel_profile?hotel_id='.$hotel_id);
@@ -121,7 +122,7 @@ class Hotel_profile extends CI_Controller {
 				$data['user_logo'] = 'assets/img/logos/'.$file;
 
 				if($this->user_model->update_user_data($data, $hotel_id)) {
-					$this->session->set_flashdata('upload_message', 'Data updated');
+					// $this->session->set_flashdata('upload_message', 'Data updated');
 					$this->session->set_flashdata('success_message', 'Data updated');
 					if($this->session->userdata('user_data')->entity == 'Admin') {
 						redirect('hotel_profile?hotel_id='.$hotel_id);
@@ -155,7 +156,7 @@ class Hotel_profile extends CI_Controller {
 
 		$data = [];
 		$showdata = [];
-		// $data['hotel_gallery'] = unserialize($this->user_model->get_amenities($hotel_id,'hotel_gallery'));
+		$hotel_gallery = $this->user_model->get_amenities($hotel_id,'hotel_gallery');
 
 		$count = count($_FILES['files']['name']);
 		if($count) {
@@ -182,20 +183,20 @@ class Hotel_profile extends CI_Controller {
 						$filename = $uploadData['file_name'];
 
 						$showdata['totalFiles'][] = $filename;
-						$data['hotel_gallery'][] = 'assets/img/gallery/'.$filename;
+						array_push($hotel_gallery, 'assets/img/gallery/'.$filename);
 					}
 				}
 
 			}
-			print_r($data);
+			/*print_r($hotel_gallery);
 			$this->index();
-			return;
+			return;*/
 			$add_data = array(
 				'key'  => 'hotel_gallery',
-				'value' => serialize($data['hotel_gallery'])
+				'value' => serialize($hotel_gallery)
 			);
 			if($this->user_model->update_hotel_meta($add_data, $hotel_id)) {
-				$this->session->set_flashdata('upload_gallery_message', 'Data updated');
+				// $this->session->set_flashdata('upload_gallery_message', 'Data updated');
 				$this->session->set_flashdata('success_message', 'Data updated');
 				if($this->session->userdata('user_data')->entity == 'Admin') {
 					redirect('hotel_profile?hotel_id='.$hotel_id);
@@ -215,6 +216,48 @@ class Hotel_profile extends CI_Controller {
 		/*} else {
 			$this->index();
 		}*/
+	}
+
+
+	public function remove_image() {
+		$value = $this->input->post();
+		$img_id = $value['value'];
+		$hotel_id = $value['hotel_id'];
+		// print_r($value['value']); 
+		$gallery_data = $this->user_model->get_amenities($hotel_id,'hotel_gallery');
+		$gallery_data = array_values($gallery_data);
+		unset($gallery_data[$img_id]);
+		$add_data = array(
+			'key'  => 'hotel_gallery',
+			'value' => serialize($gallery_data)
+		);
+		$this->user_model->update_hotel_meta($add_data, $hotel_id);
+		$gallery_data = $this->user_model->get_amenities($hotel_id,'hotel_gallery');
+		ob_start();
+		?>
+		<?php if($gallery_data) : ?>
+		  <?php $i = 0; ?>
+		  <?php foreach ($gallery_data as $image) : ?>
+		    <div class="col-sm-3 mt-4 remove-img-gallery-wrap-<?php echo $i; ?> ">
+		      <div class="card" style="width:210px;">
+		        <div class="p-2">
+		          <div class="card-tools text-right card-tools-cust-abs">
+		            <button title="remove" type="button" class="btn btn-tool text-danger remove-img-gallery" data-img-id="<?php echo $i; ?>"><i class="fas fa-times"></i>
+		            </button>
+		          </div>
+		          <a class="example-image-link" data-lightbox="example-1" href="<?php echo base_url(); ?><?php echo $image; ?>">
+		          <img width="190px" src="<?php echo base_url(); ?><?php echo $image; ?>" alt="">
+		          </a>
+		          <!-- /.card-tools -->
+		        </div>
+		      </div>
+		    </div>
+		    <?php $i++; ?>
+		  <?php endforeach; ?>
+		<?php endif; ?>
+		<?php
+		$html = ob_get_clean();
+		echo $html;
 	}
 
 	public function update_amenities() {
@@ -238,7 +281,7 @@ class Hotel_profile extends CI_Controller {
 			);
 			// print_r($data);
 			if($this->user_model->update_hotel_meta($data, $hotel_id)) {
-				$this->session->set_flashdata('amenities_message', 'Data updated');
+				// $this->session->set_flashdata('amenities_message', 'Data updated');
 				$this->session->set_flashdata('success_message', 'Data updated');
 				if($this->session->userdata('user_data')->entity == 'Admin') {
 					redirect('hotel_profile?hotel_id='.$hotel_id);
@@ -277,7 +320,7 @@ class Hotel_profile extends CI_Controller {
 			);
 			// print_r($data);
 			if($this->user_model->update_hotel_meta($data, $hotel_id)) {
-				$this->session->set_flashdata('nearby_message', 'Data updated');
+				// $this->session->set_flashdata('nearby_message', 'Data updated');
 				$this->session->set_flashdata('success_message', 'Data updated');
 				if($this->session->userdata('user_data')->entity == 'Admin') {
 					redirect('hotel_profile?hotel_id='.$hotel_id);
@@ -316,7 +359,7 @@ class Hotel_profile extends CI_Controller {
 			);
 			// print_r($data);
 			if($this->user_model->update_hotel_meta($data, $hotel_id)) {
-				$this->session->set_flashdata('restaurants_message', 'Data updated');
+				// $this->session->set_flashdata('restaurants_message', 'Data updated');
 				$this->session->set_flashdata('success_message', 'Data updated');
 				if($this->session->userdata('user_data')->entity == 'Admin') {
 					redirect('hotel_profile?hotel_id='.$hotel_id);
@@ -353,7 +396,7 @@ class Hotel_profile extends CI_Controller {
 				'contact_no'  => $this->input->post('contact_no')
 			);
 			if($this->user_model->update_hotel_data($data, $hotel_id)) {
-				$this->session->set_flashdata('contact_message', 'Data updated');
+				// $this->session->set_flashdata('contact_message', 'Data updated');
 				$this->session->set_flashdata('success_message', 'Data updated');
 				if($this->session->userdata('user_data')->entity == 'Admin') {
 					redirect('hotel_profile?hotel_id='.$hotel_id);
@@ -388,7 +431,7 @@ class Hotel_profile extends CI_Controller {
 				'phone_number'  => $this->input->post('phone_number')
 			);
 			if($this->user_model->update_user_data($data, $hotel_id)) {
-				$this->session->set_flashdata('user_message', 'Data updated');
+				// $this->session->set_flashdata('user_message', 'Data updated');
 				$this->session->set_flashdata('success_message', 'Data updated');
 				if($this->session->userdata('user_data')->entity == 'Admin') {
 					redirect('hotel_profile?hotel_id='.$hotel_id);
@@ -425,7 +468,7 @@ class Hotel_profile extends CI_Controller {
 				'password'  => $encrypted_password
 			);
 			if($this->user_model->update_user_data($data, $hotel_id)) {
-				$this->session->set_flashdata('user_message', 'Data updated');
+				// $this->session->set_flashdata('user_message', 'Data updated');
 				$this->session->set_flashdata('success_message', 'Data updated');
 				if($this->session->userdata('user_data')->entity == 'Admin') {
 					redirect('hotel_profile?hotel_id='.$hotel_id);

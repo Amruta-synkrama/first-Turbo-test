@@ -41,7 +41,7 @@ class Admin_profile extends CI_Controller {
 				'phone_number'  => $this->input->post('phone_number')
 			);
 			if($this->user_model->update_user_data($data, $user_id)) {
-				$this->session->set_flashdata('user_message', 'Data updated');
+				// $this->session->set_flashdata('user_message', 'Data updated');
 				$this->session->set_flashdata('success_message', 'Data updated');
 				redirect('admin_profile');
 			} else {
@@ -64,7 +64,7 @@ class Admin_profile extends CI_Controller {
 				'password'  => $encrypted_password
 			);
 			if($this->user_model->update_user_data($data, $user_id)) {
-				$this->session->set_flashdata('user_message', 'Data updated');
+				// $this->session->set_flashdata('user_message', 'Data updated');
 				$this->session->set_flashdata('success_message', 'Data updated');
 				redirect('admin_profile');
 			} else {
@@ -100,7 +100,7 @@ class Admin_profile extends CI_Controller {
 			$data['user_logo'] = 'assets/img/logos/'.$file;
 
 			if($this->user_model->update_user_data($data, $user_id)) {
-				$this->session->set_flashdata('upload_message', 'Data updated');
+				// $this->session->set_flashdata('upload_message', 'Data updated');
 				$this->session->set_flashdata('success_message', 'Data updated');
 				$data_user_data = $this->user_model->get_user_data($user_id);
 				$this->session->set_userdata('user_data', $data_user_data);

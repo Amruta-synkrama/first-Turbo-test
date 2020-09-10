@@ -24,6 +24,7 @@
 </script>
 <!-- Bootstrap 4 -->
 <script src="<?php echo base_url(); ?>theme/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script type="text/javascript" src="<?php echo base_url(); ?>theme/dist/js/lightbox.js"></script>
 <!-- Select2 -->
 <script src="<?php echo base_url(); ?>theme/plugins/select2/js/select2.full.min.js"></script>
 <!-- ChartJS -->
@@ -145,6 +146,10 @@
       });
     });
     
+    
+    // $("a.fancy-example").fancybox({
+    //   'titleShow'     : false
+    // });
     
   });
 </script>

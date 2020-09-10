@@ -43,7 +43,7 @@
 								<thead>
 									<tr>
 										<th>Company Name</th>
-										<th>Hotel</th>
+										<th>Hotel Branch</th>
 										<th>Location</th>
 										<th>Link</th>
 										<th>Expiry Date</th>
@@ -142,7 +142,7 @@
 								<tfoot>
 									<tr>
 										<th>Company Name</th>
-										<th>Hotel</th>
+										<th>Hotel Branch</th>
 										<th>Location</th>
 										<th>Link</th>
 										<th>Expiry Date</th>

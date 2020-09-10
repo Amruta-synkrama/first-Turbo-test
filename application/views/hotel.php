@@ -19,40 +19,81 @@
 <section class="content">
   <div class="container-fluid">
     <div class="row">
+      <?php if($gallery_data) : ?>
       <div class="col-md-12">
         <div class="card">
           <div class="card-body">
             <!-- Post -->
             <div class="post">
               <!-- /.user-block -->
+              
               <div class="row mb-3">
+                <?php $i = 1; ?>
+                <?php foreach ($gallery_data as $image) : ?>
+                  <?php if($i == 1) : ?>
                 <div class="col-sm-6">
-                  <img class="img-fluid" src="<?php echo base_url(); ?>theme/dist/img/photo1.png" alt="Photo">
+                  <a class="example-image-link" data-lightbox="example-2" href="<?php echo base_url(); ?><?php echo $image; ?>">
+                    <img class="img-fluid" src="<?php echo base_url(); ?><?php echo $image; ?>" alt="Photo">
+                  </a>
                 </div>
+                <?php elseif($i == 2 ) : ?>
                 <!-- /.col -->
                 <div class="col-sm-6">
                   <div class="row">
                     <div class="col-sm-6">
-                      <img class="img-fluid mb-3" src="<?php echo base_url(); ?>theme/dist/img/photo2.png" alt="Photo">
-                      <img class="img-fluid" src="<?php echo base_url(); ?>theme/dist/img/photo3.jpg" alt="Photo">
+                      <a class="example-image-link" data-lightbox="example-2" href="<?php echo base_url(); ?><?php echo $image; ?>">
+                        <img class="img-fluid mb-3" src="<?php echo base_url(); ?><?php echo $image; ?>" alt="Photo">
+                      </a>
+                <?php elseif($i == 3) : ?>
+                      <a class="example-image-link" data-lightbox="example-2" href="<?php echo base_url(); ?><?php echo $image; ?>">
+                        <img class="img-fluid mb-3" src="<?php echo base_url(); ?><?php echo $image; ?>" alt="Photo">
+                      </a>
                     </div>
+                <?php elseif($i == 4 ) : ?>
                     <!-- /.col -->
                     <div class="col-sm-6">
-                      <img class="img-fluid mb-3" src="<?php echo base_url(); ?>theme/dist/img/photo4.jpg" alt="Photo">
-                      <img class="img-fluid" src="<?php echo base_url(); ?>theme/dist/img/photo1.png" alt="Photo">
+                      <a class="example-image-link" data-lightbox="example-2" href="<?php echo base_url(); ?><?php echo $image; ?>">
+                        <img class="img-fluid mb-3" src="<?php echo base_url(); ?><?php echo $image; ?>" alt="Photo">
+                      </a>
+                <?php elseif($i == 5 ) : ?>
+                      <a class="example-image-link" data-lightbox="example-2" href="<?php echo base_url(); ?><?php echo $image; ?>">
+                        <img class="img-fluid mb-3" src="<?php echo base_url(); ?><?php echo $image; ?>" alt="Photo">
+                      </a>
                     </div>
                     <!-- /.col -->
+                    
                   </div>
                   <!-- /.row -->
                 </div>
                 <!-- /.col -->
+              <?php else: ?>
+                <a class="example-image-link" data-lightbox="example-2" href="<?php echo base_url(); ?><?php echo $image; ?>"></a>
+              <?php endif; ?>
+              <?php $i++; ?>
+              <?php endforeach; ?>
+              <?php if($i == 2) : ?>
+                <!-- </div> -->
+              <?php elseif($i == 3) : ?>
+                  </div>
+                </div>
               </div>
+              <?php elseif($i == 4) : ?>
+                </div>
+              </div>
+              <?php elseif($i == 5 ) : ?>
+                  </div>
+                </div>
+              </div>
+              <?php endif; ?>
+              </div>
+              
               <!-- /.row -->
             </div>
             <!-- /.post -->
           </div>
         </div>
       </div>
+      <?php endif; ?>
 
       <div class="col-md-3">
 

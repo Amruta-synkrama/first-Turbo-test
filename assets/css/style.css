@@ -43,6 +43,19 @@ body.accent-orange .icheck-primary>input:first-child:not(:checked):not(:disabled
 }
 
 
+.btn-tool.remove-img-gallery {
+    background-color: #ffffff;
+    height: 25px;
+    border-radius: 50px;
+    line-height: 1;
+}
+
+.card-tools-cust-abs {
+    position: absolute;
+    right: 15px;
+}
+
+
 /**custom flip css**/
 /* Skeleton */
 

@@ -166,7 +166,12 @@ class User_model extends CI_Model {
     	$this->db->where('meta_key', $key);
     	$query = $this->db->get("tr_user_meta");
 		if($query->result()) {
-			return unserialize($query->result()[0]->meta_value);
+			$returndata = unserialize($query->result()[0]->meta_value);
+			if(is_array($returndata)) {
+				return $returndata;
+			} else {
+				return array();
+			}
 		} else {
 			return array();
 		}

@@ -60,7 +60,7 @@ class Company_profile extends CI_Controller {
 
 			
 			if($this->user_model->update_company_data($data, $company_id)) {
-				$this->session->set_flashdata('company_message', 'Data updated');
+				// $this->session->set_flashdata('company_message', 'Data updated');
 				$this->session->set_flashdata('success_message', 'Data updated');
 				if($this->session->userdata('user_data')->entity == 'Admin') {
 					redirect('company_profile?company_id='.$company_id);
@@ -119,7 +119,7 @@ class Company_profile extends CI_Controller {
 				$data['user_logo'] = 'assets/img/logos/'.$file;
 
 				if($this->user_model->update_user_data($data, $company_id)) {
-					$this->session->set_flashdata('upload_message', 'Data updated');
+					// $this->session->set_flashdata('upload_message', 'Data updated');
 					$this->session->set_flashdata('success_message', 'Data updated');
 					if($this->session->userdata('user_data')->entity == 'Admin') {
 						redirect('company_profile?company_id='.$company_id);
@@ -157,7 +157,7 @@ class Company_profile extends CI_Controller {
 				'contact_no'  => $this->input->post('contact_no')
 			);
 			if($this->user_model->update_company_data($data, $company_id)) {
-				$this->session->set_flashdata('contact_message', 'Data updated');
+				// $this->session->set_flashdata('contact_message', 'Data updated');
 				$this->session->set_flashdata('success_message', 'Data updated');
 				if($this->session->userdata('user_data')->entity == 'Admin') {
 					redirect('company_profile?company_id='.$company_id);
@@ -192,7 +192,7 @@ class Company_profile extends CI_Controller {
 				'phone_number'  => $this->input->post('phone_number')
 			);
 			if($this->user_model->update_user_data($data, $company_id)) {
-				$this->session->set_flashdata('user_message', 'Data updated');
+				// $this->session->set_flashdata('user_message', 'Data updated');
 				$this->session->set_flashdata('success_message', 'Data updated');
 				if($this->session->userdata('user_data')->entity == 'Admin') {
 					redirect('company_profile?company_id='.$company_id);
@@ -228,7 +228,7 @@ class Company_profile extends CI_Controller {
 				'password'  => $encrypted_password
 			);
 			if($this->user_model->update_user_data($data, $company_id)) {
-				$this->session->set_flashdata('user_message', 'Data updated');
+				// $this->session->set_flashdata('user_message', 'Data updated');
 				$this->session->set_flashdata('success_message', 'Data updated');
 				if($this->session->userdata('user_data')->entity == 'Admin') {
 					redirect('company_profile?company_id='.$company_id);
