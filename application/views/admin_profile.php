@@ -61,6 +61,7 @@
           <div class="card-header p-2">
             <ul class="nav nav-pills">
               <li class="nav-item"><a class="nav-link active" href="#settings" data-toggle="tab">General Settings</a></li>
+              <li class="nav-item"><a class="nav-link" href="#logo" data-toggle="tab">Logo Update</a></li>
               <li class="nav-item"><a class="nav-link" href="#activity" data-toggle="tab">Password Update</a></li>
               <!-- <li class="nav-item"><a class="nav-link" href="#timeline" data-toggle="tab">Contact Person Settings</a></li> -->
             </ul>
@@ -119,6 +120,9 @@
             			</div>
             		</form>
 
+                </div>
+
+                <div class="tab-pane" id="logo">
 
                 <?php if($this->session->flashdata('upload_message')) : ?>
                   <div class="row">
@@ -138,6 +142,39 @@
                     </div>
                   </div>
                 <?php endif; ?>
+                <div class="form-group row">
+                  <label for="inputName" class="col-sm-2 col-form-label">Logo</label>
+                  <div class="col-sm-8">
+                    <div class="input-group">
+                      <div class="custom-file">
+                        <input type="file" id="upload" class="custom-file-input" name="logo" accept=".png,.jpg,.jpeg,.JPG">
+                        <label class="custom-file-label" for="upload">Choose file</label>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-sm-2">
+                    <button type="submit" class="btn btn-danger upload-result">Submit</button>
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <div class="offset-sm-2 col-sm-5">
+                    <div id="upload-demo" style="width:350px"></div>
+                  </div>
+                  <div class="col-sm-5">
+                    <div id="upload-demo-i" style="background:#e1e1e1;width:300px;padding:50px;height:300px;margin-top:30px"></div>
+                  </div>
+                  <div class="offset-sm-2 col-sm-10">
+                    <div class="text-center">
+                      <form class="form-horizontal mt-5" action="<?php echo base_url(); ?>admin_profile/save_logos" method="post" enctype="multipart/form-data">   
+                        <input type="hidden" name="logo_url" id="logo_url" value="">
+                        <button type="submit" class="btn btn-danger">Save Logo</button>
+                      </form>   
+                    </div>
+                  </div>
+                </div>
+                  
+                
+                <?php /* ?>
                 <form class="form-horizontal mt-5" action="<?php echo base_url(); ?>admin_profile/upload_logo" method="post" enctype="multipart/form-data">
 
                   <div class="form-group row">
@@ -157,6 +194,7 @@
                     </div>
                   </div>
                 </form>
+                <?php */ ?>
             	</div>
 
             	<div class="tab-pane" id="activity">
@@ -211,3 +249,53 @@
   </div><!-- /.container-fluid -->
 </section>
 <!-- /.content -->
+
+<script type="text/javascript">
+$uploadCrop = $('#upload-demo').croppie({
+    enableExif: true,
+    viewport: {
+        width: 200,
+        height: 200,
+        type: 'circle'
+    },
+    boundary: {
+        width: 300,
+        height: 300
+    }
+});
+     
+$('#upload').on('change', function () { 
+  var reader = new FileReader();
+    reader.onload = function (e) {
+      $uploadCrop.croppie('bind', {
+        url: e.target.result
+      }).then(function(){
+        console.log('jQuery bind complete');
+      });
+          
+    }
+    reader.readAsDataURL(this.files[0]);
+});
+     
+$('.upload-result').on('click', function (ev) {
+  $uploadCrop.croppie('result', {
+    type: 'canvas',
+    size: 'viewport'
+  }).then(function (resp) {
+     
+    $.ajax({
+      url: "<?php echo base_url() ?>admin_profile/upload_logos",
+      type: "POST",
+      data: {"image":resp},
+      success: function (data) {
+        console.log(data);
+        html = '<img src="<?php echo base_url(); ?>' + data + '" />';
+        $("#upload-demo-i").html(html);
+        $("#logo_url").val(data);
+
+      }
+    });
+  });
+});
+    
+</script>

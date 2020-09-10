@@ -42,8 +42,12 @@
 
 	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/style.css">
 
+  <link rel="stylesheet" href="<?php echo base_url(); ?>theme/dist/css/croppie.css">
+
 <!-- jQuery -->
 <script src="<?php echo base_url(); ?>theme/plugins/jquery/jquery.min.js"></script>
+
+<script src="<?php echo base_url(); ?>theme/dist/js/croppie.js"></script>
     
 </head>
 <body class="hold-transition sidebar-mini layout-fixed accent-orange sidebar-collapse">

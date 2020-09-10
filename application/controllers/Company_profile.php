@@ -139,6 +139,95 @@ class Company_profile extends CI_Controller {
 		}*/
 	}
 
+	/**
+	 * Get All Data from this method.
+	 *
+	 * @return Response
+	*/
+	public function upload_logos() {
+		$user_id = $this->session->userdata('id');
+		if($this->session->userdata('user_data')->entity == 'Admin') {
+			$company_id = $this->input->get('company_id');
+		} else {
+			$company_id = $user_id;
+		}
+
+	    $data = $_POST['image'];
+	 
+	    list($type, $data) = explode(';', $data);
+	    list(, $data)      = explode(',', $data);
+	 
+	    $data = base64_decode($data);
+	    $imageName = time().'.png';
+	    file_put_contents('assets/img/logos/'.$imageName, $data);
+
+	    /*$file = $data;
+	    $config['upload_path'] = './assets/img/logos/';
+	    $config['allowed_types'] = 'jpg|jpeg|png|JPG';
+	    $config['max_size'] = 2000;
+	    $config['max_width'] = 1500;
+	    $config['max_height'] = 1500;
+	    $this->load->library('upload');
+	    $this->upload->initialize($config);
+
+	    if (!$this->upload->do_upload($imageName)) {
+	    	$this->session->set_flashdata('error_upload_message', $this->upload->display_errors());
+	    	if($this->session->userdata('user_data')->entity == 'Admin') {
+				redirect('company_profile?company_id='.$company_id);
+			} else {
+				redirect('company_profile');
+			}
+	    } else {
+	    	$upload_data = $this->upload->data();
+	    	print_r($upload_data);
+	    }*/
+
+	    // $data['user_logo'] = 'assets/img/logos/'.$imageName;
+	 
+	    echo 'assets/img/logos/'.$imageName;
+	}
+
+	public function save_logos() {
+
+		$user_id = $this->session->userdata('id');
+		if($this->session->userdata('user_data')->entity == 'Admin') {
+			$company_id = $this->input->get('company_id');
+		} else {
+			$company_id = $user_id;
+		}
+
+		// $user_id = $this->session->userdata('id');
+
+		$data['user_logo'] = $this->input->post('logo_url');
+
+		if($data['user_logo']) {
+			if($this->user_model->update_user_data($data, $company_id)) {
+				// $this->session->set_flashdata('upload_message', 'Data updated');
+				$this->session->set_flashdata('success_message', 'Data updated');
+				// $data_user_data = $this->user_model->get_user_data($user_id);
+				// $this->session->set_userdata('user_data', $data_user_data);
+				if($this->session->userdata('user_data')->entity == 'Admin') {
+					redirect('company_profile?company_id='.$company_id);
+				} else {
+					redirect('company_profile');
+				}
+			} else {
+				if($this->session->userdata('user_data')->entity == 'Admin') {
+					redirect('company_profile?company_id='.$company_id);
+				} else {
+					redirect('company_profile');
+				}
+			}
+		} else {
+			if($this->session->userdata('user_data')->entity == 'Admin') {
+				redirect('company_profile?company_id='.$company_id);
+			} else {
+				redirect('company_profile');
+			}
+		}
+
+	}
+
 	public function update_contact_details() {
 		$user_id = $this->session->userdata('id');
 		if($this->session->userdata('user_data')->entity == 'Admin') {
