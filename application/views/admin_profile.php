@@ -153,7 +153,7 @@
                     </div>
                   </div>
                   <div class="col-sm-2">
-                    <button type="submit" class="btn btn-danger upload-result">Submit</button>
+                    <button type="submit" class="btn btn-danger upload-result" disabled="">Crop</button>
                   </div>
                 </div>
                 <div class="form-group row">
@@ -167,7 +167,7 @@
                     <div class="text-center">
                       <form class="form-horizontal mt-5" action="<?php echo base_url(); ?>admin_profile/save_logos" method="post" enctype="multipart/form-data">   
                         <input type="hidden" name="logo_url" id="logo_url" value="">
-                        <button type="submit" class="btn btn-danger">Save Logo</button>
+                        <button type="submit" class="btn btn-danger save_logo"  disabled="">Save Logo</button>
                       </form>   
                     </div>
                   </div>
@@ -275,6 +275,7 @@ $('#upload').on('change', function () {
           
     }
     reader.readAsDataURL(this.files[0]);
+  $('.upload-result').removeAttr('disabled');
 });
      
 $('.upload-result').on('click', function (ev) {
@@ -282,7 +283,7 @@ $('.upload-result').on('click', function (ev) {
     type: 'canvas',
     size: 'viewport'
   }).then(function (resp) {
-     
+     console.log(resp);
     $.ajax({
       url: "<?php echo base_url() ?>admin_profile/upload_logos",
       type: "POST",
@@ -292,7 +293,8 @@ $('.upload-result').on('click', function (ev) {
         html = '<img src="<?php echo base_url(); ?>' + data + '" />';
         $("#upload-demo-i").html(html);
         $("#logo_url").val(data);
-
+        $('.save_logo').removeAttr('disabled');
+        // $('.save_logo').prop("disabled", true);
       }
     });
   });

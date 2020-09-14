@@ -21,430 +21,460 @@
 		<div class="row">
 			<?php if($session->entity != 'Hotel') : ?>
 				<div class="<?php echo ($session->entity != 'Admin') ? 'col-sm-6 col-xs-6' : 'col-sm-4 col-xs-4'; ?>">
-					<div class="text-center d-flex">
-						<div class=" flip-box-cust flip-cust-box-1 mx-auto">
-							<ul class="flip secondPlay">
-								<li>
-									<a href="#">
-										<div class="up">
-											<div class="shadow"></div>
-											<div class="inn">0</div>
-										</div>
-										<div class="down">
-											<div class="shadow"></div>
-											<div class="inn">0</div>
-										</div>
-									</a>
-								</li>
-								<li>
-									<a href="#">
-										<div class="up">
-											<div class="shadow"></div>
-											<div class="inn">0</div>
-										</div>
-										<div class="down">
-											<div class="shadow"></div>
-											<div class="inn">0</div>
-										</div>
-									</a>
-								</li>
-							</ul>
-							<ul class="flip secondPlay1">
-								<li>
-									<a href="#">
-										<div class="up">
-											<div class="shadow"></div>
-											<div class="inn">0</div>
-										</div>
-										<div class="down">
-											<div class="shadow"></div>
-											<div class="inn">0</div>
-										</div>
-									</a>
-								</li>
-								<li>
-									<a href="#">
-										<div class="up">
-											<div class="shadow"></div>
-											<div class="inn">9</div>
-										</div>
-										<div class="down">
-											<div class="shadow"></div>
-											<div class="inn">9</div>
-										</div>
-									</a>
-								</li>
-							</ul>
-							<ul class="flip1">
-								<li>
-									<span>,</span>
-								</li>
-							</ul>
-							<ul class="flip secondPlay2">
-								<li>
-									<a href="#">
-										<div class="up">
-											<div class="shadow"></div>
-											<div class="inn">0</div>
-										</div>
-										<div class="down">
-											<div class="shadow"></div>
-											<div class="inn">0</div>
-										</div>
-									</a>
-								</li>
-								<li>
-									<a href="#">
-										<div class="up">
-											<div class="shadow"></div>
-											<div class="inn">7</div>
-										</div>
-										<div class="down">
-											<div class="shadow"></div>
-											<div class="inn">7</div>
-										</div>
-									</a>
-								</li>
-							</ul>
-							<ul class="flip secondPlay3">
-								<li>
-									<a href="#">
-										<div class="up">
-											<div class="shadow"></div>
-											<div class="inn">0</div>
-										</div>
-										<div class="down">
-											<div class="shadow"></div>
-											<div class="inn">0</div>
-										</div>
-									</a>
-								</li>
-								<li>
-									<a href="#">
-										<div class="up">
-											<div class="shadow"></div>
-											<div class="inn">2</div>
-										</div>
-										<div class="down">
-											<div class="shadow"></div>
-											<div class="inn">2</div>
-										</div>
-									</a>
-								</li>
-							</ul>
-							<ul class="flip secondPlay4">
-								<li>
-									<a href="#">
-										<div class="up">
-											<div class="shadow"></div>
-											<div class="inn">0</div>
-										</div>
-										<div class="down">
-											<div class="shadow"></div>
-											<div class="inn">0</div>
-										</div>
-									</a>
-								</li>
-								<li>
-									<a href="#">
-										<div class="up">
-											<div class="shadow"></div>
-											<div class="inn">6</div>
-										</div>
-										<div class="down">
-											<div class="shadow"></div>
-											<div class="inn">6</div>
-										</div>
-									</a>
-								</li>
-							</ul>
-						</div>
+					<div class="info-box">
+					  <span class="info-box-icon bg-info elevation-1"><i class="fas fa-cog"></i></span>
+					  <div class="info-box-content">
+					    <span class="info-box-number mx-auto">
+					      <div class="text-center d-flex">
+					      	<div class=" flip-box-cust flip-cust-box-1 bg-info-cust">
+					      		<ul class="flip secondPlay">
+					      			<li>
+					      				<a href="#">
+					      					<div class="up">
+					      						<div class="shadow"></div>
+					      						<div class="inn">0</div>
+					      					</div>
+					      					<div class="down">
+					      						<div class="shadow"></div>
+					      						<div class="inn">0</div>
+					      					</div>
+					      				</a>
+					      			</li>
+					      			<li>
+					      				<a href="#">
+					      					<div class="up">
+					      						<div class="shadow"></div>
+					      						<div class="inn">0</div>
+					      					</div>
+					      					<div class="down">
+					      						<div class="shadow"></div>
+					      						<div class="inn">0</div>
+					      					</div>
+					      				</a>
+					      			</li>
+					      		</ul>
+					      		<ul class="flip secondPlay1">
+					      			<li>
+					      				<a href="#">
+					      					<div class="up">
+					      						<div class="shadow"></div>
+					      						<div class="inn">0</div>
+					      					</div>
+					      					<div class="down">
+					      						<div class="shadow"></div>
+					      						<div class="inn">0</div>
+					      					</div>
+					      				</a>
+					      			</li>
+					      			<li>
+					      				<a href="#">
+					      					<div class="up">
+					      						<div class="shadow"></div>
+					      						<div class="inn">9</div>
+					      					</div>
+					      					<div class="down">
+					      						<div class="shadow"></div>
+					      						<div class="inn">9</div>
+					      					</div>
+					      				</a>
+					      			</li>
+					      		</ul>
+					      		<ul class="flip1">
+					      			<li>
+					      				<span>,</span>
+					      			</li>
+					      		</ul>
+					      		<ul class="flip secondPlay2">
+					      			<li>
+					      				<a href="#">
+					      					<div class="up">
+					      						<div class="shadow"></div>
+					      						<div class="inn">0</div>
+					      					</div>
+					      					<div class="down">
+					      						<div class="shadow"></div>
+					      						<div class="inn">0</div>
+					      					</div>
+					      				</a>
+					      			</li>
+					      			<li>
+					      				<a href="#">
+					      					<div class="up">
+					      						<div class="shadow"></div>
+					      						<div class="inn">7</div>
+					      					</div>
+					      					<div class="down">
+					      						<div class="shadow"></div>
+					      						<div class="inn">7</div>
+					      					</div>
+					      				</a>
+					      			</li>
+					      		</ul>
+					      		<ul class="flip secondPlay3">
+					      			<li>
+					      				<a href="#">
+					      					<div class="up">
+					      						<div class="shadow"></div>
+					      						<div class="inn">0</div>
+					      					</div>
+					      					<div class="down">
+					      						<div class="shadow"></div>
+					      						<div class="inn">0</div>
+					      					</div>
+					      				</a>
+					      			</li>
+					      			<li>
+					      				<a href="#">
+					      					<div class="up">
+					      						<div class="shadow"></div>
+					      						<div class="inn">2</div>
+					      					</div>
+					      					<div class="down">
+					      						<div class="shadow"></div>
+					      						<div class="inn">2</div>
+					      					</div>
+					      				</a>
+					      			</li>
+					      		</ul>
+					      		<ul class="flip secondPlay4">
+					      			<li>
+					      				<a href="#">
+					      					<div class="up">
+					      						<div class="shadow"></div>
+					      						<div class="inn">0</div>
+					      					</div>
+					      					<div class="down">
+					      						<div class="shadow"></div>
+					      						<div class="inn">0</div>
+					      					</div>
+					      				</a>
+					      			</li>
+					      			<li>
+					      				<a href="#">
+					      					<div class="up">
+					      						<div class="shadow"></div>
+					      						<div class="inn">6</div>
+					      					</div>
+					      					<div class="down">
+					      						<div class="shadow"></div>
+					      						<div class="inn">6</div>
+					      					</div>
+					      				</a>
+					      			</li>
+					      		</ul>
+					      	</div>
+					      </div>
+					    </span>
+					    <span class="info-box-text text-center mt-2">CPU Traffic</span>
+					  </div>
+					  <!-- /.info-box-content -->
 					</div>
+					<!-- /.info-box -->
 				</div>
 			<?php endif; ?>
 			<?php if($session->entity != 'RFP') : ?>
 				<div class="<?php echo ($session->entity != 'Admin') ? 'col-sm-6 col-xs-6' : 'col-sm-4 col-xs-4'; ?>">
-					<div class="text-center d-flex">
-						<div class=" flip-box-cust flip-cust-box-2 mx-auto">
-							<ul class="flip secondPlay">
-								<li>
-									<a href="#">
-										<div class="up">
-											<div class="shadow"></div>
-											<div class="inn">0</div>
-										</div>
-										<div class="down">
-											<div class="shadow"></div>
-											<div class="inn">0</div>
-										</div>
-									</a>
-								</li>
-								<li>
-									<a href="#">
-										<div class="up">
-											<div class="shadow"></div>
-											<div class="inn">0</div>
-										</div>
-										<div class="down">
-											<div class="shadow"></div>
-											<div class="inn">0</div>
-										</div>
-									</a>
-								</li>
-							</ul>
-							<ul class="flip secondPlay1">
-								<li>
-									<a href="#">
-										<div class="up">
-											<div class="shadow"></div>
-											<div class="inn">0</div>
-										</div>
-										<div class="down">
-											<div class="shadow"></div>
-											<div class="inn">0</div>
-										</div>
-									</a>
-								</li>
-								<li>
-									<a href="#">
-										<div class="up">
-											<div class="shadow"></div>
-											<div class="inn">9</div>
-										</div>
-										<div class="down">
-											<div class="shadow"></div>
-											<div class="inn">9</div>
-										</div>
-									</a>
-								</li>
-							</ul>
-							<ul class="flip1">
-								<li>
-									<span>,</span>
-								</li>
-							</ul>
-							<ul class="flip secondPlay2">
-								<li>
-									<a href="#">
-										<div class="up">
-											<div class="shadow"></div>
-											<div class="inn">0</div>
-										</div>
-										<div class="down">
-											<div class="shadow"></div>
-											<div class="inn">0</div>
-										</div>
-									</a>
-								</li>
-								<li>
-									<a href="#">
-										<div class="up">
-											<div class="shadow"></div>
-											<div class="inn">7</div>
-										</div>
-										<div class="down">
-											<div class="shadow"></div>
-											<div class="inn">7</div>
-										</div>
-									</a>
-								</li>
-							</ul>
-							<ul class="flip secondPlay3">
-								<li>
-									<a href="#">
-										<div class="up">
-											<div class="shadow"></div>
-											<div class="inn">0</div>
-										</div>
-										<div class="down">
-											<div class="shadow"></div>
-											<div class="inn">0</div>
-										</div>
-									</a>
-								</li>
-								<li>
-									<a href="#">
-										<div class="up">
-											<div class="shadow"></div>
-											<div class="inn">2</div>
-										</div>
-										<div class="down">
-											<div class="shadow"></div>
-											<div class="inn">2</div>
-										</div>
-									</a>
-								</li>
-							</ul>
-							<ul class="flip secondPlay4">
-								<li>
-									<a href="#">
-										<div class="up">
-											<div class="shadow"></div>
-											<div class="inn">0</div>
-										</div>
-										<div class="down">
-											<div class="shadow"></div>
-											<div class="inn">0</div>
-										</div>
-									</a>
-								</li>
-								<li>
-									<a href="#">
-										<div class="up">
-											<div class="shadow"></div>
-											<div class="inn">6</div>
-										</div>
-										<div class="down">
-											<div class="shadow"></div>
-											<div class="inn">6</div>
-										</div>
-									</a>
-								</li>
-							</ul>
-						</div>
+					<div class="info-box">
+					  <span class="info-box-icon bg-success elevation-1"><i class="fas fa-cog"></i></span>
+					  <div class="info-box-content">
+					    <span class="info-box-number mx-auto">
+					      <div class="text-center d-flex">
+					      	<div class=" flip-box-cust flip-cust-box-2 bg-success-cust">
+					      		<ul class="flip secondPlay">
+					      			<li>
+					      				<a href="#">
+					      					<div class="up">
+					      						<div class="shadow"></div>
+					      						<div class="inn">0</div>
+					      					</div>
+					      					<div class="down">
+					      						<div class="shadow"></div>
+					      						<div class="inn">0</div>
+					      					</div>
+					      				</a>
+					      			</li>
+					      			<li>
+					      				<a href="#">
+					      					<div class="up">
+					      						<div class="shadow"></div>
+					      						<div class="inn">0</div>
+					      					</div>
+					      					<div class="down">
+					      						<div class="shadow"></div>
+					      						<div class="inn">0</div>
+					      					</div>
+					      				</a>
+					      			</li>
+					      		</ul>
+					      		<ul class="flip secondPlay1">
+					      			<li>
+					      				<a href="#">
+					      					<div class="up">
+					      						<div class="shadow"></div>
+					      						<div class="inn">0</div>
+					      					</div>
+					      					<div class="down">
+					      						<div class="shadow"></div>
+					      						<div class="inn">0</div>
+					      					</div>
+					      				</a>
+					      			</li>
+					      			<li>
+					      				<a href="#">
+					      					<div class="up">
+					      						<div class="shadow"></div>
+					      						<div class="inn">9</div>
+					      					</div>
+					      					<div class="down">
+					      						<div class="shadow"></div>
+					      						<div class="inn">9</div>
+					      					</div>
+					      				</a>
+					      			</li>
+					      		</ul>
+					      		<ul class="flip1">
+					      			<li>
+					      				<span>,</span>
+					      			</li>
+					      		</ul>
+					      		<ul class="flip secondPlay2">
+					      			<li>
+					      				<a href="#">
+					      					<div class="up">
+					      						<div class="shadow"></div>
+					      						<div class="inn">0</div>
+					      					</div>
+					      					<div class="down">
+					      						<div class="shadow"></div>
+					      						<div class="inn">0</div>
+					      					</div>
+					      				</a>
+					      			</li>
+					      			<li>
+					      				<a href="#">
+					      					<div class="up">
+					      						<div class="shadow"></div>
+					      						<div class="inn">7</div>
+					      					</div>
+					      					<div class="down">
+					      						<div class="shadow"></div>
+					      						<div class="inn">7</div>
+					      					</div>
+					      				</a>
+					      			</li>
+					      		</ul>
+					      		<ul class="flip secondPlay3">
+					      			<li>
+					      				<a href="#">
+					      					<div class="up">
+					      						<div class="shadow"></div>
+					      						<div class="inn">0</div>
+					      					</div>
+					      					<div class="down">
+					      						<div class="shadow"></div>
+					      						<div class="inn">0</div>
+					      					</div>
+					      				</a>
+					      			</li>
+					      			<li>
+					      				<a href="#">
+					      					<div class="up">
+					      						<div class="shadow"></div>
+					      						<div class="inn">2</div>
+					      					</div>
+					      					<div class="down">
+					      						<div class="shadow"></div>
+					      						<div class="inn">2</div>
+					      					</div>
+					      				</a>
+					      			</li>
+					      		</ul>
+					      		<ul class="flip secondPlay4">
+					      			<li>
+					      				<a href="#">
+					      					<div class="up">
+					      						<div class="shadow"></div>
+					      						<div class="inn">0</div>
+					      					</div>
+					      					<div class="down">
+					      						<div class="shadow"></div>
+					      						<div class="inn">0</div>
+					      					</div>
+					      				</a>
+					      			</li>
+					      			<li>
+					      				<a href="#">
+					      					<div class="up">
+					      						<div class="shadow"></div>
+					      						<div class="inn">6</div>
+					      					</div>
+					      					<div class="down">
+					      						<div class="shadow"></div>
+					      						<div class="inn">6</div>
+					      					</div>
+					      				</a>
+					      			</li>
+					      		</ul>
+					      	</div>
+					      </div>
+					    </span>
+					    <span class="info-box-text text-center mt-2">CPU Traffic</span>
+					  </div>
+					  <!-- /.info-box-content -->
 					</div>
+					<!-- /.info-box -->
 				</div>
 			<?php endif; ?>
 			<div class="<?php echo ($session->entity != 'Admin') ? 'col-sm-6 col-xs-6' : 'col-sm-4 col-xs-4'; ?>">
-				<div class="text-center d-flex">
-					<div class=" flip-box-cust flip-cust-box-3 mx-auto">
-						<ul class="flip secondPlay">
-							<li>
-								<a href="#">
-									<div class="up">
-										<div class="shadow"></div>
-										<div class="inn">0</div>
-									</div>
-									<div class="down">
-										<div class="shadow"></div>
-										<div class="inn">0</div>
-									</div>
-								</a>
-							</li>
-							<li>
-								<a href="#">
-									<div class="up">
-										<div class="shadow"></div>
-										<div class="inn">0</div>
-									</div>
-									<div class="down">
-										<div class="shadow"></div>
-										<div class="inn">0</div>
-									</div>
-								</a>
-							</li>
-						</ul>
-						<ul class="flip secondPlay1">
-							<li>
-								<a href="#">
-									<div class="up">
-										<div class="shadow"></div>
-										<div class="inn">0</div>
-									</div>
-									<div class="down">
-										<div class="shadow"></div>
-										<div class="inn">0</div>
-									</div>
-								</a>
-							</li>
-							<li>
-								<a href="#">
-									<div class="up">
-										<div class="shadow"></div>
-										<div class="inn">9</div>
-									</div>
-									<div class="down">
-										<div class="shadow"></div>
-										<div class="inn">9</div>
-									</div>
-								</a>
-							</li>
-						</ul>
-						<ul class="flip1">
-							<li>
-								<span>,</span>
-							</li>
-						</ul>
-						<ul class="flip secondPlay2">
-							<li>
-								<a href="#">
-									<div class="up">
-										<div class="shadow"></div>
-										<div class="inn">0</div>
-									</div>
-									<div class="down">
-										<div class="shadow"></div>
-										<div class="inn">0</div>
-									</div>
-								</a>
-							</li>
-							<li>
-								<a href="#">
-									<div class="up">
-										<div class="shadow"></div>
-										<div class="inn">7</div>
-									</div>
-									<div class="down">
-										<div class="shadow"></div>
-										<div class="inn">7</div>
-									</div>
-								</a>
-							</li>
-						</ul>
-						<ul class="flip secondPlay3">
-							<li>
-								<a href="#">
-									<div class="up">
-										<div class="shadow"></div>
-										<div class="inn">0</div>
-									</div>
-									<div class="down">
-										<div class="shadow"></div>
-										<div class="inn">0</div>
-									</div>
-								</a>
-							</li>
-							<li>
-								<a href="#">
-									<div class="up">
-										<div class="shadow"></div>
-										<div class="inn">2</div>
-									</div>
-									<div class="down">
-										<div class="shadow"></div>
-										<div class="inn">2</div>
-									</div>
-								</a>
-							</li>
-						</ul>
-						<ul class="flip secondPlay4">
-							<li>
-								<a href="#">
-									<div class="up">
-										<div class="shadow"></div>
-										<div class="inn">0</div>
-									</div>
-									<div class="down">
-										<div class="shadow"></div>
-										<div class="inn">0</div>
-									</div>
-								</a>
-							</li>
-							<li>
-								<a href="#">
-									<div class="up">
-										<div class="shadow"></div>
-										<div class="inn">6</div>
-									</div>
-									<div class="down">
-										<div class="shadow"></div>
-										<div class="inn">6</div>
-									</div>
-								</a>
-							</li>
-						</ul>
-					</div>
+				<div class="info-box">
+				  <span class="info-box-icon bg-danger elevation-1"><i class="fas fa-cog"></i></span>
+				  <div class="info-box-content">
+				    <span class="info-box-number mx-auto">
+				      <div class="text-center d-flex">
+				      	<div class=" flip-box-cust flip-cust-box-3 bg-danger-cust">
+				      		<ul class="flip secondPlay">
+				      			<li>
+				      				<a href="#">
+				      					<div class="up">
+				      						<div class="shadow"></div>
+				      						<div class="inn">0</div>
+				      					</div>
+				      					<div class="down">
+				      						<div class="shadow"></div>
+				      						<div class="inn">0</div>
+				      					</div>
+				      				</a>
+				      			</li>
+				      			<li>
+				      				<a href="#">
+				      					<div class="up">
+				      						<div class="shadow"></div>
+				      						<div class="inn">0</div>
+				      					</div>
+				      					<div class="down">
+				      						<div class="shadow"></div>
+				      						<div class="inn">0</div>
+				      					</div>
+				      				</a>
+				      			</li>
+				      		</ul>
+				      		<ul class="flip secondPlay1">
+				      			<li>
+				      				<a href="#">
+				      					<div class="up">
+				      						<div class="shadow"></div>
+				      						<div class="inn">0</div>
+				      					</div>
+				      					<div class="down">
+				      						<div class="shadow"></div>
+				      						<div class="inn">0</div>
+				      					</div>
+				      				</a>
+				      			</li>
+				      			<li>
+				      				<a href="#">
+				      					<div class="up">
+				      						<div class="shadow"></div>
+				      						<div class="inn">9</div>
+				      					</div>
+				      					<div class="down">
+				      						<div class="shadow"></div>
+				      						<div class="inn">9</div>
+				      					</div>
+				      				</a>
+				      			</li>
+				      		</ul>
+				      		<ul class="flip1">
+				      			<li>
+				      				<span>,</span>
+				      			</li>
+				      		</ul>
+				      		<ul class="flip secondPlay2">
+				      			<li>
+				      				<a href="#">
+				      					<div class="up">
+				      						<div class="shadow"></div>
+				      						<div class="inn">0</div>
+				      					</div>
+				      					<div class="down">
+				      						<div class="shadow"></div>
+				      						<div class="inn">0</div>
+				      					</div>
+				      				</a>
+				      			</li>
+				      			<li>
+				      				<a href="#">
+				      					<div class="up">
+				      						<div class="shadow"></div>
+				      						<div class="inn">7</div>
+				      					</div>
+				      					<div class="down">
+				      						<div class="shadow"></div>
+				      						<div class="inn">7</div>
+				      					</div>
+				      				</a>
+				      			</li>
+				      		</ul>
+				      		<ul class="flip secondPlay3">
+				      			<li>
+				      				<a href="#">
+				      					<div class="up">
+				      						<div class="shadow"></div>
+				      						<div class="inn">0</div>
+				      					</div>
+				      					<div class="down">
+				      						<div class="shadow"></div>
+				      						<div class="inn">0</div>
+				      					</div>
+				      				</a>
+				      			</li>
+				      			<li>
+				      				<a href="#">
+				      					<div class="up">
+				      						<div class="shadow"></div>
+				      						<div class="inn">2</div>
+				      					</div>
+				      					<div class="down">
+				      						<div class="shadow"></div>
+				      						<div class="inn">2</div>
+				      					</div>
+				      				</a>
+				      			</li>
+				      		</ul>
+				      		<ul class="flip secondPlay4">
+				      			<li>
+				      				<a href="#">
+				      					<div class="up">
+				      						<div class="shadow"></div>
+				      						<div class="inn">0</div>
+				      					</div>
+				      					<div class="down">
+				      						<div class="shadow"></div>
+				      						<div class="inn">0</div>
+				      					</div>
+				      				</a>
+				      			</li>
+				      			<li>
+				      				<a href="#">
+				      					<div class="up">
+				      						<div class="shadow"></div>
+				      						<div class="inn">6</div>
+				      					</div>
+				      					<div class="down">
+				      						<div class="shadow"></div>
+				      						<div class="inn">6</div>
+				      					</div>
+				      				</a>
+				      			</li>
+				      		</ul>
+				      	</div>
+				      </div>
+				    </span>
+				    <span class="info-box-text text-center mt-2">CPU Traffic</span>
+				  </div>
+				  <!-- /.info-box-content -->
 				</div>
+				<!-- /.info-box -->
 			</div>
 		</div>
 		<!-- Small Box (Stat card) -->

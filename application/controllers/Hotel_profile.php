@@ -215,6 +215,8 @@ class Hotel_profile extends CI_Controller {
 				if($this->session->userdata('user_data')->entity == 'Admin') {
 					redirect('hotel_profile?hotel_id='.$hotel_id);
 				} else {
+					$data_user_data = $this->user_model->get_user_data($hotel_id);
+					$this->session->set_userdata('user_data', $data_user_data);
 					redirect('hotel_profile');
 				}
 			} else {

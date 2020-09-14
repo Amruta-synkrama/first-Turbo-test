@@ -74,7 +74,7 @@ body.accent-orange .icheck-primary>input:first-child:not(:checked):not(:disabled
 .flip-box-cust ul.flip1 span {
     font-size: 16px;
     color:#F27D2B;
-	font-family: Roboto;
+	/*font-family: Roboto;*/
     font-weight: 500;
 }
 
@@ -88,7 +88,7 @@ body.accent-orange .icheck-primary>input:first-child:not(:checked):not(:disabled
     line-height: 30px;
     border-radius: 6px;
     /*box-shadow: 0 2px 5px rgba(0, 0, 0, .7);*/
-	font-family: Roboto;
+	/*font-family: Roboto;*/
     font-weight: 500;
     padding-left: 25px;
 }
@@ -161,6 +161,19 @@ body.accent-orange .icheck-primary>input:first-child:not(:checked):not(:disabled
     text-align: center;
     background-color: #F27D2B;
     border-radius: 6px;
+}
+
+
+.bg-info-cust.flip-box-cust ul.flip li a div div.inn {
+    background-color: #17a2b8 !important;
+}
+
+.bg-success-cust.flip-box-cust ul.flip li a div div.inn {
+    background-color: #28a745 !important;
+}
+
+.bg-danger-cust.flip-box-cust ul.flip li a div div.inn {
+    background-color: #dc3545 !important;
 }
 
 .flip-box-cust ul.flip li a div.up div.inn {
