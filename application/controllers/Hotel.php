@@ -26,6 +26,10 @@ class Hotel extends CI_Controller {
 		if($this->session->userdata('user_data')->entity == 'RFP') {
 			$data['company_data'] = $this->user_model->get_company_data($user_id);
 		}
+		if($this->session->userdata('user_data')->entity == 'Hotel_EMP') {
+			$data['hotel_emp_data'] = $this->user_model->get_hotel_emp_data($user_id);	
+			$hotel_id = $data['hotel_emp_data']->hotel_id;
+		}
 		$data['user_data'] = $this->user_model->get_user_data($user_id);
 		$data['session'] = $this->session->userdata('user_data');
 		$data['hotels_data'] = $this->user_lists_model->get_hotels($hotel_id)[0];

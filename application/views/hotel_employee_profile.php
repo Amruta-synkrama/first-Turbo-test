@@ -8,7 +8,7 @@
       <div class="col-sm-6">
         <ol class="breadcrumb float-sm-right">
           <li class="breadcrumb-item"><a href="#">Home</a></li>
-          <li class="breadcrumb-item active">Admin Profile</li>
+          <li class="breadcrumb-item active">Hotel Employee Profile</li>
         </ol>
       </div>
     </div>
@@ -34,7 +34,7 @@
 
             <h3 class="profile-username text-center"><?php echo $user_data->name; ?></h3>
 
-            <p class="text-muted text-center"><?php echo $user_data->entity; ?></p>
+            <p class="text-muted text-center">Hotel Employee</p>
 
             <ul class="list-group list-group-unbordered mb-3">
               <!-- <li class="list-group-item">
@@ -60,7 +60,8 @@
         <div class="card">
           <div class="card-header p-2">
             <ul class="nav nav-pills">
-              <li class="nav-item"><a class="nav-link active" href="#settings" data-toggle="tab">General Settings</a></li>
+              <li class="nav-item"><a class="nav-link active" href="#emp-settings" data-toggle="tab">Employee Settings</a></li>
+              <li class="nav-item"><a class="nav-link" href="#settings" data-toggle="tab">General Settings</a></li>
               <li class="nav-item"><a class="nav-link" href="#logo" data-toggle="tab">Logo Update</a></li>
               <li class="nav-item"><a class="nav-link" href="#activity" data-toggle="tab">Password Update</a></li>
               <!-- <li class="nav-item"><a class="nav-link" href="#timeline" data-toggle="tab">Contact Person Settings</a></li> -->
@@ -68,8 +69,46 @@
           </div><!-- /.card-header -->
           <div class="card-body">
             <div class="tab-content">
-
-            	<div class="tab-pane active" id="settings">
+            	<div class="tab-pane active" id="emp-settings">
+            		<?php if(!empty(validation_errors())) : ?>
+            			<div class="row">
+            				<div class="col-12">
+            					<div class="alert alert-danger">
+            						<?php echo validation_errors(); ?>
+            					</div>    
+            				</div>
+            			</div>
+            		<?php endif; ?>
+            		<?php if($this->session->flashdata('employee_message')) : ?>
+            			<div class="row">
+            				<div class="col-12">
+            					<div class="alert alert-success">
+            						<?php  echo $this->session->flashdata("employee_message"); ?>
+            					</div>
+            				</div>
+            			</div>
+            		<?php endif; ?>
+            		<form class="form-horizontal update_employee_details" action="<?php echo base_url(); ?>hotel_employee_profile/update_employee_details<?php echo($session->entity == 'Admin' || $session->entity == 'Hotel') ? '?emp_id='.$emp_id : ''; ?>" method="post">
+            			<div class="form-group row">
+            				<label for="inputName" class="col-sm-2 col-form-label">Employee ID</label>
+            				<div class="col-sm-10">
+            					<input type="text" class="form-control" placeholder="Employee ID" name="emp_id" id="emp_id" value="<?php echo $hotels_emp_data->emp_id; ?>">
+            				</div>
+            			</div>
+            			<div class="form-group row">
+            				<label for="inputName" class="col-sm-2 col-form-label">Location</label>
+            				<div class="col-sm-10">
+            					<input type="text" class="form-control" placeholder="Location" name="location" id="location" value="<?php echo $hotels_emp_data->location; ?>">
+            				</div>
+            			</div>
+            			<div class="form-group row">
+            				<div class="offset-sm-2 col-sm-10">
+            					<button type="submit" class="btn btn-danger">Submit</button>
+            				</div>
+            			</div>
+            		</form>
+            	</div>
+            	<div class="tab-pane" id="settings">
             		<?php if(!empty(validation_errors())) : ?>
             			<div class="row">
             				<div class="col-12">
@@ -88,7 +127,7 @@
             				</div>
             			</div>
             		<?php endif; ?>
-            		<form class="form-horizontal update_user_details" action="<?php echo base_url(); ?>admin_profile/update_user_details" method="post">
+            		<form class="form-horizontal update_user_details" action="<?php echo base_url(); ?>hotel_employee_profile/update_user_details<?php echo($session->entity == 'Admin' || $session->entity == 'Hotel') ? '?emp_id='.$emp_id : ''; ?>" method="post">
             			<div class="form-group row">
             				<label for="inputName" class="col-sm-2 col-form-label">Name</label>
             				<div class="col-sm-10">
@@ -165,7 +204,7 @@
                   </div>
                   <div class="offset-sm-2 col-sm-10">
                     <div class="text-center">
-                      <form class="form-horizontal mt-5" action="<?php echo base_url(); ?>admin_profile/save_logos" method="post" enctype="multipart/form-data">   
+                      <form class="form-horizontal mt-5" action="<?php echo base_url(); ?>hotel_employee_profile/save_logos<?php echo($session->entity == 'Admin' || $session->entity == 'Hotel') ? '?emp_id='.$emp_id : ''; ?>" method="post" enctype="multipart/form-data">   
                         <input type="hidden" name="logo_url" id="logo_url" value="">
                         <button type="submit" class="btn btn-danger save_logo"  disabled="">Save Logo</button>
                       </form>   
@@ -175,7 +214,7 @@
                   
                 
                 <?php /* ?>
-                <form class="form-horizontal mt-5" action="<?php echo base_url(); ?>admin_profile/upload_logo" method="post" enctype="multipart/form-data">
+                <form class="form-horizontal mt-5" action="<?php echo base_url(); ?>hotel_employee_profile/upload_logo" method="post" enctype="multipart/form-data">
 
                   <div class="form-group row">
                     <label for="inputName" class="col-sm-2 col-form-label">Logo</label>
@@ -216,7 +255,7 @@
             				</div>
             			</div>
             		<?php endif; ?>
-            		<form class="form-horizontal update_user_details_password" action="<?php echo base_url(); ?>admin_profile/update_user_details_password" method="post">
+            		<form class="form-horizontal update_user_details_password" action="<?php echo base_url(); ?>hotel_employee_profile/update_user_details_password<?php echo($session->entity == 'Admin' || $session->entity == 'Hotel') ? '?emp_id='.$emp_id : ''; ?>" method="post">
             			<div class="form-group row">
             				<label for="inputName" class="col-sm-2 col-form-label">Password</label>
             				<div class="col-sm-10">
@@ -285,7 +324,7 @@ $('.upload-result').on('click', function (ev) {
   }).then(function (resp) {
      console.log(resp);
     $.ajax({
-      url: "<?php echo base_url() ?>admin_profile/upload_logos",
+      url: "<?php echo base_url() ?>hotel_employee_profile/upload_logos",
       type: "POST",
       data: {"image":resp},
       success: function (data) {

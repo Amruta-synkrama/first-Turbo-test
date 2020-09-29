@@ -48,7 +48,7 @@
 										<th>Link</th>
 										<th>Expiry Date</th>
 										<th>Status</th>
-										<?php if($session->entity != 'RFP') : ?>
+										<?php if($session->entity != 'RFP' && $session->entity != 'RFP_EMP' && $session->entity != 'Hotel_EMP') : ?>
 											<th>Action</th>
 										<?php endif; ?>
 									</tr>
@@ -98,7 +98,7 @@
 										    	<?php else: ?>
 										    		<span class="badge badge-danger">Deleted</span>
 										    	<?php endif; ?>
-										        <?php /*if($link->link_status == '0' || $link->link_status == '1') : ?>
+										        <?php /*if($link->link_status == '0' && $link->link_status == '1') : ?>
 										                <span class="badge badge-warning">Requested</span>
 										        <?php elseif(!$is_expire) : ?>
 										            <?php if($link->link_status == '2') : ?>
@@ -111,7 +111,7 @@
 										        <?php endif;*/ ?>
 										    </td>
 
-										    <?php if($session->entity != 'RFP') : ?>
+										    <?php if($session->entity != 'RFP' && $session->entity != 'RFP_EMP' && $session->entity != 'Hotel_EMP') : ?>
 										        <td class="project-actions">
 										            
 										                <a class="btn btn-info btn-sm" href="<?php echo base_url(); ?>link?link_id=<?php echo $link->id; ?><?php echo ($session->entity == 'Admin') ? '&hotel_id='.$link->hotel_id : ''; ?>">
@@ -147,7 +147,7 @@
 										<th>Link</th>
 										<th>Expiry Date</th>
 										<th>Status</th>
-										<?php if($session->entity != 'RFP') : ?>
+										<?php if($session->entity != 'RFP' && $session->entity != 'RFP_EMP' && $session->entity != 'Hotel_EMP') : ?>
 											<th>Action</th>
 										<?php endif; ?>
 									</tr>

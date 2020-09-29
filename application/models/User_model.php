@@ -37,6 +37,25 @@ class User_model extends CI_Model {
 		}
 	}
 
+	public function get_hotel_emp_data($id) {
+		$this->db->where('user_id', $id);
+		$query = $this->db->get("tr_hotels_emp");
+		if($query->result()) {
+			return $query->result()[0];
+		} else {
+			return array();
+		}
+	}
+
+	public function get_company_emp_data($id) {
+		$this->db->where('user_id', $id);
+		$query = $this->db->get("tr_company_emp");
+		if($query->result()) {
+			return $query->result()[0];
+		} else {
+			return array();
+		}
+	}
 
 	public function get_links_count($user_id,$role) {
 		$this->db->select('count(tr_links.id) as count' );
@@ -189,6 +208,17 @@ class User_model extends CI_Model {
 			}
 		}
 	}
+
+	public function update_company_emp_data($data, $id) {
+		$this->db->where('user_id',$id);
+		return $this->db->update('tr_company_emp',$data);
+	}
+
+	public function update_hotel_emp_data($data, $id) {
+		$this->db->where('user_id',$id);
+		return $this->db->update('tr_hotels_emp',$data);
+	}
+	
 
 }
 /* End of file '/User_model.php' */

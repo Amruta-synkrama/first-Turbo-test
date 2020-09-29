@@ -189,6 +189,50 @@ $(document).ready(function () {
 	  }
 	});
 
+	$('form.register_user_emp').validate({
+	  rules: {
+	    name: {
+	      required: true
+	    },
+	    password: {
+	      required: true
+	    },
+	    username: {
+	      required: true
+	    },
+	    phone_number: {
+	      required: true,
+	      pattern: "\(([0-9]{3}))\)\s*[0-9]{3}[-]*[0-9]{4}"
+	    },
+	    email: {
+	      required: true,
+	      email:true
+	    },
+	    entity: {
+	      required: true
+	    },
+	    admin_user: {
+	      required: true
+	    },
+	    emp_id: {
+	      required: true
+	    }
+	  },
+	  errorElement: 'span',
+	  errorPlacement: function (error, element) {
+	    error.addClass('invalid-feedback');
+	    element.closest('.form-group').append(error);
+	  },
+	  highlight: function (element, errorClass, validClass) {
+	    $(element).addClass('is-invalid');
+	  },
+	  unhighlight: function (element, errorClass, validClass) {
+	    $(element).removeClass('is-invalid');
+	  }
+	});
+
+	
+
 
 	$('form.update_hotel_branches').validate({
 	  rules: {
@@ -266,6 +310,30 @@ $(document).ready(function () {
 	    $(element).removeClass('is-invalid');
 	  }
 	});
+
+
+	$('form.update_employee_details').validate({
+	  rules: {
+	    emp_id: {
+	      required: true
+	    },
+	    location: {
+	      required: true
+	    }
+	  },
+	  errorElement: 'span',
+	  errorPlacement: function (error, element) {
+	    error.addClass('invalid-feedback');
+	    element.closest('.form-group').append(error);
+	  },
+	  highlight: function (element, errorClass, validClass) {
+	    $(element).addClass('is-invalid');
+	  },
+	  unhighlight: function (element, errorClass, validClass) {
+	    $(element).removeClass('is-invalid');
+	  }
+	});
+
 
 	
 

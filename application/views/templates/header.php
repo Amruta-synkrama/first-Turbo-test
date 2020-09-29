@@ -93,70 +93,14 @@
 
         <!-- Right navbar links -->
         <ul class="navbar-nav ml-auto">
-              <!-- Messages Dropdown Menu -->
-              <?php /* ?>
-              <li class="nav-item dropdown">
-                <a class="nav-link" data-toggle="dropdown" href="#">
-                  <i class="far fa-bell"></i>
-                  <span class="badge badge-danger navbar-badge">3</span>
-                </a>
-                <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-                  <a href="#" class="dropdown-item">
-                    <!-- Message Start -->
-                    <div class="media">
-                      <div class="media-body">
-                        <h3 class="dropdown-item-title">
-                          Brad Diesel
-                          <span class="float-right text-sm text-danger"><i class="fas fa-star"></i></span>
-                        </h3>
-                        <p class="text-sm">Call me whenever you can...</p>
-                        <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
-                      </div>
-                    </div>
-                    <!-- Message End -->
-                  </a>
-                  <div class="dropdown-divider"></div>
-                  <a href="#" class="dropdown-item">
-                    <!-- Message Start -->
-                    <div class="media">
-                      <div class="media-body">
-                        <h3 class="dropdown-item-title">
-                          John Pierce
-                          <span class="float-right text-sm text-muted"><i class="fas fa-star"></i></span>
-                        </h3>
-                        <p class="text-sm">I got your message bro</p>
-                        <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
-                      </div>
-                    </div>
-                    <!-- Message End -->
-                  </a>
-                  <div class="dropdown-divider"></div>
-                  <a href="#" class="dropdown-item">
-                    <!-- Message Start -->
-                    <div class="media">
-                      <div class="media-body">
-                        <h3 class="dropdown-item-title">
-                          Nora Silvester
-                          <span class="float-right text-sm text-warning"><i class="fas fa-star"></i></span>
-                        </h3>
-                        <p class="text-sm">The subject goes here</p>
-                        <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
-                      </div>
-                    </div>
-                    <!-- Message End -->
-                  </a>
-                  <div class="dropdown-divider"></div>
-                  <a href="#" class="dropdown-item dropdown-footer">See All Messages</a>
-                </div>
-              </li>
-              <?php */ ?>
-              <!-- Notifications Dropdown Menu -->
-              <li class="nav-item">
-                <a class="nav-link" href="<?php echo base_url() ?>dashboard/logout" role="button">
-                  Logout
-                </a>
-              </li>
-            </ul>
+          <!-- Messages Dropdown Menu -->
+          <!-- Notifications Dropdown Menu -->
+          <li class="nav-item">
+            <a class="nav-link" href="<?php echo base_url() ?>dashboard/logout" role="button">
+              Logout
+            </a>
+          </li>
+        </ul>
 
         </nav>
         <!-- /.navbar -->
@@ -188,6 +132,10 @@
                         <a href="<?php echo base_url() ?>hotel_profile" class="d-block"><?php echo $session->name; ?></a>
                         <?php elseif($session->entity == 'RFP') : ?>
                         <a href="<?php echo base_url() ?>company_profile" class="d-block"><?php echo $session->name; ?></a>
+                        <?php elseif($session->entity == 'RFP_EMP') : ?>
+                        <a href="<?php echo base_url() ?>company_employee_profile" class="d-block"><?php echo $session->name; ?></a>
+                        <?php elseif($session->entity == 'Hotel_EMP') : ?>
+                        <a href="<?php echo base_url() ?>hotel_employee_profile" class="d-block"><?php echo $session->name; ?></a>
                         <?php endif; ?>
                     </div>
                 </div>
@@ -214,6 +162,12 @@
                           <p>Register</p>
                         </a>
                       </li>
+                      <li class="nav-item">
+                        <a href="<?php echo base_url() ?>register_employee" class="nav-link <?php if($this->uri->segment(1)=="register_employee"){echo 'active';}?>">
+                          <i class="far fa-registered nav-icon"></i>
+                          <p>Register Employee</p>
+                        </a>
+                      </li>
                       <?php if($session->id == 1) : ?>
                       <li class="nav-item">
                         <a href="<?php echo base_url() ?>admins" class="nav-link <?php if($this->uri->segment(1)=="admins"){echo 'active';}?>">
@@ -229,9 +183,21 @@
                         </a>
                       </li>
                       <li class="nav-item">
+                        <a href="<?php echo base_url() ?>hotel_employees" class="nav-link <?php if($this->uri->segment(1)=="hotel_employees"){echo 'active';}?>">
+                          <i class="fas fa-users nav-icon"></i>
+                          <p>Hotel Employees</p>
+                        </a>
+                      </li>
+                      <li class="nav-item">
                         <a href="<?php echo base_url() ?>companies" class="nav-link <?php if($this->uri->segment(1)=="companies"){echo 'active';}?>">
                           <i class="fa fa-building nav-icon"></i>
                           <p>Company List</p>
+                        </a>
+                      </li>
+                      <li class="nav-item">
+                        <a href="<?php echo base_url() ?>company_employees" class="nav-link <?php if($this->uri->segment(1)=="company_employees"){echo 'active';}?>">
+                          <i class="fas fa-users nav-icon"></i>
+                          <p>Company Employees</p>
                         </a>
                       </li>
                       <li class="nav-item">
@@ -257,6 +223,18 @@
                             <a href="<?php echo base_url() ?>hotel_profile" class="nav-link <?php if($this->uri->segment(1)=="hotel_profile"){echo 'active';}?>">
                               <i class="far fa-user nav-icon"></i>
                               <p>Profile</p>
+                            </a>
+                          </li>
+                          <li class="nav-item">
+                            <a href="<?php echo base_url() ?>register_employee" class="nav-link <?php if($this->uri->segment(1)=="register_employee"){echo 'active';}?>">
+                              <i class="far fa-registered nav-icon"></i>
+                              <p>Register Employee</p>
+                            </a>
+                          </li>
+                          <li class="nav-item">
+                            <a href="<?php echo base_url() ?>hotel_employees" class="nav-link <?php if($this->uri->segment(1)=="hotel_employees"){echo 'active';}?>">
+                              <i class="fas fa-users nav-icon"></i>
+                              <p>Hotel Employees</p>
                             </a>
                           </li>
                           <li class="nav-item">
@@ -298,9 +276,95 @@
                             </a>
                           </li>
                           <li class="nav-item">
+                            <a href="<?php echo base_url() ?>register_employee" class="nav-link <?php if($this->uri->segment(1)=="register_employee"){echo 'active';}?>">
+                              <i class="far fa-registered nav-icon"></i>
+                              <p>Register Employee</p>
+                            </a>
+                          </li>
+                          <li class="nav-item">
+                            <a href="<?php echo base_url() ?>company_employees" class="nav-link <?php if($this->uri->segment(1)=="company_employees"){echo 'active';}?>">
+                              <i class="fas fa-users nav-icon"></i>
+                              <p>Company Employees</p>
+                            </a>
+                          </li>
+                          <li class="nav-item">
                             <a href="<?php echo base_url() ?>hotels" class="nav-link <?php if($this->uri->segment(1)=="hotels"){echo 'active';}?>">
                               <i class="fa fa-h-square nav-icon"></i>
                               <p>Hotel List</p>
+                            </a>
+                          </li>
+                          <li class="nav-item">
+                            <a href="<?php echo base_url() ?>links" class="nav-link <?php if($this->uri->segment(1)=="links"){echo 'active';}?>">
+                              <i class="fa fa-link nav-icon"></i>
+                              <p>Links</p>
+                            </a>
+                          </li>
+                                   
+                        </ul>
+                    </nav>
+                <?php elseif($session->entity == 'RFP_EMP') : ?>
+                    <nav class="mt-2">
+                        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                            
+                          <li class="nav-item">
+                            <a href="<?php echo base_url() ?>dashboard" class="nav-link <?php if($this->uri->segment(1)=="dashboard"){echo 'active';}?>">
+                              <i class="nav-icon fas fa-tachometer-alt"></i>
+                              <p>Dashboard</p>
+                            </a>
+                          </li>
+                          <li class="nav-item">
+                            <a href="<?php echo base_url() ?>company" class="nav-link <?php if($this->uri->segment(1)=="company"){echo 'active';}?>">
+                              <i class="far fa-user nav-icon"></i>
+                              <p>Company Details</p>
+                            </a>
+                          </li>
+                          <li class="nav-item">
+                            <a href="<?php echo base_url() ?>company_employee_profile" class="nav-link <?php if($this->uri->segment(1)=="company_employee_profile"){echo 'active';}?>">
+                              <i class="far fa-user nav-icon"></i>
+                              <p>Profile</p>
+                            </a>
+                          </li>
+                          <li class="nav-item">
+                            <a href="<?php echo base_url() ?>hotels" class="nav-link <?php if($this->uri->segment(1)=="hotels"){echo 'active';}?>">
+                              <i class="fa fa-h-square nav-icon"></i>
+                              <p>Hotel List</p>
+                            </a>
+                          </li>
+                          <li class="nav-item">
+                            <a href="<?php echo base_url() ?>links" class="nav-link <?php if($this->uri->segment(1)=="links"){echo 'active';}?>">
+                              <i class="fa fa-link nav-icon"></i>
+                              <p>Links</p>
+                            </a>
+                          </li>
+                                   
+                        </ul>
+                    </nav>
+                <?php elseif($session->entity == 'Hotel_EMP') : ?>
+                    <nav class="mt-2">
+                        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                            
+                          <li class="nav-item">
+                            <a href="<?php echo base_url() ?>dashboard" class="nav-link <?php if($this->uri->segment(1)=="dashboard"){echo 'active';}?>">
+                              <i class="nav-icon fas fa-tachometer-alt"></i>
+                              <p>Dashboard</p>
+                            </a>
+                          </li>
+                          <li class="nav-item">
+                            <a href="<?php echo base_url() ?>hotel" class="nav-link <?php if($this->uri->segment(1)=="hotel"){echo 'active';}?>">
+                              <i class="far fa-user nav-icon"></i>
+                              <p>Hotel Details</p>
+                            </a>
+                          </li>
+                          <li class="nav-item">
+                            <a href="<?php echo base_url() ?>hotel_employee_profile" class="nav-link <?php if($this->uri->segment(1)=="hotel_employee_profile"){echo 'active';}?>">
+                              <i class="far fa-user nav-icon"></i>
+                              <p>Profile</p>
+                            </a>
+                          </li>
+                          <li class="nav-item">
+                            <a href="<?php echo base_url() ?>companies" class="nav-link <?php if($this->uri->segment(1)=="companies"){echo 'active';}?>">
+                              <i class="fa fa-h-square nav-icon"></i>
+                              <p>Company List</p>
                             </a>
                           </li>
                           <li class="nav-item">

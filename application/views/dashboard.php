@@ -326,7 +326,7 @@
 		</div>
 		<!-- Small Box (Stat card) -->
 		<div class="row">
-			<?php if($session->entity != 'Hotel') : ?>
+			<?php if($session->entity != 'Hotel' && $session->entity != 'Hotel_EMP') : ?>
 				<div class="<?php echo ($session->entity != 'Admin') ? 'col-sm-6 col-xs-6' : 'col-sm-4 col-xs-4'; ?>">
 					<!-- small card -->
 					<div class="small-box bg-info">
@@ -344,7 +344,7 @@
 				</div>
 			<?php endif; ?>
 			<!-- ./col -->
-			<?php if($session->entity != 'RFP') : ?>
+			<?php if($session->entity != 'RFP' && $session->entity != 'RFP_EMP') : ?>
 				<div class="<?php echo ($session->entity != 'Admin') ? 'col-sm-6 col-xs-6' : 'col-sm-4 col-xs-4'; ?>">
 					<!-- small card -->
 					<div class="small-box bg-success">
@@ -384,7 +384,7 @@
 		</div>
 		<!-- /.row -->
 		<div class="row">
-			<?php if($session->entity != 'Hotel') : ?>
+			<?php if($session->entity != 'Hotel' && $session->entity != 'Hotel_EMP') : ?>
 				<div class="<?php echo ($session->entity != 'Admin') ? 'col-sm-12 col-xs-12' : 'col-sm-6 col-xs-6'; ?>">
 					<div class="card">
 						<div class="card-header border-0">
@@ -434,7 +434,7 @@
 					</div>
 				<?php endif; ?>
 				<!-- /.col-md-6 -->
-				<?php if($session->entity != 'RFP') : ?>
+				<?php if($session->entity != 'RFP' && $session->entity != 'RFP_EMP') : ?>
 					<div class="<?php echo ($session->entity != 'Admin') ? 'col-sm-12 col-xs-12' : 'col-sm-6 col-xs-6'; ?>">
 						<div class="card">
 							<div class="card-header border-0">

@@ -25,6 +25,10 @@ class Company extends CI_Controller
 		if($this->session->userdata('user_data')->entity == 'Hotel') {
 			$data['hotel_data'] = $this->user_model->get_hotel_data($user_id);
 		}
+		if($this->session->userdata('user_data')->entity == 'RFP_EMP') {
+			$data['company_emp_data'] = $this->user_model->get_company_emp_data($user_id);	
+			$company_id = $data['company_emp_data']->company_id;
+		}
 		$data['user_data'] = $this->user_model->get_user_data($user_id);
 		$data['session'] = $this->session->userdata('user_data');
 		$data['companies_data'] = $this->user_lists_model->get_companies($company_id)[0];

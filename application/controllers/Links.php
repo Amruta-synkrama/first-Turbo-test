@@ -24,6 +24,10 @@ class Links extends CI_Controller {
 			$data['company_data'] = $this->user_model->get_company_data($user_id);
 		} elseif($user_role == 'Admin') {
 			$data['hotel_data'] = $this->user_model->get_hotel_data($hotel_id);
+		} elseif($user_role == 'RFP_EMP') {
+			$data['company_emp_data'] = $this->user_model->get_company_emp_data($user_id);
+		} elseif($user_role == 'Hotel_EMP') {
+			$data['hotel_emp_data'] = $this->user_model->get_hotel_emp_data($user_id);
 		}
 		$data['user_data'] = $this->user_model->get_user_data($user_id);
 		$data['session'] = $this->session->userdata('user_data');
@@ -39,6 +43,14 @@ class Links extends CI_Controller {
 				$user_role_sent = 'RFP';
 				$user_id_sent = $company_id;
 			}
+		}
+		if($user_role == 'RFP_EMP') {
+			$user_role_sent = 'RFP';
+			$user_id_sent = $data['company_emp_data']->company_id;
+		}
+		if($user_role == 'Hotel_EMP') {
+			$user_role_sent = 'Hotel';
+			$user_id_sent = $data['hotel_emp_data']->hotel_id;
 		}
 		$data['links_data'] = $this->links_model->get_links(NULL,$user_id_sent,$user_role_sent);
 		$this->load->view('templates/header', $data);

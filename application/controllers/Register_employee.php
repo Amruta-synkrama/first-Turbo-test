@@ -9,8 +9,6 @@ class Register_employee extends CI_Controller
 		}
 		if(!$this->session->userdata('user_data')) {
 			redirect('dashboard');	
-		} elseif($this->session->userdata('user_data')->entity != 'Admin') {
-			redirect('dashboard');
 		}
 		$this->load->library('form_validation');
 		$this->load->library('encryption');
@@ -34,6 +32,7 @@ class Register_employee extends CI_Controller
 		$this->form_validation->set_rules('email', 'Email Address', 'required|trim|valid_email|is_unique[tr_users.email]');
 		$this->form_validation->set_rules('password', 'Password', 'required');
 		$this->form_validation->set_rules('admin_user', 'Main User', 'required');
+		$this->form_validation->set_rules('emp_id', 'Employee ID', 'required');
 		if($this->form_validation->run()) {
 			$verification_key = md5(rand());
 			$encrypted_password = $this->encryption->encrypt($this->input->post('password'));
@@ -43,8 +42,9 @@ class Register_employee extends CI_Controller
 				'username'  => $this->input->post('username'),
 				'phone_number'  => $this->input->post('phone_number'),
 				'entity'  => $this->input->post('entity'),
-				'password' => $encrypted_password
-				'admin_user' => $this->input->post('admin_user')
+				'password' => $encrypted_password,
+				'admin_user' => $this->input->post('admin_user'),
+				'emp_id' => $this->input->post('emp_id')
 			);
 			$id = $this->register_employee_model->reg_insert($data);
 			if($id > 0) {
@@ -58,6 +58,25 @@ class Register_employee extends CI_Controller
 		} else {
 			$this->index();
 		}
+	}
+
+
+	public function get_users() {
+		$value = $this->input->post();
+		// print_r($value['value']); 
+		$user_data = $this->register_employee_model->get_users($value['value']);
+		ob_start();
+		?>
+		<option selected disabled>Select one</option>
+		<?php
+		foreach ($user_data as $user) :
+		?>
+		<option value="<?php echo $user->id ?>"><?php echo $user->name ?></option>
+		<?php
+		endforeach;
+		$html = ob_get_clean();
+		echo $html;
+		// print_r($location_data);
 	}
 }
 /* End of file '/Register_employee.php' */
