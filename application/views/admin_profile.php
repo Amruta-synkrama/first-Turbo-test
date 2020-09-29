@@ -88,7 +88,7 @@
             				</div>
             			</div>
             		<?php endif; ?>
-            		<form class="form-horizontal" action="<?php echo base_url(); ?>admin_profile/update_user_details" method="post">
+            		<form class="form-horizontal update_user_details" action="<?php echo base_url(); ?>admin_profile/update_user_details" method="post">
             			<div class="form-group row">
             				<label for="inputName" class="col-sm-2 col-form-label">Name</label>
             				<div class="col-sm-10">
@@ -110,7 +110,7 @@
             			<div class="form-group row">
             				<label for="inputName2" class="col-sm-2 col-form-label">Phone Number</label>
             				<div class="col-sm-10">
-            					<input type="text" class="form-control" placeholder="Phone Number" name="phone_number" id="phone_number" value="<?php echo $user_data->phone_number; ?>">
+            					<input type="text" class="form-control" placeholder="Phone Number" name="phone_number" id="phone_number" value="<?php echo $user_data->phone_number; ?>" data-inputmask='"mask": "(999)999-9999"' data-mask>
             				</div>
             			</div>
             			<div class="form-group row">
@@ -216,7 +216,7 @@
             				</div>
             			</div>
             		<?php endif; ?>
-            		<form class="form-horizontal" action="<?php echo base_url(); ?>admin_profile/update_user_details_password" method="post">
+            		<form class="form-horizontal update_user_details_password" action="<?php echo base_url(); ?>admin_profile/update_user_details_password" method="post">
             			<div class="form-group row">
             				<label for="inputName" class="col-sm-2 col-form-label">Password</label>
             				<div class="col-sm-10">

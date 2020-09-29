@@ -33,7 +33,7 @@ class Admin_profile extends CI_Controller {
 	public function update_user_details() {
 		$user_id = $this->session->userdata('id');
 		$this->form_validation->set_rules('name','Name','trim|required|alpha_numeric_spaces');
-		$this->form_validation->set_rules('phone_number','Phone Number','trim|required|numeric|min_length[10]|max_length[15]');
+		$this->form_validation->set_rules('phone_number','Phone Number','trim|required|min_length[10]|max_length[15]|regex_match[/^[0-9-()]+$/]');
 
 		if($this->form_validation->run()) {
 			$data = array(

@@ -59,17 +59,32 @@
 <script src="<?php echo base_url(); ?>theme/dist/js/adminlte.js"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="<?php echo base_url(); ?>theme/dist/js/pages/dashboard.js"></script>
+<!-- jquery-validation -->
+<script src="<?php echo base_url(); ?>theme/plugins/jquery-validation/jquery.validate.min.js"></script>
+<script src="<?php echo base_url(); ?>theme/plugins/jquery-validation/additional-methods.min.js"></script>
 <!-- AdminLTE for demo purposes -->
+ <script src="<?php echo base_url(); ?>assets/js/validator.js"></script> 
+ <!-- InputMask -->
+ <script src="<?php echo base_url(); ?>theme/plugins/moment/moment.min.js"></script>
+ <script src="<?php echo base_url(); ?>theme/plugins/inputmask/min/jquery.inputmask.bundle.min.js"></script>
 <script src="<?php echo base_url(); ?>theme/dist/js/demo.js"></script>
 
 <script>
   $(function () {
     $('.select2').select2();
 
-    $("#example1").DataTable({
+    $('[data-mask]').inputmask();
+
+    // $('form[method="post"]').validate();
+
+    /*$('body').on('click','.nav-link', function(){
+      $('.form-horizontal').validate();
+    });*/
+
+    /*$("#example1").DataTable({
       "responsive": true,
       "autoWidth": false,
-    });
+    });*/
     $('#example2').DataTable({
       "paging": true,
       "lengthChange": false,
@@ -79,6 +94,30 @@
       "autoWidth": false,
       "responsive": true,
     });
+
+            
+    // Setup - add a text input to each footer cell
+    $('.dataFrame').attr('id', 'example1');
+    $('#example1 thead tr').clone(true).appendTo( '#example1 thead' );
+    $('#example1 thead tr:eq(1) th').each( function (i) {
+      var title = $(this).text();
+      $(this).html( '<input type="text" placeholder="Search '+title+'" style="width:150px;" />' );
+      $( 'input', this ).on( 'keyup change', function () {
+        if ( table.column(i).search() !== this.value ) {
+          table
+          .column(i)
+          .search( this.value )
+          .draw();
+        }
+      } );
+    } );
+
+    var table = $('#example1').DataTable( {
+      orderCellsTop: true,
+      fixedHeader: true,
+      responsive: true,
+      autoWidth: false
+    } );
 
     var today = new Date();
     const tomorrow = new Date(today);
@@ -157,7 +196,7 @@
 if($this->session->flashdata('success_message')) {
   ?>
   <script type="text/javascript">
-      $(function() {
+    $(function() {
       toastr.success('<?php echo $this->session->flashdata('success_message') ?>');
     });
   </script>

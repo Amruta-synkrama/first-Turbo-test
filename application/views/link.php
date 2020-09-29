@@ -29,7 +29,7 @@
         endif;
     endif;
      ?>
-<form action="<?php echo $form_action; ?>" method="post">
+<form action="<?php echo $form_action; ?>" method="post" class="update_link">
     <div class="row">
         <div class="col-md-12">
             <div class="card card-primary">

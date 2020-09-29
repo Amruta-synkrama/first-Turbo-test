@@ -289,23 +289,23 @@
                     </div>
                   </div>
                 <?php endif; ?>
-                <form class="form-horizontal" action="<?php echo base_url(); ?>hotel_profile/update_hotel_details<?php echo ($session->entity == 'Admin') ? '?hotel_id='.$hotel_user_data->id : ''; ?>" method="post">
+                <form class="form-horizontal update_hotel_details" action="<?php echo base_url(); ?>hotel_profile/update_hotel_details<?php echo ($session->entity == 'Admin') ? '?hotel_id='.$hotel_user_data->id : ''; ?>" method="post">
                   <div class="form-group row">
                     <label for="inputName" class="col-sm-2 col-form-label">Website</label>
                     <div class="col-sm-10">
-                      <input type="text" name="website" id="website" class="form-control" placeholder="Website" value="<?php echo $hotel_data->website; ?>">
+                      <input type="text" name="website" id="website" class="form-control" placeholder="Website" value="<?php echo $hotel_data->website; ?>" required="">
                     </div>
                   </div>
                   <div class="form-group row">
                     <label for="inputEmail" class="col-sm-2 col-form-label">Headquarter</label>
                     <div class="col-sm-10">
-                      <input type="text" name="headquarter" id="headquarter" class="form-control" placeholder="headquarter" value="<?php echo $hotel_data->headquarter; ?>">
+                      <input type="text" name="headquarter" id="headquarter" class="form-control" placeholder="headquarter" value="<?php echo $hotel_data->headquarter; ?>"  required="">
                     </div>
                   </div>
                   <div class="form-group row">
                     <label for="inputExperience" class="col-sm-2 col-form-label">Description</label>
                     <div class="col-sm-10">
-                      <textarea rows="8" name="cover" id="cover" class="form-control" value="<?php echo $hotel_data->cover; ?>"><?php echo $hotel_data->cover; ?></textarea>
+                      <textarea rows="8" name="cover" id="cover" class="form-control" value="<?php echo $hotel_data->cover; ?>" required=""><?php echo $hotel_data->cover; ?></textarea>
                     </div>
                   </div>
                   <div class="form-group row">
@@ -314,6 +314,48 @@
                     </div>
                   </div>
                 </form>
+
+                <?php if($session->entity == 'Admin'): ?>
+                  <h3 class="mt-5">Revenue Settings</h3>
+                <?php if(!empty(validation_errors())) : ?>
+                  <div class="row">
+                    <div class="col-12">
+                      <div class="alert alert-danger">
+                        <?php echo validation_errors(); ?>
+                      </div>    
+                    </div>
+                  </div>
+                <?php endif; ?>
+                <?php if($this->session->flashdata('meter_message')) : ?>
+                  <div class="row">
+                    <div class="col-12">
+                      <div class="alert alert-success">
+                        <?php  echo $this->session->flashdata("hotel_message"); ?>
+                      </div>
+                    </div>
+                  </div>
+                <?php endif; ?>
+                <form class="form-horizontal update_meters" action="<?php echo base_url(); ?>hotel_profile/update_meters<?php echo ($session->entity == 'Admin') ? '?hotel_id='.$hotel_user_data->id : ''; ?>" method="post">
+                  <div class="form-group row">
+                    <label for="inputName" class="col-sm-2 col-form-label">Total Revenue</label>
+                    <div class="col-sm-10">
+                      <input type="number" name="total_revenue" id="total_revenue" class="form-control" placeholder="Total Revenue" value="<?php echo (!empty($total_revenue_data)) ? $total_revenue_data[0] : ''; ?>" required="">
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <label for="inputEmail" class="col-sm-2 col-form-label">Daily Rates</label>
+                    <div class="col-sm-10">
+                      <input type="number" name="daily_rates" id="daily_rates" class="form-control" placeholder="Daily Rates" value="<?php echo (!empty($daily_rates_data)) ? $daily_rates_data[0] : ''; ?>"  required="">
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <div class="offset-sm-2 col-sm-10">
+                      <button type="submit" class="btn btn-danger">Submit</button>
+                    </div>
+                  </div>
+                </form>
+                <?php endif; ?>
+                
 
                 </div>
                 <!-- /.tab-pane -->
@@ -361,7 +403,7 @@
                   </div>
                   <div class="offset-sm-2 col-sm-10">
                     <div class="text-center">
-                      <form class="form-horizontal mt-5" action="<?php echo base_url(); ?>hotel_profile/save_logos<?php echo ($session->entity == 'Admin') ? '?hotel_id='.$hotel_user_data->id : ''; ?>" method="post" enctype="multipart/form-data">   
+                      <form class="form-horizontal mt-5 save_logos" action="<?php echo base_url(); ?>hotel_profile/save_logos<?php echo ($session->entity == 'Admin') ? '?hotel_id='.$hotel_user_data->id : ''; ?>" method="post" enctype="multipart/form-data">   
                         <input type="hidden" name="logo_url" id="logo_url" value="">
                         <button type="submit" class="btn btn-danger save_logo" disabled="">Save Logo</button>
                       </form>   
@@ -420,7 +462,7 @@
                     </div>
                   </div>
                 <?php endif; ?>
-                <form class="form-horizontal" action="<?php echo base_url(); ?>hotel_profile/update_amenities<?php echo ($session->entity == 'Admin') ? '?hotel_id='.$hotel_user_data->id : ''; ?>" method="post">
+                <form class="form-horizontal update_amenities" action="<?php echo base_url(); ?>hotel_profile/update_amenities<?php echo ($session->entity == 'Admin') ? '?hotel_id='.$hotel_user_data->id : ''; ?>" method="post">
                   <div class="form-group row">
                     <label for="inputName" class="col-sm-2 col-form-label">Amenities</label>
                     <div class="col-sm-10">
@@ -477,13 +519,13 @@
                     </div>
                   </div>
                 <?php endif; ?>
-                <form class="form-horizontal" action="<?php echo base_url(); ?>hotel_profile/update_nearby<?php echo ($session->entity == 'Admin') ? '?hotel_id='.$hotel_user_data->id : ''; ?>" method="post">
+                <form class="form-horizontal update_nearby" action="<?php echo base_url(); ?>hotel_profile/update_nearby<?php echo ($session->entity == 'Admin') ? '?hotel_id='.$hotel_user_data->id : ''; ?>" method="post">
                   <div class="add-nearby-wrap-main">
                     <?php if(empty($nearby_data)) : ?>
                     <div class="form-group row add-nearby-wrap add-nearby-1">
                       <label for="inputName" class="col-sm-2 col-form-label">Nearby</label>
                       <div class="col-sm-7">
-                        <input type="text" class="form-control" placeholder="Nearby Place" name="nearby[]" id="nearby" value="">
+                        <input type="text" class="form-control" placeholder="Nearby Place" name="nearby[]" id="nearby" value="" required="">
                       </div>
                       <div class="col-sm-3">
                         <div class="margin">
@@ -499,7 +541,7 @@
                         <div class="form-group row add-nearby-wrap add-nearby-1">
                           <label for="inputName" class="col-sm-2 col-form-label">Nearby</label>
                           <div class="col-sm-7">
-                            <input type="text" class="form-control" placeholder="Nearby Place" name="nearby[]" id="nearby" value="<?php echo $nearby_val; ?>">
+                            <input type="text" class="form-control" placeholder="Nearby Place" name="nearby[]" id="nearby" value="<?php echo $nearby_val; ?>" required="">
                           </div>
                           <div class="col-sm-3">
                             <div class="margin">
@@ -553,13 +595,13 @@
                     </div>
                   </div>
                 <?php endif; ?>
-                <form class="form-horizontal" action="<?php echo base_url(); ?>hotel_profile/update_nearby_rest<?php echo ($session->entity == 'Admin') ? '?hotel_id='.$hotel_user_data->id : ''; ?>" method="post">
+                <form class="form-horizontal update_nearby_rest" action="<?php echo base_url(); ?>hotel_profile/update_nearby_rest<?php echo ($session->entity == 'Admin') ? '?hotel_id='.$hotel_user_data->id : ''; ?>" method="post">
                   <div class="add-restaurants-wrap-main">
                     <?php if(empty($restaurants_data)) : ?>
                     <div class="form-group row add-restaurants-wrap add-restaurants-1">
                       <label for="inputName" class="col-sm-2 col-form-label">Restaurants</label>
                       <div class="col-sm-7">
-                        <input type="text" class="form-control" placeholder="Restaurants" name="restaurants[]" id="restaurants" value="">
+                        <input type="text" class="form-control" placeholder="Restaurants" name="restaurants[]" id="restaurants" value="" required="">
                       </div>
                       <div class="col-sm-3">
                         <div class="margin">
@@ -575,7 +617,7 @@
                         <div class="form-group row add-restaurants-wrap add-restaurants-1">
                           <label for="inputName" class="col-sm-2 col-form-label">Restaurants</label>
                           <div class="col-sm-7">
-                            <input type="text" class="form-control" placeholder="Restaurants" name="restaurants[]" id="restaurants" value="<?php echo $restaurants_val; ?>">
+                            <input type="text" class="form-control" placeholder="Restaurants" name="restaurants[]" id="restaurants" value="<?php echo $restaurants_val; ?>" required="">
                           </div>
                           <div class="col-sm-3">
                             <div class="margin">
@@ -622,7 +664,7 @@
                     </div>
                   </div>
                 <?php endif; ?>
-                <form class="form-horizontal mt-5" action="<?php echo base_url(); ?>hotel_profile/upload_gallery<?php echo ($session->entity == 'Admin') ? '?hotel_id='.$hotel_user_data->id : ''; ?>" method="post" enctype="multipart/form-data">
+                <form class="form-horizontal mt-5 upload_gallery" action="<?php echo base_url(); ?>hotel_profile/upload_gallery<?php echo ($session->entity == 'Admin') ? '?hotel_id='.$hotel_user_data->id : ''; ?>" method="post" enctype="multipart/form-data">
 
                   <div class="form-group row">
                     <label for="inputName" class="col-sm-2 col-form-label">Logo</label>
@@ -685,23 +727,23 @@
                     </div>
                   </div>
                 <?php endif; ?>
-                <form class="form-horizontal" action="<?php echo base_url(); ?>hotel_profile/update_contact_details<?php echo ($session->entity == 'Admin') ? '?hotel_id='.$hotel_user_data->id : ''; ?>" method="post">
+                <form class="form-horizontal update_contact_details" action="<?php echo base_url(); ?>hotel_profile/update_contact_details<?php echo ($session->entity == 'Admin') ? '?hotel_id='.$hotel_user_data->id : ''; ?>" method="post">
                   <div class="form-group row">
                     <label for="inputName" class="col-sm-2 col-form-label">Name</label>
                     <div class="col-sm-10">
-                      <input type="text" class="form-control" placeholder="Name" name="contact_name" id="contact_name" value="<?php echo $hotel_data->contact_name; ?>">
+                      <input type="text" class="form-control" placeholder="Name" name="contact_name" id="contact_name" value="<?php echo $hotel_data->contact_name; ?>"  required="">
                     </div>
                   </div>
                   <div class="form-group row">
                     <label for="inputEmail" class="col-sm-2 col-form-label">Email</label>
                     <div class="col-sm-10">
-                      <input type="email" class="form-control" placeholder="Email" name="contact_email" id="contact_email" value="<?php echo $hotel_data->contact_email; ?>">
+                      <input type="email" class="form-control" placeholder="Email" name="contact_email" id="contact_email" value="<?php echo $hotel_data->contact_email; ?>" required="">
                     </div>
                   </div>
                   <div class="form-group row">
                     <label for="inputName2" class="col-sm-2 col-form-label">Phone Number</label>
                     <div class="col-sm-10">
-                      <input type="text" class="form-control" placeholder="Phone Number" name="contact_no" id="contact_no" value="<?php echo $hotel_data->contact_no; ?>">
+                      <input type="text" class="form-control" placeholder="Phone Number" name="contact_no" id="contact_no" value="<?php echo $hotel_data->contact_no; ?>" required="" data-inputmask='"mask": "(999)999-9999"' data-mask>
                     </div>
                   </div>
                   <div class="form-group row">
@@ -731,11 +773,11 @@
                     </div>
                   </div>
                 <?php endif; ?>
-                <form class="form-horizontal" action="<?php echo base_url(); ?>hotel_profile/update_user_details<?php echo ($session->entity == 'Admin') ? '?hotel_id='.$hotel_user_data->id : ''; ?>" method="post">
+                <form class="form-horizontal update_user_details" action="<?php echo base_url(); ?>hotel_profile/update_user_details<?php echo ($session->entity == 'Admin') ? '?hotel_id='.$hotel_user_data->id : ''; ?>" method="post">
                   <div class="form-group row">
                     <label for="inputName" class="col-sm-2 col-form-label">Name</label>
                     <div class="col-sm-10">
-                      <input type="text" class="form-control" placeholder="Name" name="name" id="name" value="<?php echo $hotel_user_data->name; ?>">
+                      <input type="text" class="form-control" placeholder="Name" name="name" id="name" value="<?php echo $hotel_user_data->name; ?>" required="">
                     </div>
                   </div>
                   <div class="form-group row">
@@ -753,7 +795,7 @@
                   <div class="form-group row">
                     <label for="inputName2" class="col-sm-2 col-form-label">Phone Number</label>
                     <div class="col-sm-10">
-                      <input type="text" class="form-control" placeholder="Phone Number" name="phone_number" id="phone_number" value="<?php echo $hotel_user_data->phone_number; ?>">
+                      <input type="text" class="form-control" placeholder="Phone Number" name="phone_number" id="phone_number" value="<?php echo $hotel_user_data->phone_number; ?>" required="" data-inputmask='"mask": "(999)999-9999"' data-mask>
                     </div>
                   </div>
                   <div class="form-group row">
@@ -783,17 +825,17 @@
                     </div>
                   </div>
                 <?php endif; ?>
-                <form class="form-horizontal" action="<?php echo base_url(); ?>hotel_profile/update_user_details_password<?php echo ($session->entity == 'Admin') ? '?hotel_id='.$hotel_user_data->id : ''; ?>" method="post">
+                <form class="form-horizontal update_user_details_password" action="<?php echo base_url(); ?>hotel_profile/update_user_details_password<?php echo ($session->entity == 'Admin') ? '?hotel_id='.$hotel_user_data->id : ''; ?>" method="post">
                   <div class="form-group row">
                     <label for="inputName" class="col-sm-2 col-form-label">Password</label>
                     <div class="col-sm-10">
-                      <input type="password" class="form-control" placeholder="Password" name="password" id="password" value="">
+                      <input type="password" class="form-control" placeholder="Password" name="password" id="password" value="" required="">
                     </div>
                   </div>
                   <div class="form-group row">
                     <label for="inputName" class="col-sm-2 col-form-label">Confirm Password</label>
                     <div class="col-sm-10">
-                      <input type="password" class="form-control" placeholder="Confirm Password" name="confirm_password" id="confirm_password" value="">
+                      <input type="password" class="form-control" placeholder="Confirm Password" name="confirm_password" id="confirm_password" value="" required="">
                     </div>
                   </div>
                   <div class="form-group row">
@@ -825,7 +867,7 @@
         <div class="form-group row add-nearby-wrap add-nearby-1">
           <label for="inputName" class="col-sm-2 col-form-label">Nearby</label>
           <div class="col-sm-7">
-            <input type="text" class="form-control" placeholder="Nearby Place" name="nearby[]" id="nearby" value="">
+            <input type="text" class="form-control" placeholder="Nearby Place" name="nearby[]" id="nearby" value="" required="">
           </div>
           <div class="col-sm-3">
             <div class="margin">
@@ -855,7 +897,7 @@
         <div class="form-group row add-restaurants-wrap add-restaurants-1">
           <label for="inputName" class="col-sm-2 col-form-label">Restaurants</label>
           <div class="col-sm-7">
-            <input type="text" class="form-control" placeholder="Restaurants" name="restaurants[]" id="restaurants" value="">
+            <input type="text" class="form-control" placeholder="Restaurants" name="restaurants[]" id="restaurants" value="" required="">
           </div>
           <div class="col-sm-3">
             <div class="margin">

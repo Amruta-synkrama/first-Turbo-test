@@ -129,6 +129,12 @@
                     </div>
                   </div>
                 <?php endif; ?>
+                <!-- <div class="row">
+                  <div class="col-12">
+                    <div class="alert alert-danger" id="message_line">
+                    </div>    
+                  </div>
+                </div> -->
                 <?php if($this->session->flashdata('company_message')) : ?>
                   <div class="row">
                     <div class="col-12">
@@ -147,23 +153,23 @@
                     </div>
                   </div>
                 <?php endif; ?>
-                <form class="form-horizontal" action="<?php echo base_url(); ?>company_profile/update_company_details<?php echo ($session->entity == 'Admin') ? '?company_id='.$company_user_data->id : ''; ?>" method="post">
+                <form class="form-horizontal update_hotel_details" action="<?php echo base_url(); ?>company_profile/update_company_details<?php echo ($session->entity == 'Admin') ? '?company_id='.$company_user_data->id : ''; ?>" method="post">
                   <div class="form-group row">
                     <label for="inputName" class="col-sm-2 col-form-label">Website</label>
                     <div class="col-sm-10">
-                      <input type="text" name="website" id="website" class="form-control" placeholder="Website" value="<?php echo $company_data->website; ?>">
+                      <input type="text" name="website" id="website" class="form-control" placeholder="Website" value="<?php echo $company_data->website; ?>" required="">
                     </div>
                   </div>
                   <div class="form-group row">
                     <label for="inputEmail" class="col-sm-2 col-form-label">Headquarter</label>
                     <div class="col-sm-10">
-                      <input type="text" name="headquarter" id="headquarter" class="form-control" placeholder="headquarter" value="<?php echo $company_data->headquarter; ?>">
+                      <input type="text" name="headquarter" id="headquarter" class="form-control" placeholder="headquarter" value="<?php echo $company_data->headquarter; ?>" required="">
                     </div>
                   </div>
                   <div class="form-group row">
                     <label for="inputExperience" class="col-sm-2 col-form-label">Description</label>
                     <div class="col-sm-10">
-                      <textarea rows="8" name="cover" id="cover" class="form-control" value="<?php echo $company_data->cover; ?>"><?php echo $company_data->cover; ?></textarea>
+                      <textarea rows="8" name="cover" id="cover" class="form-control" value="<?php echo $company_data->cover; ?>" required=""><?php echo $company_data->cover; ?></textarea>
                     </div>
                   </div>
                   <div class="form-group row">
@@ -249,6 +255,7 @@
                     </div>
                   </div>
                 </form>
+                <?php */ ?>
               </div>
               <!-- /.tab-pane -->
               <div class="tab-pane" id="timeline">
@@ -270,7 +277,7 @@
                     </div>
                   </div>
                 <?php endif; ?>
-                <form class="form-horizontal" action="<?php echo base_url(); ?>company_profile/update_contact_details<?php echo ($session->entity == 'Admin') ? '?company_id='.$company_user_data->id : ''; ?>" method="post">
+                <form class="form-horizontal update_contact_details" action="<?php echo base_url(); ?>company_profile/update_contact_details<?php echo ($session->entity == 'Admin') ? '?company_id='.$company_user_data->id : ''; ?>" method="post">
                   <div class="form-group row">
                     <label for="inputName" class="col-sm-2 col-form-label">Name</label>
                     <div class="col-sm-10">
@@ -286,7 +293,7 @@
                   <div class="form-group row">
                     <label for="inputName2" class="col-sm-2 col-form-label">Phone Number</label>
                     <div class="col-sm-10">
-                      <input type="text" class="form-control" placeholder="Phone Number" name="contact_no" id="contact_no" value="<?php echo $company_data->contact_no; ?>">
+                      <input type="text" class="form-control" placeholder="Phone Number" name="contact_no" id="contact_no" value="<?php echo $company_data->contact_no; ?>" data-inputmask='"mask": "(999)999-9999"' data-mask>
                     </div>
                   </div>
                   <div class="form-group row">
@@ -295,7 +302,7 @@
                     </div>
                   </div>
                 </form>
-                <?php */ ?>
+                
               </div>
               <!-- /.tab-pane -->
 
@@ -318,7 +325,7 @@
                     </div>
                   </div>
                 <?php endif; ?>
-                <form class="form-horizontal" action="<?php echo base_url(); ?>company_profile/update_user_details<?php echo ($session->entity == 'Admin') ? '?company_id='.$company_user_data->id : ''; ?> " method="post">
+                <form class="form-horizontal update_user_details" action="<?php echo base_url(); ?>company_profile/update_user_details<?php echo ($session->entity == 'Admin') ? '?company_id='.$company_user_data->id : ''; ?> " method="post">
                   <div class="form-group row">
                     <label for="inputName" class="col-sm-2 col-form-label">Name</label>
                     <div class="col-sm-10">
@@ -340,7 +347,7 @@
                   <div class="form-group row">
                     <label for="inputName2" class="col-sm-2 col-form-label">Phone Number</label>
                     <div class="col-sm-10">
-                      <input type="text" class="form-control" placeholder="Phone Number" name="phone_number" id="phone_number" value="<?php echo $company_user_data->phone_number; ?>">
+                      <input type="text" class="form-control" placeholder="Phone Number" name="phone_number" id="phone_number" value="<?php echo $company_user_data->phone_number; ?>" data-inputmask='"mask": "(999)999-9999"' data-mask>
                     </div>
                   </div>
                   <div class="form-group row">
@@ -370,7 +377,7 @@
                     </div>
                   </div>
                 <?php endif; ?>
-                <form class="form-horizontal" action="<?php echo base_url(); ?>company_profile/update_user_details_password<?php echo ($session->entity == 'Admin') ? '?company_id='.$company_user_data->id : ''; ?>" method="post">
+                <form class="form-horizontal update_user_details_password" action="<?php echo base_url(); ?>company_profile/update_user_details_password<?php echo ($session->entity == 'Admin') ? '?company_id='.$company_user_data->id : ''; ?>" method="post">
                   <div class="form-group row">
                     <label for="inputName" class="col-sm-2 col-form-label">Password</label>
                     <div class="col-sm-10">

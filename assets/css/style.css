@@ -55,6 +55,10 @@ body.accent-orange .icheck-primary>input:first-child:not(:checked):not(:disabled
     right: 15px;
 }
 
+span.error.invalid-feedback{
+    text-align: center;
+}
+
 
 /**custom flip css**/
 /* Skeleton */
@@ -174,6 +178,18 @@ body.accent-orange .icheck-primary>input:first-child:not(:checked):not(:disabled
 
 .bg-danger-cust.flip-box-cust ul.flip li a div div.inn {
     background-color: #dc3545 !important;
+}
+
+.bg-info-cust.flip-box-cust ul.flip1 span {
+    color: #17a2b8 !important;
+}
+
+.bg-success-cust.flip-box-cust ul.flip1 span {
+    color: #28a745 !important;
+}
+
+.bg-danger-cust.flip-box-cust ul.flip1 span {
+    color: #dc3545 !important;
 }
 
 .flip-box-cust ul.flip li a div.up div.inn {

@@ -37,6 +37,8 @@ class Hotel_profile extends CI_Controller {
 		$data['nearby_data'] = $this->user_model->get_amenities($hotel_id,'nearby');
 		$data['restaurants_data'] = $this->user_model->get_amenities($hotel_id,'restaurants');
 		$data['gallery_data'] = $this->user_model->get_amenities($hotel_id,'hotel_gallery');
+		$data['total_revenue_data'] = $this->user_model->get_amenities($hotel_id,'total_revenue');
+		$data['daily_rates_data'] = $this->user_model->get_amenities($hotel_id,'daily_rates');
 		$data['controller'] = $this;
 		$data['hotel_id'] = $hotel_id;
 		$this->load->view('templates/header', $data);
@@ -144,6 +146,49 @@ class Hotel_profile extends CI_Controller {
 		}*/
 	}
 
+
+	/**
+	 * 
+	 */
+	public function update_meters() {
+		$user_id = $this->session->userdata('id');
+		if($this->session->userdata('user_data')->entity == 'Admin') {
+			$hotel_id = $this->input->get('hotel_id');
+		} else {
+			$hotel_id = $user_id;
+		}
+		$this->form_validation->set_rules('total_revenue','Total Revenue','trim|required');
+		$this->form_validation->set_rules('daily_rates','Daily Rates','trim|required');
+
+		if($this->form_validation->run()) {
+			$data = array(
+				'key'  => 'total_revenue',
+				'value' => serialize(array($this->input->post('total_revenue')))
+			);
+			$data1 = array(
+				'key'  => 'daily_rates',
+				'value' => serialize(array($this->input->post('daily_rates')))
+			);
+			// print_r($data);
+			if($this->user_model->update_hotel_meta($data, $hotel_id) && $this->user_model->update_hotel_meta($data1, $hotel_id)) {
+				// $this->session->set_flashdata('amenities_message', 'Data updated');
+				$this->session->set_flashdata('success_message', 'Data updated');
+				if($this->session->userdata('user_data')->entity == 'Admin') {
+					redirect('hotel_profile?hotel_id='.$hotel_id);
+				} else {
+					redirect('hotel_profile');
+				}
+			} else {
+				if($this->session->userdata('user_data')->entity == 'Admin') {
+					redirect('hotel_profile?hotel_id='.$hotel_id);
+				} else {
+					redirect('hotel_profile');
+				}
+			}
+		} else {
+			$this->index();
+		}
+	}
 
 	/**
 	 * Get All Data from this method.
@@ -479,7 +524,7 @@ class Hotel_profile extends CI_Controller {
 		}
 		$this->form_validation->set_rules('contact_name','Contact Name','trim|required');
 		$this->form_validation->set_rules('contact_email','Contact Email','trim|required|valid_email');
-		$this->form_validation->set_rules('contact_no','Contact No','trim|required|min_length[10]|max_length[15]|numeric');
+		$this->form_validation->set_rules('contact_no','Contact No','trim|required|min_length[10]|max_length[15]|regex_match[/^[0-9-()]+$/]');
 
 		if($this->form_validation->run()) {
 			$data = array(
@@ -515,7 +560,7 @@ class Hotel_profile extends CI_Controller {
 			$hotel_id = $user_id;
 		}
 		$this->form_validation->set_rules('name','Name','trim|required|alpha_numeric_spaces');
-		$this->form_validation->set_rules('phone_number','Phone Number','trim|required|numeric|min_length[10]|max_length[15]');
+		$this->form_validation->set_rules('phone_number','Phone Number','trim|required|min_length[10]|max_length[15]|regex_match[/^[0-9-()]+$/]');
 
 		if($this->form_validation->run()) {
 			$data = array(

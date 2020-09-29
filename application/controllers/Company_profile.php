@@ -239,7 +239,7 @@ class Company_profile extends CI_Controller {
 		}
 		$this->form_validation->set_rules('contact_name','Contact Name','trim|required');
 		$this->form_validation->set_rules('contact_email','Conatct Email','trim|required|valid_email');
-		$this->form_validation->set_rules('contact_no','Contact No','trim|required|min_length[10]|max_length[15]|numeric');
+		$this->form_validation->set_rules('contact_no','Contact No','trim|required|min_length[10]|max_length[15]|regex_match[/^[0-9-()]+$/]');
 
 		if($this->form_validation->run()) {
 			$data = array(
@@ -275,7 +275,7 @@ class Company_profile extends CI_Controller {
 			$company_id = $user_id;
 		}
 		$this->form_validation->set_rules('name','Name','trim|required|alpha_numeric_spaces');
-		$this->form_validation->set_rules('phone_number','Phone Number','trim|required|min_length[10]|max_length[15]|numeric');
+		$this->form_validation->set_rules('phone_number','Phone Number','trim|required|min_length[10]|max_length[15]|regex_match[/^[0-9-()]+$/]');
 
 		if($this->form_validation->run()) {
 			$data = array(

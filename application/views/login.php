@@ -5,6 +5,11 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/css/style.css">
 	<script src="<?php echo base_url(); ?>theme/plugins/jquery/jquery.min.js"></script>
+	<!-- jquery-validation -->
+	<script src="<?php echo base_url(); ?>theme/plugins/jquery-validation/jquery.validate.min.js"></script>
+	<script src="<?php echo base_url(); ?>theme/plugins/jquery-validation/additional-methods.min.js"></script>
+	<!-- AdminLTE for demo purposes -->
+	 <script src="<?php echo base_url(); ?>assets/js/validator.js"></script> 
 </head>
 <body>
 	<!-- <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -62,7 +67,7 @@
 						</div>
 					</div>
 				<?php endif; ?>
-				<form action="<?php echo base_url(); ?>login/validation" method="post">
+				<form action="<?php echo base_url(); ?>login/validation" method="post" class="login">
 					<div class="form-group">
 						<label><strong>Email</strong></label>
 						<input type="email" name="email" id="email" class="form-control" value="<?php echo set_value('email') ?>">

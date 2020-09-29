@@ -33,7 +33,7 @@
 								</div>
 							</div>
 						<?php endif; ?>
-						<form action="<?php echo base_url(); ?>register/validation" method="post">
+						<form action="<?php echo base_url(); ?>register/validation" method="post" class="register_user">
 							<div class="row">
 								<div class="col-6">
 							<div class="form-group">
