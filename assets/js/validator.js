@@ -166,7 +166,7 @@ $(document).ready(function () {
 	    },
 	    phone_number: {
 	      required: true,
-	      number:true
+	      pattern: "\(([0-9]{3}))\)\s*[0-9]{3}[-]*[0-9]{4}"
 	    },
 	    email: {
 	      required: true,
