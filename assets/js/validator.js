@@ -311,6 +311,28 @@ $(document).ready(function () {
 	  }
 	});
 
+	$('form.verify_otp').validate({
+	  rules: {
+	    otp: {
+	      required: true,
+	      number:true,
+	      minlength:5,
+	      maxlength:5
+	    }
+	  },
+	  errorElement: 'span',
+	  errorPlacement: function (error, element) {
+	    error.addClass('invalid-feedback');
+	    element.closest('.form-group').append(error);
+	  },
+	  highlight: function (element, errorClass, validClass) {
+	    $(element).addClass('is-invalid');
+	  },
+	  unhighlight: function (element, errorClass, validClass) {
+	    $(element).removeClass('is-invalid');
+	  }
+	});
+
 
 	$('form.update_employee_details').validate({
 	  rules: {

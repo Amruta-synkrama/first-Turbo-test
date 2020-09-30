@@ -11,6 +11,7 @@ class Login extends CI_Controller {
 		$this->load->library('form_validation');
 		$this->load->library('encryption');
 		$this->load->model('register_model');
+		$this->load->model('verify_otp_model');
 	}
 
 	function index() {
@@ -25,7 +26,10 @@ class Login extends CI_Controller {
 		if($this->form_validation->run()) {
 			$result = $this->register_model->can_login($this->input->post('email'), $this->input->post('password'));
 			if($result == '') {
-				redirect('dashboard');
+				// redirect('dashboard');
+				$result = $this->verify_otp_model->send_otp($this->input->post('email'));
+				$this->session->set_flashdata('success_message',$result);
+				redirect('verify_otp');
 			} else {
 				$this->session->set_flashdata('message',$result);
 				redirect('login');

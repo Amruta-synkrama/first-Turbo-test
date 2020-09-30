@@ -18,6 +18,8 @@ class Dashboard extends CI_Controller {
 		$data['hotels_count'] = $this->dashboard_model->get_hotels_count();
 		$data['hotels_data'] = $this->dashboard_model->get_hotels();
 		$data['links_count'] = $this->dashboard_model->get_links_count($user_id,$this->session->userdata('user_data')->entity);
+		$data['room_count1'] = 12345;
+		$data['room_count2'] = 54321;
 		$this->load->view('templates/header', $data);
 		$this->load->view('dashboard', $data);
 		$this->load->view('templates/footer', $data);

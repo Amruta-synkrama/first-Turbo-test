@@ -36,8 +36,8 @@ class Register_model extends CI_Model {
 					if($row->status == '2') {
 						return 'Your account is deactivated. Please contact admin.';
 					} else {
-						$this->session->set_userdata('id', $row->id);
-						$this->session->set_userdata('user_data', $row);
+						// $this->session->set_userdata('id', $row->id);
+						// $this->session->set_userdata('user_data', $row);
 					}
 				} else {
 					return 'Wrong Password';

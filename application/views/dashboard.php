@@ -26,142 +26,47 @@
 					  <div class="info-box-content">
 					    <span class="info-box-number mx-auto">
 					      <div class="text-center d-flex">
+					      	<?php
+					      	$invID = str_pad($room_count1, 5, '0', STR_PAD_LEFT);
+					      	$invIDArray = str_split((string)$invID);
+					      	?>
 					      	<div class=" flip-box-cust flip-cust-box-1 bg-info-cust">
-					      		<ul class="flip secondPlay">
-					      			<li>
-					      				<a href="#">
-					      					<div class="up">
-					      						<div class="shadow"></div>
-					      						<div class="inn">0</div>
-					      					</div>
-					      					<div class="down">
-					      						<div class="shadow"></div>
-					      						<div class="inn">0</div>
-					      					</div>
-					      				</a>
-					      			</li>
-					      			<li>
-					      				<a href="#">
-					      					<div class="up">
-					      						<div class="shadow"></div>
-					      						<div class="inn">0</div>
-					      					</div>
-					      					<div class="down">
-					      						<div class="shadow"></div>
-					      						<div class="inn">0</div>
-					      					</div>
-					      				</a>
-					      			</li>
-					      		</ul>
-					      		<ul class="flip secondPlay1">
-					      			<li>
-					      				<a href="#">
-					      					<div class="up">
-					      						<div class="shadow"></div>
-					      						<div class="inn">0</div>
-					      					</div>
-					      					<div class="down">
-					      						<div class="shadow"></div>
-					      						<div class="inn">0</div>
-					      					</div>
-					      				</a>
-					      			</li>
-					      			<li>
-					      				<a href="#">
-					      					<div class="up">
-					      						<div class="shadow"></div>
-					      						<div class="inn">6</div>
-					      					</div>
-					      					<div class="down">
-					      						<div class="shadow"></div>
-					      						<div class="inn">6</div>
-					      					</div>
-					      				</a>
-					      			</li>
-					      		</ul>
-					      		<ul class="flip1">
-					      			<li>
-					      				<span>,</span>
-					      			</li>
-					      		</ul>
-					      		<ul class="flip secondPlay2">
-					      			<li>
-					      				<a href="#">
-					      					<div class="up">
-					      						<div class="shadow"></div>
-					      						<div class="inn">0</div>
-					      					</div>
-					      					<div class="down">
-					      						<div class="shadow"></div>
-					      						<div class="inn">0</div>
-					      					</div>
-					      				</a>
-					      			</li>
-					      			<li>
-					      				<a href="#">
-					      					<div class="up">
-					      						<div class="shadow"></div>
-					      						<div class="inn">8</div>
-					      					</div>
-					      					<div class="down">
-					      						<div class="shadow"></div>
-					      						<div class="inn">8</div>
-					      					</div>
-					      				</a>
-					      			</li>
-					      		</ul>
-					      		<ul class="flip secondPlay3">
-					      			<li>
-					      				<a href="#">
-					      					<div class="up">
-					      						<div class="shadow"></div>
-					      						<div class="inn">0</div>
-					      					</div>
-					      					<div class="down">
-					      						<div class="shadow"></div>
-					      						<div class="inn">0</div>
-					      					</div>
-					      				</a>
-					      			</li>
-					      			<li>
-					      				<a href="#">
-					      					<div class="up">
-					      						<div class="shadow"></div>
-					      						<div class="inn">2</div>
-					      					</div>
-					      					<div class="down">
-					      						<div class="shadow"></div>
-					      						<div class="inn">2</div>
-					      					</div>
-					      				</a>
-					      			</li>
-					      		</ul>
-					      		<ul class="flip secondPlay4">
-					      			<li>
-					      				<a href="#">
-					      					<div class="up">
-					      						<div class="shadow"></div>
-					      						<div class="inn">0</div>
-					      					</div>
-					      					<div class="down">
-					      						<div class="shadow"></div>
-					      						<div class="inn">0</div>
-					      					</div>
-					      				</a>
-					      			</li>
-					      			<li>
-					      				<a href="#">
-					      					<div class="up">
-					      						<div class="shadow"></div>
-					      						<div class="inn">7</div>
-					      					</div>
-					      					<div class="down">
-					      						<div class="shadow"></div>
-					      						<div class="inn">7</div>
-					      					</div>
-					      				</a>
-					      			</li>
-					      		</ul>
+					      		<?php $i = 0; foreach ($invIDArray as $int) : ?>
+					      			<ul class="flip secondPlay<?php echo ($i>0) ? $i : ''; ?>">
+					      				<li>
+					      					<a href="#">
+					      						<div class="up">
+					      							<div class="shadow"></div>
+					      							<div class="inn">0</div>
+					      						</div>
+					      						<div class="down">
+					      							<div class="shadow"></div>
+					      							<div class="inn">0</div>
+					      						</div>
+					      					</a>
+					      				</li>
+					      				<li>
+					      					<a href="#">
+					      						<div class="up">
+					      							<div class="shadow"></div>
+					      							<div class="inn"><?php echo $int; ?></div>
+					      						</div>
+					      						<div class="down">
+					      							<div class="shadow"></div>
+					      							<div class="inn"><?php echo $int; ?></div>
+					      						</div>
+					      					</a>
+					      				</li>
+					      			</ul>
+					      			<?php if($i == 1): ?>
+					      				<ul class="flip1">
+					      					<li>
+					      						<span style="font-size:25px;">,</span>
+					      					</li>
+					      				</ul>
+					      			<?php endif; ?>
+					      			<?php $i++; ?>
+					      		<?php endforeach; ?>
 					      	</div>
 					      </div>
 					    </span>
@@ -177,142 +82,47 @@
 					  <div class="info-box-content">
 					    <span class="info-box-number mx-auto">
 					      <div class="text-center d-flex">
+					      	<?php
+					      	$invID = str_pad($room_count2, 5, '0', STR_PAD_LEFT);
+					      	$invIDArray = str_split((string)$invID);
+					      	?>
 					      	<div class=" flip-box-cust flip-cust-box-3 bg-danger-cust">
-					      		<ul class="flip secondPlay">
-					      			<li>
-					      				<a href="#">
-					      					<div class="up">
-					      						<div class="shadow"></div>
-					      						<div class="inn">0</div>
-					      					</div>
-					      					<div class="down">
-					      						<div class="shadow"></div>
-					      						<div class="inn">0</div>
-					      					</div>
-					      				</a>
-					      			</li>
-					      			<li>
-					      				<a href="#">
-					      					<div class="up">
-					      						<div class="shadow"></div>
-					      						<div class="inn">0</div>
-					      					</div>
-					      					<div class="down">
-					      						<div class="shadow"></div>
-					      						<div class="inn">0</div>
-					      					</div>
-					      				</a>
-					      			</li>
-					      		</ul>
-					      		<ul class="flip secondPlay1">
-					      			<li>
-					      				<a href="#">
-					      					<div class="up">
-					      						<div class="shadow"></div>
-					      						<div class="inn">0</div>
-					      					</div>
-					      					<div class="down">
-					      						<div class="shadow"></div>
-					      						<div class="inn">0</div>
-					      					</div>
-					      				</a>
-					      			</li>
-					      			<li>
-					      				<a href="#">
-					      					<div class="up">
-					      						<div class="shadow"></div>
-					      						<div class="inn">0</div>
-					      					</div>
-					      					<div class="down">
-					      						<div class="shadow"></div>
-					      						<div class="inn">0</div>
-					      					</div>
-					      				</a>
-					      			</li>
-					      		</ul>
-					      		<ul class="flip1">
-					      			<li>
-					      				<span>,</span>
-					      			</li>
-					      		</ul>
-					      		<ul class="flip secondPlay2">
-					      			<li>
-					      				<a href="#">
-					      					<div class="up">
-					      						<div class="shadow"></div>
-					      						<div class="inn">0</div>
-					      					</div>
-					      					<div class="down">
-					      						<div class="shadow"></div>
-					      						<div class="inn">0</div>
-					      					</div>
-					      				</a>
-					      			</li>
-					      			<li>
-					      				<a href="#">
-					      					<div class="up">
-					      						<div class="shadow"></div>
-					      						<div class="inn">0</div>
-					      					</div>
-					      					<div class="down">
-					      						<div class="shadow"></div>
-					      						<div class="inn">0</div>
-					      					</div>
-					      				</a>
-					      			</li>
-					      		</ul>
-					      		<ul class="flip secondPlay3">
-					      			<li>
-					      				<a href="#">
-					      					<div class="up">
-					      						<div class="shadow"></div>
-					      						<div class="inn">0</div>
-					      					</div>
-					      					<div class="down">
-					      						<div class="shadow"></div>
-					      						<div class="inn">0</div>
-					      					</div>
-					      				</a>
-					      			</li>
-					      			<li>
-					      				<a href="#">
-					      					<div class="up">
-					      						<div class="shadow"></div>
-					      						<div class="inn">8</div>
-					      					</div>
-					      					<div class="down">
-					      						<div class="shadow"></div>
-					      						<div class="inn">8</div>
-					      					</div>
-					      				</a>
-					      			</li>
-					      		</ul>
-					      		<ul class="flip secondPlay4">
-					      			<li>
-					      				<a href="#">
-					      					<div class="up">
-					      						<div class="shadow"></div>
-					      						<div class="inn">0</div>
-					      					</div>
-					      					<div class="down">
-					      						<div class="shadow"></div>
-					      						<div class="inn">0</div>
-					      					</div>
-					      				</a>
-					      			</li>
-					      			<li>
-					      				<a href="#">
-					      					<div class="up">
-					      						<div class="shadow"></div>
-					      						<div class="inn">9</div>
-					      					</div>
-					      					<div class="down">
-					      						<div class="shadow"></div>
-					      						<div class="inn">9</div>
-					      					</div>
-					      				</a>
-					      			</li>
-					      		</ul>
+					      		<?php $i = 0; foreach ($invIDArray as $int) : ?>
+					      			<ul class="flip secondPlay<?php echo ($i>0) ? $i : ''; ?>">
+					      				<li>
+					      					<a href="#">
+					      						<div class="up">
+					      							<div class="shadow"></div>
+					      							<div class="inn">0</div>
+					      						</div>
+					      						<div class="down">
+					      							<div class="shadow"></div>
+					      							<div class="inn">0</div>
+					      						</div>
+					      					</a>
+					      				</li>
+					      				<li>
+					      					<a href="#">
+					      						<div class="up">
+					      							<div class="shadow"></div>
+					      							<div class="inn"><?php echo $int; ?></div>
+					      						</div>
+					      						<div class="down">
+					      							<div class="shadow"></div>
+					      							<div class="inn"><?php echo $int; ?></div>
+					      						</div>
+					      					</a>
+					      				</li>
+					      			</ul>
+					      			<?php if($i == 1): ?>
+					      				<ul class="flip1">
+					      					<li>
+					      						<span style="font-size:25px;">,</span>
+					      					</li>
+					      				</ul>
+					      			<?php endif; ?>
+					      			<?php $i++; ?>
+					      		<?php endforeach; ?>
 					      	</div>
 					      </div>
 					    </span>
@@ -500,488 +310,174 @@
 <!-- /.content -->
 
 <script type="text/javascript">
-jQuery(document).ready(function($){
-	setTimeout(function () {
-		secondPlay();
-		secondPlay2();
-		secondPlay3();
-	}, 1000);
+	jQuery(document).ready(function($){
+		setTimeout(function () {
+			<?php if(isset($room_count) && !empty($room_count)) { ?>
+				secondPlay();
+			<?php } if(isset($room_count1) && !empty($room_count1)) { ?>
+				secondPlay2();
+			<?php } if(isset($room_count2) && !empty($room_count2)) { ?>
+				secondPlay3();
+			<?php } ?>
+		}, 3000);
 
-	function secondPlay() {
-        // $("body").removeClass("play");
-        setTimeout(function () {
-        	var aa = $(".flip-cust-box-2 ul.secondPlay li.active");
+		<?php if(isset($room_count) && !empty($room_count)) { ?>
+		function secondPlay() {
 
-        	if (aa.html() == undefined) {
-        		aa = $(".flip-cust-box-2 ul.secondPlay li").eq(0);
-        		aa.addClass("before")
-        		.removeClass("active")
-        		.next("li")
-        		.addClass("active")
-        		.closest("body")
-        		.addClass("play");
+			var timeoutcount = 1000;
+			<?php
+			$invID = str_pad($room_count, 5, '0', STR_PAD_LEFT);
+			$intArray = str_split((string)$invID);
+			$countArray = count($intArray);
+			for($i = 0; $i<$countArray; $i++) :
+				if($i > 0) {
+					?>
+					timeoutcount = timeoutcount+500;
+					<?php
+				}
+				?>
+				setTimeout(function () {
+					var aa = $(".flip-cust-box-2 ul.secondPlay<?php echo ($i > 0) ? $i : '' ?><?php echo ($i > 0) ? $i : '' ?> li.active");
 
-        	}
-        	else if (aa.is(":last-child")) {
-        		$(".flip-cust-box-2 ul.secondPlay li").removeClass("before");
-        		aa.addClass("before").removeClass("active");
-        		aa = $(".flip-cust-box-2 ul.secondPlay li").eq(0);
-        		aa.addClass("active")
-        		.closest("body")
-        		.addClass("play");
-        	}
-        	else {
-        		$(".flip-cust-box-2 ul.secondPlay li").removeClass("before");
-        		aa.addClass("before")
-        		.removeClass("active")
-        		.next("li")
-        		.addClass("active")
-        		.closest("body")
-        		.addClass("play");
-        	}
-        }, 1000);
-        setTimeout(function () {
-        	var aa1 = $(".flip-cust-box-2 ul.secondPlay1 li.active");
+					if (aa.html() == undefined) {
+						aa = $(".flip-cust-box-2 ul.secondPlay<?php echo ($i > 0) ? $i : '' ?> li").eq(0);
+						aa.addClass("before")
+						.removeClass("active")
+						.next("li")
+						.addClass("active")
+						.closest("body")
+						.addClass("play");
 
-        	if (aa1.html() == undefined) {
-        		aa1 = $(".flip-cust-box-2 ul.secondPlay1 li").eq(0);
-        		aa1.addClass("before")
-        		.removeClass("active")
-        		.next("li")
-        		.addClass("active")
-        		.closest("body")
-        		.addClass("play");
+					}
+					else if (aa.is(":last-child")) {
+						$(".flip-cust-box-2 ul.secondPlay<?php echo ($i > 0) ? $i : '' ?> li").removeClass("before");
+						aa.addClass("before").removeClass("active");
+						aa = $(".flip-cust-box-2 ul.secondPlay<?php echo ($i > 0) ? $i : '' ?> li").eq(0);
+						aa.addClass("active")
+						.closest("body")
+						.addClass("play");
+					}
+					else {
+						$(".flip-cust-box-2 ul.secondPlay<?php echo ($i > 0) ? $i : '' ?> li").removeClass("before");
+						aa.addClass("before")
+						.removeClass("active")
+						.next("li")
+						.addClass("active")
+						.closest("body")
+						.addClass("play");
+					}
+				}, timeoutcount);
+				<?php		
+			endfor;
+			?>
 
-        	}
-        	else if (aa1.is(":last-child")) {
-        		$(".flip-cust-box-2 ul.secondPlay1 li").removeClass("before");
-        		aa1.addClass("before").removeClass("active");
-        		aa1 = $(".flip-cust-box-2 ul.secondPlay1 li").eq(0);
-        		aa1.addClass("active")
-        		.closest("body")
-        		.addClass("play");
-        	}
-        	else {
-        		$(".flip-cust-box-2 ul.secondPlay1 li").removeClass("before");
-        		aa1.addClass("before")
-        		.removeClass("active")
-        		.next("li")
-        		.addClass("active")
-        		.closest("body")
-        		.addClass("play");
-        	}
-        }, 1500);
-        setTimeout(function () {
-        	var aa2 = $(".flip-cust-box-2 ul.secondPlay2 li.active");
+		}
+		<?php } ?>
 
-        	if (aa2.html() == undefined) {
-        		aa2 = $(".flip-cust-box-2 ul.secondPlay2 li").eq(0);
-        		aa2.addClass("before")
-        		.removeClass("active")
-        		.next("li")
-        		.addClass("active")
-        		.closest("body")
-        		.addClass("play");
+		<?php if(isset($room_count1) && !empty($room_count1)) { ?>
+		function secondPlay2() {
 
-        	}
-        	else if (aa2.is(":last-child")) {
-        		$(".flip-cust-box-2 ul.secondPlay2 li").removeClass("before");
-        		aa2.addClass("before").removeClass("active");
-        		aa2 = $(".flip-cust-box-2 ul.secondPlay2 li").eq(0);
-        		aa2.addClass("active")
-        		.closest("body")
-        		.addClass("play");
-        	}
-        	else {
-        		$(".flip-cust-box-2 ul.secondPlay2 li").removeClass("before");
-        		aa2.addClass("before")
-        		.removeClass("active")
-        		.next("li")
-        		.addClass("active")
-        		.closest("body")
-        		.addClass("play");
-        	}
-        }, 2000);
-        setTimeout(function () {
-        	var aa3 = $(".flip-cust-box-2 ul.secondPlay3 li.active");
+			var timeoutcount = 1000;
+			<?php
+			$invID = str_pad($room_count1, 5, '0', STR_PAD_LEFT);
+			$intArray = str_split((string)$invID);
+			$countArray = count($intArray);
+			for($i = 0; $i<$countArray; $i++) :
+				if($i > 0) {
+					?>
+					timeoutcount = timeoutcount+500;
+					<?php
+				}
+				?>
+				setTimeout(function () {
+					var aa = $(".flip-cust-box-1 ul.secondPlay<?php echo ($i > 0) ? $i : '' ?><?php echo ($i > 0) ? $i : '' ?> li.active");
 
-        	if (aa3.html() == undefined) {
-        		aa3 = $(".flip-cust-box-2 ul.secondPlay3 li").eq(0);
-        		aa3.addClass("before")
-        		.removeClass("active")
-        		.next("li")
-        		.addClass("active")
-        		.closest("body")
-        		.addClass("play");
+					if (aa.html() == undefined) {
+						aa = $(".flip-cust-box-1 ul.secondPlay<?php echo ($i > 0) ? $i : '' ?> li").eq(0);
+						aa.addClass("before")
+						.removeClass("active")
+						.next("li")
+						.addClass("active")
+						.closest("body")
+						.addClass("play");
 
-        	}
-        	else if (aa3.is(":last-child")) {
-        		$(".flip-cust-box-2 ul.secondPlay3 li").removeClass("before");
-        		aa3.addClass("before").removeClass("active");
-        		aa3 = $(".flip-cust-box-2 ul.secondPlay3 li").eq(0);
-        		aa3.addClass("active")
-        		.closest("body")
-        		.addClass("play");
-        	}
-        	else {
-        		$(".flip-cust-box-2 ul.secondPlay3 li").removeClass("before");
-        		aa3.addClass("before")
-        		.removeClass("active")
-        		.next("li")
-        		.addClass("active")
-        		.closest("body")
-        		.addClass("play");
-        	}
-        }, 2500);
-        setTimeout(function () {
-        	var aa4 = $(".flip-cust-box-2 ul.secondPlay4 li.active");
+					}
+					else if (aa.is(":last-child")) {
+						$(".flip-cust-box-1 ul.secondPlay<?php echo ($i > 0) ? $i : '' ?> li").removeClass("before");
+						aa.addClass("before").removeClass("active");
+						aa = $(".flip-cust-box-1 ul.secondPlay<?php echo ($i > 0) ? $i : '' ?> li").eq(0);
+						aa.addClass("active")
+						.closest("body")
+						.addClass("play");
+					}
+					else {
+						$(".flip-cust-box-1 ul.secondPlay<?php echo ($i > 0) ? $i : '' ?> li").removeClass("before");
+						aa.addClass("before")
+						.removeClass("active")
+						.next("li")
+						.addClass("active")
+						.closest("body")
+						.addClass("play");
+					}
+				}, timeoutcount);
+				<?php		
+			endfor;
+			?>
 
-        	if (aa4.html() == undefined) {
-        		aa4 = $(".flip-cust-box-2 ul.secondPlay4 li").eq(0);
-        		aa4.addClass("before")
-        		.removeClass("active")
-        		.next("li")
-        		.addClass("active")
-        		.closest("body")
-        		.addClass("play");
+		}
+		<?php } ?>
+		<?php if(isset($room_count2) && !empty($room_count2)) { ?>
+		function secondPlay3() {
 
-        	}
-        	else if (aa4.is(":last-child")) {
-        		$(".flip-cust-box-2 ul.secondPlay4 li").removeClass("before");
-        		aa4.addClass("before").removeClass("active");
-        		aa4 = $(".flip-cust-box-2 ul.secondPlay4 li").eq(0);
-        		aa4.addClass("active")
-        		.closest("body")
-        		.addClass("play");
-        	}
-        	else {
-        		$(".flip-cust-box-2 ul.secondPlay4 li").removeClass("before");
-        		aa4.addClass("before")
-        		.removeClass("active")
-        		.next("li")
-        		.addClass("active")
-        		.closest("body")
-        		.addClass("play");
-        	}
-        }, 3000);
-    }
+			var timeoutcount = 1000;
+			<?php
+			$invID = str_pad($room_count2, 5, '0', STR_PAD_LEFT);
+			$intArray = str_split((string)$invID);
+			$countArray = count($intArray);
+			for($i = 0; $i<$countArray; $i++) :
+				if($i > 0) {
+					?>
+					timeoutcount = timeoutcount+500;
+					<?php
+				}
+				?>
+				setTimeout(function () {
+					var aa = $(".flip-cust-box-3 ul.secondPlay<?php echo ($i > 0) ? $i : '' ?><?php echo ($i > 0) ? $i : '' ?> li.active");
 
-    function secondPlay2() {
-        // $("body").removeClass("play");
-        setTimeout(function () {
-        	var aa = $(".flip-cust-box-1 ul.secondPlay li.active");
+					if (aa.html() == undefined) {
+						aa = $(".flip-cust-box-3 ul.secondPlay<?php echo ($i > 0) ? $i : '' ?> li").eq(0);
+						aa.addClass("before")
+						.removeClass("active")
+						.next("li")
+						.addClass("active")
+						.closest("body")
+						.addClass("play");
 
-        	if (aa.html() == undefined) {
-        		aa = $(".flip-cust-box-1 ul.secondPlay li").eq(0);
-        		aa.addClass("before")
-        		.removeClass("active")
-        		.next("li")
-        		.addClass("active")
-        		.closest("body")
-        		.addClass("play");
+					}
+					else if (aa.is(":last-child")) {
+						$(".flip-cust-box-3 ul.secondPlay<?php echo ($i > 0) ? $i : '' ?> li").removeClass("before");
+						aa.addClass("before").removeClass("active");
+						aa = $(".flip-cust-box-3 ul.secondPlay<?php echo ($i > 0) ? $i : '' ?> li").eq(0);
+						aa.addClass("active")
+						.closest("body")
+						.addClass("play");
+					}
+					else {
+						$(".flip-cust-box-3 ul.secondPlay<?php echo ($i > 0) ? $i : '' ?> li").removeClass("before");
+						aa.addClass("before")
+						.removeClass("active")
+						.next("li")
+						.addClass("active")
+						.closest("body")
+						.addClass("play");
+					}
+				}, timeoutcount);
+				<?php		
+			endfor;
+			?>
 
-        	}
-        	else if (aa.is(":last-child")) {
-        		$(".flip-cust-box-1 ul.secondPlay li").removeClass("before");
-        		aa.addClass("before").removeClass("active");
-        		aa = $(".flip-cust-box-1 ul.secondPlay li").eq(0);
-        		aa.addClass("active")
-        		.closest("body")
-        		.addClass("play");
-        	}
-        	else {
-        		$(".flip-cust-box-1 ul.secondPlay li").removeClass("before");
-        		aa.addClass("before")
-        		.removeClass("active")
-        		.next("li")
-        		.addClass("active")
-        		.closest("body")
-        		.addClass("play");
-        	}
-        }, 1000);
-        setTimeout(function () {
-        	var aa1 = $(".flip-cust-box-1 ul.secondPlay1 li.active");
+		}
+		<?php } ?>
 
-        	if (aa1.html() == undefined) {
-        		aa1 = $(".flip-cust-box-1 ul.secondPlay1 li").eq(0);
-        		aa1.addClass("before")
-        		.removeClass("active")
-        		.next("li")
-        		.addClass("active")
-        		.closest("body")
-        		.addClass("play");
-
-        	}
-        	else if (aa1.is(":last-child")) {
-        		$(".flip-cust-box-1 ul.secondPlay1 li").removeClass("before");
-        		aa1.addClass("before").removeClass("active");
-        		aa1 = $(".flip-cust-box-1 ul.secondPlay1 li").eq(0);
-        		aa1.addClass("active")
-        		.closest("body")
-        		.addClass("play");
-        	}
-        	else {
-        		$(".flip-cust-box-1 ul.secondPlay1 li").removeClass("before");
-        		aa1.addClass("before")
-        		.removeClass("active")
-        		.next("li")
-        		.addClass("active")
-        		.closest("body")
-        		.addClass("play");
-        	}
-        }, 1500);
-        setTimeout(function () {
-        	var aa2 = $(".flip-cust-box-1 ul.secondPlay2 li.active");
-
-        	if (aa2.html() == undefined) {
-        		aa2 = $(".flip-cust-box-1 ul.secondPlay2 li").eq(0);
-        		aa2.addClass("before")
-        		.removeClass("active")
-        		.next("li")
-        		.addClass("active")
-        		.closest("body")
-        		.addClass("play");
-
-        	}
-        	else if (aa2.is(":last-child")) {
-        		$(".flip-cust-box-1 ul.secondPlay2 li").removeClass("before");
-        		aa2.addClass("before").removeClass("active");
-        		aa2 = $(".flip-cust-box-1 ul.secondPlay2 li").eq(0);
-        		aa2.addClass("active")
-        		.closest("body")
-        		.addClass("play");
-        	}
-        	else {
-        		$(".flip-cust-box-1 ul.secondPlay2 li").removeClass("before");
-        		aa2.addClass("before")
-        		.removeClass("active")
-        		.next("li")
-        		.addClass("active")
-        		.closest("body")
-        		.addClass("play");
-        	}
-        }, 2000);
-        setTimeout(function () {
-        	var aa3 = $(".flip-cust-box-1 ul.secondPlay3 li.active");
-
-        	if (aa3.html() == undefined) {
-        		aa3 = $(".flip-cust-box-1 ul.secondPlay3 li").eq(0);
-        		aa3.addClass("before")
-        		.removeClass("active")
-        		.next("li")
-        		.addClass("active")
-        		.closest("body")
-        		.addClass("play");
-
-        	}
-        	else if (aa3.is(":last-child")) {
-        		$(".flip-cust-box-1 ul.secondPlay3 li").removeClass("before");
-        		aa3.addClass("before").removeClass("active");
-        		aa3 = $(".flip-cust-box-1 ul.secondPlay3 li").eq(0);
-        		aa3.addClass("active")
-        		.closest("body")
-        		.addClass("play");
-        	}
-        	else {
-        		$(".flip-cust-box-1 ul.secondPlay3 li").removeClass("before");
-        		aa3.addClass("before")
-        		.removeClass("active")
-        		.next("li")
-        		.addClass("active")
-        		.closest("body")
-        		.addClass("play");
-        	}
-        }, 2500);
-        setTimeout(function () {
-        	var aa4 = $(".flip-cust-box-1 ul.secondPlay4 li.active");
-
-        	if (aa4.html() == undefined) {
-        		aa4 = $(".flip-cust-box-1 ul.secondPlay4 li").eq(0);
-        		aa4.addClass("before")
-        		.removeClass("active")
-        		.next("li")
-        		.addClass("active")
-        		.closest("body")
-        		.addClass("play");
-
-        	}
-        	else if (aa4.is(":last-child")) {
-        		$(".flip-cust-box-1 ul.secondPlay4 li").removeClass("before");
-        		aa4.addClass("before").removeClass("active");
-        		aa4 = $(".flip-cust-box-1 ul.secondPlay4 li").eq(0);
-        		aa4.addClass("active")
-        		.closest("body")
-        		.addClass("play");
-        	}
-        	else {
-        		$(".flip-cust-box-1 ul.secondPlay4 li").removeClass("before");
-        		aa4.addClass("before")
-        		.removeClass("active")
-        		.next("li")
-        		.addClass("active")
-        		.closest("body")
-        		.addClass("play");
-        	}
-        }, 3000);
-    }
-
-    function secondPlay3() {
-        // $("body").removeClass("play");
-        setTimeout(function () {
-        	var aa = $(".flip-cust-box-3 ul.secondPlay li.active");
-
-        	if (aa.html() == undefined) {
-        		aa = $(".flip-cust-box-3 ul.secondPlay li").eq(0);
-        		aa.addClass("before")
-        		.removeClass("active")
-        		.next("li")
-        		.addClass("active")
-        		.closest("body")
-        		.addClass("play");
-
-        	}
-        	else if (aa.is(":last-child")) {
-        		$(".flip-cust-box-3 ul.secondPlay li").removeClass("before");
-        		aa.addClass("before").removeClass("active");
-        		aa = $(".flip-cust-box-3 ul.secondPlay li").eq(0);
-        		aa.addClass("active")
-        		.closest("body")
-        		.addClass("play");
-        	}
-        	else {
-        		$(".flip-cust-box-3 ul.secondPlay li").removeClass("before");
-        		aa.addClass("before")
-        		.removeClass("active")
-        		.next("li")
-        		.addClass("active")
-        		.closest("body")
-        		.addClass("play");
-        	}
-        }, 1000);
-        setTimeout(function () {
-        	var aa1 = $(".flip-cust-box-3 ul.secondPlay1 li.active");
-
-        	if (aa1.html() == undefined) {
-        		aa1 = $(".flip-cust-box-3 ul.secondPlay1 li").eq(0);
-        		aa1.addClass("before")
-        		.removeClass("active")
-        		.next("li")
-        		.addClass("active")
-        		.closest("body")
-        		.addClass("play");
-
-        	}
-        	else if (aa1.is(":last-child")) {
-        		$(".flip-cust-box-3 ul.secondPlay1 li").removeClass("before");
-        		aa1.addClass("before").removeClass("active");
-        		aa1 = $(".flip-cust-box-3 ul.secondPlay1 li").eq(0);
-        		aa1.addClass("active")
-        		.closest("body")
-        		.addClass("play");
-        	}
-        	else {
-        		$(".flip-cust-box-3 ul.secondPlay1 li").removeClass("before");
-        		aa1.addClass("before")
-        		.removeClass("active")
-        		.next("li")
-        		.addClass("active")
-        		.closest("body")
-        		.addClass("play");
-        	}
-        }, 1500);
-        setTimeout(function () {
-        	var aa2 = $(".flip-cust-box-3 ul.secondPlay2 li.active");
-
-        	if (aa2.html() == undefined) {
-        		aa2 = $(".flip-cust-box-3 ul.secondPlay2 li").eq(0);
-        		aa2.addClass("before")
-        		.removeClass("active")
-        		.next("li")
-        		.addClass("active")
-        		.closest("body")
-        		.addClass("play");
-
-        	}
-        	else if (aa2.is(":last-child")) {
-        		$(".flip-cust-box-3 ul.secondPlay2 li").removeClass("before");
-        		aa2.addClass("before").removeClass("active");
-        		aa2 = $(".flip-cust-box-3 ul.secondPlay2 li").eq(0);
-        		aa2.addClass("active")
-        		.closest("body")
-        		.addClass("play");
-        	}
-        	else {
-        		$(".flip-cust-box-3 ul.secondPlay2 li").removeClass("before");
-        		aa2.addClass("before")
-        		.removeClass("active")
-        		.next("li")
-        		.addClass("active")
-        		.closest("body")
-        		.addClass("play");
-        	}
-        }, 2000);
-        setTimeout(function () {
-        	var aa3 = $(".flip-cust-box-3 ul.secondPlay3 li.active");
-
-        	if (aa3.html() == undefined) {
-        		aa3 = $(".flip-cust-box-3 ul.secondPlay3 li").eq(0);
-        		aa3.addClass("before")
-        		.removeClass("active")
-        		.next("li")
-        		.addClass("active")
-        		.closest("body")
-        		.addClass("play");
-
-        	}
-        	else if (aa3.is(":last-child")) {
-        		$(".flip-cust-box-3 ul.secondPlay3 li").removeClass("before");
-        		aa3.addClass("before").removeClass("active");
-        		aa3 = $(".flip-cust-box-3 ul.secondPlay3 li").eq(0);
-        		aa3.addClass("active")
-        		.closest("body")
-        		.addClass("play");
-        	}
-        	else {
-        		$(".flip-cust-box-3 ul.secondPlay3 li").removeClass("before");
-        		aa3.addClass("before")
-        		.removeClass("active")
-        		.next("li")
-        		.addClass("active")
-        		.closest("body")
-        		.addClass("play");
-        	}
-        }, 2500);
-        setTimeout(function () {
-        	var aa4 = $(".flip-cust-box-3 ul.secondPlay4 li.active");
-
-        	if (aa4.html() == undefined) {
-        		aa4 = $(".flip-cust-box-3 ul.secondPlay4 li").eq(0);
-        		aa4.addClass("before")
-        		.removeClass("active")
-        		.next("li")
-        		.addClass("active")
-        		.closest("body")
-        		.addClass("play");
-
-        	}
-        	else if (aa4.is(":last-child")) {
-        		$(".flip-cust-box-3 ul.secondPlay4 li").removeClass("before");
-        		aa4.addClass("before").removeClass("active");
-        		aa4 = $(".flip-cust-box-3 ul.secondPlay4 li").eq(0);
-        		aa4.addClass("active")
-        		.closest("body")
-        		.addClass("play");
-        	}
-        	else {
-        		$(".flip-cust-box-3 ul.secondPlay4 li").removeClass("before");
-        		aa4.addClass("before")
-        		.removeClass("active")
-        		.next("li")
-        		.addClass("active")
-        		.closest("body")
-        		.addClass("play");
-        	}
-        }, 3000);
-    }
-});    
+	});
 </script>
