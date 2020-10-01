@@ -10,7 +10,7 @@ class Hotel_branch extends CI_Controller {
 		}
 		if(!$this->session->userdata('user_data')) {
 			redirect('dashboard');	
-		} elseif($this->session->userdata('user_data')->entity == 'RFP') {
+		} elseif($this->session->userdata('user_data')->entity == 'RFP' || $this->session->userdata('user_data')->entity == 'RFP_EMP') {
 			redirect('dashboard');
 		}
 
@@ -25,6 +25,10 @@ class Hotel_branch extends CI_Controller {
 		$hotel_id = $user_id;
 		if($this->session->userdata('user_data')->entity == 'Admin') {
 			$hotel_id = $this->input->get('hotel_id');
+		}
+		if($this->session->userdata('user_data')->entity == 'Hotel_EMP') {
+			$data['hotel_emp_data'] = $this->user_model->get_hotel_emp_data($user_id);
+			$hotel_id = $data['hotel_emp_data']->hotel_id;
 		}
 		$data['hotel_data'] = $this->user_model->get_hotel_data($hotel_id);
 		$data['hotel_locations'] = $this->hotel_branches_model->get_location_data($hotel_id,$branch_id);
@@ -48,6 +52,10 @@ class Hotel_branch extends CI_Controller {
 		$hotel_id = $user_id;
 		if($this->session->userdata('user_data')->entity == 'Admin') {
 			$hotel_id = $this->input->get('hotel_id');
+		}
+		if($this->session->userdata('user_data')->entity == 'Hotel_EMP') {
+			$data['hotel_emp_data'] = $this->user_model->get_hotel_emp_data($user_id);
+			$hotel_id = $data['hotel_emp_data']->hotel_id;
 		}
 		$branch_id = $this->input->get('branch');
 		$this->form_validation->set_rules('branch_name', 'Branch Name', 'required|trim|is_unique[tr_hotel_locations.branch_name]');

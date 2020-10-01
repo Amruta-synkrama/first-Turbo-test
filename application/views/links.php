@@ -31,7 +31,7 @@
 									<?php if($this->input->get('hotel_id')) : ?>
 										<a href="<?php echo base_url(); ?>link<?php echo ($session->entity == 'Admin') ? '?hotel_id='.$hotel_data->user_id : ''; ?>" class="btn btn-primary">Add new link</a>
 									<?php endif; ?>
-									<?php elseif($session->entity == 'Hotel') : ?>
+									<?php elseif($session->entity == 'Hotel' || $session->entity == 'Hotel_EMP') : ?>
 										<a href="<?php echo base_url(); ?>link" class="btn btn-primary">Add new link</a>
 									<?php endif; ?>
 								</div>
@@ -48,7 +48,7 @@
 										<th>Link</th>
 										<th>Expiry Date</th>
 										<th>Status</th>
-										<?php if($session->entity != 'RFP' && $session->entity != 'RFP_EMP' && $session->entity != 'Hotel_EMP') : ?>
+										<?php if($session->entity != 'RFP' && $session->entity != 'RFP_EMP') : ?>
 											<th>Action</th>
 										<?php endif; ?>
 									</tr>
@@ -111,7 +111,7 @@
 										        <?php endif;*/ ?>
 										    </td>
 
-										    <?php if($session->entity != 'RFP' && $session->entity != 'RFP_EMP' && $session->entity != 'Hotel_EMP') : ?>
+										    <?php if($session->entity != 'RFP' && $session->entity != 'RFP_EMP') : ?>
 										        <td class="project-actions">
 										            
 										                <a class="btn btn-info btn-sm" href="<?php echo base_url(); ?>link?link_id=<?php echo $link->id; ?><?php echo ($session->entity == 'Admin') ? '&hotel_id='.$link->hotel_id : ''; ?>">
@@ -147,7 +147,7 @@
 										<th>Link</th>
 										<th>Expiry Date</th>
 										<th>Status</th>
-										<?php if($session->entity != 'RFP' && $session->entity != 'RFP_EMP' && $session->entity != 'Hotel_EMP') : ?>
+										<?php if($session->entity != 'RFP' && $session->entity != 'RFP_EMP') : ?>
 											<th>Action</th>
 										<?php endif; ?>
 									</tr>

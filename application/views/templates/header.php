@@ -205,6 +205,12 @@
                           <i class="fa fa-link nav-icon"></i>
                           <p>Links</p>
                         </a>
+                      </li> 
+                      <li class="nav-item">
+                        <a href="<?php echo base_url() ?>enquiry_data" class="nav-link <?php if($this->uri->segment(1)=="enquiry_data"){echo 'active';}?>">
+                          <i class="fa fa-envelope nav-icon"></i>
+                          <p>Enquiries</p>
+                        </a>
                       </li>     
                     </ul>
                 </nav>
@@ -314,7 +320,7 @@
                           </li>
                           <li class="nav-item">
                             <a href="<?php echo base_url() ?>company" class="nav-link <?php if($this->uri->segment(1)=="company"){echo 'active';}?>">
-                              <i class="far fa-user nav-icon"></i>
+                              <i class="fa fa-building nav-icon"></i>
                               <p>Company Details</p>
                             </a>
                           </li>
@@ -351,7 +357,7 @@
                           </li>
                           <li class="nav-item">
                             <a href="<?php echo base_url() ?>hotel" class="nav-link <?php if($this->uri->segment(1)=="hotel"){echo 'active';}?>">
-                              <i class="far fa-user nav-icon"></i>
+                              <i class="fa fa-h-square nav-icon"></i>
                               <p>Hotel Details</p>
                             </a>
                           </li>
@@ -359,6 +365,12 @@
                             <a href="<?php echo base_url() ?>hotel_employee_profile" class="nav-link <?php if($this->uri->segment(1)=="hotel_employee_profile"){echo 'active';}?>">
                               <i class="far fa-user nav-icon"></i>
                               <p>Profile</p>
+                            </a>
+                          </li>
+                          <li class="nav-item">
+                            <a href="<?php echo base_url() ?>hotel_branches" class="nav-link <?php if($this->uri->segment(1)=="hotel_branches"){echo 'active';}?>">
+                              <i class="fa fa-share-alt nav-icon"></i>
+                              <p>Branches</p>
                             </a>
                           </li>
                           <li class="nav-item">

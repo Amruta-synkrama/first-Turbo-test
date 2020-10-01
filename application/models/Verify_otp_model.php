@@ -88,20 +88,34 @@ class Verify_otp_model extends CI_Model
 
 	public function send_email_otp($email,$otp) {
 
-		$this->load->library('email'); 
-		$from_email = "willmartin9797@gmail.com"; 
-        // $to_email = $email; 
-        $to_email = "ajayd920@gmail.com"; 
-  
-        //Load email library 
-        $this->load->library('email'); 
-  
-        $this->email->from($from_email, 'Turbores'); 
-        $this->email->to($to_email);
-        $this->email->subject('Turbores Login OTP'); 
-        $this->email->message('Here is otp '.$otp);
+		ini_set("SMTP","ssl://smtp.gmail.com");
+		ini_set("smtp_port","587");
 
-        $this->email->send();
+		$config = Array(
+		  'protocol'    => 'smtp',
+		  'smtp_host'   => 'smtp.gmail.com',
+		  'smtp_port'   => 587,
+		  'smtp_user'   => 'willmartin9797@gmail.com',
+		  'smtp_pass'   => 'martin?123',
+		  'mailtype'    => 'html',
+		  'charset'     => 'utf-8',
+		  'wordwrap'    => TRUE,
+		  '_smtp_auth'  => TRUE,
+		  'smtp_timeout' => '60'
+		);
+		// $message = $row2['content'];
+		$this->load->library('email');
+		$this->email->initialize($config);
+		$this->email->set_newline("\r\n");
+		$this->email->from("willmartin9797@gmail.com");
+		$this->email->to("ajayd920@gmail.com");
+		$this->email->subject('Turbores Login OTP'); 
+        $this->email->message('Here is otp '.$otp);
+		if($this->email->send()) {
+		  // echo 'Email sent.';
+		} else {
+		 // show_error($this->email->print_debugger());
+		}
 
 	}
 

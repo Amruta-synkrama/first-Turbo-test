@@ -51,7 +51,7 @@
                 <?php foreach ($company_emp_data as $company_emp) :?>
                   <tr>
                     <td>
-                      <a href="<?php echo base_url(); ?>company_employee?id=<?php echo $company_emp->user_id; ?>">
+                      <a href="<?php echo base_url(); ?>company_employee_profile?id=<?php echo $company_emp->user_id; ?>">
                         <ul class="list-inline">
                           <li class="list-inline-item">
                             <?php if($company_emp->user_logo) : ?>

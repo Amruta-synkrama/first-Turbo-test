@@ -7,7 +7,7 @@ class Link extends CI_Controller {
 		if(!$this->session->userdata('id')) {
 			redirect('login');
 		}
-		if($this->session->userdata('user_data')->entity == 'RFP') {
+		if($this->session->userdata('user_data')->entity == 'RFP' || $this->session->userdata('user_data')->entity == 'RFP_EMP') {
 			redirect('dashboard');
 		}
 
@@ -27,6 +27,11 @@ class Link extends CI_Controller {
 		} else {
 			$hotel_id = $user_id;
 		}
+		if($this->session->userdata('user_data')->entity == 'Hotel_EMP') {
+			$data['hotel_emp_data'] = $this->user_model->get_hotel_emp_data($user_id);
+			$hotel_id = $data['hotel_emp_data']->hotel_id;
+		}
+
 		$data['hotel_locations'] = array();
 		// if($this->session->userdata('user_data')->entity == 'Hotel') {
 			$data['hotel_data'] = $this->user_model->get_hotel_data($hotel_id);
