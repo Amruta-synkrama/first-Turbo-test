@@ -55,6 +55,20 @@ class Migration_Phase_3_tables extends CI_Migration
         $this->dbforge->create_table('tr_otp_data');
 
 
+        /**
+         * Contact Enquiry
+         */
+        $this->dbforge->add_field([
+          'id' => [ 'type' => 'INT', 'constraint' => 11, 'unsigned' => true, 'auto_increment' => true ],
+          'form_id' => [ 'type' => 'INT', 'constraint' => 11, 'unsigned' => true ],
+          'status' => [ 'type' => 'INT', 'constraint' => 1, 'unsigned' => true ],
+          'form_data' => [ 'type' => 'longtext' ],
+          'form_date' => ['type' => 'datetime', 'null' => true]
+        ]);
+        $this->dbforge->add_key('ID', true);
+        $this->dbforge->create_table('tr_enquiry_data');
+
+
         
     }
     
@@ -62,6 +76,7 @@ class Migration_Phase_3_tables extends CI_Migration
 	    $this->dbforge->drop_table('tr_company_emp', TRUE);
         $this->dbforge->drop_table('tr_hotels_emp', TRUE);
         $this->dbforge->drop_table('tr_otp_data', TRUE);
+        $this->dbforge->drop_table('tr_enquiry_data', TRUE);
     }
 }
 /* End of file '003_phase_3_tables' */
