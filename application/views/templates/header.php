@@ -48,9 +48,14 @@
 <script src="<?php echo base_url(); ?>theme/plugins/jquery/jquery.min.js"></script>
 
 <script src="<?php echo base_url(); ?>theme/dist/js/croppie.js"></script>
-    
+  <style>
+    .bs-popover-right{left: 14% !important;}
+    .overlay{
+      opacity: 0.2;
+    }
+  </style>
 </head>
-<body class="hold-transition sidebar-mini layout-fixed accent-orange sidebar-collapse">
+<body class="hold-transition sidebar-mini layout-fixed accent-orange <?php if($_SESSION['user_data']->first_login == 1) { echo "sidebar-collapse ";} ?>">
 	<div class="wrapper">
 
 		<!-- Navbar -->
@@ -96,7 +101,7 @@
           <!-- Messages Dropdown Menu -->
           <!-- Notifications Dropdown Menu -->
           <li class="nav-item">
-            <a class="nav-link" href="<?php echo base_url() ?>dashboard/logout" role="button">
+            <a class="nav-link" id="logoutBtn" href="<?php echo base_url() ?>dashboard/logout" role="button">
               Logout
             </a>
           </li>
@@ -144,64 +149,66 @@
                 <?php if($session->entity == 'Admin') : ?>
                 <nav class="mt-2">
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-                      <li class="nav-item">
-                        <a href="<?php echo base_url() ?>dashboard" class="nav-link <?php if($this->uri->segment(1)=="dashboard"){echo 'active';}?>">
+                      <li class="nav-item pop">
+                        <a href="<?php echo base_url() ?>dashboard" class="nav-link <?php if($this->uri->segment(1)=="dashboard"){echo 'active';}?>" id="pop_dashboard" rel='popover'>
                           <i class="nav-icon fas fa-tachometer-alt"></i>
                           <p>Dashboard</p>
                         </a>
                       </li>
+                      
+               
                       <li class="nav-item">
-                        <a href="<?php echo base_url() ?>admin_profile" class="nav-link <?php if($this->uri->segment(1)=="admin_profile"){echo 'active';}?>">
+                        <a href="<?php echo base_url() ?>admin_profile" class="nav-link <?php if($this->uri->segment(1)=="admin_profile"){echo 'active';}?>" id="pop_admin_profile" rel='popover'>
                           <i class="far fa-user nav-icon"></i>
                           <p>Profile</p>
                         </a>
                       </li>
                       <li class="nav-item">
-                        <a href="<?php echo base_url() ?>register" class="nav-link <?php if($this->uri->segment(1)=="register"){echo 'active';}?>">
+                        <a href="<?php echo base_url() ?>register" class="nav-link <?php if($this->uri->segment(1)=="register"){echo 'active';}?>" id="pop_register" rel='popover'>
                           <i class="far fa-registered nav-icon"></i>
                           <p>Register</p>
                         </a>
                       </li>
                       <li class="nav-item">
-                        <a href="<?php echo base_url() ?>register_employee" class="nav-link <?php if($this->uri->segment(1)=="register_employee"){echo 'active';}?>">
+                        <a href="<?php echo base_url() ?>register_employee" class="nav-link <?php if($this->uri->segment(1)=="register_employee"){echo 'active';}?>" id="pop_register_employee" rel='popover'>
                           <i class="far fa-registered nav-icon"></i>
                           <p>Register Employee</p>
                         </a>
                       </li>
                       <?php if($session->id == 1) : ?>
                       <li class="nav-item">
-                        <a href="<?php echo base_url() ?>admins" class="nav-link <?php if($this->uri->segment(1)=="admins"){echo 'active';}?>">
+                        <a href="<?php echo base_url() ?>admins" class="nav-link <?php if($this->uri->segment(1)=="admins"){echo 'active';}?>" id="pop_admins" rel='popover'>
                           <i class="fa fa-users nav-icon"></i>
                           <p>Admins</p>
                         </a>
                       </li>
                       <?php endif; ?>
                       <li class="nav-item">
-                        <a href="<?php echo base_url() ?>hotels" class="nav-link <?php if($this->uri->segment(1)=="hotels"){echo 'active';}?>">
+                        <a href="<?php echo base_url() ?>hotels" class="nav-link <?php if($this->uri->segment(1)=="hotels"){echo 'active';}?>" id="pop_hotels" rel='popover'>
                           <i class="fa fa-h-square nav-icon"></i>
                           <p>Hotels</p>
                         </a>
                       </li>
                       <li class="nav-item">
-                        <a href="<?php echo base_url() ?>hotel_employees" class="nav-link <?php if($this->uri->segment(1)=="hotel_employees"){echo 'active';}?>">
+                        <a href="<?php echo base_url() ?>hotel_employees" class="nav-link <?php if($this->uri->segment(1)=="hotel_employees"){echo 'active';}?>" id="pop_hotel_employees" rel='popover'>
                           <i class="fas fa-users nav-icon"></i>
                           <p>Hotel Employees</p>
                         </a>
                       </li>
                       <li class="nav-item">
-                        <a href="<?php echo base_url() ?>companies" class="nav-link <?php if($this->uri->segment(1)=="companies"){echo 'active';}?>">
+                        <a href="<?php echo base_url() ?>companies" class="nav-link <?php if($this->uri->segment(1)=="companies"){echo 'active';}?>" id="pop_companies" rel='popover'>
                           <i class="fa fa-building nav-icon"></i>
                           <p>Company List</p>
                         </a>
                       </li>
                       <li class="nav-item">
-                        <a href="<?php echo base_url() ?>company_employees" class="nav-link <?php if($this->uri->segment(1)=="company_employees"){echo 'active';}?>">
+                        <a href="<?php echo base_url() ?>company_employees" class="nav-link <?php if($this->uri->segment(1)=="company_employees"){echo 'active';}?>" id="pop_company_employees" rel='popover'>
                           <i class="fas fa-users nav-icon"></i>
                           <p>Company Employees</p>
                         </a>
                       </li>
                       <li class="nav-item">
-                        <a href="<?php echo base_url() ?>links" class="nav-link <?php if($this->uri->segment(1)=="links"){echo 'active';}?>">
+                        <a href="<?php echo base_url() ?>links" class="nav-link <?php if($this->uri->segment(1)=="links"){echo 'active';}?>" id="pop_links" rel='popover'>
                           <i class="fa fa-link nav-icon"></i>
                           <p>Links</p>
                         </a>
@@ -214,43 +221,43 @@
                         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                             
                           <li class="nav-item">
-                            <a href="<?php echo base_url() ?>dashboard" class="nav-link <?php if($this->uri->segment(1)=="dashboard"){echo 'active';}?>">
+                            <a href="<?php echo base_url() ?>dashboard" class="nav-link <?php if($this->uri->segment(1)=="dashboard"){echo 'active';}?>" id="pop_dashboard" rel='popover'>
                               <i class="nav-icon fas fa-tachometer-alt"></i>
                               <p>Dashboard</p>
                             </a>
                           </li>
                           <li class="nav-item">
-                            <a href="<?php echo base_url() ?>hotel_profile" class="nav-link <?php if($this->uri->segment(1)=="hotel_profile"){echo 'active';}?>">
+                            <a href="<?php echo base_url() ?>hotel_profile" class="nav-link <?php if($this->uri->segment(1)=="hotel_profile"){echo 'active';}?>" id="pop_hotel_profile" rel='popover'>
                               <i class="far fa-user nav-icon"></i>
                               <p>Profile</p>
                             </a>
                           </li>
                           <li class="nav-item">
-                            <a href="<?php echo base_url() ?>register_employee" class="nav-link <?php if($this->uri->segment(1)=="register_employee"){echo 'active';}?>">
+                            <a href="<?php echo base_url() ?>register_employee" class="nav-link <?php if($this->uri->segment(1)=="register_employee"){echo 'active';}?>" id="pop_register_employee" rel='popover'>
                               <i class="far fa-registered nav-icon"></i>
                               <p>Register Employee</p>
                             </a>
                           </li>
                           <li class="nav-item">
-                            <a href="<?php echo base_url() ?>hotel_employees" class="nav-link <?php if($this->uri->segment(1)=="hotel_employees"){echo 'active';}?>">
+                            <a href="<?php echo base_url() ?>hotel_employees" class="nav-link <?php if($this->uri->segment(1)=="hotel_employees"){echo 'active';}?>" id="pop_hotel_employees" rel='popover'>
                               <i class="fas fa-users nav-icon"></i>
                               <p>Hotel Employees</p>
                             </a>
                           </li>
                           <li class="nav-item">
-                            <a href="<?php echo base_url() ?>hotel_branches" class="nav-link <?php if($this->uri->segment(1)=="hotel_branches"){echo 'active';}?>">
+                            <a href="<?php echo base_url() ?>hotel_branches" class="nav-link <?php if($this->uri->segment(1)=="hotel_branches"){echo 'active';}?>" id="pop_hotel_branches" rel='popover'>
                               <i class="fa fa-share-alt nav-icon"></i>
                               <p>Branches</p>
                             </a>
                           </li>
                           <li class="nav-item">
-                            <a href="<?php echo base_url() ?>companies" class="nav-link <?php if($this->uri->segment(1)=="companies"){echo 'active';}?>">
+                            <a href="<?php echo base_url() ?>companies" class="nav-link <?php if($this->uri->segment(1)=="companies"){echo 'active';}?>" id="pop_companies" rel='popover'>
                               <i class="fa fa-building nav-icon"></i>
                               <p>Company List</p>
                             </a>
                           </li>
                           <li class="nav-item">
-                            <a href="<?php echo base_url() ?>links" class="nav-link <?php if($this->uri->segment(1)=="links"){echo 'active';}?>">
+                            <a href="<?php echo base_url() ?>links" class="nav-link <?php if($this->uri->segment(1)=="links"){echo 'active';}?>"  id="pop_links" rel='popover'>
                               <i class="fa fa-link nav-icon"></i>
                               <p>Links</p>
                             </a>
@@ -264,37 +271,37 @@
                         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                             
                           <li class="nav-item">
-                            <a href="<?php echo base_url() ?>dashboard" class="nav-link <?php if($this->uri->segment(1)=="dashboard"){echo 'active';}?>">
+                            <a href="<?php echo base_url() ?>dashboard" class="nav-link <?php if($this->uri->segment(1)=="dashboard"){echo 'active';}?>" id="pop_dashboard" rel='popover'>
                               <i class="nav-icon fas fa-tachometer-alt"></i>
                               <p>Dashboard</p>
                             </a>
                           </li>
                           <li class="nav-item">
-                            <a href="<?php echo base_url() ?>company_profile" class="nav-link <?php if($this->uri->segment(1)=="company_profile"){echo 'active';}?>">
+                            <a href="<?php echo base_url() ?>company_profile" class="nav-link <?php if($this->uri->segment(1)=="company_profile"){echo 'active';}?>" id="pop_company_profile" rel='popover'>
                               <i class="far fa-user nav-icon"></i>
                               <p>Profile</p>
                             </a>
                           </li>
                           <li class="nav-item">
-                            <a href="<?php echo base_url() ?>register_employee" class="nav-link <?php if($this->uri->segment(1)=="register_employee"){echo 'active';}?>">
+                            <a href="<?php echo base_url() ?>register_employee" class="nav-link <?php if($this->uri->segment(1)=="register_employee"){echo 'active';}?>" id="pop_register_employee" rel='popover'>
                               <i class="far fa-registered nav-icon"></i>
                               <p>Register Employee</p>
                             </a>
                           </li>
                           <li class="nav-item">
-                            <a href="<?php echo base_url() ?>company_employees" class="nav-link <?php if($this->uri->segment(1)=="company_employees"){echo 'active';}?>">
+                            <a href="<?php echo base_url() ?>company_employees" class="nav-link <?php if($this->uri->segment(1)=="company_employees"){echo 'active';}?>" id="pop_company_employees" rel='popover'>
                               <i class="fas fa-users nav-icon"></i>
                               <p>Company Employees</p>
                             </a>
                           </li>
                           <li class="nav-item">
-                            <a href="<?php echo base_url() ?>hotels" class="nav-link <?php if($this->uri->segment(1)=="hotels"){echo 'active';}?>">
+                            <a href="<?php echo base_url() ?>hotels" class="nav-link <?php if($this->uri->segment(1)=="hotels"){echo 'active';}?>" id="pop_hotels" rel='popover'>
                               <i class="fa fa-h-square nav-icon"></i>
                               <p>Hotel List</p>
                             </a>
                           </li>
                           <li class="nav-item">
-                            <a href="<?php echo base_url() ?>links" class="nav-link <?php if($this->uri->segment(1)=="links"){echo 'active';}?>">
+                            <a href="<?php echo base_url() ?>links" class="nav-link <?php if($this->uri->segment(1)=="links"){echo 'active';}?>" id="pop_links" rel='popover'>
                               <i class="fa fa-link nav-icon"></i>
                               <p>Links</p>
                             </a>
@@ -307,31 +314,31 @@
                         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                             
                           <li class="nav-item">
-                            <a href="<?php echo base_url() ?>dashboard" class="nav-link <?php if($this->uri->segment(1)=="dashboard"){echo 'active';}?>">
+                            <a href="<?php echo base_url() ?>dashboard" class="nav-link <?php if($this->uri->segment(1)=="dashboard"){echo 'active';}?>" id="pop_dashboard" rel='popover'>
                               <i class="nav-icon fas fa-tachometer-alt"></i>
                               <p>Dashboard</p>
                             </a>
                           </li>
                           <li class="nav-item">
-                            <a href="<?php echo base_url() ?>company" class="nav-link <?php if($this->uri->segment(1)=="company"){echo 'active';}?>">
+                            <a href="<?php echo base_url() ?>company" class="nav-link <?php if($this->uri->segment(1)=="company"){echo 'active';}?>" id="pop_company" rel='popover'>
                               <i class="far fa-user nav-icon"></i>
                               <p>Company Details</p>
                             </a>
                           </li>
                           <li class="nav-item">
-                            <a href="<?php echo base_url() ?>company_employee_profile" class="nav-link <?php if($this->uri->segment(1)=="company_employee_profile"){echo 'active';}?>">
+                            <a href="<?php echo base_url() ?>company_employee_profile" class="nav-link <?php if($this->uri->segment(1)=="company_employee_profile"){echo 'active';}?>" id="pop_company_employee_profile" rel='popover'>
                               <i class="far fa-user nav-icon"></i>
                               <p>Profile</p>
                             </a>
                           </li>
                           <li class="nav-item">
-                            <a href="<?php echo base_url() ?>hotels" class="nav-link <?php if($this->uri->segment(1)=="hotels"){echo 'active';}?>">
+                            <a href="<?php echo base_url() ?>hotels" class="nav-link <?php if($this->uri->segment(1)=="hotels"){echo 'active';}?>" id="pop_hotels" rel='popover'>
                               <i class="fa fa-h-square nav-icon"></i>
                               <p>Hotel List</p>
                             </a>
                           </li>
                           <li class="nav-item">
-                            <a href="<?php echo base_url() ?>links" class="nav-link <?php if($this->uri->segment(1)=="links"){echo 'active';}?>">
+                            <a href="<?php echo base_url() ?>links" class="nav-link <?php if($this->uri->segment(1)=="links"){echo 'active';}?>" id="pop_links" rel='popover'>
                               <i class="fa fa-link nav-icon"></i>
                               <p>Links</p>
                             </a>
@@ -344,31 +351,31 @@
                         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                             
                           <li class="nav-item">
-                            <a href="<?php echo base_url() ?>dashboard" class="nav-link <?php if($this->uri->segment(1)=="dashboard"){echo 'active';}?>">
+                            <a href="<?php echo base_url() ?>dashboard" class="nav-link <?php if($this->uri->segment(1)=="dashboard"){echo 'active';}?>" id="pop_dashboard" rel='popover'>
                               <i class="nav-icon fas fa-tachometer-alt"></i>
                               <p>Dashboard</p>
                             </a>
                           </li>
                           <li class="nav-item">
-                            <a href="<?php echo base_url() ?>hotel" class="nav-link <?php if($this->uri->segment(1)=="hotel"){echo 'active';}?>">
+                            <a href="<?php echo base_url() ?>hotel" class="nav-link <?php if($this->uri->segment(1)=="hotel"){echo 'active';}?>" id="pop_hotel" rel='popover'>
                               <i class="far fa-user nav-icon"></i>
                               <p>Hotel Details</p>
                             </a>
                           </li>
                           <li class="nav-item">
-                            <a href="<?php echo base_url() ?>hotel_employee_profile" class="nav-link <?php if($this->uri->segment(1)=="hotel_employee_profile"){echo 'active';}?>">
+                            <a href="<?php echo base_url() ?>hotel_employee_profile" class="nav-link <?php if($this->uri->segment(1)=="hotel_employee_profile"){echo 'active';}?>" id="pop_hotel_employee_profile" rel='popover'>
                               <i class="far fa-user nav-icon"></i>
                               <p>Profile</p>
                             </a>
                           </li>
                           <li class="nav-item">
-                            <a href="<?php echo base_url() ?>companies" class="nav-link <?php if($this->uri->segment(1)=="companies"){echo 'active';}?>">
+                            <a href="<?php echo base_url() ?>companies" class="nav-link <?php if($this->uri->segment(1)=="companies"){echo 'active';}?>" id="pop_companies" rel='popover'>
                               <i class="fa fa-h-square nav-icon"></i>
                               <p>Company List</p>
                             </a>
                           </li>
                           <li class="nav-item">
-                            <a href="<?php echo base_url() ?>links" class="nav-link <?php if($this->uri->segment(1)=="links"){echo 'active';}?>">
+                            <a href="<?php echo base_url() ?>links" class="nav-link <?php if($this->uri->segment(1)=="links"){echo 'active';}?>" id="pop_links" rel='popover'>
                               <i class="fa fa-link nav-icon"></i>
                               <p>Links</p>
                             </a>

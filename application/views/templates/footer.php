@@ -8,6 +8,115 @@
 	</div>
 </footer>
 
+
+<div class="modal fade modal_info"  id="modal_<?php echo $this->uri->segment(1); ?>">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content bg-info">
+      <div class="modal-header">
+        <h4 class="modal-title">Tour Guide Modal</h4>
+        <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close"> -->
+          <!-- <span aria-hidden="true">&times;</span></button> -->
+      </div>
+      <div class="modal-body">
+        <?php
+          $url = $this->uri->segment(1);
+          switch ($url) {
+            case "dashboard":
+            echo "dashboard";
+            break;
+            case "admin_profile":
+            echo "admin_profile";
+            break;
+            case "register":
+            echo "register";
+            break;
+            case "hotels":
+            echo "hotels";
+            break;
+            case "company_employees":
+            echo "company_employees";
+            break;
+            case "register_employee":
+            echo "register_employee";
+            break;
+            case "hotel_employees":
+            echo "hotel_employees";
+            break;
+            case "hotel_branches":
+            echo "hotel_branches";
+            break;
+            case "companies":
+            echo "companies";
+            break;
+            case "links":
+            echo "links";
+            break;
+            case "hotel_profile":
+            echo "hotel_profile";
+            break;
+            case "company_profile":
+            echo "company_profile";
+            break;
+          }
+        ?>
+      </div>
+      <div class="modal-footer justify-content-between">
+        <button type="button" class="btn btn-outline-light" id="close_<?php echo $url?>" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+    <!-- /.modal-content -->
+  </div>
+  <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+
+ <div id="popover-content">
+  <?php
+    $url = $this->uri->segment(1);
+    switch ($url) {
+      case "dashboard":
+      echo "dashboard";
+      break;
+      case "admin_profile":
+      echo "admin_profile";
+      break;
+      case "register":
+      echo "register";
+      break;
+      case "hotels":
+      echo "hotels";
+      break;
+      case "company_employees":
+      echo "company_employees";
+      break;
+      case "register_employee":
+      echo "register_employee";
+      break;
+      case "admins":
+      echo "admins";
+      break;
+      case "hotel_employees":
+      echo "hotel_employees";
+      break;
+      case "hotel_branches":
+      echo "hotel_branches";
+      break;
+      case "companies":
+      echo "companies";
+      break;
+      case "links":
+      echo "links";
+      break;
+      case "hotel_profile":
+      echo "hotel_profile";
+      break;
+      case "company_profile":
+      echo "company_profile";
+      break;
+    }
+  ?>
+ </div>   
+
 <!-- Control Sidebar -->
 <!-- <aside class="control-sidebar control-sidebar-dark"> -->
 	<!-- Control sidebar content goes here -->
@@ -190,7 +299,15 @@
     //   'titleShow'     : false
     // });
     
+
+    $("#logoutBtn").click(function(){
+      localStorage.clear();
+    })
   });
+
+ 
+
+
 </script>
 <?php
 if($this->session->flashdata('success_message')) {
@@ -201,7 +318,70 @@ if($this->session->flashdata('success_message')) {
     });
   </script>
   <?php
-}
-?>
+  }
+
+
+if($_SESSION['user_data']->first_login == 0){ ?>
+<script>
+  $(document).ready(function() {
+    var url      = location.pathname.split('/');
+    var secondLastSegment = url[url.length - 1];
+    var urls = ["dashboard","admins","admin_profile","register","hotels","company_employees","register_employee","hotel_employees","hotel_branches","companies","links","hotel_profile","company_profile"];
+    var modalArray  = JSON.parse(localStorage.getItem("modalName"));
+    var hasUrl = false;
+    if (modalArray !=null) {
+      var hasUrl = modalArray.includes(secondLastSegment); //true
+    }
+    
+    var popOverSettings = {
+      placement: 'left',
+      container: 'body',
+      delay: {show: "500",hide: "00"},
+      html: true,
+      trigger: 'focus',
+      selector: '[rel="popover"]',
+      content: function() {
+        var popover =  $('#popover-content');
+        popover.show();
+        popover = popover.append('<a href="#" id="xl" class="btn btn-secondary">Close</a>');
+        return popover;   
+      }
+    }
+
+    if (urls.includes(secondLastSegment) && !hasUrl) {
+      $(".modal_info").modal({ show: true,backdrop: 'static', keyboard: false });
+      
+    }
+
+    $("#close_<?php echo $url?>").click(function(){
+      var id = $('a.active').attr('id');
+      $('#' + id).popover(popOverSettings).popover('show');
+      $(".wrapper").addClass('overlay');
+      if (typeof(Storage) !== "undefined") {
+        var getModalName = JSON.parse(localStorage.getItem("modalName"));
+        if(getModalName){
+          let modalName = $(this).parent().parent().parent().parent().attr('id') + "," + getModalName;
+          localStorage.setItem("modalName", JSON.stringify(modalName));
+        }else{
+          localStorage.setItem("modalName", JSON.stringify($(this).parent().parent().parent().parent().attr('id')));
+        }
+      } else {
+        alert("Sorry, your browser does not support Web Storage...");
+      }
+    });
+
+
+    $('body').on('click','#xl', function(e){
+      $('[rel="popover"]').popover('hide');
+      $(".wrapper").removeClass('overlay');
+    })
+
+  });
+ 
+</script>
+<?php } ?>
+
 </body>
 </html>
+
+

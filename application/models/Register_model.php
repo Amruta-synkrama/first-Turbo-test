@@ -38,6 +38,11 @@ class Register_model extends CI_Model {
 					} else {
 						$this->session->set_userdata('id', $row->id);
 						$this->session->set_userdata('user_data', $row);
+						$this->db->where('id',$row->id);
+						$data = array(
+							'first_login'  => "1"
+						);
+        				$this->db->update('tr_users',$data);
 					}
 				} else {
 					return 'Wrong Password';
