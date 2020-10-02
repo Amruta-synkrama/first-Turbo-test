@@ -32,7 +32,7 @@ class Register_employee extends CI_Controller
 		$this->form_validation->set_rules('email', 'Email Address', 'required|trim|valid_email|is_unique[tr_users.email]');
 		$this->form_validation->set_rules('password', 'Password', 'required');
 		$this->form_validation->set_rules('admin_user', 'Main User', 'required');
-		$this->form_validation->set_rules('emp_id', 'Employee ID', 'required');
+		$this->form_validation->set_rules('emp_id', 'Employee ID', '');
 		if($this->form_validation->run()) {
 			$verification_key = md5(rand());
 			$encrypted_password = $this->encryption->encrypt($this->input->post('password'));

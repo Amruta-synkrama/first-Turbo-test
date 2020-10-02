@@ -7,6 +7,7 @@ class Dashboard extends CI_Controller {
 		if(!$this->session->userdata('id')) {
 			redirect('login');
 		}
+		$this->load->model('user_model');
 		$this->load->model('dashboard_model');
 	}
 
@@ -18,8 +19,8 @@ class Dashboard extends CI_Controller {
 		$data['hotels_count'] = $this->dashboard_model->get_hotels_count();
 		$data['hotels_data'] = $this->dashboard_model->get_hotels();
 		$data['links_count'] = $this->dashboard_model->get_links_count($user_id,$this->session->userdata('user_data')->entity);
-		$data['room_count1'] = 12345;
-		$data['room_count2'] = 54321;
+		$data['room_count1'] = $this->user_model->get_amenities($user_id,'total_revenue');
+		$data['room_count2'] = $this->user_model->get_amenities($user_id,'daily_rates');
 		$this->load->view('templates/header', $data);
 		$this->load->view('dashboard', $data);
 		$this->load->view('templates/footer', $data);

@@ -55,7 +55,7 @@
     }
   </style>
 </head>
-<body class="hold-transition sidebar-mini layout-fixed accent-orange <?php if($_SESSION['user_data']->first_login == 1) { echo "sidebar-collapse ";} ?>">
+<body class="hold-transition sidebar-mini layout-fixed accent-orange sidebar-collapse <?php //if($_SESSION['user_data']->first_login == 1) { echo "sidebar-collapse ";} ?>">
 	<div class="wrapper">
 
 		<!-- Navbar -->

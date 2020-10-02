@@ -114,7 +114,7 @@
               <li class="nav-item"><a class="nav-link" href="#logo" data-toggle="tab">Logo Update</a></li>
               <li class="nav-item"><a class="nav-link" href="#timeline" data-toggle="tab">Contact Person Settings</a></li>
               <li class="nav-item"><a class="nav-link" href="#settings" data-toggle="tab">General Settings</a></li>
-              <li class="nav-item"><a class="nav-link" href="#password" data-toggle="tab">Password Update</a></li>
+              <li class="nav-item"><a class="nav-link" href="#password-tab" data-toggle="tab">Password Update</a></li>
             </ul>
           </div><!-- /.card-header -->
           <div class="card-body">
@@ -358,7 +358,7 @@
                 </form>
               </div>
               <!-- /.tab-pane -->
-              <div class="tab-pane" id="password">
+              <div class="tab-pane" id="password-tab">
                 <?php if(!empty(validation_errors())) : ?>
                   <div class="row">
                     <div class="col-12">
@@ -382,6 +382,19 @@
                     <label for="inputName" class="col-sm-2 col-form-label">Password</label>
                     <div class="col-sm-10">
                       <input type="password" class="form-control" placeholder="Password" name="password" id="password" value="">
+                      <div id="popover-password">
+                          <p>Password Strength: <span id="result"> </span></p>
+                          <div class="progress">
+                              <div id="password-strength" class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:0%">
+                              </div>
+                          </div>
+                          <ul class="list-unstyled">
+                              <li class=""><span class="low-upper-case"><i class="fa fa-times" aria-hidden="true"></i></span>&nbsp; 1 lowercase &amp; 1 uppercase</li>
+                              <li class=""><span class="one-number"><i class="fa fa-times" aria-hidden="true"></i></span> &nbsp;1 number (0-9)</li>
+                              <li class=""><span class="one-special-char"><i class="fa fa-times" aria-hidden="true"></i></span> &nbsp;1 Special Character (!@#$%^&*).</li>
+                              <li class=""><span class="eight-character"><i class="fa fa-times" aria-hidden="true"></i></span>&nbsp; Atleast 8 Character</li>
+                          </ul>
+                      </div>
                     </div>
                   </div>
                   <div class="form-group row">
@@ -392,7 +405,7 @@
                   </div>
                   <div class="form-group row">
                     <div class="offset-sm-2 col-sm-10">
-                      <button type="submit" class="btn btn-danger">Submit</button>
+                      <button type="submit" class="btn btn-danger" id="password-submit" disabled="">Submit</button>
                     </div>
                   </div>
                 </form>

@@ -51,7 +51,7 @@
                 <?php foreach ($hotels_emp_data as $hotel_emp) :?>
                   <tr>
                     <td>
-                      <a href="<?php echo base_url(); ?>hotel_employee_profile?id=<?php echo $hotel_emp->user_id; ?>">
+                      <a href="<?php echo base_url(); ?>hotel_employee_profile?emp_id=<?php echo $hotel_emp->user_id; ?>">
                         <ul class="list-inline">
                           <li class="list-inline-item">
                             <?php if($hotel_emp->user_logo) : ?>

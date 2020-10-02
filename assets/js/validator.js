@@ -213,9 +213,6 @@ $(document).ready(function () {
 	    },
 	    admin_user: {
 	      required: true
-	    },
-	    emp_id: {
-	      required: true
 	    }
 	  },
 	  errorElement: 'span',

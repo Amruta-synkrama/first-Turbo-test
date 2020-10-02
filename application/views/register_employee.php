@@ -85,7 +85,7 @@
 									<div class="row">
 										<div class="col-6">
 											<div class="form-group">
-												<label for="inputStatus">Users</label>
+												<label for="inputStatus">Entity</label>
 												<select class="form-control custom-select admin_select select2"  name="admin_user" id="admin_user">
 													<option selected disabled>Please select</option>
 												</select>

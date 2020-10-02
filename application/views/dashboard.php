@@ -20,6 +20,7 @@
 	<div class="container">
 		<div class="row">
 			<?php if($session->entity == 'Hotel') : ?>
+				<?php if(!empty($room_count1)) : ?>
 				<div class="col-sm-6 col-xs-6">
 					<div class="info-box">
 					  <span class="info-box-icon bg-info elevation-1"><i class="fas fa-cog"></i></span>
@@ -27,7 +28,7 @@
 					    <span class="info-box-number mx-auto">
 					      <div class="text-center d-flex">
 					      	<?php
-					      	$invID = str_pad($room_count1, 5, '0', STR_PAD_LEFT);
+					      	$invID = str_pad($room_count1[0], 5, '0', STR_PAD_LEFT);
 					      	$invIDArray = str_split((string)$invID);
 					      	?>
 					      	<div class=" flip-box-cust flip-cust-box-1 bg-info-cust">
@@ -70,12 +71,14 @@
 					      	</div>
 					      </div>
 					    </span>
-					    <span class="info-box-text text-center mt-2">Rooms Booked</span>
+					    <span class="info-box-text text-center mt-2">Total Revenue</span>
 					  </div>
 					  <!-- /.info-box-content -->
 					</div>
 					<!-- /.info-box -->
 				</div>
+				<?php endif; ?>
+				<?php if(!empty($room_count2)) : ?>
 				<div class="col-sm-6 col-xs-6">
 					<div class="info-box">
 					  <span class="info-box-icon bg-danger elevation-1"><i class="fas fa-cog"></i></span>
@@ -83,7 +86,7 @@
 					    <span class="info-box-number mx-auto">
 					      <div class="text-center d-flex">
 					      	<?php
-					      	$invID = str_pad($room_count2, 5, '0', STR_PAD_LEFT);
+					      	$invID = str_pad($room_count2[0], 5, '0', STR_PAD_LEFT);
 					      	$invIDArray = str_split((string)$invID);
 					      	?>
 					      	<div class=" flip-box-cust flip-cust-box-3 bg-danger-cust">
@@ -126,12 +129,13 @@
 					      	</div>
 					      </div>
 					    </span>
-					    <span class="info-box-text text-center mt-2">Average Room Price</span>
+					    <span class="info-box-text text-center mt-2">Daily Rates</span>
 					  </div>
 					  <!-- /.info-box-content -->
 					</div>
 					<!-- /.info-box -->
 				</div>
+				<?php endif; ?>
 			<?php endif; ?>
 		</div>
 		<!-- Small Box (Stat card) -->
@@ -326,7 +330,7 @@
 
 			var timeoutcount = 1000;
 			<?php
-			$invID = str_pad($room_count, 5, '0', STR_PAD_LEFT);
+			$invID = str_pad($room_count[0], 5, '0', STR_PAD_LEFT);
 			$intArray = str_split((string)$invID);
 			$countArray = count($intArray);
 			for($i = 0; $i<$countArray; $i++) :
@@ -379,7 +383,7 @@
 
 			var timeoutcount = 1000;
 			<?php
-			$invID = str_pad($room_count1, 5, '0', STR_PAD_LEFT);
+			$invID = str_pad($room_count1[0], 5, '0', STR_PAD_LEFT);
 			$intArray = str_split((string)$invID);
 			$countArray = count($intArray);
 			for($i = 0; $i<$countArray; $i++) :
@@ -431,7 +435,7 @@
 
 			var timeoutcount = 1000;
 			<?php
-			$invID = str_pad($room_count2, 5, '0', STR_PAD_LEFT);
+			$invID = str_pad($room_count2[0], 5, '0', STR_PAD_LEFT);
 			$intArray = str_split((string)$invID);
 			$countArray = count($intArray);
 			for($i = 0; $i<$countArray; $i++) :

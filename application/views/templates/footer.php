@@ -9,15 +9,47 @@
 </footer>
 
 
-<div class="modal fade modal_info"  id="modal_<?php echo $this->uri->segment(1); ?>">
+<div class="modal fade modal_info-cust"  id="modal_<?php echo $this->uri->segment(1); ?>">
   <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content bg-info">
+    <div class="modal-content">
       <div class="modal-header">
-        <h4 class="modal-title">Tour Guide Modal</h4>
-        <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close"> -->
-          <!-- <span aria-hidden="true">&times;</span></button> -->
+        <h4 class="modal-title text-center">Tour Guide Modal</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span></button>
       </div>
       <div class="modal-body">
+        <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+          <ol class="carousel-indicators">
+            <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+            <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+            <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+          </ol>
+          <div class="carousel-inner">
+            <div class="carousel-item active">
+              <img class="d-block w-100" src="https://placehold.it/900x500/39CCCC/ffffff&text=I+Love+Bootstrap" alt="First slide">
+            </div>
+            <div class="carousel-item">
+              <ol>
+                  <li>item 1</li>
+                  <li>item 2</li>
+                  <li>item 3</li>
+                  <li>item 4</li>
+              </ol>
+              <!-- <img class="d-block w-100" src="https://placehold.it/900x500/3c8dbc/ffffff&text=I+Love+Bootstrap" alt="Second slide"> -->
+            </div>
+            <div class="carousel-item">
+              <img class="d-block w-100" src="https://placehold.it/900x500/f39c12/ffffff&text=I+Love+Bootstrap" alt="Third slide">
+            </div>
+          </div>
+          <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+          </a>
+          <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next" id="close_<?php echo $this->uri->segment(1)?>">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+          </a>
+        </div>
         <?php
           $url = $this->uri->segment(1);
           switch ($url) {
@@ -61,7 +93,7 @@
         ?>
       </div>
       <div class="modal-footer justify-content-between">
-        <button type="button" class="btn btn-outline-light" id="close_<?php echo $url?>" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-outline-light btn btn-default" id="close_<?php echo $url?>" data-dismiss="modal">Close</button>
       </div>
     </div>
     <!-- /.modal-content -->
@@ -70,7 +102,7 @@
 </div>
 <!-- /.modal -->
 
- <div id="popover-content">
+ <div id="popover-content" style="display: none;">
   <?php
     $url = $this->uri->segment(1);
     switch ($url) {
@@ -210,7 +242,7 @@
     $('#example1 thead tr').clone(true).appendTo( '#example1 thead' );
     $('#example1 thead tr:eq(1) th').each( function (i) {
       var title = $(this).text();
-      $(this).html( '<input type="text" placeholder="Search '+title+'" style="width:150px;" />' );
+      $(this).html( '<input type="text" title="Search '+title+'" placeholder="Search '+title+'" style="width:100px;" />' );
       $( 'input', this ).on( 'keyup change', function () {
         if ( table.column(i).search() !== this.value ) {
           table
@@ -293,6 +325,44 @@
         }
       });
     });
+
+    $('body').on('click','.remove-something-cust', function(e){
+      e.preventDefault();
+      var Href = $(this).attr('href');
+      Swal.fire({
+        title: 'Are you sure?',
+        text: "You want to remove this from meter?",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, Remove this!'
+      }).then((result) => {
+        if (result.value) {
+          window.location.href = Href;
+        }
+      });
+    });
+
+    $('body').on('click','.add-something-cust', function(e){
+      e.preventDefault();
+      var Href = $(this).attr('href');
+      Swal.fire({
+        title: 'Are you sure?',
+        text: "You want to add this to meter?",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, Add this!'
+      }).then((result) => {
+        if (result.value) {
+          window.location.href = Href;
+        }
+      });
+    });
+
+    
     
     
     // $("a.fancy-example").fancybox({
@@ -309,6 +379,116 @@
 
 
 </script>
+
+<script>
+$(document).ready(function() {
+        
+        $('#password').keyup(function() {
+            var password = $('#password').val();
+            if (checkStrength(password) == false) {
+                $('#sign-up').attr('disabled', true);
+            }
+        });
+        
+
+        
+
+        function checkStrength(password) {
+            var strength = 0;
+
+
+            //If password contains both lower and uppercase characters, increase strength value.
+            if (password.match(/([a-z].*[A-Z])|([A-Z].*[a-z])/)) {
+                strength += 1;
+                $('.low-upper-case').addClass('text-success');
+                $('.low-upper-case i').removeClass('fa-times').addClass('fa-check');
+                $('#popover-password-top').addClass('hide');
+
+
+            } else {
+                $('.low-upper-case').removeClass('text-success');
+                $('.low-upper-case i').addClass('fa-times').removeClass('fa-check');
+                $('#popover-password-top').removeClass('hide');
+            }
+
+            //If it has numbers and characters, increase strength value.
+            if (password.match(/([a-zA-Z])/) && password.match(/([0-9])/)) {
+                strength += 1;
+                $('.one-number').addClass('text-success');
+                $('.one-number i').removeClass('fa-times').addClass('fa-check');
+                $('#popover-password-top').addClass('hide');
+
+            } else {
+                $('.one-number').removeClass('text-success');
+                $('.one-number i').addClass('fa-times').removeClass('fa-check');
+                $('#popover-password-top').removeClass('hide');
+            }
+
+            //If it has one special character, increase strength value.
+            if (password.match(/([!,%,&,@,#,$,^,*,?,_,~])/)) {
+                strength += 1;
+                $('.one-special-char').addClass('text-success');
+                $('.one-special-char i').removeClass('fa-times').addClass('fa-check');
+                $('#popover-password-top').addClass('hide');
+
+            } else {
+                $('.one-special-char').removeClass('text-success');
+                $('.one-special-char i').addClass('fa-times').removeClass('fa-check');
+                $('#popover-password-top').removeClass('hide');
+            }
+
+            if (password.length > 7) {
+                strength += 1;
+                $('.eight-character').addClass('text-success');
+                $('.eight-character i').removeClass('fa-times').addClass('fa-check');
+                $('#popover-password-top').addClass('hide');
+
+            } else {
+                $('.eight-character').removeClass('text-success');
+                $('.eight-character i').addClass('fa-times').removeClass('fa-check');
+                $('#popover-password-top').removeClass('hide');
+            }
+
+
+
+
+            // If value is less than 2
+
+            if (strength < 2) {
+                $('#result').removeClass()
+                $('#password-strength').addClass('progress-bar-danger');
+
+                $('#result').addClass('text-danger').text('Very Week');
+                $('#password-strength').css('width', '10%');
+                $('#password-submit').prop('disabled',true);
+                $('#password-submit').attr('disabled','disabled');
+            } else if (strength == 2) {
+                $('#result').addClass('good');
+                $('#password-strength').removeClass('progress-bar-danger');
+                $('#password-strength').addClass('progress-bar-warning');
+                $('#result').addClass('text-warning').text('Week')
+                $('#password-strength').css('width', '60%');
+                $('#password-submit').prop('disabled',true);
+                $('#password-submit').attr('disabled','disabled');
+                return 'Week'
+            } else if (strength == 4) {
+                $('#result').removeClass()
+                $('#result').addClass('strong');
+                $('#password-strength').removeClass('progress-bar-warning');
+                $('#password-strength').addClass('progress-bar-success');
+                $('#result').addClass('text-success').text('Strong');
+                $('#password-strength').css('width', '100%');
+                $('#password-submit').prop('disabled',false);
+                $('#password-submit').removeAttr('disabled');
+
+                return 'Strong'
+            }
+
+        }
+
+    });
+</script>
+
 <?php
 if($this->session->flashdata('success_message')) {
   ?>
@@ -320,8 +500,10 @@ if($this->session->flashdata('success_message')) {
   <?php
   }
 
-
-if($_SESSION['user_data']->first_login == 0){ ?>
+/**
+ * Session Tour guide JS
+ */
+/*if($_SESSION['user_data']->first_login == 0){ ?>
 <script>
   $(document).ready(function() {
     var url      = location.pathname.split('/');
@@ -349,7 +531,7 @@ if($_SESSION['user_data']->first_login == 0){ ?>
     }
 
     if (urls.includes(secondLastSegment) && !hasUrl) {
-      $(".modal_info").modal({ show: true,backdrop: 'static', keyboard: false });
+      $(".modal_info-cust").modal({ show: true,backdrop: 'static', keyboard: false });
       
     }
 
@@ -379,7 +561,7 @@ if($_SESSION['user_data']->first_login == 0){ ?>
   });
  
 </script>
-<?php } ?>
+<?php }*/ ?>
 
 </body>
 </html>

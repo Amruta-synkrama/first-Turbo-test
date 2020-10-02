@@ -31,7 +31,7 @@ class Enquiry_data_model extends CI_Model {
             'form_data' => serialize($data),
             'form_date' => $timestamp
         );
-        return $this->db->insert('tr_enquiry_data', $data);
+        return $this->db->insert('tr_enquiry_data', $insert_data);
 	}
 	
 	public function show_contact_enquiry($enquiry_id) {
