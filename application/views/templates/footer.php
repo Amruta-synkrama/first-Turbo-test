@@ -1,11 +1,11 @@
 </div>
 <!-- /.content-wrapper -->
 <footer class="main-footer">
-	<strong>Copyright &copy; 2020 Turbores.</strong>
-	All rights reserved.
-	<div class="float-right d-none d-sm-inline-block">
-		
-	</div>
+  <strong>Copyright &copy; 2020 Turbores.</strong>
+  All rights reserved.
+  <div class="float-right d-none d-sm-inline-block">
+    
+  </div>
 </footer>
 
 
@@ -101,7 +101,7 @@
   <!-- /.modal-dialog -->
 </div>
 <!-- /.modal -->
-
+<?php /* ?>
  <div id="popover-content" style="display: none;">
   <?php
     $url = $this->uri->segment(1);
@@ -148,10 +148,11 @@
     }
   ?>
  </div>   
+ <?php */ ?>
 
 <!-- Control Sidebar -->
 <!-- <aside class="control-sidebar control-sidebar-dark"> -->
-	<!-- Control sidebar content goes here -->
+  <!-- Control sidebar content goes here -->
 <!-- </aside> -->
 <!-- /.control-sidebar -->
 </div>
@@ -209,285 +210,8 @@
  <script src="<?php echo base_url(); ?>theme/plugins/moment/moment.min.js"></script>
  <script src="<?php echo base_url(); ?>theme/plugins/inputmask/min/jquery.inputmask.bundle.min.js"></script>
 <script src="<?php echo base_url(); ?>theme/dist/js/demo.js"></script>
+<script src="<?php echo base_url(); ?>assets/js/custom.js"></script>
 
-<script>
-  $(function () {
-    $('.select2').select2();
-
-    $('[data-mask]').inputmask();
-
-    // $('form[method="post"]').validate();
-
-    /*$('body').on('click','.nav-link', function(){
-      $('.form-horizontal').validate();
-    });*/
-
-    /*$("#example1").DataTable({
-      "responsive": true,
-      "autoWidth": false,
-    });*/
-    $('#example2').DataTable({
-      "paging": true,
-      "lengthChange": false,
-      "searching": false,
-      "ordering": true,
-      "info": true,
-      "autoWidth": false,
-      "responsive": true,
-    });
-
-            
-    // Setup - add a text input to each footer cell
-    $('.dataFrame').attr('id', 'example1');
-    $('#example1 thead tr').clone(true).appendTo( '#example1 thead' );
-    $('#example1 thead tr:eq(1) th').each( function (i) {
-      var title = $(this).text();
-      $(this).html( '<input type="text" title="Search '+title+'" placeholder="Search '+title+'" style="width:100px;" />' );
-      $( 'input', this ).on( 'keyup change', function () {
-        if ( table.column(i).search() !== this.value ) {
-          table
-          .column(i)
-          .search( this.value )
-          .draw();
-        }
-      } );
-    } );
-
-    var table = $('#example1').DataTable( {
-      orderCellsTop: true,
-      fixedHeader: true,
-      responsive: true,
-      autoWidth: false
-    } );
-
-    var today = new Date();
-    const tomorrow = new Date(today);
-    tomorrow.setDate(tomorrow.getDate() + 1)
-
-    var date = tomorrow.getFullYear()+'-'+(tomorrow.getMonth()+1)+'-'+tomorrow.getDate();
-
-    //Date range picker
-    $('#reservationdate').datetimepicker({
-        format: 'L',
-        minDate: date
-    });
-
-    $('body').on('click','.delete-something-cust', function(e){
-      e.preventDefault();
-      var Href = $(this).attr('href');
-      Swal.fire({
-        title: 'Are you sure?',
-        text: "You won't be able to revert this!",
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Yes, deactivate it!'
-      }).then((result) => {
-        if (result.value) {
-          window.location.href = Href;
-        }
-      });
-    });
-
-    $('body').on('click','.reject-something-cust', function(e){
-      e.preventDefault();
-      var Href = $(this).attr('href');
-      Swal.fire({
-        title: 'Are you sure?',
-        text: "You won't be able to revert this!",
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Yes, reject it!'
-      }).then((result) => {
-        if (result.value) {
-          window.location.href = Href;
-        }
-      });
-    });
-
-    $('body').on('click','.activate-something-cust', function(e){
-      e.preventDefault();
-      var Href = $(this).attr('href');
-      Swal.fire({
-        title: 'Are you sure?',
-        text: "You want to activate this!",
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Yes, Activate it!'
-      }).then((result) => {
-        if (result.value) {
-          window.location.href = Href;
-        }
-      });
-    });
-
-    $('body').on('click','.remove-something-cust', function(e){
-      e.preventDefault();
-      var Href = $(this).attr('href');
-      Swal.fire({
-        title: 'Are you sure?',
-        text: "You want to remove this from meter?",
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Yes, Remove this!'
-      }).then((result) => {
-        if (result.value) {
-          window.location.href = Href;
-        }
-      });
-    });
-
-    $('body').on('click','.add-something-cust', function(e){
-      e.preventDefault();
-      var Href = $(this).attr('href');
-      Swal.fire({
-        title: 'Are you sure?',
-        text: "You want to add this to meter?",
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Yes, Add this!'
-      }).then((result) => {
-        if (result.value) {
-          window.location.href = Href;
-        }
-      });
-    });
-
-    
-    
-    
-    // $("a.fancy-example").fancybox({
-    //   'titleShow'     : false
-    // });
-    
-
-    $("#logoutBtn").click(function(){
-      localStorage.clear();
-    })
-  });
-
- 
-
-
-</script>
-
-<script>
-$(document).ready(function() {
-        
-        $('#password').keyup(function() {
-            var password = $('#password').val();
-            if (checkStrength(password) == false) {
-                $('#sign-up').attr('disabled', true);
-            }
-        });
-        
-
-        
-
-        function checkStrength(password) {
-            var strength = 0;
-
-
-            //If password contains both lower and uppercase characters, increase strength value.
-            if (password.match(/([a-z].*[A-Z])|([A-Z].*[a-z])/)) {
-                strength += 1;
-                $('.low-upper-case').addClass('text-success');
-                $('.low-upper-case i').removeClass('fa-times').addClass('fa-check');
-                $('#popover-password-top').addClass('hide');
-
-
-            } else {
-                $('.low-upper-case').removeClass('text-success');
-                $('.low-upper-case i').addClass('fa-times').removeClass('fa-check');
-                $('#popover-password-top').removeClass('hide');
-            }
-
-            //If it has numbers and characters, increase strength value.
-            if (password.match(/([a-zA-Z])/) && password.match(/([0-9])/)) {
-                strength += 1;
-                $('.one-number').addClass('text-success');
-                $('.one-number i').removeClass('fa-times').addClass('fa-check');
-                $('#popover-password-top').addClass('hide');
-
-            } else {
-                $('.one-number').removeClass('text-success');
-                $('.one-number i').addClass('fa-times').removeClass('fa-check');
-                $('#popover-password-top').removeClass('hide');
-            }
-
-            //If it has one special character, increase strength value.
-            if (password.match(/([!,%,&,@,#,$,^,*,?,_,~])/)) {
-                strength += 1;
-                $('.one-special-char').addClass('text-success');
-                $('.one-special-char i').removeClass('fa-times').addClass('fa-check');
-                $('#popover-password-top').addClass('hide');
-
-            } else {
-                $('.one-special-char').removeClass('text-success');
-                $('.one-special-char i').addClass('fa-times').removeClass('fa-check');
-                $('#popover-password-top').removeClass('hide');
-            }
-
-            if (password.length > 7) {
-                strength += 1;
-                $('.eight-character').addClass('text-success');
-                $('.eight-character i').removeClass('fa-times').addClass('fa-check');
-                $('#popover-password-top').addClass('hide');
-
-            } else {
-                $('.eight-character').removeClass('text-success');
-                $('.eight-character i').addClass('fa-times').removeClass('fa-check');
-                $('#popover-password-top').removeClass('hide');
-            }
-
-
-
-
-            // If value is less than 2
-
-            if (strength < 2) {
-                $('#result').removeClass()
-                $('#password-strength').addClass('progress-bar-danger');
-
-                $('#result').addClass('text-danger').text('Very Week');
-                $('#password-strength').css('width', '10%');
-                $('#password-submit').prop('disabled',true);
-                $('#password-submit').attr('disabled','disabled');
-            } else if (strength == 2) {
-                $('#result').addClass('good');
-                $('#password-strength').removeClass('progress-bar-danger');
-                $('#password-strength').addClass('progress-bar-warning');
-                $('#result').addClass('text-warning').text('Week')
-                $('#password-strength').css('width', '60%');
-                $('#password-submit').prop('disabled',true);
-                $('#password-submit').attr('disabled','disabled');
-                return 'Week'
-            } else if (strength == 4) {
-                $('#result').removeClass()
-                $('#result').addClass('strong');
-                $('#password-strength').removeClass('progress-bar-warning');
-                $('#password-strength').addClass('progress-bar-success');
-                $('#result').addClass('text-success').text('Strong');
-                $('#password-strength').css('width', '100%');
-                $('#password-submit').prop('disabled',false);
-                $('#password-submit').removeAttr('disabled');
-
-                return 'Strong'
-            }
-
-        }
-
-    });
-</script>
 
 <?php
 if($this->session->flashdata('success_message')) {
@@ -503,43 +227,54 @@ if($this->session->flashdata('success_message')) {
 /**
  * Session Tour guide JS
  */
-/*if($_SESSION['user_data']->first_login == 0){ ?>
+if($session->first_login == 0){
+  $urls = ["dashboard","admins","admin_profile","register","hotels","company_employees","register_employee","hotel_employees","hotel_branches","companies","links","hotel_profile","company_profile"];
+  if(!isset($_COOKIE['modal_cookies']) && empty($_COOKIE['modal_cookies'])) {
+    setcookie('modal_cookies', serialize($urls), time() + (86400 * 30), "/");
+  } else {
+    $urls_data = $_COOKIE['modal_cookies'];
+    $urls_data_arr = unserialize($urls_data);
+    $url = $this->uri->segment(1);
+    if (in_array($url, $urls_data_arr)) {
+      ?>
+      <script>    
+        $(".modal_info-cust").modal({ show: true,backdrop: 'static', keyboard: false });
+      </script>
+      <?php
+      $key = array_search($url, $urls_data_arr);
+      unset($urls_data_arr[$key]);
+      $urls_data_arr = array_values($urls_data_arr);
+
+      setcookie('modal_cookies', serialize($urls_data_arr), time() + (86400 * 30), "/");
+    }
+  }
+}
+  /*
+if($session->first_login == 0){
+ ?>
 <script>
   $(document).ready(function() {
     var url      = location.pathname.split('/');
     var secondLastSegment = url[url.length - 1];
+    console.log(secondLastSegment);
+    console.log(localStorage.getItem("modalName"));
     var urls = ["dashboard","admins","admin_profile","register","hotels","company_employees","register_employee","hotel_employees","hotel_branches","companies","links","hotel_profile","company_profile"];
-    var modalArray  = JSON.parse(localStorage.getItem("modalName"));
-    var hasUrl = false;
-    if (modalArray !=null) {
-      var hasUrl = modalArray.includes(secondLastSegment); //true
-    }
-    
-    var popOverSettings = {
-      placement: 'left',
-      container: 'body',
-      delay: {show: "500",hide: "00"},
-      html: true,
-      trigger: 'focus',
-      selector: '[rel="popover"]',
-      content: function() {
-        var popover =  $('#popover-content');
-        popover.show();
-        popover = popover.append('<a href="#" id="xl" class="btn btn-secondary">Close</a>');
-        return popover;   
+    if(localStorage.getItem("modalName") != 'undefined' && localStorage.getItem("modalName") != null) {
+      var modalArray  = JSON.parse(localStorage.getItem("modalName"));
+      var hasUrl = false;
+      if (modalArray != null && modalArray != undefined) {
+        var hasUrl = modalArray.includes(secondLastSegment); //true
       }
     }
 
     if (urls.includes(secondLastSegment) && !hasUrl) {
       $(".modal_info-cust").modal({ show: true,backdrop: 'static', keyboard: false });
-      
     }
 
     $("#close_<?php echo $url?>").click(function(){
       var id = $('a.active').attr('id');
-      $('#' + id).popover(popOverSettings).popover('show');
-      $(".wrapper").addClass('overlay');
-      if (typeof(Storage) !== "undefined") {
+      
+      if (localStorage.getItem("modalName") !== "undefined") {
         var getModalName = JSON.parse(localStorage.getItem("modalName"));
         if(getModalName){
           let modalName = $(this).parent().parent().parent().parent().attr('id') + "," + getModalName;
@@ -553,15 +288,12 @@ if($this->session->flashdata('success_message')) {
     });
 
 
-    $('body').on('click','#xl', function(e){
-      $('[rel="popover"]').popover('hide');
-      $(".wrapper").removeClass('overlay');
-    })
+    
 
   });
  
 </script>
-<?php }*/ ?>
+<?php } */ ?>
 
 </body>
 </html>

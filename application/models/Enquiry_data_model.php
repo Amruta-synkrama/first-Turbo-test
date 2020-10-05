@@ -48,7 +48,19 @@ class Enquiry_data_model extends CI_Model {
 		);
 		$this->db->where('id',$enquiry_id);
 		return $this->db->update('tr_enquiry_data',$data);
-	}	
+	}
+
+	public function get_contact_data() {
+		$this->db->select('form_data' );
+		$this->db->where('status', '1');
+		$this->db->where('form_id', '16053');
+		$query = $this->db->get("tr_enquiry_data");
+		if($query->result()) {
+			return $query->result();
+		} else {
+			return array();
+		}
+	}		
 	
 }
 /* End of file '/Enquiry_data.php' */

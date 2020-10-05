@@ -33,6 +33,29 @@ class Send_enquiry extends CI_Controller {
 
 	}
 
+	public function get_enquiry_data() {
+		$results = $this->enquiry_data_model->get_contact_data();
+		if(!empty($results)) {
+			$room_count = 0;
+			foreach ($results as $result) {
+				$form_values = unserialize($result->form_data);
+				if(isset($form_values['number_of_rooms'])) {
+					$room_count = $room_count + $form_values['number_of_rooms'];
+				} if(isset($form_values['number-of-rooms'])) {
+					$room_count = $room_count + $form_values['number-of-rooms'];
+				}
+			}
+		$room_count = 10000 + $room_count;
+		$invID = str_pad($room_count, 5, '0', STR_PAD_LEFT);
+		$invIDArray = str_split((string)$invID);
+			echo $invID;
+			die();
+		} else {
+			echo '00767';
+			die();
+		}
+	}
+
 
 	public function send_email_otp() {
 		/*

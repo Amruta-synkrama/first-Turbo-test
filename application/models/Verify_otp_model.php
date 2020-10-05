@@ -63,11 +63,6 @@ class Verify_otp_model extends CI_Model
 				$row = $this->get_user_data($user_id);
 				$this->session->set_userdata('id', $row->id);
 				$this->session->set_userdata('user_data', $row);
-				$this->db->where('id',$row->id);
-				$data = array(
-					'first_login'  => "1"
-				);
-				$this->db->update('tr_users',$data);
 				setcookie("otp_email", "", time() - 3600);
 				$this->delete_otp($query->result()[0]->id);
 			} else {

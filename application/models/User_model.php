@@ -218,6 +218,14 @@ class User_model extends CI_Model {
 		$this->db->where('user_id',$id);
 		return $this->db->update('tr_hotels_emp',$data);
 	}
+
+	public function logout_user($id) {
+		$this->db->where('id',$id);
+		$data = array(
+			'first_login'  => "1"
+		);
+		$this->db->update('tr_users',$data);
+	}
 	
 
 }

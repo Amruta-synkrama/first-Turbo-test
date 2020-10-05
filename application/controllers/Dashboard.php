@@ -22,11 +22,15 @@ class Dashboard extends CI_Controller {
 		$data['room_count1'] = $this->user_model->get_amenities($user_id,'total_revenue');
 		$data['room_count2'] = $this->user_model->get_amenities($user_id,'daily_rates');
 		$this->load->view('templates/header', $data);
+		// print_r($data['session']);
 		$this->load->view('dashboard', $data);
 		$this->load->view('templates/footer', $data);
 	}
 
 	function logout() {
+		$user_id = $this->session->userdata('id');
+		setcookie("modal_cookies", "", time() - 3600);
+		$this->user_model->logout_user($user_id);
 		$data = $this->session->all_userdata();
 		foreach($data as $row => $rows_value) {
 			$this->session->unset_userdata($row);
