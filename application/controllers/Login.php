@@ -63,7 +63,7 @@ class Login extends CI_Controller {
 			$result = $this->register_model->reset_password_link($this->input->post('email'));
 			if($result == '') {
 				$this->session->set_flashdata('success_message','Reset password mail sent successfully. Please check email.');
-				redirect('login/forgot_password');
+				redirect('login');
 			} else {
 				$this->session->set_flashdata('message',$result);
 				redirect('login/forgot_password');

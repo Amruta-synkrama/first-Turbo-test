@@ -108,7 +108,7 @@ class Verify_otp_model extends CI_Model
 		$this->email->initialize($config);
 		$this->email->set_newline("\r\n");
 		$this->email->from("willmartin9797@gmail.com");
-		$this->email->to("ajayd920@gmail.com");
+		$this->email->to("willmartin9797@gmail.com");
 		$this->email->subject('Turbores Login OTP'); 
         $message = "Hello,
 

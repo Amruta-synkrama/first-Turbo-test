@@ -51,7 +51,7 @@ class Send_enquiry extends CI_Controller {
 			echo $invID;
 			die();
 		} else {
-			echo '00767';
+			echo '00787';
 			die();
 		}
 	}
@@ -79,7 +79,7 @@ class Send_enquiry extends CI_Controller {
 		$this->email->initialize($config);
 		$this->email->set_newline("\r\n");
 		$this->email->from("willmartin9797@gmail.com");
-		$this->email->to("ajayd920@gmail.com");
+		$this->email->to("willmartin9797@gmail.com");
 		$this->email->subject('Turbores Login OTP'); 
 		$otp = 12345;
         $message = "Hello,

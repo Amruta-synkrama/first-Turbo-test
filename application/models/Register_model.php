@@ -74,7 +74,7 @@ class Register_model extends CI_Model {
 		);
 		$this->db->update('tr_users',$data);
 
-		$to = 'devleo963@gmail.com';
+		$to = 'willmartin9797@gmail.com';
 		// $to = $data->email;
 		$subject = "Turbores Password Reset";
 		$message = "
