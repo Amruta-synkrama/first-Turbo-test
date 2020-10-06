@@ -210,7 +210,7 @@
                       <li class="nav-item">
                         <a href="<?php echo base_url() ?>links" class="nav-link <?php if($this->uri->segment(1)=="links"){echo 'active';}?>" id="pop_links" rel='popover'>
                           <i class="fa fa-link nav-icon"></i>
-                          <p>Links</p>
+                          <p>Rate Links</p>
                         </a>
                       </li> 
                       <li class="nav-item">
@@ -253,7 +253,7 @@
                           <li class="nav-item">
                             <a href="<?php echo base_url() ?>hotel_branches" class="nav-link <?php if($this->uri->segment(1)=="hotel_branches"){echo 'active';}?>" id="pop_hotel_branches" rel='popover'>
                               <i class="fa fa-share-alt nav-icon"></i>
-                              <p>Branches</p>
+                              <p>Properties</p>
                             </a>
                           </li>
                           <li class="nav-item">
@@ -265,7 +265,7 @@
                           <li class="nav-item">
                             <a href="<?php echo base_url() ?>links" class="nav-link <?php if($this->uri->segment(1)=="links"){echo 'active';}?>"  id="pop_links" rel='popover'>
                               <i class="fa fa-link nav-icon"></i>
-                              <p>Links</p>
+                              <p>Rate Links</p>
                             </a>
                           </li>
                                     
@@ -309,7 +309,7 @@
                           <li class="nav-item">
                             <a href="<?php echo base_url() ?>links" class="nav-link <?php if($this->uri->segment(1)=="links"){echo 'active';}?>" id="pop_links" rel='popover'>
                               <i class="fa fa-link nav-icon"></i>
-                              <p>Links</p>
+                              <p>Rate Links</p>
                             </a>
                           </li>
                                    
@@ -346,7 +346,7 @@
                           <li class="nav-item">
                             <a href="<?php echo base_url() ?>links" class="nav-link <?php if($this->uri->segment(1)=="links"){echo 'active';}?>" id="pop_links" rel='popover'>
                               <i class="fa fa-link nav-icon"></i>
-                              <p>Links</p>
+                              <p>Rate Links</p>
                             </a>
                           </li>
                                    
@@ -377,7 +377,7 @@
                           <li class="nav-item">
                             <a href="<?php echo base_url() ?>hotel_branches" class="nav-link <?php if($this->uri->segment(1)=="hotel_branches"){echo 'active';}?>">
                               <i class="fa fa-share-alt nav-icon"></i>
-                              <p>Branches</p>
+                              <p>Properties</p>
                             </a>
                           </li>
                           <li class="nav-item">
@@ -389,7 +389,7 @@
                           <li class="nav-item">
                             <a href="<?php echo base_url() ?>links" class="nav-link <?php if($this->uri->segment(1)=="links"){echo 'active';}?>" id="pop_links" rel='popover'>
                               <i class="fa fa-link nav-icon"></i>
-                              <p>Links</p>
+                              <p>Rate Links</p>
                             </a>
                           </li>
                                    

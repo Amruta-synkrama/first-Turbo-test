@@ -3,12 +3,12 @@
 	<div class="container-fluid">
 		<div class="row mb-2">
 			<div class="col-sm-6">
-				<h1>Links</h1>
+				<h1>Rate Links</h1>
 			</div>
 			<div class="col-sm-6">
 				<ol class="breadcrumb float-sm-right">
 					<li class="breadcrumb-item"><a href="#">Home</a></li>
-					<li class="breadcrumb-item active">Links</li>
+					<li class="breadcrumb-item active">Rate Links</li>
 				</ol>
 			</div>
 		</div>
@@ -29,10 +29,10 @@
 							<div class="col-6 text-right">
 								<?php if($session->entity == 'Admin') : ?>
 									<?php if($this->input->get('hotel_id')) : ?>
-										<a href="<?php echo base_url(); ?>link<?php echo ($session->entity == 'Admin') ? '?hotel_id='.$hotel_data->user_id : ''; ?>" class="btn btn-primary">Add new link</a>
+										<a href="<?php echo base_url(); ?>link<?php echo ($session->entity == 'Admin') ? '?hotel_id='.$hotel_data->user_id : ''; ?>" class="btn btn-primary">Add New Link</a>
 									<?php endif; ?>
 									<?php elseif($session->entity == 'Hotel' || $session->entity == 'Hotel_EMP') : ?>
-										<a href="<?php echo base_url(); ?>link" class="btn btn-primary">Add new link</a>
+										<a href="<?php echo base_url(); ?>link" class="btn btn-primary">Add New Link</a>
 									<?php endif; ?>
 								</div>
 							</div>
@@ -43,7 +43,7 @@
 								<thead>
 									<tr>
 										<th>Company Name</th>
-										<th>Hotel Branch</th>
+										<th>Hotel Property</th>
 										<th>Location</th>
 										<th>Link</th>
 										<th>Expiry Date</th>
@@ -142,7 +142,7 @@
 								<tfoot>
 									<tr>
 										<th>Company Name</th>
-										<th>Hotel Branch</th>
+										<th>Hotel Property</th>
 										<th>Location</th>
 										<th>Link</th>
 										<th>Expiry Date</th>

@@ -19,7 +19,7 @@
 					<div class="text-center mb-5">
 						<a class="navbar-brand text-center" href="<?php echo base_url(); ?>"><img src="<?php echo base_url(); ?>assets/img/site-logo.png" alt="Turbores Logo" class="brand-image"></a>
 					</div>
-					<h2>Verify OTP</h2>
+					<!-- <h2>Please enter the 5-digit code below</h2> -->
 					<hr>
 					<?php
 					if($this->session->flashdata('message'))
@@ -53,7 +53,7 @@
 					<?php endif; ?>
 					<form action="<?php echo base_url(); ?>verify_otp/validation" method="post" class="verify_otp">
 						<div class="form-group">
-							<label><strong>OTP</strong></label>
+							<label><strong>Please enter the 5-digit code below</strong></label>
 							<input type="text" name="otp" id="otp" class="form-control" value="<?php echo set_value('otp') ?>">
 						</div>
 						<div class="row">

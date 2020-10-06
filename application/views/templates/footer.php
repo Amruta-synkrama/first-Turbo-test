@@ -13,48 +13,116 @@
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-header">
-        <h4 class="modal-title text-center">Tour Guide Modal</h4>
+        <h4 class="modal-title text-center">Welcome User</h4>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span></button>
       </div>
       <div class="modal-body">
-        <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-          <ol class="carousel-indicators">
-            <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-            <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-            <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-          </ol>
-          <div class="carousel-inner">
-            <div class="carousel-item active">
-              <img class="d-block w-100" src="https://placehold.it/900x500/39CCCC/ffffff&text=I+Love+Bootstrap" alt="First slide">
-            </div>
-            <div class="carousel-item">
-              <ol>
-                  <li>item 1</li>
-                  <li>item 2</li>
-                  <li>item 3</li>
-                  <li>item 4</li>
-              </ol>
-              <!-- <img class="d-block w-100" src="https://placehold.it/900x500/3c8dbc/ffffff&text=I+Love+Bootstrap" alt="Second slide"> -->
-            </div>
-            <div class="carousel-item">
-              <img class="d-block w-100" src="https://placehold.it/900x500/f39c12/ffffff&text=I+Love+Bootstrap" alt="Third slide">
-            </div>
-          </div>
-          <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="sr-only">Previous</span>
-          </a>
-          <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next" id="close_<?php echo $this->uri->segment(1)?>">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="sr-only">Next</span>
-          </a>
-        </div>
         <?php
           $url = $this->uri->segment(1);
           switch ($url) {
             case "dashboard":
-            echo "dashboard";
+            // echo "dashboard";
+            if($session->entity == 'Hotel') :
+            ?>
+            <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+              <ol class="carousel-indicators">
+                <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                <li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
+                <li data-target="#carouselExampleIndicators" data-slide-to="4"></li>
+                <li data-target="#carouselExampleIndicators" data-slide-to="5"></li>
+                <li data-target="#carouselExampleIndicators" data-slide-to="6"></li>
+              </ol>
+              <div class="carousel-inner">
+                <div class="carousel-item active">
+                  <p>Dashboard - On your dashboard, you’re able to see at a glance how many companies are working with Turbo Res, active links that you have with organizations, and the most recent companies that have joined the Turbo Res network.</p>
+                  <img class="d-block w-100" src="<?php echo base_url(); ?>assets/img/tour/hotels/profile.png" alt="First slide">
+                </div>
+                <div class="carousel-item">
+                  <p>Profile - On your profile, you’re able to update the information that companies see about your property(s) including, but not limited to: pictures, contact information, amenities, and your website.</p>
+                  <img class="d-block w-100" src="<?php echo base_url(); ?>assets/img/tour/hotels/dashboard.png" alt="Second slide">
+                </div>
+                <div class="carousel-item">
+                  <p>Register Employee - In the register employee page, you’re able to add a user that belongs to your organization so they can have the same access as you. </p>
+                  <img class="d-block w-100" src="<?php echo base_url(); ?>assets/img/tour/hotels/register-emp.png" alt="Third slide">
+                </div>
+                <div class="carousel-item">
+                  <p>Hotel Employees - In the hotel employees page, you can see all employees that you’ve given access to, edit their information, and remove access if need be. </p>
+                  <img class="d-block w-100" src="<?php echo base_url(); ?>assets/img/tour/hotels/hotel-emp.png" alt="Third slide">
+                </div>
+                <div class="carousel-item">
+                  <p>Hotel Properties - In the Hotel Properties page you’re able to add locations to your franchise. That way companies can link to specific branches and get their rates rather than your entire franchise.</p>
+                  <img class="d-block w-100" src="<?php echo base_url(); ?>assets/img/tour/hotels/branches.png" alt="Third slide">
+                </div>
+                <div class="carousel-item">
+                  <p>Companies - In the Companies page, you can see all the companies that are in the Turbo Res network and request a link with them. This will put you in contact with the company representative.</p>
+                  <img class="d-block w-100" src="<?php echo base_url(); ?>assets/img/tour/hotels/companies.png" alt="Third slide">
+                </div>
+                <div class="carousel-item">
+                  <p>Links - In the links page, you can view all active and expired links that you have with companies in the Turbo Res network. This is where you can edit and/or delete existing links.</p>
+                  <img class="d-block w-100" src="<?php echo base_url(); ?>assets/img/tour/hotels/links.png" alt="Third slide">
+                </div>
+              </div>
+              <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+              </a>
+              <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next" id="close_<?php echo $this->uri->segment(1)?>">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+              </a>
+            </div>
+            <?php
+            elseif($session->entity == 'RFP') :
+            ?>
+              <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                <ol class="carousel-indicators">
+                  <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                  <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                  <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                  <li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
+                  <li data-target="#carouselExampleIndicators" data-slide-to="4"></li>
+                  <li data-target="#carouselExampleIndicators" data-slide-to="5"></li>
+                </ol>
+                <div class="carousel-inner">
+                  <div class="carousel-item active">
+                    <p>Dashboard - On your dashboard, you’re able to see at a glance how many hotels are working with TurboRes total, active links that you have with hotels, and the most recent hotels that have joined the TurboRes network.</p>
+                    <img class="d-block w-100" src="<?php echo base_url(); ?>assets/img/tour/RFP/dashboard.png" alt="Third slide">
+                  </div>
+                  <div class="carousel-item">
+                    <p>Profile - On your profile, you’re able to update the information that hotels see about your business including, but not limited to: pictures, contact information, company description, and your website. </p>
+                    <img class="d-block w-100" src="<?php echo base_url(); ?>assets/img/tour/RFP/profile.png" alt="Third slide">
+                  </div>
+                  <div class="carousel-item">
+                    <p>Register Employee - In the register employee page, you’re able to add a user that belongs to your organization so they can have the same access as you.  </p>
+                    <img class="d-block w-100" src="<?php echo base_url(); ?>assets/img/tour/hotels/register-emp.png" alt="Third slide">
+                  </div>
+                  <div class="carousel-item">
+                    <p>Company Employees - In the company employees page, you can see all employees that you’ve given access to, edit their information, and remove access if need be.  </p>
+                    <img class="d-block w-100" src="<?php echo base_url(); ?>assets/img/tour/RFP/company-emp.png" alt="Third slide">
+                  </div>
+                  <div class="carousel-item">
+                    <p>Hotels - In the Hotels page, you can see all the hotels that are in the TurboRes network. If you want to make a link with a hotel, fill out the form on the TurboRes website or contact us directly, and we’ll connect you with the hotel representative. </p>
+                    <img class="d-block w-100" src="<?php echo base_url(); ?>assets/img/tour/RFP/hotels-list.png" alt="Third slide">
+                  </div>
+                  <div class="carousel-item">
+                    <p>Links - In the links page, you can view all active and expired links that you have with hotels in the TurboRes network. This is where you can edit and/or delete existing links. </p>
+                    <img class="d-block w-100" src="<?php echo base_url(); ?>assets/img/tour/hotels/links.png" alt="Third slide">
+                  </div>
+                </div>
+                <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                  <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next" id="close_<?php echo $this->uri->segment(1)?>">
+                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                  <span class="sr-only">Next</span>
+                </a>
+              </div>
+            <?php
+            endif;
             break;
             case "admin_profile":
             echo "admin_profile";
@@ -92,14 +160,17 @@
           }
         ?>
       </div>
-      <div class="modal-footer justify-content-between">
-        <button type="button" class="btn btn-outline-light btn btn-default" id="close_<?php echo $url?>" data-dismiss="modal">Close</button>
-      </div>
+      <!-- <div class="modal-footer justify-content-between">
+        <button type="button" class="btn btn-outline-light btn btn-default" id="close_<?php //echo $url?>" data-dismiss="modal">Close</button>
+      </div> -->
     </div>
     <!-- /.modal-content -->
   </div>
   <!-- /.modal-dialog -->
 </div>
+<?php /* if($session->first_login == 0) : 
+  if($session->entity == 'Hotel' || $session->entity == 'RFP') : ?>
+<?php endif; endif; */ ?>
 <!-- /.modal -->
 <?php /* ?>
  <div id="popover-content" style="display: none;">
@@ -227,12 +298,18 @@ if($this->session->flashdata('success_message')) {
 /**
  * Session Tour guide JS
  */
-if($session->first_login == 0){
+ if($session->first_login == 0) : 
+  if($session->entity == 'Hotel' || $session->entity == 'RFP') : 
   $urls = ["dashboard","admins","admin_profile","register","hotels","company_employees","register_employee","hotel_employees","hotel_branches","companies","links","hotel_profile","company_profile"];
   if(!isset($_COOKIE['modal_cookies']) && empty($_COOKIE['modal_cookies'])) {
     setcookie('modal_cookies', serialize($urls), time() + (86400 * 30), "/");
+    ?>
+    <script>    
+      $(".modal_info-cust").modal({ show: true,backdrop: 'static', keyboard: false });
+    </script>
+    <?php
   } else {
-    $urls_data = $_COOKIE['modal_cookies'];
+    /*$urls_data = $_COOKIE['modal_cookies'];
     $urls_data_arr = unserialize($urls_data);
     $url = $this->uri->segment(1);
     if (in_array($url, $urls_data_arr)) {
@@ -245,10 +322,10 @@ if($session->first_login == 0){
       unset($urls_data_arr[$key]);
       $urls_data_arr = array_values($urls_data_arr);
 
-      setcookie('modal_cookies', serialize($urls_data_arr), time() + (86400 * 30), "/");
+      setcookie('modal_cookies', serialize($urls_data_arr), time() + (86400 * 30), "/");*/
     }
-  }
-}
+endif;
+endif;
   /*
 if($session->first_login == 0){
  ?>

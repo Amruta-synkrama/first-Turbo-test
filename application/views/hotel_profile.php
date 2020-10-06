@@ -142,7 +142,7 @@
             <?php /* ?>
             <ul class="list-group list-group-unbordered mb-3">
               <li class="list-group-item">
-                <b>Hotel Branches</b> <a class="float-right"><?php echo count($hotel_locations); ?></a>
+                <b>Hotel Properties</b> <a class="float-right"><?php echo count($hotel_locations); ?></a>
               </li>
               <li class="list-group-item">
                 <b>Links Added</b> <a class="float-right"><?php echo $hotel_links_count[0]->count; ?></a>
@@ -162,10 +162,10 @@
             <hr>
 
             <?php if($session->entity == 'Admin'): ?>
-              <a href="<?php echo base_url() ?>hotel_branches?hotel_id=<?php echo $hotel_user_data->id ?>" class="btn btn-primary btn-block"><b>View Branches</b></a>
+              <a href="<?php echo base_url() ?>hotel_branches?hotel_id=<?php echo $hotel_user_data->id ?>" class="btn btn-primary btn-block"><b>View Properties</b></a>
               <a href="<?php echo base_url() ?>links?hotel_id=<?php echo $hotel_user_data->id ?>" class="btn btn-primary btn-block"><b>Add Links</b></a>
             <?php else: ?>
-              <a href="<?php echo base_url() ?>hotel_branches" class="btn btn-primary btn-block"><b>View Branches</b></a>
+              <a href="<?php echo base_url() ?>hotel_branches" class="btn btn-primary btn-block"><b>View Properties</b></a>
               <a href="<?php echo base_url() ?>links" class="btn btn-primary btn-block"><b>Add Links</b></a>
             <?php endif; ?>
           </div>

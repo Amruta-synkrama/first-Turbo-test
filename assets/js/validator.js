@@ -308,6 +308,49 @@ $(document).ready(function () {
 	  }
 	});
 
+	$('form.login_forgot_pass').validate({
+	  rules: {
+	    email: {
+	      required: true,
+	      email:true
+	    }
+	  },
+	  errorElement: 'span',
+	  errorPlacement: function (error, element) {
+	    error.addClass('invalid-feedback');
+	    element.closest('.form-group').append(error);
+	  },
+	  highlight: function (element, errorClass, validClass) {
+	    $(element).addClass('is-invalid');
+	  },
+	  unhighlight: function (element, errorClass, validClass) {
+	    $(element).removeClass('is-invalid');
+	  }
+	});
+
+	$('form.login_reset_pass').validate({
+	  rules: {
+	    password: {
+	      required: true
+	    },
+	    confirm_password: {
+	      required: true,
+	      equalTo: "#password"
+	    }
+	  },
+	  errorElement: 'span',
+	  errorPlacement: function (error, element) {
+	    error.addClass('invalid-feedback');
+	    element.closest('.form-group').append(error);
+	  },
+	  highlight: function (element, errorClass, validClass) {
+	    $(element).addClass('is-invalid');
+	  },
+	  unhighlight: function (element, errorClass, validClass) {
+	    $(element).removeClass('is-invalid');
+	  }
+	});
+
 	$('form.verify_otp').validate({
 	  rules: {
 	    otp: {

@@ -3,12 +3,12 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1>Hotel Branch</h1>
+                <h1>Hotel Property</h1>
             </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a href="#">Home</a></li>
-                    <li class="breadcrumb-item active">Hotel Branch</li>
+                    <li class="breadcrumb-item active">Hotel Property</li>
                 </ol>
             </div>
         </div>
@@ -36,7 +36,7 @@
         <div class="col-md-12">
             <div class="card card-primary">
                 <div class="card-header">
-                    <h3 class="card-title">Hotel Branch</h3>
+                    <h3 class="card-title">Hotel Property</h3>
                 </div>
                 <div class="card-body">
                     <?php if(!empty(validation_errors())) : ?>
@@ -50,7 +50,7 @@
                     <?php endif; ?>
                     <?php //print_r($hotel_locations); ?>
                     <div class="form-group">
-                        <label for="inputName">Branch Name</label>
+                        <label for="inputName">Property Name</label>
                         <input type="text" name="branch_name" id="branch_name" class="form-control" value="<?php echo ($branch_id) ? $hotel_locations[0]->branch_name : ''; ?>">
                     </div>
                     <?php ?>
@@ -85,7 +85,7 @@
     </div>
     <div class="row pb-5">
         <div class="col-12">
-            <input type="submit" value="<?php echo ($branch_id) ? 'Update Branch' : 'Create new Branch'; ?>" class="btn btn-success float-right">
+            <input type="submit" value="<?php echo ($branch_id) ? 'Update Property' : 'Create new Property'; ?>" class="btn btn-success float-right">
         </div>
     </div>
 </form>

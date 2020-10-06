@@ -3,12 +3,12 @@
   <div class="container-fluid">
     <div class="row mb-2">
       <div class="col-sm-6">
-        <h1>Hotel Branches</h1>
+        <h1>Hotel Properties</h1>
       </div>
       <div class="col-sm-6">
         <ol class="breadcrumb float-sm-right">
           <li class="breadcrumb-item"><a href="#">Home</a></li>
-          <li class="breadcrumb-item active">Hotel Branches</li>
+          <li class="breadcrumb-item active">Hotel Properties</li>
         </ol>
       </div>
     </div>
@@ -24,10 +24,10 @@
           <div class="card-header">
             <div class="row">
               <div class="col-6">
-                <h3>View Branches</h3>
+                <h3>View Properties</h3>
               </div>
               <div class="col-6 text-right">
-                <a href="<?php echo base_url(); ?>hotel_branch<?php echo ($session->entity == 'Admin') ? '?hotel_id='.$hotel_user_data->id : ''; ?>" class="btn btn-primary">Add new branch</a>
+                <a href="<?php echo base_url(); ?>hotel_branch<?php echo ($session->entity == 'Admin') ? '?hotel_id='.$hotel_user_data->id : ''; ?>" class="btn btn-primary">Add New Property</a>
               </div>
             </div>
           </div>
@@ -36,7 +36,7 @@
             <table id="example1" class="table table-bordered table-hover">
               <thead>
                 <tr>
-                  <th>Branch Name</th>
+                  <th>Property Name</th>
                   <th>Location</th>
                   <?php if($session->entity == 'Admin') : ?>
                   <th>Status</th>
@@ -93,7 +93,7 @@
               </tbody>
               <tfoot>
                 <tr>
-                  <th>Branch Name</th>
+                  <th>Property Name</th>
                   <th>Location</th>
                   <?php if($session->entity == 'Admin') : ?>
                   <th>Status</th>

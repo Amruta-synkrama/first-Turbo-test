@@ -136,7 +136,7 @@
 
             <ul class="list-group list-group-unbordered mb-3">
               <li class="list-group-item">
-                <b>Hotel Branches</b> <a class="float-right"><?php echo count($hotel_locations); ?></a>
+                <b>Hotel Properties</b> <a class="float-right"><?php echo count($hotel_locations); ?></a>
               </li>
               <li class="list-group-item">
                 <b>Links Added</b> <a class="float-right"><?php echo $hotel_links_count[0]->count; ?></a>
@@ -155,7 +155,7 @@
             <hr>
             <?php if($session->entity == 'Admin'): ?>
               <a href="<?php echo base_url() ?>links?hotel_id=<?php echo $hotels_data->user_id ?>" class="btn btn-primary btn-block"><b>View Links</b></a>
-              <a href="<?php echo base_url() ?>hotel_branches?hotel_id=<?php echo $hotels_data->user_id ?>" class="btn btn-primary btn-block"><b>View Hotel Branches</b></a>
+              <a href="<?php echo base_url() ?>hotel_branches?hotel_id=<?php echo $hotels_data->user_id ?>" class="btn btn-primary btn-block"><b>View Hotel Properties</b></a>
               <a href="<?php echo base_url() ?>hotel_profile?hotel_id=<?php echo $hotels_data->user_id ?>" class="btn btn-primary btn-block"><b>Edit Hotel</b></a>
             <?php /*else: ?>
               <a href="<?php echo base_url() ?>request_link?hotel_id=<?php echo $hotel_id ?>" class="btn btn-primary btn-block"><b>Request Link</b></a>
@@ -256,7 +256,7 @@
           <div class="card-header">
             <div class="row">
               <div class="col-6">
-                <h3>View Branches</h3>
+                <h3>View Properties</h3>
               </div>
             </div>
           </div>
@@ -265,7 +265,7 @@
             <table id="example1" class="table table-bordered table-hover">
               <thead>
                 <tr>
-                  <th>Branch Name</th>
+                  <th>Property Name</th>
                   <th>Location</th>
                   <!-- <th>Action</th> -->
                 </tr>
@@ -283,7 +283,7 @@
               </tbody>
               <tfoot>
                 <tr>
-                  <th>Branch Name</th>
+                  <th>Property Name</th>
                   <th>Location</th>
                   <!-- <th>Action</th> -->
                 </tr>

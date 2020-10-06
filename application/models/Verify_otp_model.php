@@ -20,7 +20,7 @@ class Verify_otp_model extends CI_Model
 		}
 		$this->send_email_otp($email,$otp);
 		setcookie('otp_email', $email, time() + (86400 * 30), "/");
-		return 'OTP sent successfully';
+		return 'One-Time Password was sent to your email.';
 	}
 
 	public function generate_otp() {
@@ -82,7 +82,7 @@ class Verify_otp_model extends CI_Model
 		$query = $this->get_otp_data($user_id);
 		if($query->result()) {
 			$this->send_email_otp($email,$query->result()[0]->otp);
-			return 'OTP sent successfully';
+			return 'One-Time Password was sent to your email.';
 		}
 	}
 
