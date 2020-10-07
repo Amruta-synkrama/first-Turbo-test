@@ -167,7 +167,7 @@
                       <li class="nav-item">
                         <a href="<?php echo base_url() ?>register" class="nav-link <?php if($this->uri->segment(1)=="register"){echo 'active';}?>" id="pop_register" rel='popover'>
                           <i class="far fa-registered nav-icon"></i>
-                          <p>Register</p>
+                          <p>Register Entity</p>
                         </a>
                       </li>
                       <li class="nav-item">

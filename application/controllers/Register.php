@@ -23,6 +23,13 @@ class Register extends CI_Controller {
 		$user_id = $this->session->userdata('id');
 		$data['user_data'] = $this->register_model->get_user_data($user_id);
 		$data['session'] = $this->session->userdata('user_data');
+		$data['entities'] = array(
+			'Hotel' => 'Hotels',
+			'RFP' => 'Company'
+		);
+		if($this->session->userdata('user_data')->id == 1) {
+			$data['entities']['Admin'] = 'Admin';
+		}
 		$this->load->view('templates/header', $data);
 		$this->load->view('register', $data);
 		$this->load->view('templates/footer', $data);

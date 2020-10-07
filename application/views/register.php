@@ -37,7 +37,7 @@
 							<div class="row">
 								<div class="col-6">
 							<div class="form-group">
-								<label>Name</label>
+								<label>Admin/Hotel/Company Name</label>
 								<input type="text" name="name" id="name" class="form-control" value="<?php echo set_value('name') ?>">
 							</div>
 							<div class="form-group">
@@ -59,12 +59,12 @@
 								<input type="text" name="phone_number" id="phone_number" class="form-control" value="<?php echo set_value('phone_number') ?>" data-inputmask='"mask": "(999)999-9999"' data-mask>
 							</div>
 							<div class="form-group">
-								<label>User Role</label>
+								<label>User Entity</label>
 								<select class="form-control" name="entity" id="entity" class="form-control">
 									<option value="" selected="" disabled="">Select Value</option>
-									<option value="Admin">Admin</option>
-									<option value="Hotel">Hotels</option>
-									<option value="RFP">Company</option>
+									<?php foreach ($entities as $key => $value) : ?>
+										<option value="<?php echo $key; ?>"><?php echo $value; ?></option>
+									<?php endforeach; ?>
 								</select>
 							</div>
 						</div>
