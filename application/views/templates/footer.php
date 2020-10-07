@@ -8,7 +8,6 @@
   </div>
 </footer>
 
-
 <div class="modal fade modal_info-cust"  id="modal_<?php echo $this->uri->segment(1); ?>">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
@@ -168,64 +167,7 @@
   </div>
   <!-- /.modal-dialog -->
 </div>
-<?php /* if($session->first_login == 0) : 
-  if($session->entity == 'Hotel' || $session->entity == 'RFP') : ?>
-<?php endif; endif; */ ?>
-<!-- /.modal -->
-<?php /* ?>
- <div id="popover-content" style="display: none;">
-  <?php
-    $url = $this->uri->segment(1);
-    switch ($url) {
-      case "dashboard":
-      echo "dashboard";
-      break;
-      case "admin_profile":
-      echo "admin_profile";
-      break;
-      case "register":
-      echo "register";
-      break;
-      case "hotels":
-      echo "hotels";
-      break;
-      case "company_employees":
-      echo "company_employees";
-      break;
-      case "register_employee":
-      echo "register_employee";
-      break;
-      case "admins":
-      echo "admins";
-      break;
-      case "hotel_employees":
-      echo "hotel_employees";
-      break;
-      case "hotel_branches":
-      echo "hotel_branches";
-      break;
-      case "companies":
-      echo "companies";
-      break;
-      case "links":
-      echo "links";
-      break;
-      case "hotel_profile":
-      echo "hotel_profile";
-      break;
-      case "company_profile":
-      echo "company_profile";
-      break;
-    }
-  ?>
- </div>   
- <?php */ ?>
 
-<!-- Control Sidebar -->
-<!-- <aside class="control-sidebar control-sidebar-dark"> -->
-  <!-- Control sidebar content goes here -->
-<!-- </aside> -->
-<!-- /.control-sidebar -->
 </div>
 <!-- ./wrapper -->
 
@@ -276,16 +218,16 @@
 <script src="<?php echo base_url(); ?>theme/plugins/jquery-validation/jquery.validate.min.js"></script>
 <script src="<?php echo base_url(); ?>theme/plugins/jquery-validation/additional-methods.min.js"></script>
 <!-- AdminLTE for demo purposes -->
- <script src="<?php echo base_url(); ?>assets/js/validator.js"></script> 
- <!-- InputMask -->
- <script src="<?php echo base_url(); ?>theme/plugins/moment/moment.min.js"></script>
- <script src="<?php echo base_url(); ?>theme/plugins/inputmask/min/jquery.inputmask.bundle.min.js"></script>
+<script src="<?php echo base_url(); ?>assets/js/validator.js"></script> 
+<!-- InputMask -->
+<script src="<?php echo base_url(); ?>theme/plugins/moment/moment.min.js"></script>
+<script src="<?php echo base_url(); ?>theme/plugins/inputmask/min/jquery.inputmask.bundle.min.js"></script>
 <script src="<?php echo base_url(); ?>theme/dist/js/demo.js"></script>
 <script src="<?php echo base_url(); ?>assets/js/custom.js"></script>
 
 
 <?php
-if($this->session->flashdata('success_message')) {
+if($this->session->flashdata('success_message')) :
   ?>
   <script type="text/javascript">
     $(function() {
@@ -293,29 +235,29 @@ if($this->session->flashdata('success_message')) {
     });
   </script>
   <?php
-  }
+endif;
 
 /**
  * Session Tour guide JS
  */
- if($session->first_login == 0) : 
+if($session->first_login == 0) : 
   if($session->entity == 'Hotel' || $session->entity == 'RFP') : 
-  $urls = ["dashboard","admins","admin_profile","register","hotels","company_employees","register_employee","hotel_employees","hotel_branches","companies","links","hotel_profile","company_profile"];
-  if(!isset($_COOKIE['modal_cookies']) && empty($_COOKIE['modal_cookies'])) {
-    setcookie('modal_cookies', serialize($urls), time() + (86400 * 30), "/");
-    ?>
-    <script>    
-      $(".modal_info-cust").modal({ show: true,backdrop: 'static', keyboard: false });
-    </script>
-    <?php
-  } else {
-    /*$urls_data = $_COOKIE['modal_cookies'];
-    $urls_data_arr = unserialize($urls_data);
-    $url = $this->uri->segment(1);
-    if (in_array($url, $urls_data_arr)) {
+    $urls = ["dashboard","admins","admin_profile","register","hotels","company_employees","register_employee","hotel_employees","hotel_branches","companies","links","hotel_profile","company_profile"];
+    if(!isset($_COOKIE['modal_cookies']) && empty($_COOKIE['modal_cookies'])) {
+      setcookie('modal_cookies', serialize($urls), time() + (86400 * 30), "/");
       ?>
       <script>    
         $(".modal_info-cust").modal({ show: true,backdrop: 'static', keyboard: false });
+      </script>
+      <?php
+    } else {
+      /*$urls_data = $_COOKIE['modal_cookies'];
+      $urls_data_arr = unserialize($urls_data);
+      $url = $this->uri->segment(1);
+      if (in_array($url, $urls_data_arr)) {
+      ?>
+      <script>    
+      $(".modal_info-cust").modal({ show: true,backdrop: 'static', keyboard: false });
       </script>
       <?php
       $key = array_search($url, $urls_data_arr);
@@ -324,54 +266,8 @@ if($this->session->flashdata('success_message')) {
 
       setcookie('modal_cookies', serialize($urls_data_arr), time() + (86400 * 30), "/");*/
     }
-endif;
-endif;
-  /*
-if($session->first_login == 0){
- ?>
-<script>
-  $(document).ready(function() {
-    var url      = location.pathname.split('/');
-    var secondLastSegment = url[url.length - 1];
-    console.log(secondLastSegment);
-    console.log(localStorage.getItem("modalName"));
-    var urls = ["dashboard","admins","admin_profile","register","hotels","company_employees","register_employee","hotel_employees","hotel_branches","companies","links","hotel_profile","company_profile"];
-    if(localStorage.getItem("modalName") != 'undefined' && localStorage.getItem("modalName") != null) {
-      var modalArray  = JSON.parse(localStorage.getItem("modalName"));
-      var hasUrl = false;
-      if (modalArray != null && modalArray != undefined) {
-        var hasUrl = modalArray.includes(secondLastSegment); //true
-      }
-    }
-
-    if (urls.includes(secondLastSegment) && !hasUrl) {
-      $(".modal_info-cust").modal({ show: true,backdrop: 'static', keyboard: false });
-    }
-
-    $("#close_<?php echo $url?>").click(function(){
-      var id = $('a.active').attr('id');
-      
-      if (localStorage.getItem("modalName") !== "undefined") {
-        var getModalName = JSON.parse(localStorage.getItem("modalName"));
-        if(getModalName){
-          let modalName = $(this).parent().parent().parent().parent().attr('id') + "," + getModalName;
-          localStorage.setItem("modalName", JSON.stringify(modalName));
-        }else{
-          localStorage.setItem("modalName", JSON.stringify($(this).parent().parent().parent().parent().attr('id')));
-        }
-      } else {
-        alert("Sorry, your browser does not support Web Storage...");
-      }
-    });
-
-
-    
-
-  });
- 
-</script>
-<?php } */ ?>
-
+  endif;
+endif; ?>
 </body>
 </html>
 
