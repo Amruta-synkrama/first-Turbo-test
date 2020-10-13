@@ -36,8 +36,12 @@ class Register_model extends CI_Model {
 					if($row->status == '2') {
 						return 'Your account is deactivated. Please contact admin.';
 					} else {
-						// $this->session->set_userdata('id', $row->id);
-						// $this->session->set_userdata('user_data', $row);
+						$today = date('Y-m-d H:i:s');
+						if($row->otp_expire > $today) {
+							$this->session->set_userdata('id', $row->id);
+							$this->session->set_userdata('user_data', $row);
+							return '1';
+						}
 					}
 				} else {
 					return 'Wrong Password';
@@ -68,45 +72,64 @@ class Register_model extends CI_Model {
 
 	public function send_password_update_email($data) {
 		$token = substr(str_shuffle("0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"), 0, 50);
+		$email = $data->email;
 		$this->db->where('id',$data->id);
 		$data = array(
 			'reset_token'  => $token
 		);
 		$this->db->update('tr_users',$data);
 
-		$to = 'willmartin9797@gmail.com';
-		// $to = $data->email;
-		$subject = "Turbores Password Reset";
-		$message = "
-		Hello,
-		<br><br>
-		You are receiving this message in response to your request for password reset. Follow this link to reset your password. 
-		<br>
-		<a href='".site_url()."login/reset_password/?cid=".$token."' >Reset Password</a>
-		<br>
-		If You did not make this request kindly ignore!
-		<br><br>
-		Thank you,<br>
-		Turbores.
-		";
-		// Always set content-type when sending HTML email
-		// $headers = "MIME-Version: 1.0" . "\r\n";
-		// $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
-		// More headers
-		// $headers .= 'From: <willmartin9797@gmail.com>' . "\r\n";
 
 
-		$headers .= "Reply-To: Turbores <sales@turbores.com>\r\n"; 
-		$headers .= "Return-Path: Turbores <sales@turbores.com>\r\n"; 
-		$headers .= "From: Turbores <sales@turbores.com>\r\n";  
-		$headers .= "Organization: Turbores\r\n";
-		$headers .= "MIME-Version: 1.0\r\n";
-		$headers .= "Content-type: text/html; charset=iso-8859-1\r\n"; 
-		$headers .= "X-Priority: 3\r\n";
-	  	// $headers .= "X-Mailer: PHP". phpversion() ."\r\n" ;
+		$reset = true;
 
-		// $headers .= 'Cc: myboss@example.com' . "\r\n";
-		mail($to,$subject,$message,$headers);
+		$ch = curl_init();
+		curl_setopt($ch, CURLOPT_URL,"http://notification.turbores.com/");
+		curl_setopt($ch, CURLOPT_POST, 1);
+		curl_setopt($ch, CURLOPT_POSTFIELDS,
+		            "email=$email&token=$token&reset=$reset");
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+		$server_output = curl_exec($ch);
+		curl_close ($ch);
+		// print_r($server_output);die;
+		
+
+
+
+
+		// $to = 'willmartin9797@gmail.com';
+		// // $to = $data->email;
+		// $subject = "Turbores Password Reset";
+		// $message = "
+		// Hello,
+		// <br><br>
+		// You are receiving this message in response to your request for password reset. Follow this link to reset your password. 
+		// <br>
+		// <a href='".site_url()."login/reset_password/?cid=".$token."' >Reset Password</a>
+		// <br>
+		// If You did not make this request kindly ignore!
+		// <br><br>
+		// Thank you,<br>
+		// Turbores.
+		// ";
+		// // Always set content-type when sending HTML email
+		// // $headers = "MIME-Version: 1.0" . "\r\n";
+		// // $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
+		// // More headers
+		// // $headers .= 'From: <willmartin9797@gmail.com>' . "\r\n";
+
+
+		// $headers .= "Reply-To: Turbores <sales@turbores.com>\r\n"; 
+		// $headers .= "Return-Path: Turbores <sales@turbores.com>\r\n"; 
+		// $headers .= "From: Turbores <sales@turbores.com>\r\n";  
+		// $headers .= "Organization: Turbores\r\n";
+		// $headers .= "MIME-Version: 1.0\r\n";
+		// $headers .= "Content-type: text/html; charset=iso-8859-1\r\n"; 
+		// $headers .= "X-Priority: 3\r\n";
+	 //  	// $headers .= "X-Mailer: PHP". phpversion() ."\r\n" ;
+
+		// // $headers .= 'Cc: myboss@example.com' . "\r\n";
+		// mail($to,$subject,$message,$headers);
 	}
 
 	public function check_password_token($token) {

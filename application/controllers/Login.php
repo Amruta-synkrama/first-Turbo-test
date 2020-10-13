@@ -44,10 +44,11 @@ class Login extends CI_Controller {
 		if($this->form_validation->run()) {
 			$result = $this->register_model->can_login($this->input->post('email'), $this->input->post('password'));
 			if($result == '') {
-				// redirect('dashboard');
 				$result = $this->verify_otp_model->send_otp($this->input->post('email'));
 				$this->session->set_flashdata('success_message',$result);
 				redirect('verify_otp');
+			} elseif($result == '1'){
+				redirect('dashboard');
 			} else {
 				$this->session->set_flashdata('message',$result);
 				redirect('login');

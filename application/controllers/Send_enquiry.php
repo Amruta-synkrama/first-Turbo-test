@@ -177,6 +177,9 @@ class Send_enquiry extends CI_Controller {
 	    $headers .= "From: sales@turbores.com"; // make this one static.. i made mine noreply
 	    if (mail ($to, $subject, $body, $headers)) {
 	    	echo 'yay, mail send';
+	    } else {
+	    	print_r(mail ($to, $subject, $body, $headers));
+	    	echo "2132132546545";
 	    }
 		
 

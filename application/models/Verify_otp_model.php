@@ -9,14 +9,23 @@ class Verify_otp_model extends CI_Model
 		} else {
 			$timestamp = date('Y-m-d H:i:s',strtotime("+ 30 minutes"));
 			$otp = $this->generate_otp();
+			$user_id = $this->get_user_id($email)->id;
 			$data = array(
-				'user_id' => $this->get_user_id($email)->id,
+				'user_id' => $user_id,
 				// 'email' => $email,
 				'otp' => $otp,
 				'expiry_date' => $timestamp
 			);
 			$this->db->insert('tr_otp_data', $data);
-			$user_id = $this->db->insert_id();
+			$insert_id = $this->db->insert_id();
+
+			$seven_day = date('Y-m-d H:i:s',strtotime('+ 7 days'));
+
+			$this->db->where('id',$user_id);
+			$data = array(
+				'otp_expire'  => $seven_day
+			);
+			$this->db->update('tr_users',$data);
 		}
 		$this->send_email_otp($email,$otp);
 		setcookie('otp_email', $email, time() + (86400 * 30), "/");
@@ -87,6 +96,41 @@ class Verify_otp_model extends CI_Model
 	}
 
 	public function send_email_otp($email,$otp) {
+		
+		$ch = curl_init();
+
+		curl_setopt($ch, CURLOPT_URL,"http://notification.turbores.com/");
+		curl_setopt($ch, CURLOPT_POST, 1);
+		curl_setopt($ch, CURLOPT_POSTFIELDS,
+		            "email=$email&otp=$otp");
+
+		// In real life you should use something like:
+		// curl_setopt($ch, CURLOPT_POSTFIELDS, 
+		//          http_build_query(array('postvar1' => 'value1')));
+
+		// Receive server response ...
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+		$server_output = curl_exec($ch);
+
+		curl_close ($ch);
+		// print_r($server_output);die;
+		// Further processing ...
+		// if ($server_output == "OK") { 
+		// echo 'success';
+		// } else { 
+		// 	echo "failed";
+		// }
+
+
+
+
+
+
+
+
+
+
 		/*
 		ini_set("SMTP","ssl://smtp.gmail.com");
 		ini_set("smtp_port","587");
@@ -127,35 +171,35 @@ class Verify_otp_model extends CI_Model
 
 
 
-		// $to = "willmartin9797@gmail.com";
-		$to = $email;
-		$subject = "Turbores Login OTP";
-		$message = "
-		Hello,
-		<br><br>
-        You or somebody else have tried to login to portal.turbores.com using your credentials. Here is your one time OTP for the same <strong>$otp</strong>. Hope you would like to be part of turbores family.
-		<br><br>
-        Thank you,<br>
-        Turbores.
-		";
-		// Always set content-type when sending HTML email
-		// $headers = "MIME-Version: 1.0" . "\r\n";
-		// $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
-		// More headers
-		// $headers .= 'From: <willmartin9797@gmail.com>' . "\r\n";
+		// // $to = "willmartin9797@gmail.com";
+		// $to = $email;
+		// $subject = "Turbores Login OTP";
+		// $message = "
+		// Hello,
+		// <br><br>
+  //       You or somebody else have tried to login to portal.turbores.com using your credentials. Here is your one time OTP for the same <strong>$otp</strong>. Hope you would like to be part of turbores family.
+		// <br><br>
+  //       Thank you,<br>
+  //       Turbores.
+		// ";
+		// // Always set content-type when sending HTML email
+		// // $headers = "MIME-Version: 1.0" . "\r\n";
+		// // $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
+		// // More headers
+		// // $headers .= 'From: <willmartin9797@gmail.com>' . "\r\n";
 
 
-		$headers .= "Reply-To: Turbores <sales@turbores.com>\r\n"; 
-		  $headers .= "Return-Path: Turbores <sales@turbores.com>\r\n"; 
-		  $headers .= "From: Turbores <sales@turbores.com>\r\n";  
-		  $headers .= "Organization: Turbores\r\n";
-		  $headers .= "MIME-Version: 1.0\r\n";
-		  $headers .= "Content-type: text/html; charset=iso-8859-1\r\n"; 
-		  $headers .= "X-Priority: 3\r\n";
-		  // $headers .= "X-Mailer: PHP". phpversion() ."\r\n" ;
+		// $headers .= "Reply-To: Turbores <sales@turbores.com>\r\n"; 
+		//   $headers .= "Return-Path: Turbores <sales@turbores.com>\r\n"; 
+		//   $headers .= "From: Turbores <sales@turbores.com>\r\n";  
+		//   $headers .= "Organization: Turbores\r\n";
+		//   $headers .= "MIME-Version: 1.0\r\n";
+		//   $headers .= "Content-type: text/html; charset=iso-8859-1\r\n"; 
+		//   $headers .= "X-Priority: 3\r\n";
+		//   // $headers .= "X-Mailer: PHP". phpversion() ."\r\n" ;
 
-		// $headers .= 'Cc: myboss@example.com' . "\r\n";
-		mail($to,$subject,$message,$headers);
+		// // $headers .= 'Cc: myboss@example.com' . "\r\n";
+		// mail($to,$subject,$message,$headers);
 		
 
 	}
