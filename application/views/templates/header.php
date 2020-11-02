@@ -7,6 +7,10 @@
   <title>Turbores - <?php echo ucfirst(str_replace('_', ' ', $this->uri->segment(1))); ?></title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta name="google-signin-client_id" content="1017267070363-n9t9eijq5gaji3fgckpj0mddf3gnpqs3.apps.googleusercontent.com">
+
+
   <!-- Font Awesome -->
   <link rel="stylesheet" href="<?php echo base_url(); ?>theme/plugins/fontawesome-free/css/all.min.css">
   <!-- Ionicons -->
@@ -49,13 +53,28 @@
   <script src="<?php echo base_url(); ?>theme/plugins/jquery/jquery.min.js"></script>
 
   <script src="<?php echo base_url(); ?>theme/dist/js/croppie.js"></script>
-  <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js"></script>
+  <!-- <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js"></script> -->
   <script>
-  function fbLogout() {
-        FB.logout(function() {
-            FB.Auth.setAuthResponse(null, 'unknown');
-        });
-    }
+  // function fbLogout() {
+  //       FB.logout(function() {
+  //           FB.Auth.setAuthResponse(null, 'unknown');
+  //       });
+  //   }
+
+
+  function onLoad() {
+    gapi.load('auth2', function() {
+      gapi.auth2.init();
+    });
+  }
+
+  // Sign out the user
+  function signOut() {
+      var auth2 = gapi.auth2.getAuthInstance();
+      auth2.signOut();
+      auth2.disconnect();
+  }
+
   </script>
 
 
@@ -67,9 +86,9 @@
   </style>
 </head>
 <body class="hold-transition sidebar-mini layout-fixed accent-orange sidebar-collapse <?php //if($_SESSION['user_data']->first_login == 1) { echo "sidebar-collapse ";} ?>">
-	<div class="wrapper">
+  <div class="wrapper">
 
-		<!-- Navbar -->
+    <!-- Navbar -->
     <nav class="main-header navbar navbar-expand navbar-white navbar-light">
       <!-- Left navbar links -->
       <ul class="navbar-nav">
@@ -83,7 +102,7 @@
         <!-- Messages Dropdown Menu -->
         <!-- Notifications Dropdown Menu -->
         <li class="nav-item">
-          <a class="nav-link" id="logoutBtn" href="<?php echo base_url() ?>dashboard/logout" role="button" onclick="fbLogout();">
+          <a class="nav-link" id="logoutBtn" href="<?php echo base_url() ?>dashboard/logout" role="button" onclick="signOut();">
             Logout
           </a>
         </li>

@@ -225,6 +225,7 @@
 <script src="<?php echo base_url(); ?>theme/dist/js/demo.js"></script>
 <script src="<?php echo base_url(); ?>assets/js/custom.js"></script>
 
+<script src="https://apis.google.com/js/client:platform.js?onload=onLoad" async defer></script>
 
 <?php
 if($this->session->flashdata('success_message')) :

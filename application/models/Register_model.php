@@ -41,6 +41,8 @@ class Register_model extends CI_Model {
 							$this->session->set_userdata('id', $row->id);
 							$this->session->set_userdata('user_data', $row);
 							return '1';
+						}else{
+							return;
 						}
 					}
 				} else {
@@ -61,12 +63,14 @@ class Register_model extends CI_Model {
 				if($row->status == '2') {
 					return '2';
 				} else {
-					$today = date('Y-m-d H:i:s');
-					if($row->otp_expire > $today) {
+					// $today = date('Y-m-d H:i:s');
+					// if($row->otp_expire > $today) {
 						$this->session->set_userdata('id', $row->id);
 						$this->session->set_userdata('user_data', $row);
 						return '1';
-					}
+					// }else{
+					// 	return;
+					// }
 				}
 			}
 		} else {

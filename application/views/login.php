@@ -11,6 +11,8 @@
 	<script src="<?php echo base_url(); ?>theme/plugins/jquery-validation/additional-methods.min.js"></script>
 	<!-- AdminLTE for demo purposes -->
 	<script src="<?php echo base_url(); ?>assets/js/validator.js"></script> 
+
+	<meta name="google-signin-client_id" content="1017267070363-n9t9eijq5gaji3fgckpj0mddf3gnpqs3.apps.googleusercontent.com">
 </head>
 <body>
 	<!-- <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -109,38 +111,38 @@
 		//     });
 		// }
 
-	  	function statusChangeCallback(response) {  // Called with the results from FB.getLoginStatus().
-		    // console.log('statusChangeCallback');
-		    // console.log(response);                   // The current login status of the person.
-		    if (response.status === 'connected') {   // Logged into your webpage and Facebook.
-		      getFbUserData();  
-		    } else {                                 // Not logged into your webpage or we are unable to tell.
-		      // document.getElementById('status').innerHTML = 'Please log ' +
-		      //   'into this webpage.';
-		    }
-		  }
+  	function statusChangeCallback(response) {  // Called with the results from FB.getLoginStatus().
+	    // console.log('statusChangeCallback');
+	    // console.log(response);                   // The current login status of the person.
+	    if (response.status === 'connected') {   // Logged into your webpage and Facebook.
+	      getFbUserData();  
+	    } else {                                 // Not logged into your webpage or we are unable to tell.
+	      // document.getElementById('status').innerHTML = 'Please log ' +
+	      //   'into this webpage.';
+	    }
+  	}
 
 
-	  	function fbLogin() {
-		    FB.login(function (response) {
-		        if (response.authResponse) {
-		            // Get and display the user profile data
-		            getFbUserData();
-		        } else {
-		            // document.getElementById('status').innerHTML = 'User cancelled login or did not fully authorize.';
-		        }
-		    }, {scope: 'email'});
-		}
+  	function fbLogin() {
+	    FB.login(function (response) {
+	        if (response.authResponse) {
+	            // Get and display the user profile data
+	            getFbUserData();
+	        } else {
+	            // document.getElementById('status').innerHTML = 'User cancelled login or did not fully authorize.';
+	        }
+	    }, {scope: 'email'});
+	}
 
 
-		function checkLoginState() {               // Called when a person is finished with the Login Button.
-			FB.getLoginStatus(function(response) {   // See the onlogin handler
-				statusChangeCallback(response);
-			});
-		}
+	function checkLoginState() {               // Called when a person is finished with the Login Button.
+		FB.getLoginStatus(function(response) {   // See the onlogin handler
+			statusChangeCallback(response);
+		});
+	}
 
 
-	  window.fbAsyncInit = function() {
+  	window.fbAsyncInit = function() {
 	    FB.init({
 	      appId      : '400442397631657',
 	      cookie     : true,                     // Enable cookies to allow the server to access the session.
@@ -152,45 +154,79 @@
 	    FB.getLoginStatus(function(response) {   // Called after the JS SDK has been initialized.
 	      statusChangeCallback(response);        // Returns the login status.
 	    });
-	  };
+  	};
  
-	  function getFbUserData() { // Testing Graph API after login.  See statusChangeCallback() for when this call is made.
-	    FB.api('/me', {locale: 'en_US', fields: 'id,first_name,last_name,email,link,gender,locale,picture'},
+	function getFbUserData() { 
+		// Testing Graph API after login.  See statusChangeCallback() for when this call is made.
+		FB.api('/me', {locale: 'en_US', fields: 'id,first_name,last_name,email,link,gender,locale,picture'},
 		    function (response) {
-	        saveUserData(response);
+		    saveUserData(response);
+		});
+	}
+
+	function saveUserData(userData){
+		$.ajax({
+		    url: '<?php echo site_url('login'); ?>',
+		    type: 'POST',
+		    data: {userData: JSON.stringify(userData)},
+		    dataType: 'json',
+		    success: function(data) {
+		    	console.log(data.code);
+		    	if (data.code == 404) {
+		    		signOut();
+		    		return;
+		    	}
+		    	location.reload();
+		    }
+		});
+	}
+
+
+
+	// Render Google Sign-in button
+	function renderButton() {
+	    gapi.signin2.render('gSignIn', {
+	        'scope': 'profile email',
+	        // 'width': 240,
+	        // 'height': 50,
+	        'longtitle': true,
+	        'theme': 'dark',
+	        'onsuccess': onSuccess,
+	        'onfailure': onFailure
 	    });
-	  }
+	}
 
-  		function saveUserData(userData){
-		    $.ajax({
-		        url: '<?php echo site_url('login'); ?>',
-		        type: 'POST',
-		        data: {
-		            oauth_provider:'facebook',userData: JSON.stringify(userData)
-		        },
-		        dataType: 'json',
-		        success: function(data) {
-		        	// console.log(data.code);
-		        	// if (data.code ==404) {
-		        	// 	FB.logout(function() {
-				       //      FB.Auth.setAuthResponse(null, 'unknown');
-				       //  });
-		        	// }
-		        	location.reload();
-		        }
-		    });
-		    // console.log(userData)
-		}
+	
+	// Sign-in success callback
+	function onSuccess(googleUser) {
+	    // Get the Google profile data (basic)
+	    //var profile = googleUser.getBasicProfile();
+	    
+	    // Retrieve the Google account data
+	    gapi.client.load('oauth2', 'v2', function () {
+	        var request = gapi.client.oauth2.userinfo.get({
+	            'userId': 'me'
+	        });
+	        request.execute(function (resp) {
+	            // Save user data
+	            saveUserData(resp);
+	        });
+	    });
+	}
 
-		// var logout = function(){
-			// window.open("https://mail.google.com/mail/u/0/?logout&hl=en");
-			// window.location = "https://mail.google.com/mail/u/0/?logout&hl=en";
-			// document.location.href = "https://www.google.com/accounts/Logout?continue=https://appengine.google.com/_ah/logout?continue=https://portal.turbores.com/";
-		// }
+	// Sign-in failure callback
+	function onFailure(error) {
+	    alert(error);
+	}
 
-		
+	// Sign out the user
+	function signOut() {
+	  var auth2 = gapi.auth2.getAuthInstance();
+	  auth2.signOut();
+	  auth2.disconnect();
+	}
 
-	</script>
+</script>
 	<style>
 		.loader {
 			position: fixed;
@@ -215,10 +251,10 @@
           background: #3B5998;
           color: white;
         }
-		.google {
+		/*.google {
           background: #dd4b39;
           color: white;
-        }
+        }*/
 	</style>
 
 	<div class="container">
@@ -281,19 +317,14 @@
 						<!-- <fb:login-button scope="public_profile,email" class="fb btn" onlogin="checkLoginState();">
 						</fb:login-button> -->
 						<a href="javascript:void(0)" class="fb btn" onclick="fbLogin();">Login with Facebook</a>
-						<a href="<?php echo $google_login_btn ?>" class="google btn">Login with Google+</a>
+						<!-- <a href="<?php// echo $google_login_btn ?>" class="google btn">Login with Google+</a> -->
+						<a href="JavaScript:void(0);" id="gSignIn" class="btn">Login with Google+</a>
 
-						<!-- <button onclick="logout();">Logout</button> -->
-						<!-- <a href="https://www.google.com/accounts/Logout"
-						    onclick="myIFrame.location='https://www.google.com/accounts/Logout';StartPollingForCompletion();return false;">
-						   log out</a>
-						<iframe id="myIFrame"></iframe> -->
-
-						<!-- <div id="mydiv">
-						     <iframe id="frame" src="" width="100%" height="300">
-						     </iframe>
-						 </div>
-						 <button id="button" type="button">Load</button> -->
+						<!-- <button onclick="signOut();">Logout</button> -->
+					 	<!-- Display Google sign-in button -->
+						<!-- <div id="gSignIn"></div> -->
+						<!-- Show the user profile details -->
+						<!-- <div class="userContent" style="display: none;"></div> -->
 
 					</div>
 				</div>
@@ -301,10 +332,6 @@
 		</div>
 	</div>
 	<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js"></script>
-	<script type="text/javascript">
-		// $("#button").click(function () { 
-		//     $("#frame").attr("src", "https://mail.google.com/mail/u/0/?logout&hl=en");
-		// });
-	</script>
+	<script src="https://apis.google.com/js/client:platform.js?onload=renderButton" async defer></script>
 </body>
 </html>
