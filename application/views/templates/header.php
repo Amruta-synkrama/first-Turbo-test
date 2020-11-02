@@ -49,6 +49,16 @@
   <script src="<?php echo base_url(); ?>theme/plugins/jquery/jquery.min.js"></script>
 
   <script src="<?php echo base_url(); ?>theme/dist/js/croppie.js"></script>
+  <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js"></script>
+  <script>
+  function fbLogout() {
+        FB.logout(function() {
+            FB.Auth.setAuthResponse(null, 'unknown');
+        });
+    }
+  </script>
+
+
   <style>
     .bs-popover-right{left: 14% !important;}
     .overlay{
@@ -73,7 +83,7 @@
         <!-- Messages Dropdown Menu -->
         <!-- Notifications Dropdown Menu -->
         <li class="nav-item">
-          <a class="nav-link" id="logoutBtn" href="<?php echo base_url() ?>dashboard/logout" role="button">
+          <a class="nav-link" id="logoutBtn" href="<?php echo base_url() ?>dashboard/logout" role="button" onclick="fbLogout();">
             Logout
           </a>
         </li>

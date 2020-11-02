@@ -52,6 +52,28 @@ class Register_model extends CI_Model {
 		}
 	}
 
+
+	function social_login($email) {
+		$this->db->where('email', $email);
+		$query = $this->db->get('tr_users');
+		if($query->num_rows() > 0) {
+			foreach($query->result() as $row) {
+				if($row->status == '2') {
+					return '2';
+				} else {
+					$today = date('Y-m-d H:i:s');
+					if($row->otp_expire > $today) {
+						$this->session->set_userdata('id', $row->id);
+						$this->session->set_userdata('user_data', $row);
+						return '1';
+					}
+				}
+			}
+		} else {
+			return '3';
+		}
+	}
+
 	public function get_user_data($id) {
 		$this->db->where('id', $id);
 		$query = $this->db->get("tr_users");

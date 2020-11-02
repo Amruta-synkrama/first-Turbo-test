@@ -16,6 +16,7 @@ class Enquiry_data extends CI_Controller
 		$this->load->library('form_validation');
 		$this->load->model('user_model');
 		$this->load->model('enquiry_data_model');
+		$this->load->model('enquiry_data_csv_model');
 	}
 	
 	public function index() {
@@ -106,6 +107,20 @@ class Enquiry_data extends CI_Controller
 		}
 		redirect('enquiry_data/list?form_id='.$form_id);	
 	}
+
+	public function export_csv_data() {
+		$form_id = $this->input->get('form_id');
+		$enquiry_id = $this->input->get('enquiry_id');
+		$this->session->set_flashdata('success_message', 'Updated');
+		$this->enquiry_data_csv_model->download_csv_file($form_id);
+		if(!$form_id) {
+			redirect('enquiry_data');
+		} elseif(!$enquiry_id) {
+			redirect('enquiry_data/list?form_id='.$form_id);	
+		}
+		redirect('enquiry_data/list?form_id='.$form_id);	
+	}
+
 	
 }
 /* End of file '/Enquiry_data.php' */

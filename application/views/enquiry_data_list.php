@@ -26,6 +26,9 @@
               <div class="col-6">
                 <h3>View Enquiries</h3>
               </div>
+              <div class="col-6 text-right">
+                <a href="<?php echo base_url(); ?>enquiry_data/export_csv_data?form_id=<?php echo $_GET['form_id']; ?>" class="btn btn-primary">Export CSV</a>
+              </div>
             </div>
           </div>
           <!-- /.card-header -->
