@@ -237,9 +237,16 @@ class Company_profile extends CI_Controller {
 		} else {
 			$company_id = $user_id;
 		}
-		$this->form_validation->set_rules('contact_name','Contact Name','trim|required');
-		$this->form_validation->set_rules('contact_email','Conatct Email','trim|required|valid_email');
-		$this->form_validation->set_rules('contact_no','Contact No','trim|required|min_length[10]|max_length[15]|regex_match[/^[0-9-()]+$/]');
+		$user_data = $this->user_model->get_user_data($company_id);
+		$original_value = $user_data->email;
+		$is_unique = '';
+		if($this->input->post('email') != $original_value) {
+			$is_unique =  '|is_unique[tr_users.email]';
+		}
+		$this->form_validation->set_rules('name','Name','trim|required|alpha_numeric_spaces');
+		$this->form_validation->set_rules('username', 'Username', 'required|trim|alpha_numeric');
+		$this->form_validation->set_rules('email', 'Email Address', 'required|trim|valid_email'.$is_unique);
+		$this->form_validation->set_rules('phone_number','Phone Number','trim|required|min_length[10]|max_length[15]|regex_match[/^[0-9-()]+$/]');
 
 		if($this->form_validation->run()) {
 			$data = array(
@@ -275,12 +282,16 @@ class Company_profile extends CI_Controller {
 			$company_id = $user_id;
 		}
 		$this->form_validation->set_rules('name','Name','trim|required|alpha_numeric_spaces');
+		$this->form_validation->set_rules('username', 'Username', 'required|trim|alpha_numeric');
+		$this->form_validation->set_rules('email', 'Email Address', 'required|trim|valid_email|is_unique[tr_users.email]');
 		$this->form_validation->set_rules('phone_number','Phone Number','trim|required|min_length[10]|max_length[15]|regex_match[/^[0-9-()]+$/]');
 
 		if($this->form_validation->run()) {
 			$data = array(
 				'name'  => $this->input->post('name'),
-				'phone_number'  => $this->input->post('phone_number')
+				'phone_number'  => $this->input->post('phone_number'),
+				'username'  => $this->input->post('username'),
+				'email'  => $this->input->post('email')
 			);
 			if($this->user_model->update_user_data($data, $company_id)) {
 				// $this->session->set_flashdata('user_message', 'Data updated');

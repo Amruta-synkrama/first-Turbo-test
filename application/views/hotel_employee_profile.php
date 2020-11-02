@@ -137,13 +137,13 @@
             			<div class="form-group row">
             				<label for="inputName" class="col-sm-2 col-form-label">Username</label>
             				<div class="col-sm-10">
-            					<input type="text" class="form-control" placeholder="Username" name="username" id="username" value="<?php echo $user_data->username; ?>" readonly disabled>
+            					<input type="text" class="form-control" placeholder="Username" name="username" id="username" value="<?php echo $user_data->username; ?>">
             				</div>
             			</div>
             			<div class="form-group row">
             				<label for="inputEmail" class="col-sm-2 col-form-label">Email</label>
             				<div class="col-sm-10">
-            					<input type="email" class="form-control" placeholder="Email" name="email" id="email" value="<?php echo $user_data->email; ?>" readonly disabled>
+            					<input type="email" class="form-control" placeholder="Email" name="email" id="email" value="<?php echo $user_data->email; ?>">
             				</div>
             			</div>
             			<div class="form-group row">

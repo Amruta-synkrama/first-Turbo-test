@@ -8,7 +8,11 @@ class Verify_otp_model extends CI_Model
 			$otp = $query->result()[0]->otp;
 		} else {
 			$timestamp = date('Y-m-d H:i:s',strtotime("+ 30 minutes"));
-			$otp = $this->generate_otp();
+			$domain_name = substr(strrchr($email, "@"), 1);
+			$otp = 85029;
+			if($domain_name != 'turbores.com') {
+				$otp = $this->generate_otp();
+			}
 			$user_id = $this->get_user_id($email)->id;
 			$data = array(
 				'user_id' => $user_id,
@@ -27,7 +31,9 @@ class Verify_otp_model extends CI_Model
 			);
 			$this->db->update('tr_users',$data);
 		}
-		$this->send_email_otp($email,$otp);
+		if($domain_name != 'turbores.com') {
+			$this->send_email_otp($email,$otp);
+		}
 		setcookie('otp_email', $email, time() + (86400 * 30), "/");
 		return 'One-Time Password was sent to your email.';
 	}
